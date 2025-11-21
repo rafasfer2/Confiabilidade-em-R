@@ -2,8 +2,12 @@ name: Render and Deploy Quarto Book
 
 on:
   push:
-    branches: [main, master]
+    branches: [main]
   workflow_dispatch:
+
+concurrency:
+  group: quarto-book-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-deploy:
