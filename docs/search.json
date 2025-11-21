@@ -314,51 +314,40 @@
     "href": "chapters/01-introducao.html",
     "title": "1  Introdução",
     "section": "",
-    "text": "1.1 Contexto e Motivação\nA mineração é uma das indústrias mais intensivas em capital e equipamentos pesados, onde a confiabilidade operacional e a disponibilidade de ativos são fatores críticos para o sucesso do negócio. Em particular, os caminhões fora de estrada (haul trucks) representam uma parcela significativa dos investimentos e dos custos operacionais nas operações de mina a céu aberto.",
+    "text": "1.1 Contexto da Empresa em Estudo\nDurante muito tempo, as empresas focaram suas atenções na capacidade de projetar produtos que incorporem características e atributos otimizados, para atender a necessidades e desejos dos clientes (correa2012?). Entretanto, segundo (fernandes2021?), com vistas ao processo de produção na indústria da mineração, a qualidade do produto está relacionada ao teor do minério explorado, tornando o aumento da produção e a redução de custos um dos principais objetivos estratégicos. Desta forma, o conjunto das excelências em cada processo, representa a qualidade da organização sendo, este, o grande objetivo das mineradoras (fernandes2023?; gackowiec2020?).\nNo contexto brasileiro, a exploração de reserva de minerais, principalmente de minério de Ferro, é predominantemente realizada pelo método de lavra a céu aberto e envolve atividades de prospecção, exploração, desenvolvimento e explotação e, após a retirada do minério, este é transportado ao britador primário em que se inicia a etapa de beneficiamento (carvalho2014?; luz2018?; rocha2021?).\nEm particular, as atividades de exploração iniciam-se com a preparação da área a ser lavrada para que ela possa ser perfurada e detonada. Então a escavação e o carregamento, são feitos por equipamentos de carga que ficam alocados na frente da lavra. Estes retiram o material e o carregam nos equipamentos de transporte, caminhões, correias transportadoras, vagões, entre outros. Os equipamentos de transporte levam o material até um determinado ponto de descarga, podendo estes serem britadores, pilha estéril ou pilha pulmão, onde o ciclo da operação recomeça (fernandes2023b?; osanloo2020?).\nA empresa em estudo, trata-se de uma mineradora de grande porte localizada no sudeste do Pará em que estabelece, como responsabilidade para a equipe de Engenharia da Confiabilidade, identificar e gerenciar riscos associados aos seus ativos críticos, classificados assim como os que podem causar um evento material indesejado (MUE – Material Unwanted Event) (mining2015?). Desta forma, um incidente é um evento não planejado ou uma ocorrência que resulta em dano ou outra perda (iso55000?), e, por sua vez, a falha é um incidente que interrompe o funcionamento e acarreta a indisponibilidade do equipamento (iso5462?).",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introducao.html#desafio-da-manutenção-em-mineração",
-    "href": "chapters/01-introducao.html#desafio-da-manutenção-em-mineração",
+    "objectID": "chapters/01-introducao.html#gestão-de-ativos-e-manutenção",
+    "href": "chapters/01-introducao.html#gestão-de-ativos-e-manutenção",
     "title": "1  Introdução",
-    "section": "1.2 Desafio da Manutenção em Mineração",
-    "text": "1.2 Desafio da Manutenção em Mineração\nA gestão eficaz da manutenção desses equipamentos é fundamental para:\n\nMaximizar a disponibilidade dos ativos\nReduzir custos de manutenção corretiva não planejada\nOtimizar recursos de manutenção preventiva\nMinimizar riscos operacionais e de segurança\nAumentar a vida útil dos equipamentos",
+    "section": "1.2 Gestão de Ativos e Manutenção",
+    "text": "1.2 Gestão de Ativos e Manutenção\nNesse sentido, a gestão de ativos deve guiar a forma como as organizações buscam um desempenho operacional excelente, integrando de forma eficiente o Planejamento e Controle Operacional (PCO) e o Planejamento e Controle da Manutenção (PCM) (pascual2016?; qiao2017?).\nNo escopo de gestão de processos, a função primordial da operação é garantir a realização dos planos de gestão sem impactar as metas dos planos de produção (slack2013?). De outra forma, a operação desempenha um papel crucial na consecução dos resultados de produção, e uma falha pode impactar diretamente nos resultados esperados. Portanto, garantir a confiabilidade dos ativos físicos, gerir os riscos e minimizar as falhas são atividades integradas entre PCO e PCM (zampolli2019?).\nComplementarmente, para exercer um papel estratégico, a manutenção precisa estar alinhada com os resultados empresariais da organização, principalmente, ao assegurar a disponibilidade dos equipamentos para a operação, reduzindo a probabilidade de paradas de produção não planejadas, minimizando a necessidade de manutenção corretiva (MC) e priorizando as manutenções preventivas (MP).",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introducao.html#manutenção-preventiva-sistemática",
-    "href": "chapters/01-introducao.html#manutenção-preventiva-sistemática",
+    "objectID": "chapters/01-introducao.html#manutenção-preventiva-desafios-e-oportunidades",
+    "href": "chapters/01-introducao.html#manutenção-preventiva-desafios-e-oportunidades",
     "title": "1  Introdução",
-    "section": "1.3 Manutenção Preventiva Sistemática",
-    "text": "1.3 Manutenção Preventiva Sistemática\nA manutenção preventiva sistemática baseia-se na execução de intervenções programadas em intervalos fixos de tempo ou uso, independentemente da condição real do equipamento. Esta abordagem busca:\n\nPrevenir falhas antes que ocorram\nReduzir variabilidade nos tempos de reparo\nFacilitar planejamento de recursos e peças\nMelhorar previsibilidade operacional",
+    "section": "1.3 Manutenção Preventiva: Desafios e Oportunidades",
+    "text": "1.3 Manutenção Preventiva: Desafios e Oportunidades\nA manutenção preventiva é uma estratégia importante para melhorar a disponibilidade física (DF) de um sistema ou equipamento, reduzir o tempo de inatividade e prolongar a vida útil dos equipamentos. No entanto, embora esse tipo de manutenção seja uma tática importante para reduzir a frequência de ocorrência de falhas no sistema, pode haver casos em que a MP possa interferir ou prejudicar a disponibilidade dos equipamentos, onde o tempo de execução da manutenção é maior que o tempo planejado no plano de preventiva.\nA implementação de uma política ótima de manutenção, ótima no sentido de redução do custo total esperado da manutenção, é um problema que tem sido abordado por vários autores e baseia-se em sistemas que operam sob uma estratégia de manutenção, na qual MPs são realizadas em tempos pré-determinados e MCs na ocorrência de falhas entre as manutenções preventivas (doyen2004?; gilardoni2007?; toledo2016?).\nUma segunda abordagem, é que o planejamento da PM não implica necessariamente em tempos determinísticos, ou seja, a periodicidade da PM pode ser alterada devido a um plano de manutenção centrada em confiabilidade (RCM – Reliability Centered Maintenance) ou pela adoção de uma política de manutenção com abordagem dinâmica (gilardoni2016?). Se a análise concluir que o sistema não é suficientemente confiável, a periodicidade da PM, fixada antes do tempo de operação inicial, deve ser reduzida (doyen2011?).\nOcorre que a manutenção preventiva muitas vezes vista como periódica e determinística, pode ser entendida como aleatória, pois há alterações no sistema não conhecidos ou não controlados. Desta forma, é importante fazer investigação desse problema e, para os propósitos deste trabalho, o objetivo é analisar as principais causas que influenciam no desempenho dos indicadores de performance da manutenção dos caminhões, em particular, com foco na mensuração dos impactos causados pela estratégia de manutenção preventiva adotada nos caminhões off-road na empresa em estudo.",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
     ]
   },
   {
-    "objectID": "chapters/01-introducao.html#questões-de-pesquisa",
-    "href": "chapters/01-introducao.html#questões-de-pesquisa",
+    "objectID": "chapters/01-introducao.html#sec-questoes-pesquisa",
+    "href": "chapters/01-introducao.html#sec-questoes-pesquisa",
     "title": "1  Introdução",
     "section": "1.4 Questões de Pesquisa",
-    "text": "1.4 Questões de Pesquisa\nEste estudo busca responder às seguintes questões fundamentais:\n\nQual é a relação entre a intensidade de manutenção preventiva e a incidência de falhas?\nComo as estratégias de manutenção preventiva impactam a disponibilidade operacional?\nExiste uma periodicidade ótima para as intervenções preventivas?\nQuais fatores moderadores influenciam a efetividade da manutenção?",
-    "crumbs": [
-      "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/01-introducao.html#objetivos-do-estudo",
-    "href": "chapters/01-introducao.html#objetivos-do-estudo",
-    "title": "1  Introdução",
-    "section": "1.5 Objetivos do Estudo",
-    "text": "1.5 Objetivos do Estudo\n\n1.5.1 Objetivo Geral\nAnalisar a efetividade de estratégias de manutenção preventiva sistemática em caminhões fora de estrada, avaliando seu impacto na disponibilidade operacional e na incidência de falhas.\n\n\n1.5.2 Objetivos Específicos\n\nCaracterizar as medidas de performance operacional na mineração\nIdentificar fatores moderadores da efetividade da manutenção\nAvaliar políticas de manutenção preventiva periódica\nQuantificar o impacto da manutenção preventiva em indicadores operacionais\nPropor recomendações baseadas em evidências para otimização das estratégias de manutenção",
+    "text": "1.4 Questões de Pesquisa\nNeste contexto, este trabalho formaliza o objetivo em quatro questões de pesquisa (RQs):\nRQ1: Quão aderente são as manutenções preventivas em relação às quantidades previstas e aos tempos pré-determinados pelas pautas de manutenção?\nRQ2: Quantas falhas podem ocorrer devido à falta de aderência das manutenções preventivas?\nRQ3: Qual é o fator de impacto da manutenção preventiva?\nRQ4: Qual é o impacto total na disponibilidade física do sistema ou equipamento?",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
@@ -368,52 +357,8 @@
     "objectID": "chapters/01-introducao.html#estrutura-do-trabalho",
     "href": "chapters/01-introducao.html#estrutura-do-trabalho",
     "title": "1  Introdução",
-    "section": "1.6 Estrutura do Trabalho",
-    "text": "1.6 Estrutura do Trabalho\nO estudo está organizado da seguinte forma:\n\nCapítulo 2: Apresenta as medidas de performance operacional utilizadas na mineração\nCapítulo 3: Discute os fatores moderadores que influenciam a efetividade da manutenção\nCapítulos 4-6: Desenvolvem os fundamentos teóricos de confiabilidade e análise de falhas\nCapítulos 7-9: Exploram estratégias avançadas de manutenção\nCapítulos 10-12: Apresentam métodos de simulação, estudos de caso e governança",
-    "crumbs": [
-      "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/01-introducao.html#contexto-industrial",
-    "href": "chapters/01-introducao.html#contexto-industrial",
-    "title": "1  Introdução",
-    "section": "1.7 Contexto Industrial",
-    "text": "1.7 Contexto Industrial\n\n1.7.1 Caminhões Fora de Estrada\nOs caminhões fora de estrada (haul trucks) são equipamentos essenciais nas operações de mineração a céu aberto, caracterizados por:\n\nCapacidade de carga: 100 a 400 toneladas\nCiclo operacional: Carregamento → Transporte → Descarga → Retorno\nOperação contínua: 24 horas por dia, 7 dias por semana\nAmbiente severo: Poeira, vibração, temperatura, inclinações\n\n\n\n1.7.2 Importância Estratégica",
-    "crumbs": [
-      "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/01-introducao.html#relevância-do-estudo",
-    "href": "chapters/01-introducao.html#relevância-do-estudo",
-    "title": "1  Introdução",
-    "section": "1.8 Relevância do Estudo",
-    "text": "1.8 Relevância do Estudo\nEste trabalho contribui para:\n\nAcademia: Aplicação de métodos estatísticos avançados em contexto industrial real\nIndústria: Evidências quantitativas para decisões de manutenção\nPrática: Metodologia replicável para análise de estratégias de manutenção\nConhecimento: Insights sobre fatores que influenciam a efetividade da manutenção",
-    "crumbs": [
-      "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/01-introducao.html#limitações-e-escopo",
-    "href": "chapters/01-introducao.html#limitações-e-escopo",
-    "title": "1  Introdução",
-    "section": "1.9 Limitações e Escopo",
-    "text": "1.9 Limitações e Escopo\nO estudo considera:\n\nFoco: Caminhões fora de estrada em operação de mineração\nPeríodo: Dados históricos de operação e manutenção\nAbordagem: Análise quantitativa baseada em dados observacionais\nContexto: Manutenção preventiva sistemática (baseada em tempo/uso)",
-    "crumbs": [
-      "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
-    ]
-  },
-  {
-    "objectID": "chapters/01-introducao.html#resumo",
-    "href": "chapters/01-introducao.html#resumo",
-    "title": "1  Introdução",
-    "section": "1.10 Resumo",
-    "text": "1.10 Resumo\nEste capítulo introduziu o contexto, os objetivos e a estrutura do estudo sobre análise de estratégias de manutenção preventiva sistemática em caminhões fora de estrada. Os capítulos seguintes desenvolverão os conceitos fundamentais, metodologias de análise e resultados obtidos.\n\nPróximo capítulo: Medidas de Performance Operacional na Mineração",
+    "section": "1.5 Estrutura do Trabalho",
+    "text": "1.5 Estrutura do Trabalho\nEste trabalho está dividido da seguinte forma:\n\nNa seção 2, é apresentado a descrição do ciclo de processos de carregamento e transporte, bem como os indicadores chaves de desempenho utilizados no contexto da mineração e seus elementos de suporte.\nNa seção 3, são descritos os fatores moderados da manutenção, abordando os principais conceitos e indicadores relacionados à manutenção, além de apresentar uma proposta de novos indicadores de análise.\nNa seção 4, são apresentados os materiais, as informações da frota e os dados utilizados para as análises dos resultados.\nJá os resultados e discussões, são apresentados na seção 5.\nPor fim, a seção 6 traz as conclusões deste trabalho.\n\n\nPróximo capítulo: Medidas de Performance Operacional na Mineração",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introdução</span>"
@@ -422,67 +367,67 @@
   {
     "objectID": "chapters/02-performance-mineracao.html",
     "href": "chapters/02-performance-mineracao.html",
-    "title": "2  Medidas de Performance Operacional na Mineração",
+    "title": "2  Medidas de Performance Operação na Mineração",
     "section": "",
-    "text": "2.1 Introdução\nA medição e o monitoramento de performance operacional são fundamentais para a gestão eficaz de operações de mineração. Este capítulo apresenta as principais medidas utilizadas para avaliar o desempenho de equipamentos, especialmente caminhões fora de estrada, e os processos associados.",
+    "text": "2.1 Ciclo de Processos de Carregamento e Transporte\nO ciclo operacional de carregamento e transporte na mineração é composto por diversas etapas sequenciais que se repetem continuamente. A ?fig-ciclo-processos ilustra este ciclo, que envolve as seguintes fases principais:",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {
     "objectID": "chapters/02-performance-mineracao.html#sec-ciclo-processos",
     "href": "chapters/02-performance-mineracao.html#sec-ciclo-processos",
-    "title": "2  Medidas de Performance Operacional na Mineração",
-    "section": "2.2 Ciclo de Processos de Carregamento e Transporte",
-    "text": "2.2 Ciclo de Processos de Carregamento e Transporte\n\n2.2.1 Descrição do Ciclo Operacional\nO ciclo operacional de um caminhão fora de estrada em uma mina a céu aberto consiste nas seguintes etapas:\n\nPosicionamento para Carregamento\n\nManobra até a pá carregadeira ou escavadeira\nTempo típico: 1-3 minutos\n\nCarregamento\n\nEnchimento da caçamba com material\nNúmero de passes: 3-6 (dependendo do tamanho da escavadeira)\nTempo típico: 2-5 minutos\n\nTransporte Carregado\n\nDeslocamento até o ponto de descarga (britador, pilha de estéril)\nVelocidade média: 30-50 km/h (varia com rampa e condições da pista)\nTempo: variável (5-30 minutos)\n\nDescarga\n\nBasculamento da caçamba\nTempo típico: 1-2 minutos\n\nRetorno Vazio\n\nRetorno à frente de carregamento\nVelocidade média: 40-60 km/h\nTempo: variável\n\n\n\n\n2.2.2 Tempo de Ciclo\nO tempo de ciclo é a soma de todas as etapas:\n\\[\nT_{ciclo} = T_{fila} + T_{carreg} + T_{transp} + T_{descarga} + T_{retorno}\n\\]\nFatores que influenciam o tempo de ciclo:\n\nDistância de transporte\nCondições da pista (manutenção, umidade, rampa)\nCapacidade do operador\nCompatibilidade equipamento de carga × caminhão\nOrganização do tráfego\n\n\n\n2.2.3 Produtividade\nA produtividade é calculada como:\n\\[\nProdutividade = \\frac{Capacidade \\times Ciclos \\times Disponibilidade \\times Utilização}{Tempo}\n\\]\n\n\nCode\n# Exemplo de cálculo de produtividade\ncalcular_produtividade &lt;- function(capacidade_ton, tempo_ciclo_min,\n                                   disponibilidade, utilizacao,\n                                   horas_operacao = 24) {\n  ciclos_por_hora &lt;- 60 / tempo_ciclo_min\n  ciclos_totais &lt;- ciclos_por_hora * horas_operacao * disponibilidade * utilizacao\n  producao_diaria &lt;- capacidade_ton * ciclos_totais\n\n  return(list(\n    ciclos_hora = ciclos_por_hora,\n    ciclos_dia = ciclos_totais,\n    producao_ton_dia = producao_diaria\n  ))\n}\n\n# Exemplo: Caminhão 240 ton\nresultado &lt;- calcular_produtividade(\n  capacidade_ton = 240,\n  tempo_ciclo_min = 25,\n  disponibilidade = 0.85,\n  utilizacao = 0.90,\n  horas_operacao = 24\n)\n\ncat(\"Ciclos/hora:\", round(resultado$ciclos_hora, 2), \"\\n\")\n\n\nCiclos/hora: 2.4 \n\n\nCode\ncat(\"Ciclos/dia:\", round(resultado$ciclos_dia, 1), \"\\n\")\n\n\nCiclos/dia: 44.1 \n\n\nCode\ncat(\"Produção (ton/dia):\", format(round(resultado$producao_ton_dia), big.mark = \".\"), \"\\n\")\n\n\nProdução (ton/dia): 10.575",
+    "title": "2  Medidas de Performance Operação na Mineração",
+    "section": "",
+    "text": "Carregamento: Equipamento de carga (escavadeira ou carregadeira) enche a caçamba do caminhão\nTransporte carregado: Caminhão desloca-se até o ponto de descarga\nDescarga: Basculamento da caçamba no britador ou pilha\nRetorno vazio: Caminhão retorna à frente de carregamento\nFila: Aguardo para novo carregamento (quando necessário)\n\n\n\n\n\n\n\nNote\n\n\n\nO tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {
     "objectID": "chapters/02-performance-mineracao.html#sec-status-equipamento",
     "href": "chapters/02-performance-mineracao.html#sec-status-equipamento",
-    "title": "2  Medidas de Performance Operacional na Mineração",
-    "section": "2.3 Status do Equipamento",
-    "text": "2.3 Status do Equipamento\n\n2.3.1 Classificação de Estados Operacionais\nOs equipamentos de mineração são classificados em diferentes estados ao longo do tempo:\n\n2.3.1.1 1. Operando (OP)\n\nEquipamento realizando sua função produtiva\nExemplos: Carregando, transportando, descarregando\n\n\n\n2.3.1.2 2. Em Espera (EM)\n\nEquipamento disponível mas não operando\nExemplos: Fila para carregamento, aguardando descarga\n\n\n\n2.3.1.3 3. Em Manutenção (MA)\n\nPreventiva (MP): Manutenção programada\nCorretiva (MC): Reparo de falha não planejada\nInspeção (MI): Verificações de rotina\n\n\n\n2.3.1.4 4. Indisponível (IN)\n\nFalta de operador\nCondições ambientais adversas\nFalta de frente de trabalho\n\n\n\n\n2.3.2 Diagrama de Estados\n\n\n2.3.3 Registro de Dados\nOs sistemas de gestão de manutenção (CMMS) e de despacho (FMS - Fleet Management System) registram:\n\nTimestamps: Início e fim de cada estado\nCódigo de parada: Motivo da interrupção\nLocalização: Onde ocorreu a parada\nResponsável: Quem executou a manutenção\nComponentes: Sistemas afetados",
+    "title": "2  Medidas de Performance Operação na Mineração",
+    "section": "2.2 Status do Equipamento",
+    "text": "2.2 Status do Equipamento\nComo a medição é feita baseado em durações de tempo, os apontamentos são realizados sempre que o caminhão alterar o seu status de operação, estes, que são subdivididos em 4 classes: apto para operação, liberado pela manutenção, em manutenção ou em parada operacional.\nEstas classes exercem um importante direcionamento das responsabilidades de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem problemas operacionais distintos. Por exemplo, quando o caminhão está:\n\n2.2.1 Apto para Operação\nA equipe de operação é responsável e está focada no ciclo dos processos de carregamento e transporte. Seu principal desafio reside na seleção e dimensionamento dos equipamentos. Segundo (mohtasham2021?), isso está relacionada à seleção e dimensionamento adequado dos equipamentos de carregamento e transporte para realizar a tarefa de manuseio de materiais de forma ideal durante a operação da mina e, resultando a melhoria do indicador produtividade.\n\n\n2.2.2 Liberado pela Manutenção\nEste status é o momento imediatamente posterior à execução da manutenção, e consiste na transição de responsabilidade da equipe de manutenção para equipe de operação. Um acordo nível de serviço (ANS) entre as equipes deve ser pré-estabelecido para uma eficiente transição.\n\n\n2.2.3 Em Manutenção\nEsta é uma atividade de responsabilidade da equipe de manutenção e incluem funções e processos de planejamento, inspeção, programação e confiabilidade.\n\n\n2.2.4 Parada Operacional\nGrandes paradas são planejadas e gerenciadas considerando as contingências necessárias. Apesar de pertencer à equipe de operação, o planejamento é realizado pela gerência e considerando todo a cadeia produtiva.",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {
     "objectID": "chapters/02-performance-mineracao.html#sec-elementos-suporte",
     "href": "chapters/02-performance-mineracao.html#sec-elementos-suporte",
-    "title": "2  Medidas de Performance Operacional na Mineração",
-    "section": "2.4 Elementos de Suporte",
-    "text": "2.4 Elementos de Suporte\n\n2.4.1 Infraestrutura de Suporte à Operação\nPara que os caminhões operem eficientemente, diversos elementos de suporte são necessários:\n\n2.4.1.1 1. Manutenção de Pistas\n\nNivelamento e compactação\nControle de poeira (irrigação)\nDrenagem adequada\nSinalização e iluminação\n\n\n\n2.4.1.2 2. Abastecimento\n\nEstações de abastecimento estrategicamente localizadas\nTempo de abastecimento: 10-15 minutos\nCombustível: diesel (~500 litros/abastecimento para caminhões grandes)\n\n\n\n2.4.1.3 3. Troca de Turnos\n\nBriefings de segurança\nTransferência de informações operacionais\nInspeção pré-operacional\n\n\n\n2.4.1.4 4. Planejamento de Mina\n\nDefinição de rotas ótimas\nAlocação de equipamentos\nGestão de filas\n\n\n\n2.4.1.5 5. Sistema de Despacho\n\nSoftware de otimização em tempo real\nComunicação com operadores\nMonitoramento de produtividade",
+    "title": "2  Medidas de Performance Operação na Mineração",
+    "section": "2.3 Elementos de Suporte",
+    "text": "2.3 Elementos de Suporte\nPara o cálculo de indicadores, é comum realizar a síntese de algumas categorias de horas ou, de outra forma, a junção de horas. Assim, os elementos de tempo de segundo nível são:\n\nHoras de manutenção corretiva total (HMCT = HMC + HAC)\nHoras de manutenção preventiva (HMP = MPS)\nHoras trabalhadas não produtivas (HNTP = HTI + HTD)\nHoras ociosas (HO = HOI + HOE)\nHoras trabalhadas produtivas (HTP = HEF + HAO)\n\nPor fim, para o terceiro nível temos:\n\nHoras trabalhadas (HT = HEF + HAO + HTD + HTI)\nHoras em manutenção (HM = HMC + HAC + MPS + MPNS)\nHoras ociosas (HO)\n\nEm todos os níveis a soma das categorias representam as horas calendário (HC), por exemplo, temos que:\n\\[\nHC = HT + HM + HO\n\\]\n\n\n\n\n\n\nLegenda das Categorias de Horas\n\n\n\n\nHMC: Horas de Manutenção Corretiva\nHAC: Horas de Aguardo Corretiva\nMPS: Manutenção Preventiva Sistemática\nMPNS: Manutenção Preventiva Não Sistemática\nHTI: Horas de Trabalho Improdutivo\nHTD: Horas de Trabalho em Deslocamento\nHOI: Horas Ociosas Internas\nHOE: Horas Ociosas Externas\nHEF: Horas Efetivas\nHAO: Horas de Apoio à Operação",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {
     "objectID": "chapters/02-performance-mineracao.html#sec-icd",
     "href": "chapters/02-performance-mineracao.html#sec-icd",
-    "title": "2  Medidas de Performance Operacional na Mineração",
-    "section": "2.5 Indicadores-Chave de Desempenho (ICD)",
-    "text": "2.5 Indicadores-Chave de Desempenho (ICD)\n\n2.5.1 Indicadores de Disponibilidade\n\n2.5.1.1 Disponibilidade Física (DF)\nProporção do tempo em que o equipamento está disponível para operar:\n\\[\nDF = \\frac{Horas_{Calendário} - Horas_{Manutenção}}{Horas_{Calendário}} \\times 100\\%\n\\]\nMeta típica: 85-90% para caminhões fora de estrada\n\n\n2.5.1.2 Disponibilidade Mecânica (DM)\nSimilar à DF, mas exclui paradas por falta de operador ou condições externas:\n\\[\nDM = \\frac{Horas_{Disponíveis}}{Horas_{Disponíveis} + Horas_{Manutenção}} \\times 100\\%\n\\]\n\n\n\n2.5.2 Indicadores de Utilização\n\n2.5.2.1 Utilização (UT)\nProporção do tempo disponível em que o equipamento está efetivamente operando:\n\\[\nUT = \\frac{Horas_{Operando}}{Horas_{Disponível}} \\times 100\\%\n\\]\nMeta típica: 85-95%\n\n\n2.5.2.2 Efetividade Global do Equipamento (OEE)\nMétrica composta que considera disponibilidade, utilização e qualidade:\n\\[\nOEE = Disponibilidade \\times Utilização \\times Qualidade\n\\]\nPara mineração, “qualidade” geralmente se refere ao fator de enchimento da caçamba.\n\n\n\n2.5.3 Indicadores de Manutenção\n\n2.5.3.1 Tempo Médio Entre Falhas (MTBF)\n\\[\nMTBF = \\frac{\\sum Horas_{Operando}}{Número_{Falhas}}\n\\]\nUnidade: horas\nMeta: Maximizar (indica maior confiabilidade)\n\n\n2.5.3.2 Tempo Médio de Reparo (MTTR)\n\\[\nMTTR = \\frac{\\sum Tempo_{Reparo}}{Número_{Falhas}}\n\\]\nUnidade: horas\nMeta: Minimizar (indica melhor mantenabilidade)\n\n\n\n2.5.4 Exemplo de Cálculo de ICDs\n\n\nCode\nlibrary(dplyr)\nlibrary(kableExtra)\n\n# Dados exemplo: um mês de operação (720 horas)\ndados_exemplo &lt;- data.frame(\n  Equipamento = \"CAT 793F #101\",\n  Horas_Calendario = 720,\n  Horas_Manutencao_Preventiva = 24,\n  Horas_Manutencao_Corretiva = 36,\n  Horas_Indisponivel = 20,\n  Horas_Operando = 560,\n  Numero_Falhas = 3\n)\n\n# Calcular ICDs\nicds &lt;- dados_exemplo %&gt;%\n  mutate(\n    Horas_Manutencao_Total = Horas_Manutencao_Preventiva + Horas_Manutencao_Corretiva,\n    Horas_Disponivel = Horas_Calendario - Horas_Manutencao_Total - Horas_Indisponivel,\n\n    DF_pct = round((Horas_Calendario - Horas_Manutencao_Total) / Horas_Calendario * 100, 1),\n    UT_pct = round(Horas_Operando / Horas_Disponivel * 100, 1),\n\n    MTBF_horas = round(Horas_Operando / Numero_Falhas, 1),\n    MTTR_horas = round(Horas_Manutencao_Corretiva / Numero_Falhas, 1)\n  ) %&gt;%\n  select(Equipamento, DF_pct, UT_pct, MTBF_horas, MTTR_horas)\n\nicds %&gt;%\n  kable(col.names = c(\"Equipamento\", \"DF (%)\", \"UT (%)\", \"MTBF (h)\", \"MTTR (h)\"),\n        caption = \"Indicadores-Chave de Desempenho - Exemplo\") %&gt;%\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"))\n\n\n\nIndicadores-Chave de Desempenho - Exemplo\n\n\nEquipamento\nDF (%)\nUT (%)\nMTBF (h)\nMTTR (h)\n\n\n\n\nCAT 793F #101\n91.7\n87.5\n186.7\n12\n\n\n\n\n\n\n\n\n\n2.5.5 Benchmarking Industrial\n\n\n\nTable 2.1: Benchmarking de ICDs para caminhões fora de estrada\n\n\n\n\n\nIndicador\nClasse Mundial\nBom\nMédio\nBaixo\n\n\n\n\nDisponibilidade Física\n&gt;90%\n85-90%\n75-85%\n&lt;75%\n\n\nUtilização\n&gt;90%\n85-90%\n75-85%\n&lt;75%\n\n\nMTBF (horas)\n&gt;200\n150-200\n100-150\n&lt;100\n\n\nMTTR (horas)\n&lt;8\n8-12\n12-18\n&gt;18",
+    "title": "2  Medidas de Performance Operação na Mineração",
+    "section": "2.4 Indicadores Chave de Desempenho (ICD)",
+    "text": "2.4 Indicadores Chave de Desempenho (ICD)\nDesta forma, ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor nominal será dado pela soma da duração de todos os apontamentos, cuja razão esteja configurada para contabilizar esta categoria. Como o principal produto do ciclo de transporte é a massa transportada (MT), este configura-se como elemento quantitativo.\nOs ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com (kang2016?), há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.\nCada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.\nA ?fig-relacoes-icds apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.\n\n2.4.1 Disponibilidade Física (DF)\nO ICD de DF indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de “em manutenção”.\n\\[\nDF = \\frac{HD}{HC} = \\frac{HC - HM}{HC} \\times 100\\%\n\\]\nOnde:\n\nHD: Horas Disponíveis\nHC: Horas Calendário\nHM: Horas de Manutenção\n\n\n\n2.4.2 Utilização Física (UF)\nDe forma diferente, a taxa de utilização física (UF) leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em “liberado pela manutenção” ou “parada operacional”.\n\\[\nUF = \\frac{HT}{HD} \\times 100\\%\n\\]\n\n\n2.4.3 Produtividade (PR)\nAs horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de Produtividade (PR), este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status “apto para operação”.\n\\[\nPR = \\frac{MT}{HT}\n\\]\nOnde MT é a massa total transportada (em toneladas).\n\n\n2.4.4 Perda de Produção por Indicadores\nPor fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a perda de produção por indicadores de desempenho, verificando a representatividade em toneladas para cada indicador.\nAs equações de cálculo da perda de produção para cada indicador são descritas a seguir:\nPerda de Produção por Disponibilidade Física:\n\\[\nPP_{DF} = (HD_{programado} - HD_{realizado}) \\times PR_{realizado}\n\\tag{2.1}\\]\nPerda de Produção por Utilização:\n\\[\nPP_{UF} = (HO_{realizado} - HO_{programado}) \\times PR_{realizado}\n\\tag{2.2}\\]\nPerda de Produção por Produtividade:\n\\[\nPP_{PR} = (PR_{programado} - PR_{realizado}) \\times HT_{programado}\n\\tag{2.3}\\]\n\n\nCode\nlibrary(dplyr)\nlibrary(kableExtra)\n\n# Dados programados vs realizados\ndados &lt;- data.frame(\n  Indicador = c(\"Horas Calendário (HC)\", \"Horas Manutenção (HM)\", \n                \"Horas Disponíveis (HD)\", \"Horas Ociosas (HO)\",\n                \"Horas Trabalhadas (HT)\", \"Massa Transportada (MT)\"),\n  Programado = c(720, 72, 648, 65, 583, 140000),\n  Realizado = c(720, 95, 625, 88, 537, 125000),\n  Unidade = c(\"h\", \"h\", \"h\", \"h\", \"h\", \"t\")\n)\n\n# Calcular ICDs\nicds &lt;- data.frame(\n  Indicador = c(\"Disponibilidade Física (DF)\", \n                \"Utilização Física (UF)\", \n                \"Produtividade (PR)\"),\n  Programado = c(\n    round((648/720) * 100, 1),\n    round((583/648) * 100, 1),\n    round(140000/583, 1)\n  ),\n  Realizado = c(\n    round((625/720) * 100, 1),\n    round((537/625) * 100, 1),\n    round(125000/537, 1)\n  ),\n  Unidade = c(\"%\", \"%\", \"t/h\")\n)\n\n# Calcular perdas\nPR_real &lt;- 125000/537\nperdas &lt;- data.frame(\n  Tipo_Perda = c(\"Perda por DF\", \"Perda por UF\", \"Perda por PR\"),\n  Calculo = c(\n    paste0(\"(\", 648, \" - \", 625, \") × \", round(PR_real, 1)),\n    paste0(\"(\", 88, \" - \", 65, \") × \", round(PR_real, 1)),\n    paste0(\"(\", round(140000/583, 1), \" - \", round(PR_real, 1), \") × \", 583)\n  ),\n  Perda_ton = c(\n    round((648 - 625) * PR_real, 0),\n    round((88 - 65) * PR_real, 0),\n    round((140000/583 - PR_real) * 583, 0)\n  )\n)\n\n# Apresentar resultados\nkable(dados, caption = \"Dados Programados vs Realizados\") %&gt;%\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"), full_width = FALSE)\n\n\n\nDados Programados vs Realizados\n\n\nIndicador\nProgramado\nRealizado\nUnidade\n\n\n\n\nHoras Calendário (HC)\n720\n720\nh\n\n\nHoras Manutenção (HM)\n72\n95\nh\n\n\nHoras Disponíveis (HD)\n648\n625\nh\n\n\nHoras Ociosas (HO)\n65\n88\nh\n\n\nHoras Trabalhadas (HT)\n583\n537\nh\n\n\nMassa Transportada (MT)\n140000\n125000\nt\n\n\n\n\n\n\n\nCode\nkable(icds, caption = \"Indicadores-Chave de Desempenho\") %&gt;%\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"), full_width = FALSE)\n\n\n\nIndicadores-Chave de Desempenho\n\n\nIndicador\nProgramado\nRealizado\nUnidade\n\n\n\n\nDisponibilidade Física (DF)\n90.0\n86.8\n%\n\n\nUtilização Física (UF)\n90.0\n85.9\n%\n\n\nProdutividade (PR)\n240.1\n232.8\nt/h\n\n\n\n\n\n\n\nCode\nkable(perdas, caption = \"Análise de Perda de Produção\", \n      col.names = c(\"Tipo de Perda\", \"Cálculo\", \"Perda (t)\")) %&gt;%\n  kable_styling(bootstrap_options = c(\"striped\", \"hover\"), full_width = FALSE)\n\n\n\nAnálise de Perda de Produção\n\n\nTipo de Perda\nCálculo\nPerda (t)\n\n\n\n\nPerda por DF\n(648 - 625) × 232.8\n5354\n\n\nPerda por UF\n(88 - 65) × 232.8\n5354\n\n\nPerda por PR\n(240.1 - 232.8) × 583\n4292\n\n\n\n\n\n\nExemplo de cálculo de ICDs e perda de produção\n\n\n\n\n\n\n\nInterpretação das Perdas\n\n\n\nA análise de perda de produção permite identificar qual indicador teve maior impacto negativo na produção realizada, direcionando as ações de melhoria:\n\nPerda por DF: Indica problemas de manutenção\nPerda por UF: Indica problemas operacionais (ociosidade)\nPerda por PR: Indica problemas de eficiência do ciclo",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {
     "objectID": "chapters/02-performance-mineracao.html#resumo",
     "href": "chapters/02-performance-mineracao.html#resumo",
-    "title": "2  Medidas de Performance Operacional na Mineração",
-    "section": "2.6 Resumo",
-    "text": "2.6 Resumo\n🔔 Pontos-chave:\n\nO ciclo operacional de carregamento e transporte determina a produtividade\nEquipamentos transitam entre estados operacionais ao longo do tempo\nElementos de suporte são críticos para operação eficiente\nICDs quantificam performance e permitem comparações (benchmarking)\nDisponibilidade, utilização e confiabilidade são métricas fundamentais\n\n\nPróximo capítulo: Fatores Moderadores da Manutenção",
+    "title": "2  Medidas de Performance Operação na Mineração",
+    "section": "2.5 Resumo",
+    "text": "2.5 Resumo\n🔔 Pontos-chave:\n\nO ciclo de carregamento e transporte é composto por etapas sequenciais\nStatus do equipamento define responsabilidades entre operação e manutenção\nElementos de suporte estruturam o cálculo dos ICDs através de categorias de horas\nDF, UF e PR são os principais indicadores de desempenho\nPerdas de produção podem ser mensuradas por indicador\n\n\nPróximo capítulo: Fatores Moderadores da Manutenção",
     "crumbs": [
       "Contexto e Aplicação em Mineração",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operacional na Mineração</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Medidas de Performance Operação na Mineração</span>"
     ]
   },
   {

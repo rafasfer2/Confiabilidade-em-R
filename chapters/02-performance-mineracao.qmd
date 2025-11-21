@@ -1,41 +1,18 @@
-# Medidas de Performance Operacional na Mineração {#sec-performance-mineracao}
-
-## Introdução
-
-A medição e o monitoramento de performance operacional são fundamentais para a gestão eficaz de operações de mineração. Este capítulo apresenta as principais medidas utilizadas para avaliar o desempenho de equipamentos, especialmente caminhões fora de estrada, e os processos associados.
+# Medidas de Performance Operação na Mineração {#sec-performance-mineracao}
 
 ## Ciclo de Processos de Carregamento e Transporte {#sec-ciclo-processos}
 
-### Descrição do Ciclo Operacional
+O ciclo operacional de carregamento e transporte na mineração é composto por diversas etapas sequenciais que se repetem continuamente. A @fig-ciclo-processos ilustra este ciclo, que envolve as seguintes fases principais:
 
-O ciclo operacional de um caminhão fora de estrada em uma mina a céu aberto consiste nas seguintes etapas:
-
-1. **Posicionamento para Carregamento**
-   - Manobra até a pá carregadeira ou escavadeira
-   - Tempo típico: 1-3 minutos
-
-2. **Carregamento**
-   - Enchimento da caçamba com material
-   - Número de passes: 3-6 (dependendo do tamanho da escavadeira)
-   - Tempo típico: 2-5 minutos
-
-3. **Transporte Carregado**
-   - Deslocamento até o ponto de descarga (britador, pilha de estéril)
-   - Velocidade média: 30-50 km/h (varia com rampa e condições da pista)
-   - Tempo: variável (5-30 minutos)
-
-4. **Descarga**
-   - Basculamento da caçamba
-   - Tempo típico: 1-2 minutos
-
-5. **Retorno Vazio**
-   - Retorno à frente de carregamento
-   - Velocidade média: 40-60 km/h
-   - Tempo: variável
+1. **Carregamento**: Equipamento de carga (escavadeira ou carregadeira) enche a caçamba do caminhão
+2. **Transporte carregado**: Caminhão desloca-se até o ponto de descarga
+3. **Descarga**: Basculamento da caçamba no britador ou pilha
+4. **Retorno vazio**: Caminhão retorna à frente de carregamento
+5. **Fila**: Aguardo para novo carregamento (quando necessário)
 
 ```{r}
-#| label: fig-ciclo-operacional
-#| fig-cap: "Representação do ciclo operacional de um caminhão fora de estrada"
+#| label: fig-ciclo-processos
+#| fig-cap: "Ciclo de processos de carregamento e transporte"
 #| echo: false
 #| eval: false
 
@@ -48,300 +25,302 @@ digraph ciclo_operacional {
   node [shape = box, style = filled, fillcolor = lightblue,
         fontname = Helvetica, fontsize = 10]
 
-  Fila [label = 'Fila para\\nCarregamento']
-  Carreg [label = 'Carregamento\\n2-5 min', fillcolor = lightgreen]
-  Transp [label = 'Transporte\\nCarregado\\n5-30 min', fillcolor = lightyellow]
-  Descarga [label = 'Descarga\\n1-2 min', fillcolor = lightcoral]
-  Retorno [label = 'Retorno\\nVazio\\n5-20 min', fillcolor = lightgray]
+  Fila [label = 'Fila']
+  Carreg [label = 'Carregamento', fillcolor = lightgreen]
+  Transp [label = 'Transporte\\nCarregado', fillcolor = lightyellow]
+  Descarga [label = 'Descarga', fillcolor = lightcoral]
+  Retorno [label = 'Retorno\\nVazio', fillcolor = lightgray]
 
-  Fila -> Carreg -> Transp -> Descarga -> Retorno -> Fila
+  Carreg -> Transp -> Descarga -> Retorno -> Fila -> Carreg
 
   {rank = same; Carreg; Descarga}
 }
 ")
 ```
 
-### Tempo de Ciclo
-
-O **tempo de ciclo** é a soma de todas as etapas:
-
-$$
-T_{ciclo} = T_{fila} + T_{carreg} + T_{transp} + T_{descarga} + T_{retorno}
-$$
-
-Fatores que influenciam o tempo de ciclo:
-
-- Distância de transporte
-- Condições da pista (manutenção, umidade, rampa)
-- Capacidade do operador
-- Compatibilidade equipamento de carga × caminhão
-- Organização do tráfego
-
-### Produtividade
-
-A produtividade é calculada como:
-
-$$
-Produtividade = \frac{Capacidade \times Ciclos \times Disponibilidade \times Utilização}{Tempo}
-$$
-
-```{r}
-#| label: exemplo-produtividade
-#| warning: false
-
-# Exemplo de cálculo de produtividade
-calcular_produtividade <- function(capacidade_ton, tempo_ciclo_min,
-                                   disponibilidade, utilizacao,
-                                   horas_operacao = 24) {
-  ciclos_por_hora <- 60 / tempo_ciclo_min
-  ciclos_totais <- ciclos_por_hora * horas_operacao * disponibilidade * utilizacao
-  producao_diaria <- capacidade_ton * ciclos_totais
-
-  return(list(
-    ciclos_hora = ciclos_por_hora,
-    ciclos_dia = ciclos_totais,
-    producao_ton_dia = producao_diaria
-  ))
-}
-
-# Exemplo: Caminhão 240 ton
-resultado <- calcular_produtividade(
-  capacidade_ton = 240,
-  tempo_ciclo_min = 25,
-  disponibilidade = 0.85,
-  utilizacao = 0.90,
-  horas_operacao = 24
-)
-
-cat("Ciclos/hora:", round(resultado$ciclos_hora, 2), "\n")
-cat("Ciclos/dia:", round(resultado$ciclos_dia, 1), "\n")
-cat("Produção (ton/dia):", format(round(resultado$producao_ton_dia), big.mark = "."), "\n")
-```
+::: {.callout-note}
+O tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.
+:::
 
 ## Status do Equipamento {#sec-status-equipamento}
 
-### Classificação de Estados Operacionais
+Como a medição é feita baseado em durações de tempo, os apontamentos são realizados sempre que o caminhão alterar o seu status de operação, estes, que são subdivididos em **4 classes**: apto para operação, liberado pela manutenção, em manutenção ou em parada operacional.
 
-Os equipamentos de mineração são classificados em diferentes estados ao longo do tempo:
+Estas classes exercem um importante direcionamento das responsabilidades de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem problemas operacionais distintos. Por exemplo, quando o caminhão está:
 
-#### 1. **Operando (OP)**
-- Equipamento realizando sua função produtiva
-- Exemplos: Carregando, transportando, descarregando
+### Apto para Operação
 
-#### 2. **Em Espera (EM)**
-- Equipamento disponível mas não operando
-- Exemplos: Fila para carregamento, aguardando descarga
+A equipe de **operação** é responsável e está focada no ciclo dos processos de carregamento e transporte. Seu principal desafio reside na seleção e dimensionamento dos equipamentos. Segundo @mohtasham2021, isso está relacionada à seleção e dimensionamento adequado dos equipamentos de carregamento e transporte para realizar a tarefa de manuseio de materiais de forma ideal durante a operação da mina e, resultando a melhoria do indicador produtividade.
 
-#### 3. **Em Manutenção (MA)**
-- **Preventiva (MP)**: Manutenção programada
-- **Corretiva (MC)**: Reparo de falha não planejada
-- **Inspeção (MI)**: Verificações de rotina
+### Liberado pela Manutenção
 
-#### 4. **Indisponível (IN)**
-- Falta de operador
-- Condições ambientais adversas
-- Falta de frente de trabalho
+Este status é o momento imediatamente posterior à execução da manutenção, e consiste na **transição de responsabilidade** da equipe de manutenção para equipe de operação. Um acordo nível de serviço (ANS) entre as equipes deve ser pré-estabelecido para uma eficiente transição.
 
-### Diagrama de Estados
+### Em Manutenção
+
+Esta é uma atividade de responsabilidade da **equipe de manutenção** e incluem funções e processos de planejamento, inspeção, programação e confiabilidade.
+
+### Parada Operacional
+
+Grandes paradas são planejadas e gerenciadas considerando as contingências necessárias. Apesar de pertencer à equipe de operação, o **planejamento** é realizado pela gerência e considerando todo a cadeia produtiva.
 
 ```{r}
-#| label: fig-estados-equipamento
-#| fig-cap: "Diagrama de estados de um equipamento de mineração"
+#| label: fig-status-equipamento
+#| fig-cap: "Transições entre status do equipamento"
 #| echo: false
 #| eval: false
 
+library(DiagrammeR)
+
 grViz("
-digraph estados {
+digraph status {
   graph [rankdir = TB, bgcolor = transparent]
 
-  node [shape = oval, style = filled, fontname = Helvetica]
+  node [shape = box, style = 'filled,rounded', fontname = Helvetica]
 
-  OP [label = 'OPERANDO', fillcolor = '#2ECC71']
-  EM [label = 'EM ESPERA', fillcolor = '#F39C12']
-  MP [label = 'MANUTENÇÃO\\nPREVENTIVA', fillcolor = '#3498DB']
-  MC [label = 'MANUTENÇÃO\\nCORRETIVA', fillcolor = '#E74C3C']
-  IN [label = 'INDISPONÍVEL', fillcolor = '#95A5A6']
+  APO [label = 'Apto para\\nOperação', fillcolor = '#2ECC71']
+  LIB [label = 'Liberado pela\\nManutenção', fillcolor = '#3498DB']
+  MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
+  PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
 
-  OP -> EM [label = '  sem demanda  ']
-  EM -> OP [label = '  demanda  ']
-  OP -> MP [label = '  programação  ']
-  OP -> MC [label = '  falha  ']
-  MP -> OP [label = '  conclusão  ']
-  MC -> OP [label = '  reparo  ']
-  {OP EM MP MC} -> IN [label = '  fatores externos  ', style = dashed]
-  IN -> EM [label = '  normalização  ', style = dashed]
+  LIB -> APO [label = '  operação\\n  assume  ']
+  APO -> MAN [label = '  falha ou\\n  preventiva  ']
+  MAN -> LIB [label = '  conclusão\\n  serviço  ']
+  APO -> PAR [label = '  parada\\n  planejada  ']
+  PAR -> APO [label = '  retomada\\n  operação  ']
 }
 ")
 ```
 
-### Registro de Dados
-
-Os sistemas de gestão de manutenção (CMMS) e de despacho (FMS - Fleet Management System) registram:
-
-- **Timestamps**: Início e fim de cada estado
-- **Código de parada**: Motivo da interrupção
-- **Localização**: Onde ocorreu a parada
-- **Responsável**: Quem executou a manutenção
-- **Componentes**: Sistemas afetados
-
 ## Elementos de Suporte {#sec-elementos-suporte}
 
-### Infraestrutura de Suporte à Operação
+Para o cálculo de indicadores, é comum realizar a síntese de algumas categorias de horas ou, de outra forma, a junção de horas. Assim, os **elementos de tempo de segundo nível** são:
 
-Para que os caminhões operem eficientemente, diversos elementos de suporte são necessários:
+- **Horas de manutenção corretiva total** (HMCT = HMC + HAC)
+- **Horas de manutenção preventiva** (HMP = MPS)
+- **Horas trabalhadas não produtivas** (HNTP = HTI + HTD)
+- **Horas ociosas** (HO = HOI + HOE)
+- **Horas trabalhadas produtivas** (HTP = HEF + HAO)
 
-#### 1. **Manutenção de Pistas**
-- Nivelamento e compactação
-- Controle de poeira (irrigação)
-- Drenagem adequada
-- Sinalização e iluminação
+Por fim, para o **terceiro nível** temos:
 
-#### 2. **Abastecimento**
-- Estações de abastecimento estrategicamente localizadas
-- Tempo de abastecimento: 10-15 minutos
-- Combustível: diesel (~500 litros/abastecimento para caminhões grandes)
+- **Horas trabalhadas** (HT = HEF + HAO + HTD + HTI)
+- **Horas em manutenção** (HM = HMC + HAC + MPS + MPNS)
+- **Horas ociosas** (HO)
 
-#### 3. **Troca de Turnos**
-- Briefings de segurança
-- Transferência de informações operacionais
-- Inspeção pré-operacional
-
-#### 4. **Planejamento de Mina**
-- Definição de rotas ótimas
-- Alocação de equipamentos
-- Gestão de filas
-
-#### 5. **Sistema de Despacho**
-- Software de otimização em tempo real
-- Comunicação com operadores
-- Monitoramento de produtividade
-
-## Indicadores-Chave de Desempenho (ICD) {#sec-icd}
-
-### Indicadores de Disponibilidade
-
-#### Disponibilidade Física (DF)
-
-Proporção do tempo em que o equipamento está disponível para operar:
+Em todos os níveis a soma das categorias representam as **horas calendário** (HC), por exemplo, temos que:
 
 $$
-DF = \frac{Horas_{Calendário} - Horas_{Manutenção}}{Horas_{Calendário}} \times 100\%
+HC = HT + HM + HO
 $$
 
-**Meta típica**: 85-90% para caminhões fora de estrada
+::: {.callout-note}
+## Legenda das Categorias de Horas
 
-#### Disponibilidade Mecânica (DM)
+- **HMC**: Horas de Manutenção Corretiva
+- **HAC**: Horas de Aguardo Corretiva
+- **MPS**: Manutenção Preventiva Sistemática
+- **MPNS**: Manutenção Preventiva Não Sistemática
+- **HTI**: Horas de Trabalho Improdutivo
+- **HTD**: Horas de Trabalho em Deslocamento
+- **HOI**: Horas Ociosas Internas
+- **HOE**: Horas Ociosas Externas
+- **HEF**: Horas Efetivas
+- **HAO**: Horas de Apoio à Operação
+:::
 
-Similar à DF, mas exclui paradas por falta de operador ou condições externas:
+## Indicadores Chave de Desempenho (ICD) {#sec-icd}
 
-$$
-DM = \frac{Horas_{Disponíveis}}{Horas_{Disponíveis} + Horas_{Manutenção}} \times 100\%
-$$
+Desta forma, ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor nominal será dado pela soma da duração de todos os apontamentos, cuja razão esteja configurada para contabilizar esta categoria. Como o principal produto do ciclo de transporte é a **massa transportada (MT)**, este configura-se como elemento quantitativo.
 
-### Indicadores de Utilização
+Os ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com @kang2016, há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.
 
-#### Utilização (UT)
+Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.
 
-Proporção do tempo disponível em que o equipamento está efetivamente operando:
-
-$$
-UT = \frac{Horas_{Operando}}{Horas_{Disponível}} \times 100\%
-$$
-
-**Meta típica**: 85-95%
-
-#### Efetividade Global do Equipamento (OEE)
-
-Métrica composta que considera disponibilidade, utilização e qualidade:
-
-$$
-OEE = Disponibilidade \times Utilização \times Qualidade
-$$
-
-Para mineração, "qualidade" geralmente se refere ao fator de enchimento da caçamba.
-
-### Indicadores de Manutenção
-
-#### Tempo Médio Entre Falhas (MTBF)
-
-$$
-MTBF = \frac{\sum Horas_{Operando}}{Número_{Falhas}}
-$$
-
-**Unidade**: horas
-
-**Meta**: Maximizar (indica maior confiabilidade)
-
-#### Tempo Médio de Reparo (MTTR)
-
-$$
-MTTR = \frac{\sum Tempo_{Reparo}}{Número_{Falhas}}
-$$
-
-**Unidade**: horas
-
-**Meta**: Minimizar (indica melhor mantenabilidade)
-
-### Exemplo de Cálculo de ICDs
+A @fig-relacoes-icds apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.
 
 ```{r}
-#| label: exemplo-icds
+#| label: fig-relacoes-icds
+#| fig-cap: "Relações de apontamentos entre status e categoria de horas"
+#| echo: false
+#| eval: false
+
+library(DiagrammeR)
+
+grViz("
+digraph relacoes {
+  graph [rankdir = LR, bgcolor = transparent]
+
+  node [shape = box, style = filled, fontname = Helvetica, fontsize = 9]
+
+  subgraph cluster_status {
+    label = 'Status do Equipamento'
+    style = filled
+    color = lightgrey
+
+    APO [label = 'Apto p/\\nOperação', fillcolor = '#2ECC71']
+    LIB [label = 'Liberado\\nManutenção', fillcolor = '#3498DB']
+    MAN [label = 'Em\\nManutenção', fillcolor = '#E74C3C']
+    PAR [label = 'Parada\\nOperacional', fillcolor = '#95A5A6']
+  }
+
+  subgraph cluster_horas {
+    label = 'Categorias de Horas'
+    style = filled
+    color = lightblue
+
+    HT [label = 'Horas\\nTrabalhadas']
+    HM [label = 'Horas\\nManutenção']
+    HO [label = 'Horas\\nOciosas']
+  }
+
+  APO -> HT
+  LIB -> HO
+  MAN -> HM
+  PAR -> HO
+}
+")
+```
+
+### Disponibilidade Física (DF)
+
+O ICD de **DF** indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de "em manutenção".
+
+$$
+DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%
+$$
+
+Onde:
+
+- **HD**: Horas Disponíveis
+- **HC**: Horas Calendário
+- **HM**: Horas de Manutenção
+
+### Utilização Física (UF)
+
+De forma diferente, a **taxa de utilização física (UF)** leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em "liberado pela manutenção" ou "parada operacional".
+
+$$
+UF = \frac{HT}{HD} \times 100\%
+$$
+
+### Produtividade (PR)
+
+As horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de **Produtividade (PR)**, este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status "apto para operação".
+
+$$
+PR = \frac{MT}{HT}
+$$
+
+Onde **MT** é a massa total transportada (em toneladas).
+
+### Perda de Produção por Indicadores {#sec-perda-producao}
+
+Por fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a **perda de produção por indicadores de desempenho**, verificando a representatividade em toneladas para cada indicador.
+
+As equações de cálculo da perda de produção para cada indicador são descritas a seguir:
+
+**Perda de Produção por Disponibilidade Física:**
+
+$$
+PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}
+$$ {#eq-perda-df}
+
+**Perda de Produção por Utilização:**
+
+$$
+PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}
+$$ {#eq-perda-uf}
+
+**Perda de Produção por Produtividade:**
+
+$$
+PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
+$$ {#eq-perda-pr}
+
+```{r}
+#| label: exemplo-calculo-icds
 #| warning: false
+#| tbl-cap: "Exemplo de cálculo de ICDs e perda de produção"
 
 library(dplyr)
 library(kableExtra)
 
-# Dados exemplo: um mês de operação (720 horas)
-dados_exemplo <- data.frame(
-  Equipamento = "CAT 793F #101",
-  Horas_Calendario = 720,
-  Horas_Manutencao_Preventiva = 24,
-  Horas_Manutencao_Corretiva = 36,
-  Horas_Indisponivel = 20,
-  Horas_Operando = 560,
-  Numero_Falhas = 3
+# Dados programados vs realizados
+dados <- data.frame(
+  Indicador = c("Horas Calendário (HC)", "Horas Manutenção (HM)",
+                "Horas Disponíveis (HD)", "Horas Ociosas (HO)",
+                "Horas Trabalhadas (HT)", "Massa Transportada (MT)"),
+  Programado = c(720, 72, 648, 65, 583, 140000),
+  Realizado = c(720, 95, 625, 88, 537, 125000),
+  Unidade = c("h", "h", "h", "h", "h", "t")
 )
 
 # Calcular ICDs
-icds <- dados_exemplo %>%
-  mutate(
-    Horas_Manutencao_Total = Horas_Manutencao_Preventiva + Horas_Manutencao_Corretiva,
-    Horas_Disponivel = Horas_Calendario - Horas_Manutencao_Total - Horas_Indisponivel,
+icds <- data.frame(
+  Indicador = c("Disponibilidade Física (DF)",
+                "Utilização Física (UF)",
+                "Produtividade (PR)"),
+  Programado = c(
+    round((648/720) * 100, 1),
+    round((583/648) * 100, 1),
+    round(140000/583, 1)
+  ),
+  Realizado = c(
+    round((625/720) * 100, 1),
+    round((537/625) * 100, 1),
+    round(125000/537, 1)
+  ),
+  Unidade = c("%", "%", "t/h")
+)
 
-    DF_pct = round((Horas_Calendario - Horas_Manutencao_Total) / Horas_Calendario * 100, 1),
-    UT_pct = round(Horas_Operando / Horas_Disponivel * 100, 1),
+# Calcular perdas
+PR_real <- 125000/537
+perdas <- data.frame(
+  Tipo_Perda = c("Perda por DF", "Perda por UF", "Perda por PR"),
+  Calculo = c(
+    paste0("(", 648, " - ", 625, ") × ", round(PR_real, 1)),
+    paste0("(", 88, " - ", 65, ") × ", round(PR_real, 1)),
+    paste0("(", round(140000/583, 1), " - ", round(PR_real, 1), ") × ", 583)
+  ),
+  Perda_ton = c(
+    round((648 - 625) * PR_real, 0),
+    round((88 - 65) * PR_real, 0),
+    round((140000/583 - PR_real) * 583, 0)
+  )
+)
 
-    MTBF_horas = round(Horas_Operando / Numero_Falhas, 1),
-    MTTR_horas = round(Horas_Manutencao_Corretiva / Numero_Falhas, 1)
-  ) %>%
-  select(Equipamento, DF_pct, UT_pct, MTBF_horas, MTTR_horas)
+# Apresentar resultados
+kable(dados, caption = "Dados Programados vs Realizados") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 
-icds %>%
-  kable(col.names = c("Equipamento", "DF (%)", "UT (%)", "MTBF (h)", "MTTR (h)"),
-        caption = "Indicadores-Chave de Desempenho - Exemplo") %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
+kable(icds, caption = "Indicadores-Chave de Desempenho") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+
+kable(perdas, caption = "Análise de Perda de Produção",
+      col.names = c("Tipo de Perda", "Cálculo", "Perda (t)")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
-### Benchmarking Industrial
+::: {.callout-important}
+## Interpretação das Perdas
 
-| Indicador | Classe Mundial | Bom | Médio | Baixo |
-|-----------|---------------|-----|-------|-------|
-| **Disponibilidade Física** | >90% | 85-90% | 75-85% | <75% |
-| **Utilização** | >90% | 85-90% | 75-85% | <75% |
-| **MTBF (horas)** | >200 | 150-200 | 100-150 | <100 |
-| **MTTR (horas)** | <8 | 8-12 | 12-18 | >18 |
+A análise de perda de produção permite identificar qual indicador teve maior impacto negativo na produção realizada, direcionando as ações de melhoria:
 
-: Benchmarking de ICDs para caminhões fora de estrada {#tbl-benchmarking}
+- **Perda por DF**: Indica problemas de manutenção
+- **Perda por UF**: Indica problemas operacionais (ociosidade)
+- **Perda por PR**: Indica problemas de eficiência do ciclo
+:::
 
 ## Resumo
 
 🔔 **Pontos-chave:**
 
-- O ciclo operacional de carregamento e transporte determina a produtividade
-- Equipamentos transitam entre estados operacionais ao longo do tempo
-- Elementos de suporte são críticos para operação eficiente
-- ICDs quantificam performance e permitem comparações (benchmarking)
-- Disponibilidade, utilização e confiabilidade são métricas fundamentais
+- O ciclo de carregamento e transporte é composto por etapas sequenciais
+- Status do equipamento define responsabilidades entre operação e manutenção
+- Elementos de suporte estruturam o cálculo dos ICDs através de categorias de horas
+- DF, UF e PR são os principais indicadores de desempenho
+- Perdas de produção podem ser mensuradas por indicador
 
 ---
 
