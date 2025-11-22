@@ -193,6 +193,32 @@ nav[role="doc-toc"] li,
   margin-right: 0.3em;
 }
 
+/* Sidebar expandable/collapsible sections */
+.sidebar .sidebar-section-container {
+  margin-bottom: 0.5em;
+}
+
+.sidebar .chapter.sidebar-section-item {
+  padding-left: 0 !important;
+}
+
+.sidebar .sidebar-section .sidebar-section-item a {
+  font-size: 0.9rem;
+}
+
+/* Highlight current page in sidebar */
+.sidebar .active {
+  font-weight: bold;
+  border-left: 3px solid #007bff;
+  padding-left: 0.5em !important;
+}
+
+/* Sidebar collapse icons */
+.sidebar .chapter-number::before,
+.sidebar-item-toggle {
+  margin-right: 0.3em;
+}
+
 /* Print-specific adjustments */
 @media print {
   body {

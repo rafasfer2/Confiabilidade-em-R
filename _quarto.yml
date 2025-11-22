@@ -7,6 +7,9 @@ book:
   subtitle: "Análise de Dados de Falha, Modelagem de Vida Útil e Estratégias de Manutenção"
   author: "Rafael da Silva Fernandes"
   date: today
+  sidebar:
+    style: docked
+    collapse-level: 2
 
   chapters:
     - index.qmd
@@ -19,39 +22,6 @@ book:
         - chapters/01-introducao.qmd
         - chapters/02-performance-mineracao.qmd
         - chapters/03-fatores-moderadores.qmd
-
-    - part: "Fundamentos e Teoria"
-      chapters:
-        - chapters/04-fundamentos.qmd
-        - chapters/05-distribuicoes.qmd
-        - chapters/06-estimacao.qmd
-
-    - part: "Análise e Modelagem Prática"
-      chapters:
-        - chapters/07-analise-falhas.qmd
-        - chapters/08-weibull.qmd
-        - chapters/09-sobrevivencia.qmd
-
-    - part: "Estratégias de Manutenção"
-      chapters:
-        - chapters/10-manutencao-preventiva.qmd
-        - chapters/11-manutencao-preditiva.qmd
-        - chapters/12-sistemas.qmd
-
-    - part: "Métodos Avançados e Aplicações"
-      chapters:
-        - chapters/13-simulacao.qmd
-        - chapters/14-estudos-caso.qmd
-        - chapters/15-governanca.qmd
-
-    - part: "Apêndices"
-      chapters:
-        - appendices/A-pacotes.qmd
-        - appendices/B-templates.qmd
-        - appendices/C-cheatsheet.qmd
-
-    - references.qmd
-    - credits.qmd
 
 bibliography: references.bib
 csl: ieee.csl
@@ -71,8 +41,7 @@ format:
     css: styles.css
     code-fold: true
     code-tools: true
-    toc: true
-    toc-depth: 3
+    toc: false
     number-sections: true
     link-external-newwindow: true
   pdf:
