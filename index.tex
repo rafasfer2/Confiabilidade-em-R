@@ -1,14 +1,14 @@
 % Options for packages loaded elsewhere
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
-\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
 %
 \documentclass[
+  12pt,
   letterpaper,
-  DIV=11,
-  numbers=noendperiod]{scrreprt}
+]{book}
 
 \usepackage{amsmath,amssymb}
+\usepackage{setspace}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -19,7 +19,7 @@
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-\usepackage{lmodern}
+\usepackage[]{mathptmx}
 \ifPDFTeX\else  
     % xetex/luatex font selection
 \fi
@@ -29,17 +29,8 @@
   \usepackage[]{microtype}
   \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
 \usepackage{xcolor}
+\usepackage[top=3cm,bottom=2cm,left=3cm,right=2cm]{geometry}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
@@ -181,7 +172,6 @@
 \usepackage[normalem]{ulem}
 \usepackage{makecell}
 \usepackage{xcolor}
-\KOMAoption{captions}{tableheading}
 \makeatletter
 \@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
 \@ifpackageloaded{fontawesome5}{}{\usepackage{fontawesome5}}
@@ -250,11 +240,7 @@
 \hypersetup{
   pdftitle={Confiabilidade e Manutenção: Aplicações em R},
   pdfauthor={Rafael da Silva Fernandes},
-  colorlinks=true,
-  linkcolor={blue},
-  filecolor={Maroon},
-  citecolor={Blue},
-  urlcolor={Blue},
+  hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 
@@ -268,18 +254,20 @@
 \subtitle{Análise de Dados de Falha, Modelagem de Vida Útil e
 Estratégias de Manutenção}
 \author{Rafael da Silva Fernandes}
-\date{2025-11-21}
+\date{2025-11-22}
 
 \begin{document}
+\frontmatter
 \maketitle
 
 \renewcommand*\contentsname{Table of contents}
 {
-\hypersetup{linkcolor=}
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
 
+\setstretch{1.5}
+\mainmatter
 \bookmarksetup{startatroot}
 
 \chapter*{Bem-vindo}\label{bem-vindo}
@@ -290,7 +278,7 @@ Estratégias de Manutenção}
 Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Aplicações em
 R''}!
 
-\begin{tcolorbox}[enhanced jigsaw, rightrule=.15mm, toprule=.15mm, colback=white, left=2mm, bottomrule=.15mm, arc=.35mm, breakable, leftrule=.75mm, colframe=quarto-callout-note-color-frame, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, left=2mm, breakable, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm, arc=.35mm, opacityback=0, leftrule=.75mm, toprule=.15mm]
 \begin{minipage}[t]{5.5mm}
 \textcolor{quarto-callout-note-color}{\faInfo}
 \end{minipage}%
@@ -445,7 +433,7 @@ Veja instruções detalhadas de instalação no capítulo
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, coltitle=black, colback=white, bottomrule=.15mm, titlerule=0mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, breakable, colframe=quarto-callout-tip-color-frame, rightrule=.15mm, left=2mm, bottomtitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, arc=.35mm, toprule=.15mm, leftrule=.75mm, opacitybacktitle=0.6, opacityback=0]
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-tip-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
 
 Inicie pelo \href{preface.qmd}{Prefácio} para entender melhor o contexto
 e objetivos deste livro, ou vá direto para \href{requirements.qmd}{Como
@@ -737,12 +725,43 @@ texto:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Figuras:} \textbf{?@fig-weibull}
+  \textbf{Figuras:} Figure~\ref{fig-weibull}
 \item
-  \textbf{Tabelas:} \textbf{?@tbl-mtbf}
+  \textbf{Tabelas:} Table~\ref{tbl-mtbf}
 \item
   \textbf{Equações:} Equation~\ref{eq-confiabilidade}
 \end{itemize}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{requirements_files/figure-pdf/fig-weibull-1.pdf}}
+
+}
+
+\caption{\label{fig-weibull}Distribuição Weibull ajustada aos tempos de
+falha de equipamentos}
+
+\end{figure}%
+
+\begin{longtable}[]{@{}lcc@{}}
+
+\caption{\label{tbl-mtbf}Cálculo de MTBF por tipo de equipamento}
+
+\tabularnewline
+
+\toprule\noalign{}
+Tipo de Equipamento & Nº de Falhas & MTBF (horas) \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Britador & 5 & 1340.0 \\
+Caminhao & 12 & 299.4 \\
+Escavadeira & 7 & 625.6 \\
+
+\end{longtable}
 
 \section*{Requisitos de Software}\label{requisitos-de-software}
 \addcontentsline{toc}{section}{Requisitos de Software}
@@ -1375,12 +1394,1431 @@ Agora que seu ambiente está configurado:
 
 ✅ \textbf{Ambiente configurado! Você está pronto para começar!}
 
+\part{Contexto e Aplicação em Mineração}
+
+\chapter{Introdução}\label{sec-introducao}
+
+Durante muito tempo, as empresas focaram suas atenções na capacidade de
+projetar produtos que incorporem características e atributos otimizados,
+para atender a necessidades e desejos dos clientes {[}1{]}. Entretanto,
+segundo {[}2{]}, com vistas ao processo de produção na indústria da
+mineração, a qualidade do produto está relacionada ao teor do minério
+explorado, tornando o aumento da produção e a redução de custos um dos
+principais objetivos estratégicos. Desta forma, o conjunto das
+excelências em cada processo, representa a qualidade da organização
+sendo, este, o grande objetivo das mineradoras {[}3{]}, {[}4{]}.
+
+No contexto brasileiro, a exploração de reserva de minerais,
+principalmente de minério de Ferro, é predominantemente realizada pelo
+método de lavra a céu aberto e envolve atividades de prospecção,
+exploração, desenvolvimento e explotação e, após a retirada do minério,
+este é transportado ao britador primário em que se inicia a etapa de
+beneficiamento {[}5{]}, {[}6{]}, {[}7{]}.
+
+Em particular, as atividades de exploração iniciam-se com a preparação
+da área a ser lavrada para que ela possa ser perfurada e detonada. Então
+a escavação e o carregamento, são feitos por equipamentos de carga que
+ficam alocados na frente da lavra. Estes retiram o material e o carregam
+nos equipamentos de transporte, caminhões, correias transportadoras,
+vagões, entre outros. Os equipamentos de transporte levam o material até
+um determinado ponto de descarga, podendo estes serem britadores, pilha
+estéril ou pilha pulmão, onde o ciclo da operação recomeça {[}8{]},
+{[}9{]}.
+
+A empresa em estudo, trata-se de uma mineradora de grande porte
+localizada no sudeste do Pará em que estabelece, como responsabilidade
+para a equipe de Engenharia da Confiabilidade, identificar e gerenciar
+riscos associados aos seus ativos críticos, classificados assim como os
+que podem causar um evento material indesejado (MUE -- \emph{Material
+Unwanted Event}) {[}10{]}. Desta forma, um \textbf{incidente} é um
+evento não planejado ou uma ocorrência que resulta em dano ou outra
+perda {[}11{]}, e, por sua vez, a \textbf{falha} é um incidente que
+interrompe o funcionamento e acarreta a indisponibilidade do equipamento
+{[}12{]}.
+
+Nesse sentido, a gestão de ativos deve guiar a forma como as
+organizações buscam um desempenho operacional excelente, integrando de
+forma eficiente o Planejamento e Controle Operacional (PCO) e o
+Planejamento e Controle da Manutenção (PCM) {[}13{]}, {[}14{]}.
+
+No escopo de gestão de processos, a função primordial da operação é
+garantir a realização dos planos de gestão sem impactar as metas dos
+planos de produção {[}15{]}. De outra forma, a operação desempenha um
+papel crucial na consecução dos resultados de produção, e uma falha pode
+impactar diretamente nos resultados esperados. Portanto, garantir a
+confiabilidade dos ativos físicos, gerir os riscos e minimizar as falhas
+são atividades integradas entre PCO e PCM {[}16{]}.
+
+Complementarmente, para exercer um papel estratégico, a manutenção
+precisa estar alinhada com os resultados empresariais da organização,
+principalmente, ao assegurar a disponibilidade dos equipamentos para a
+operação, reduzindo a probabilidade de paradas de produção não
+planejadas, minimizando a necessidade de manutenção corretiva (MC) e
+priorizando as manutenções preventivas (MP).
+
+A manutenção preventiva é uma estratégia importante para melhorar a
+disponibilidade física (DF) de um sistema ou equipamento, reduzir o
+tempo de inatividade e prolongar a vida útil dos equipamentos. No
+entanto, embora esse tipo de manutenção seja uma tática importante para
+reduzir a frequência de ocorrência de falhas no sistema, pode haver
+casos em que a MP possa interferir ou prejudicar a disponibilidade dos
+equipamentos, onde o tempo de execução da manutenção é maior que o tempo
+planejado no plano de preventiva.
+
+A implementação de uma política ótima de manutenção, ótima no sentido de
+redução do custo total esperado da manutenção, é um problema que tem
+sido abordado por vários autores e baseia-se em sistemas que operam sob
+uma estratégia de manutenção, na qual MPs são realizadas em tempos
+pré-determinados e MCs na ocorrência de falhas entre as manutenções
+preventivas {[}17{]}, {[}18{]}, {[}19{]}.
+
+Uma segunda abordagem, é que o planejamento da PM não implica
+necessariamente em tempos determinísticos, ou seja, a periodicidade da
+PM pode ser alterada devido a um plano de manutenção centrada em
+confiabilidade (RCM -- \emph{Reliability Centered Maintenance}) ou pela
+adoção de uma política de manutenção com abordagem dinâmica {[}20{]}. Se
+a análise concluir que o sistema não é suficientemente confiável, a
+periodicidade da PM, fixada antes do tempo de operação inicial, deve ser
+reduzida {[}21{]}.
+
+Ocorre que a manutenção preventiva muitas vezes vista como periódica e
+determinística, pode ser entendida como aleatória, pois há alterações no
+sistema não conhecidos ou não controlados. Desta forma, é importante
+fazer investigação desse problema e, para os propósitos deste trabalho,
+o objetivo é analisar as principais causas que influenciam no desempenho
+dos indicadores de performance da manutenção dos caminhões, em
+particular, com foco na mensuração dos impactos causados pela estratégia
+de manutenção preventiva adotada nos caminhões \emph{off-road} na
+empresa em estudo.
+
+\section{Questões de Pesquisa}\label{sec-questoes-pesquisa}
+
+Neste contexto, este trabalho formaliza o objetivo em quatro questões de
+pesquisa (RQs):
+
+\textbf{RQ1:} Quão aderente são as manutenções preventivas em relação às
+quantidades previstas e aos tempos pré-determinados pelas pautas de
+manutenção?
+
+\textbf{RQ2:} Quantas falhas podem ocorrer devido à falta de aderência
+das manutenções preventivas?
+
+\textbf{RQ3:} Qual é o fator de impacto da manutenção preventiva?
+
+\textbf{RQ4:} Qual é o impacto total na disponibilidade física do
+sistema ou equipamento?
+
+\section{Estrutura do Trabalho}\label{estrutura-do-trabalho}
+
+Este trabalho está dividido da seguinte forma:
+
+\begin{itemize}
+\tightlist
+\item
+  Na \textbf{seção 2}, é apresentado a descrição do ciclo de processos
+  de carregamento e transporte, bem como os indicadores chaves de
+  desempenho utilizados no contexto da mineração e seus elementos de
+  suporte.
+\item
+  Na \textbf{seção 3}, são descritos os fatores moderados da manutenção,
+  abordando os principais conceitos e indicadores relacionados à
+  manutenção, além de apresentar uma proposta de novos indicadores de
+  análise.
+\item
+  Na \textbf{seção 4}, são apresentados os materiais, as informações da
+  frota e os dados utilizados para as análises dos resultados.
+\item
+  Já os resultados e discussões, são apresentados na \textbf{seção 5}.
+\item
+  Por fim, a \textbf{seção 6} traz as conclusões deste trabalho.
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Próximo capítulo:} Medidas de Performance Operacional na
+Mineração
+
+\chapter{Medidas de Performance Operação na
+Mineração}\label{sec-performance-mineracao}
+
+\section{Ciclo de Processos de Carregamento e
+Transporte}\label{sec-ciclo-processos}
+
+O ciclo operacional de carregamento e transporte na mineração é composto
+por diversas etapas sequenciais que se repetem continuamente. A
+Figure~\ref{fig-ciclo-processos} ilustra este ciclo, que envolve as
+seguintes fases principais:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Carregamento}: Equipamento de carga (escavadeira ou
+  carregadeira) enche a caçamba do caminhão
+\item
+  \textbf{Transporte carregado}: Caminhão desloca-se até o ponto de
+  descarga
+\item
+  \textbf{Descarga}: Basculamento da caçamba no britador ou pilha
+\item
+  \textbf{Retorno vazio}: Caminhão retorna à frente de carregamento
+\item
+  \textbf{Fila}: Aguardo para novo carregamento (quando necessário)
+\end{enumerate}
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/images/Figura 01.png}}
+
+}
+
+\caption{\label{fig-ciclo-processos}Ciclo de processos de carregamento e
+transporte}
+
+\end{figure}%
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+
+O tempo total do ciclo influencia diretamente a produtividade da
+operação e é afetado por fatores como distância de transporte, condições
+da pista, eficiência do equipamento de carga e organização do tráfego.
+
+\end{tcolorbox}
+
+\section{Status do Equipamento}\label{sec-status-equipamento}
+
+Como a medição é feita baseado em durações de tempo, os apontamentos são
+realizados sempre que o caminhão alterar o seu status de operação,
+estes, que são subdivididos em \textbf{4 classes}: apto para operação,
+liberado pela manutenção, em manutenção ou em parada operacional.
+
+Estas classes exercem um importante direcionamento das responsabilidades
+de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem
+problemas operacionais distintos. Por exemplo, quando o caminhão está:
+
+\subsection{Apto para Operação}\label{apto-para-operauxe7uxe3o}
+
+A equipe de \textbf{operação} é responsável e está focada no ciclo dos
+processos de carregamento e transporte. Seu principal desafio reside na
+seleção e dimensionamento dos equipamentos. Segundo {[}22{]}, isso está
+relacionada à seleção e dimensionamento adequado dos equipamentos de
+carregamento e transporte para realizar a tarefa de manuseio de
+materiais de forma ideal durante a operação da mina e, resultando a
+melhoria do indicador produtividade.
+
+\subsection{Liberado pela
+Manutenção}\label{liberado-pela-manutenuxe7uxe3o}
+
+Este status é o momento imediatamente posterior à execução da
+manutenção, e consiste na \textbf{transição de responsabilidade} da
+equipe de manutenção para equipe de operação. Um acordo nível de serviço
+(ANS) entre as equipes deve ser pré-estabelecido para uma eficiente
+transição.
+
+\subsection{Em Manutenção}\label{em-manutenuxe7uxe3o}
+
+Esta é uma atividade de responsabilidade da \textbf{equipe de
+manutenção} e incluem funções e processos de planejamento, inspeção,
+programação e confiabilidade.
+
+\subsection{Parada Operacional}\label{parada-operacional}
+
+Grandes paradas são planejadas e gerenciadas considerando as
+contingências necessárias. Apesar de pertencer à equipe de operação, o
+\textbf{planejamento} é realizado pela gerência e considerando todo a
+cadeia produtiva.
+
+\section{Elementos de Suporte}\label{sec-elementos-suporte}
+
+Para o cálculo de indicadores, é comum realizar a síntese de algumas
+categorias de horas ou, de outra forma, a junção de horas. Assim, os
+\textbf{elementos de tempo de segundo nível} são:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Horas de manutenção corretiva total} (HMCT = HMC + HAC)
+\item
+  \textbf{Horas de manutenção preventiva} (HMP = MPS)
+\item
+  \textbf{Horas trabalhadas não produtivas} (HNTP = HTI + HTD)
+\item
+  \textbf{Horas ociosas} (HO = HOI + HOE)
+\item
+  \textbf{Horas trabalhadas produtivas} (HTP = HEF + HAO)
+\end{itemize}
+
+Por fim, para o \textbf{terceiro nível} temos:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Horas trabalhadas} (HT = HEF + HAO + HTD + HTI)
+\item
+  \textbf{Horas em manutenção} (HM = HMC + HAC + MPS + MPNS)
+\item
+  \textbf{Horas ociosas} (HO)
+\end{itemize}
+
+Em todos os níveis a soma das categorias representam as \textbf{horas
+calendário} (HC), por exemplo, temos que:
+
+\[
+HC = HT + HM + HO
+\]
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{HMC}: Horas de Manutenção Corretiva
+\item
+  \textbf{HAC}: Horas de Aguardo Corretiva
+\item
+  \textbf{MPS}: Manutenção Preventiva Sistemática
+\item
+  \textbf{MPNS}: Manutenção Preventiva Não Sistemática
+\item
+  \textbf{HTI}: Horas de Trabalho Improdutivo
+\item
+  \textbf{HTD}: Horas de Trabalho em Deslocamento
+\item
+  \textbf{HOI}: Horas Ociosas Internas
+\item
+  \textbf{HOE}: Horas Ociosas Externas
+\item
+  \textbf{HEF}: Horas Efetivas
+\item
+  \textbf{HAO}: Horas de Apoio à Operação
+\end{itemize}
+
+\end{tcolorbox}
+
+\section{Indicadores Chave de Desempenho (ICD)}\label{sec-icd}
+
+Desta forma, ao agrupar as categorias de horas em dia, semana, mês ou
+ano, o valor nominal será dado pela soma da duração de todos os
+apontamentos, cuja razão esteja configurada para contabilizar esta
+categoria. Como o principal produto do ciclo de transporte é a
+\textbf{massa transportada (MT)}, este configura-se como elemento
+quantitativo.
+
+Os ICDs são derivados de elementos de medição, logo, como um elemento
+pode ser usado nas definições de vários ICDs, é improvável que eles
+sejam independentes entre si. De acordo com {[}23{]}, há dois tipos
+básicos de relacionamento, o primeiro dado pela relação de identidade
+dos ICDs, baseado em suas definições e, o outro, é a relevância com
+elementos de suporte compartilhados que podem ser obtidos por comparação
+aos pares e/ou por agrupamentos em níveis.
+
+Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou
+sistema, derivado de dados monitorados de elementos de suporte. Os ICDs
+podem ser agrupados por aqueles que representam um grupo de aspectos com
+atributos semelhantes.
+
+A Figure~\ref{fig-ciclo-processos} apresenta um exemplo das relações de
+status de equipamento e elementos de suporte, retirado dos dados em
+estudo. Em contrário às análises teóricas das relações, é possível
+observar outras ligações com as categorias de horas, estas que
+representam o segundo tipo básico de relacionamento.
+
+\begin{figure}
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/images/Figura 01.png}}
+
+}
+
+\caption{\label{fig-ciclo-processos}Ciclo de processos de carregamento e
+transporte}
+
+\end{figure}%
+
+\subsection{Disponibilidade Física
+(DF)}\label{disponibilidade-fuxedsica-df}
+
+O ICD de \textbf{DF} indica a capacidade de um sistema estar em
+condições de executar uma certa função, e sua indisponibilidade é devido
+às horas de manutenção (HM), isto é, o indicador aponta para
+oportunidades de melhoria relacionados à manutenção, e associados ao
+status de ``em manutenção''.
+
+\[
+DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%
+\]
+
+Onde:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{HD}: Horas Disponíveis
+\item
+  \textbf{HC}: Horas Calendário
+\item
+  \textbf{HM}: Horas de Manutenção
+\end{itemize}
+
+\subsection{Utilização Física (UF)}\label{utilizauxe7uxe3o-fuxedsica-uf}
+
+De forma diferente, a \textbf{taxa de utilização física (UF)} leva em
+consideração aspectos operacionais, sobre os quais a equipe de
+manutenção não tem influência, ou seja, indica o quanto da
+disponibilidade (HD) é utilizada efetivamente para operação (HT), logo,
+o tempo não utilizado para operação corresponde à ociosidade do
+equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o
+equipamento está em ``liberado pela manutenção'' ou ``parada
+operacional''.
+
+\[
+UF = \frac{HT}{HD} \times 100\%
+\]
+
+\subsection{Produtividade (PR)}\label{produtividade-pr}
+
+As horas trabalhadas (HT), são resultantes das ações de melhoria nos
+demais indicadores e utilizadas para calcular tanto UF quanto o
+indicador de \textbf{Produtividade (PR)}, este último, dado pelo
+resultado da massa total transportada (MT) dividida por horas
+trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos
+processos de carregamento e transporte, e está associado ao status
+``apto para operação''.
+
+\[
+PR = \frac{MT}{HT}
+\]
+
+Onde \textbf{MT} é a massa total transportada (em toneladas).
+
+\subsection{Perda de Produção por Indicadores}\label{sec-perda-producao}
+
+Por fim, para o caso em que um sistema produtivo não cumpre as metas de
+produção, é possível ainda calcular a \textbf{perda de produção por
+indicadores de desempenho}, verificando a representatividade em
+toneladas para cada indicador.
+
+As equações de cálculo da perda de produção para cada indicador são
+descritas a seguir:
+
+\textbf{Perda de Produção por Disponibilidade Física:}
+
+\begin{equation}\phantomsection\label{eq-perda-df}{
+PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}
+}\end{equation}
+
+\textbf{Perda de Produção por Utilização:}
+
+\begin{equation}\phantomsection\label{eq-perda-uf}{
+PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}
+}\end{equation}
+
+\textbf{Perda de Produção por Produtividade:}
+
+\begin{equation}\phantomsection\label{eq-perda-pr}{
+PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
+}\end{equation}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(dplyr)}
+\FunctionTok{library}\NormalTok{(kableExtra)}
+
+\CommentTok{\# Dados programados vs realizados}
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}\StringTok{"Horas Calendário (HC)"}\NormalTok{, }\StringTok{"Horas Manutenção (HM)"}\NormalTok{,}
+                \StringTok{"Horas Disponíveis (HD)"}\NormalTok{, }\StringTok{"Horas Ociosas (HO)"}\NormalTok{,}
+                \StringTok{"Horas Trabalhadas (HT)"}\NormalTok{, }\StringTok{"Massa Transportada (MT)"}\NormalTok{),}
+  \AttributeTok{Programado =} \FunctionTok{c}\NormalTok{(}\DecValTok{720}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{648}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{583}\NormalTok{, }\DecValTok{140000}\NormalTok{),}
+  \AttributeTok{Realizado =} \FunctionTok{c}\NormalTok{(}\DecValTok{720}\NormalTok{, }\DecValTok{95}\NormalTok{, }\DecValTok{625}\NormalTok{, }\DecValTok{88}\NormalTok{, }\DecValTok{537}\NormalTok{, }\DecValTok{125000}\NormalTok{),}
+  \AttributeTok{Unidade =} \FunctionTok{c}\NormalTok{(}\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"t"}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{\# Calcular ICDs}
+\NormalTok{icds }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}\StringTok{"Disponibilidade Física (DF)"}\NormalTok{,}
+                \StringTok{"Utilização Física (UF)"}\NormalTok{,}
+                \StringTok{"Produtividade (PR)"}\NormalTok{),}
+  \AttributeTok{Programado =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{648}\SpecialCharTok{/}\DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{583}\SpecialCharTok{/}\DecValTok{648}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{(}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{Realizado =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{625}\SpecialCharTok{/}\DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{537}\SpecialCharTok{/}\DecValTok{625}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{(}\DecValTok{125000}\SpecialCharTok{/}\DecValTok{537}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{Unidade =} \FunctionTok{c}\NormalTok{(}\StringTok{"\%"}\NormalTok{, }\StringTok{"\%"}\NormalTok{, }\StringTok{"t/h"}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{\# Calcular perdas}
+\NormalTok{PR\_real }\OtherTok{\textless{}{-}} \DecValTok{125000}\SpecialCharTok{/}\DecValTok{537}
+\NormalTok{perdas }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{Tipo\_Perda =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perda por DF"}\NormalTok{, }\StringTok{"Perda por UF"}\NormalTok{, }\StringTok{"Perda por PR"}\NormalTok{),}
+  \AttributeTok{Calculo =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\DecValTok{648}\NormalTok{, }\StringTok{" {-} "}\NormalTok{, }\DecValTok{625}\NormalTok{, }\StringTok{") × "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{)),}
+    \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\DecValTok{88}\NormalTok{, }\StringTok{" {-} "}\NormalTok{, }\DecValTok{65}\NormalTok{, }\StringTok{") × "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{)),}
+    \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{), }\StringTok{" {-} "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{), }\StringTok{") × "}\NormalTok{, }\DecValTok{583}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{Perda\_ton =} \FunctionTok{c}\NormalTok{(}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{648} \SpecialCharTok{{-}} \DecValTok{625}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ PR\_real, }\DecValTok{0}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{88} \SpecialCharTok{{-}} \DecValTok{65}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ PR\_real, }\DecValTok{0}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583} \SpecialCharTok{{-}}\NormalTok{ PR\_real) }\SpecialCharTok{*} \DecValTok{583}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\CommentTok{\# Apresentar resultados}
+\FunctionTok{kable}\NormalTok{(dados, }\AttributeTok{caption =} \StringTok{"Dados Programados vs Realizados"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{), }\AttributeTok{full\_width =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{lrrl}
+\caption{Dados Programados vs Realizados}\\
+\toprule
+Indicador & Programado & Realizado & Unidade\\
+\midrule
+Horas Calendário (HC) & 720 & 720 & h\\
+Horas Manutenção (HM) & 72 & 95 & h\\
+Horas Disponíveis (HD) & 648 & 625 & h\\
+Horas Ociosas (HO) & 65 & 88 & h\\
+Horas Trabalhadas (HT) & 583 & 537 & h\\
+\addlinespace
+Massa Transportada (MT) & 140000 & 125000 & t\\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(icds, }\AttributeTok{caption =} \StringTok{"Indicadores{-}Chave de Desempenho"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{), }\AttributeTok{full\_width =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{lrrl}
+\caption{Indicadores-Chave de Desempenho}\\
+\toprule
+Indicador & Programado & Realizado & Unidade\\
+\midrule
+Disponibilidade Física (DF) & 90.0 & 86.8 & \%\\
+Utilização Física (UF) & 90.0 & 85.9 & \%\\
+Produtividade (PR) & 240.1 & 232.8 & t/h\\
+\bottomrule
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{kable}\NormalTok{(perdas, }\AttributeTok{caption =} \StringTok{"Análise de Perda de Produção"}\NormalTok{,}
+      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Tipo de Perda"}\NormalTok{, }\StringTok{"Cálculo"}\NormalTok{, }\StringTok{"Perda (t)"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{), }\AttributeTok{full\_width =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[t]{llr}
+\caption{Análise de Perda de Produção}\\
+\toprule
+Tipo de Perda & Cálculo & Perda (t)\\
+\midrule
+Perda por DF & (648 - 625) × 232.8 & 5354\\
+Perda por UF & (88 - 65) × 232.8 & 5354\\
+Perda por PR & (240.1 - 232.8) × 583 & 4292\\
+\bottomrule
+\end{longtable}
+
+Exemplo de cálculo de ICDs e perda de produção
+
+\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-important-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+
+A análise de perda de produção permite identificar qual indicador teve
+maior impacto negativo na produção realizada, direcionando as ações de
+melhoria:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Perda por DF}: Indica problemas de manutenção
+\item
+  \textbf{Perda por UF}: Indica problemas operacionais (ociosidade)
+\item
+  \textbf{Perda por PR}: Indica problemas de eficiência do ciclo
+\end{itemize}
+
+\end{tcolorbox}
+
+\section{Resumo}\label{resumo}
+
+🔔 \textbf{Pontos-chave:}
+
+\begin{itemize}
+\tightlist
+\item
+  O ciclo de carregamento e transporte é composto por etapas sequenciais
+\item
+  Status do equipamento define responsabilidades entre operação e
+  manutenção
+\item
+  Elementos de suporte estruturam o cálculo dos ICDs através de
+  categorias de horas
+\item
+  DF, UF e PR são os principais indicadores de desempenho
+\item
+  Perdas de produção podem ser mensuradas por indicador
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Próximo capítulo:} Fatores Moderadores da Manutenção
+
+\chapter{Fatores Moderadores da
+Manutenção}\label{sec-fatores-moderadores}
+
+\section{Introdução}\label{introduuxe7uxe3o}
+
+A efetividade das estratégias de manutenção não depende apenas da sua
+execução técnica, mas também de diversos fatores moderadores que
+influenciam os resultados. Este capítulo examina os principais fatores
+que afetam o desempenho da manutenção em caminhões fora de estrada.
+
+\section{Gestão da Manutenção}\label{sec-gestao-manutencao}
+
+\subsection{Estrutura Organizacional}\label{estrutura-organizacional}
+
+A organização da função de manutenção impacta diretamente a efetividade:
+
+\subsubsection{Modelos de Gestão}\label{modelos-de-gestuxe3o}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Manutenção Centralizada}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Equipe única atende toda a operação
+  \item
+    Maior especialização técnica
+  \item
+    Possível aumento no tempo de resposta
+  \end{itemize}
+\item
+  \textbf{Manutenção Descentralizada}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Equipes dedicadas por área/frota
+  \item
+    Resposta mais rápida
+  \item
+    Possível duplicação de recursos
+  \end{itemize}
+\item
+  \textbf{Modelo Híbrido}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Manutenção de rotina descentralizada
+  \item
+    Reparos complexos centralizados
+  \item
+    Equilíbrio entre especialização e agilidade
+  \end{itemize}
+\end{enumerate}
+
+\subsection{Sistemas de Informação}\label{sistemas-de-informauxe7uxe3o}
+
+\subsubsection{CMMS (Computerized Maintenance Management
+System)}\label{cmms-computerized-maintenance-management-system}
+
+Funcionalidades essenciais:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Gestão de ordens de serviço}: Criação, priorização,
+  atribuição, fechamento
+\item
+  \textbf{Controle de estoque}: Peças, ferramentas, consumíveis
+\item
+  \textbf{Histórico de equipamentos}: Registro de todas as intervenções
+\item
+  \textbf{Planejamento}: Programação de preventivas e paradas
+\item
+  \textbf{Indicadores}: Dashboards de performance
+\end{itemize}
+
+\subsection{Gestão de Estoque de
+Peças}\label{gestuxe3o-de-estoque-de-peuxe7as}
+
+\subsubsection{Classificação ABC}\label{classificauxe7uxe3o-abc}
+
+Classificação de itens por valor e criticidade:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Classe A (20\% dos itens, 80\% do valor)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Componentes de alto valor
+  \item
+    Gestão rigorosa de estoque
+  \item
+    Exemplo: motores, transmissões
+  \end{itemize}
+\item
+  \textbf{Classe B (30\% dos itens, 15\% do valor)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Componentes de valor intermediário
+  \item
+    Gestão moderada
+  \end{itemize}
+\item
+  \textbf{Classe C (50\% dos itens, 5\% do valor)}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Componentes de baixo valor, alto volume
+  \item
+    Gestão simplificada
+  \item
+    Exemplo: filtros, porcas/parafusos
+  \end{itemize}
+\end{itemize}
+
+\subsubsection{Estratégias de Estoque}\label{estratuxe9gias-de-estoque}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule\noalign{}
+Item & Estratégia & Estoque & Lead Time \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Crítico + Alto Valor} & Consignação & Mínimo & Reduzido \\
+\textbf{Crítico + Baixo Valor} & Estoque Local & Alto & N/A \\
+\textbf{Não-Crítico} & Just-in-Time & Mínimo & Aceitável \\
+\end{longtable}
+
+\subsection{Capacitação da Equipe}\label{capacitauxe7uxe3o-da-equipe}
+
+Competências essenciais:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Técnicas}: Diagnóstico, reparo, uso de ferramentas
+  especializadas
+\item
+  \textbf{Analíticas}: Interpretação de dados, análise de falhas
+\item
+  \textbf{Sistêmicas}: Compreensão de interdependências entre sistemas
+\item
+  \textbf{Digitais}: Uso de CMMS, sistemas de diagnóstico eletrônico
+\end{enumerate}
+
+\section{Análise de Dados
+Recorrentes}\label{sec-analise-dados-recorrentes}
+
+\subsection{Eventos Recorrentes em
+Manutenção}\label{eventos-recorrentes-em-manutenuxe7uxe3o}
+
+Diferente de análises de confiabilidade tradicionais que consideram
+tempo até primeira falha, a manutenção de equipamentos envolve
+\textbf{eventos recorrentes}:
+
+\begin{itemize}
+\tightlist
+\item
+  Múltiplas falhas do mesmo tipo
+\item
+  Múltiplas intervenções preventivas
+\item
+  Substituições de componentes reparáveis
+\end{itemize}
+
+\subsection{Modelagem de Processos
+Recorrentes}\label{modelagem-de-processos-recorrentes}
+
+\subsubsection{Processo de Poisson Homogêneo
+(HPP)}\label{processo-de-poisson-homoguxeaneo-hpp}
+
+Assume taxa de falha constante:
+
+\[
+\lambda(t) = \lambda
+\]
+
+Número esperado de eventos no intervalo \([0, t]\):
+
+\[
+\Lambda(t) = \lambda t
+\]
+
+\textbf{Limitação}: Não captura envelhecimento ou melhoria após reparos.
+
+\subsubsection{Processo de Poisson Não-Homogêneo
+(NHPP)}\label{processo-de-poisson-nuxe3o-homoguxeaneo-nhpp}
+
+Permite taxa de falha variável no tempo:
+
+\[
+\Lambda(t) = \int_0^t \lambda(s) \, ds
+\]
+
+\paragraph{Modelo de Lei de Potência (Power Law
+Process)}\label{modelo-de-lei-de-potuxeancia-power-law-process}
+
+\[
+\lambda(t) = \frac{\beta}{\eta} \left(\frac{t}{\eta}\right)^{\beta-1}
+\]
+
+Onde: - \(\beta > 1\): Deterioração (taxa crescente) - \(\beta < 1\):
+Melhoria (taxa decrescente) - \(\beta = 1\): Taxa constante (HPP)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+
+\CommentTok{\# Parâmetros}
+\NormalTok{eta }\OtherTok{\textless{}{-}} \DecValTok{1000}
+\NormalTok{t }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{3000}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Calcular taxa para diferentes betas}
+\NormalTok{dados\_taxa }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{t =} \FunctionTok{rep}\NormalTok{(t, }\DecValTok{3}\NormalTok{),}
+  \AttributeTok{beta =} \FunctionTok{rep}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{, }\FloatTok{1.5}\NormalTok{), }\AttributeTok{each =} \FunctionTok{length}\NormalTok{(t)),}
+  \AttributeTok{taxa =} \FunctionTok{c}\NormalTok{(}
+\NormalTok{    (}\FloatTok{0.8}\SpecialCharTok{/}\NormalTok{eta) }\SpecialCharTok{*}\NormalTok{ (t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{0.8}\DecValTok{{-}1}\NormalTok{),}
+\NormalTok{    (}\FloatTok{1.0}\SpecialCharTok{/}\NormalTok{eta) }\SpecialCharTok{*}\NormalTok{ (t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{1.0}\DecValTok{{-}1}\NormalTok{),}
+\NormalTok{    (}\FloatTok{1.5}\SpecialCharTok{/}\NormalTok{eta) }\SpecialCharTok{*}\NormalTok{ (t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{(}\FloatTok{1.5}\DecValTok{{-}1}\NormalTok{)}
+\NormalTok{  )}
+\NormalTok{)}
+
+\NormalTok{dados\_taxa}\SpecialCharTok{$}\NormalTok{beta\_label }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}
+\NormalTok{  dados\_taxa}\SpecialCharTok{$}\NormalTok{beta,}
+  \AttributeTok{levels =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.8}\NormalTok{, }\FloatTok{1.0}\NormalTok{, }\FloatTok{1.5}\NormalTok{),}
+  \AttributeTok{labels =} \FunctionTok{c}\NormalTok{(}\StringTok{"β = 0.8 (Melhoria)"}\NormalTok{, }\StringTok{"β = 1.0 (Constante)"}\NormalTok{, }\StringTok{"β = 1.5 (Deterioração)"}\NormalTok{)}
+\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(dados\_taxa, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ t, }\AttributeTok{y =}\NormalTok{ taxa, }\AttributeTok{color =}\NormalTok{ beta\_label)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Taxa de Falha {-} Processo de Lei de Potência"}\NormalTok{,}
+    \AttributeTok{x =} \StringTok{"Tempo (horas)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Taxa de Falha λ(t)"}\NormalTok{,}
+    \AttributeTok{color =} \StringTok{"Parâmetro β"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{scale\_color\_manual}\NormalTok{(}\AttributeTok{values =} \FunctionTok{c}\NormalTok{(}\StringTok{"\#27AE60"}\NormalTok{, }\StringTok{"\#95A5A6"}\NormalTok{, }\StringTok{"\#E74C3C"}\NormalTok{)) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}
+    \AttributeTok{legend.position =} \StringTok{"bottom"}\NormalTok{,}
+    \AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{)}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}[H]
+
+\centering{
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/03-fatores-moderadores_files/figure-pdf/fig-nhpp-taxa-1.pdf}}
+
+}
+
+\caption{\label{fig-nhpp-taxa}Função de taxa de falha do NHPP para
+diferentes valores de β}
+
+\end{figure}%
+
+\subsection{Tipos de Reparo}\label{tipos-de-reparo}
+
+\subsubsection{Reparo Mínimo (Minimal
+Repair)}\label{reparo-muxednimo-minimal-repair}
+
+\begin{itemize}
+\tightlist
+\item
+  Restaura equipamento à condição imediatamente anterior à falha
+\item
+  Não altera a taxa de falha subsequente
+\item
+  Modelo: \textbf{NHPP sem reinício}
+\end{itemize}
+
+\subsubsection{Reparo Perfeito (Perfect
+Repair)}\label{reparo-perfeito-perfect-repair}
+
+\begin{itemize}
+\tightlist
+\item
+  Restaura equipamento a condição ``como novo''
+\item
+  Reinicia o processo de envelhecimento
+\item
+  Modelo: \textbf{Processo de Renovação}
+\end{itemize}
+
+\subsubsection{Reparo Imperfeito (Imperfect
+Repair)}\label{reparo-imperfeito-imperfect-repair}
+
+\begin{itemize}
+\tightlist
+\item
+  Melhora condição, mas não totalmente
+\item
+  Redução parcial da idade efetiva
+\item
+  Modelos: \textbf{Redução de idade virtual}, \textbf{Redução de
+  intensidade}
+\end{itemize}
+
+\subsection{Estimação de
+Parâmetros}\label{estimauxe7uxe3o-de-paruxe2metros}
+
+\subsubsection{Método de Máxima
+Verossimilhança}\label{muxe9todo-de-muxe1xima-verossimilhanuxe7a}
+
+Para NHPP com Lei de Potência, dados \(n\) eventos nos tempos
+\(t_1, t_2, \ldots, t_n\) em um período \([0, T]\):
+
+Log-verossimilhança:
+
+\[
+\ell(\beta, \eta) = n \ln \beta - n \beta \ln \eta + (\beta - 1) \sum_{i=1}^{n} \ln t_i - \left(\frac{T}{\eta}\right)^\beta
+\]
+
+Estimadores:
+
+\[
+\hat{\beta} = \frac{n}{\sum_{i=1}^{n} \ln(T/t_i)}
+\]
+
+\[
+\hat{\eta} = T \cdot n^{-1/\hat{\beta}}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Função para estimar parâmetros do NHPP (Lei de Potência)}
+\NormalTok{estimar\_nhpp }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(tempos\_falha, tempo\_observacao) \{}
+\NormalTok{  n }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(tempos\_falha)}
+
+  \CommentTok{\# Estimador de beta}
+\NormalTok{  soma\_log }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(tempo\_observacao }\SpecialCharTok{/}\NormalTok{ tempos\_falha))}
+\NormalTok{  beta\_hat }\OtherTok{\textless{}{-}}\NormalTok{ n }\SpecialCharTok{/}\NormalTok{ soma\_log}
+
+  \CommentTok{\# Estimador de eta}
+\NormalTok{  eta\_hat }\OtherTok{\textless{}{-}}\NormalTok{ tempo\_observacao }\SpecialCharTok{*}\NormalTok{ n}\SpecialCharTok{\^{}}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\SpecialCharTok{/}\NormalTok{beta\_hat)}
+
+  \CommentTok{\# Intervalo de confiança para beta (aproximado)}
+\NormalTok{  se\_beta }\OtherTok{\textless{}{-}}\NormalTok{ beta\_hat }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n)}
+\NormalTok{  ic\_beta }\OtherTok{\textless{}{-}}\NormalTok{ beta\_hat }\SpecialCharTok{+} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\FloatTok{1.96}\NormalTok{, }\FloatTok{1.96}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ se\_beta}
+
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}
+    \AttributeTok{beta =}\NormalTok{ beta\_hat,}
+    \AttributeTok{eta =}\NormalTok{ eta\_hat,}
+    \AttributeTok{ic\_beta =}\NormalTok{ ic\_beta,}
+    \AttributeTok{n\_eventos =}\NormalTok{ n,}
+    \AttributeTok{tempo\_obs =}\NormalTok{ tempo\_observacao}
+\NormalTok{  ))}
+\NormalTok{\}}
+
+\CommentTok{\# Exemplo: Falhas de um caminhão em 5000 horas}
+\NormalTok{falhas }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{450}\NormalTok{, }\DecValTok{920}\NormalTok{, }\DecValTok{1580}\NormalTok{, }\DecValTok{2100}\NormalTok{, }\DecValTok{2890}\NormalTok{, }\DecValTok{3650}\NormalTok{, }\DecValTok{4200}\NormalTok{, }\DecValTok{4780}\NormalTok{)}
+
+\NormalTok{resultado }\OtherTok{\textless{}{-}} \FunctionTok{estimar\_nhpp}\NormalTok{(falhas, }\DecValTok{5000}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Estimativas do NHPP:}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Estimativas do NHPP:
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"β̂ ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(resultado}\SpecialCharTok{$}\NormalTok{beta, }\DecValTok{3}\NormalTok{),}
+    \StringTok{"(IC 95\%: ["}\NormalTok{, }\FunctionTok{round}\NormalTok{(resultado}\SpecialCharTok{$}\NormalTok{ic\_beta[}\DecValTok{1}\NormalTok{], }\DecValTok{3}\NormalTok{), }\StringTok{","}\NormalTok{,}
+    \FunctionTok{round}\NormalTok{(resultado}\SpecialCharTok{$}\NormalTok{ic\_beta[}\DecValTok{2}\NormalTok{], }\DecValTok{3}\NormalTok{), }\StringTok{"])}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+β̂ = 1.111 (IC 95%: [ 0.341 , 1.88 ])
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"η̂ ="}\NormalTok{, }\FunctionTok{round}\NormalTok{(resultado}\SpecialCharTok{$}\NormalTok{eta, }\DecValTok{1}\NormalTok{), }\StringTok{"horas}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+η̂ = 769 horas
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (resultado}\SpecialCharTok{$}\NormalTok{beta }\SpecialCharTok{\textgreater{}} \DecValTok{1}\NormalTok{) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Interpretação: β \textgreater{} 1 indica DETERIORAÇÃO (taxa crescente)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (resultado}\SpecialCharTok{$}\NormalTok{beta }\SpecialCharTok{\textless{}} \DecValTok{1}\NormalTok{) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Interpretação: β \textless{} 1 indica MELHORIA (taxa decrescente)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{Interpretação: β ≈ 1 indica taxa CONSTANTE}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+Interpretação: β > 1 indica DETERIORAÇÃO (taxa crescente)
+\end{verbatim}
+
+\section{Política de Manutenção Preventiva
+Periódica}\label{sec-politica-preventiva}
+
+\subsection{Conceito}\label{conceito}
+
+Manutenção preventiva periódica consiste em intervenções programadas em
+intervalos fixos de tempo ou uso, independentemente da condição do
+equipamento.
+
+\textbf{Objetivos:} - Reduzir probabilidade de falhas - Aumentar vida
+útil de componentes - Melhorar previsibilidade operacional
+
+\subsection{Disponibilidade e
+Mantenabilidade}\label{sec-disponibilidade-mantenabilidade}
+
+\subsubsection{Disponibilidade}\label{disponibilidade}
+
+A disponibilidade \(A\) é a fração do tempo em que o equipamento está
+disponível para operar:
+
+\[
+A = \frac{MTBF}{MTBF + MTTR}
+\]
+
+Ou, considerando preventivas:
+
+\[
+A = \frac{Tempo_{Operando} + Tempo_{Espera}}{Tempo_{Total}}
+\]
+
+\subsubsection{Mantenabilidade}\label{mantenabilidade}
+
+Mantenabilidade \(M(t)\) é a probabilidade de que um reparo seja
+completado no tempo \(t\):
+
+\[
+M(t) = P(T_{reparo} \leq t)
+\]
+
+Para distribuição exponencial dos tempos de reparo:
+
+\[
+M(t) = 1 - e^{-\mu t}
+\]
+
+Onde \(\mu = 1/MTTR\) é a taxa de reparo.
+
+\subsubsection{Relação com Manutenção
+Preventiva}\label{relauxe7uxe3o-com-manutenuxe7uxe3o-preventiva}
+
+Manutenções preventivas afetam:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{MTBF}: Pode aumentar ao prevenir falhas
+\item
+  \textbf{MTTR}: Preventivas geralmente mais rápidas que corretivas
+\item
+  \textbf{Disponibilidade}: Efeito líquido depende do equilíbrio
+\end{itemize}
+
+\subsection{Confiabilidade e Periodicidade
+Ótima}\label{sec-periodicidade-otima}
+
+\subsubsection{Função Objetivo}\label{funuxe7uxe3o-objetivo}
+
+A periodicidade ótima da preventiva minimiza custos ou maximiza
+disponibilidade.
+
+\textbf{Custo total por unidade de tempo:}
+
+\[
+C(T_p) = \frac{C_p \cdot R(T_p) + C_f \cdot [1 - R(T_p)]}{\int_0^{T_p} R(t) \, dt}
+\]
+
+Onde: - \(C_p\): Custo da preventiva - \(C_f\): Custo da falha
+(corretiva) - \(R(T_p)\): Confiabilidade no intervalo \(T_p\) -
+Denominador: Tempo médio de ciclo
+
+\subsubsection{Condição de
+Otimalidade}\label{condiuxe7uxe3o-de-otimalidade}
+
+A derivada deve ser zero:
+
+\[
+\frac{d C(T_p)}{d T_p} = 0
+\]
+
+Simplificando (para Weibull):
+
+\[
+\frac{h(T_p^*)}{C_f/C_p - 1} = \frac{1 - R(T_p^*)}{\int_0^{T_p^*} R(t) \, dt}
+\]
+
+Onde \(h(t) = \lambda(t)\) é a taxa de falha.
+
+\subsubsection{Algoritmo de Busca}\label{algoritmo-de-busca}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Função para calcular custo por unidade de tempo}
+\NormalTok{custo\_preventiva }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(Tp, beta, eta, C\_prev, C\_falha) \{}
+  \CommentTok{\# Confiabilidade em Tp}
+\NormalTok{  R\_Tp }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{(Tp}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{beta)}
+
+  \CommentTok{\# Integral da confiabilidade de 0 a Tp (tempo médio de ciclo)}
+\NormalTok{  integrand }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t) }\FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{(t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{beta)}
+\NormalTok{  integral\_R }\OtherTok{\textless{}{-}} \FunctionTok{integrate}\NormalTok{(integrand, }\DecValTok{0}\NormalTok{, Tp)}\SpecialCharTok{$}\NormalTok{value}
+
+  \CommentTok{\# Custo por unidade de tempo}
+\NormalTok{  custo }\OtherTok{\textless{}{-}}\NormalTok{ (C\_prev }\SpecialCharTok{*}\NormalTok{ R\_Tp }\SpecialCharTok{+}\NormalTok{ C\_falha }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ R\_Tp)) }\SpecialCharTok{/}\NormalTok{ integral\_R}
+
+  \FunctionTok{return}\NormalTok{(custo)}
+\NormalTok{\}}
+
+\CommentTok{\# Parâmetros exemplo}
+\NormalTok{beta }\OtherTok{\textless{}{-}} \FloatTok{2.3}
+\NormalTok{eta }\OtherTok{\textless{}{-}} \DecValTok{1500}
+\NormalTok{C\_prev }\OtherTok{\textless{}{-}} \DecValTok{5000}
+\NormalTok{C\_falha }\OtherTok{\textless{}{-}} \DecValTok{25000}
+
+\CommentTok{\# Busca do intervalo ótimo}
+\NormalTok{intervalos }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{300}\NormalTok{, }\DecValTok{1800}\NormalTok{, }\AttributeTok{by =} \DecValTok{10}\NormalTok{)}
+\NormalTok{custos }\OtherTok{\textless{}{-}} \FunctionTok{sapply}\NormalTok{(intervalos, custo\_preventiva,}
+                 \AttributeTok{beta =}\NormalTok{ beta, }\AttributeTok{eta =}\NormalTok{ eta,}
+                 \AttributeTok{C\_prev =}\NormalTok{ C\_prev, }\AttributeTok{C\_falha =}\NormalTok{ C\_falha)}
+
+\NormalTok{Tp\_otimo }\OtherTok{\textless{}{-}}\NormalTok{ intervalos[}\FunctionTok{which.min}\NormalTok{(custos)]}
+\NormalTok{custo\_otimo }\OtherTok{\textless{}{-}} \FunctionTok{min}\NormalTok{(custos)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Intervalo ótimo de preventiva:"}\NormalTok{, Tp\_otimo, }\StringTok{"horas}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Intervalo ótimo de preventiva: 740 horas
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Custo esperado:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(custo\_otimo, }\DecValTok{2}\NormalTok{), }\StringTok{"$/hora}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Custo esperado: 12.28 $/hora
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Visualizar}
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Tp =}\NormalTok{ intervalos, }\AttributeTok{Custo =}\NormalTok{ custos),}
+       \FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Tp, }\AttributeTok{y =}\NormalTok{ Custo)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#2C3E50"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{x =}\NormalTok{ Tp\_otimo, }\AttributeTok{y =}\NormalTok{ custo\_otimo,}
+             \AttributeTok{size =} \DecValTok{4}\NormalTok{, }\AttributeTok{color =} \StringTok{"\#E74C3C"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_vline}\NormalTok{(}\AttributeTok{xintercept =}\NormalTok{ Tp\_otimo, }\AttributeTok{linetype =} \StringTok{"dashed"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{annotate}\NormalTok{(}\StringTok{"text"}\NormalTok{, }\AttributeTok{x =}\NormalTok{ Tp\_otimo }\SpecialCharTok{+} \DecValTok{150}\NormalTok{, }\AttributeTok{y =}\NormalTok{ custo\_otimo,}
+           \AttributeTok{label =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Ótimo:"}\NormalTok{, Tp\_otimo, }\StringTok{"h"}\NormalTok{), }\AttributeTok{hjust =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{labs}\NormalTok{(}
+    \AttributeTok{title =} \StringTok{"Otimização do Intervalo de Manutenção Preventiva"}\NormalTok{,}
+    \AttributeTok{subtitle =} \FunctionTok{paste}\NormalTok{(}\StringTok{"β ="}\NormalTok{, beta, }\StringTok{", η ="}\NormalTok{, eta, }\StringTok{"| Cp ="}\NormalTok{, C\_prev, }\StringTok{", Cf ="}\NormalTok{, C\_falha),}
+    \AttributeTok{x =} \StringTok{"Intervalo de Preventiva (horas)"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"Custo por Hora de Operação ($/h)"}
+\NormalTok{  ) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{theme}\NormalTok{(}\AttributeTok{plot.title =} \FunctionTok{element\_text}\NormalTok{(}\AttributeTok{face =} \StringTok{"bold"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/03-fatores-moderadores_files/figure-pdf/otimizacao-periodicidade-1.pdf}}
+
+\subsubsection{Sensibilidade aos
+Parâmetros}\label{sensibilidade-aos-paruxe2metros}
+
+O intervalo ótimo é sensível a:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Razão de custos \(C_f/C_p\)}: Maior razão → intervalos mais
+  curtos
+\item
+  \textbf{Parâmetro de forma \(\beta\)}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \(\beta > 1\): Preventiva é benéfica
+  \item
+    \(\beta < 1\): Preventiva pode ser contraproducente
+  \end{itemize}
+\item
+  \textbf{Parâmetro de escala \(\eta\)}: Define escala de tempo dos
+  intervalos
+\end{enumerate}
+
+\section{Medidas de Performance da
+Manutenção}\label{sec-medidas-performance}
+
+\subsection{Conceito de Impacto}\label{conceito-de-impacto}
+
+Avaliar a efetividade da manutenção preventiva requer comparar cenários:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Com preventiva} vs.~\textbf{Sem preventiva}
+\item
+  \textbf{Diferentes intervalos} de preventiva
+\item
+  \textbf{Antes} vs.~\textbf{Depois} de mudança na política
+\end{itemize}
+
+\subsection{Mensuração de Impacto na Incidência de
+Corretivas}\label{sec-impacto-corretivas}
+
+\subsubsection{Taxa de Falhas Observada}\label{taxa-de-falhas-observada}
+
+\[
+\lambda_{obs} = \frac{Número_{Falhas}}{Tempo_{Exposição}}
+\]
+
+\subsubsection{Comparação de Taxas}\label{comparauxe7uxe3o-de-taxas}
+
+\textbf{Razão de Taxas (Rate Ratio)}:
+
+\[
+RR = \frac{\lambda_{com\_prev}}{\lambda_{sem\_prev}}
+\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(RR < 1\): Preventiva reduz falhas
+\item
+  \(RR = 1\): Sem efeito
+\item
+  \(RR > 1\): Preventiva piora situação (indicando sobre-manutenção ou
+  outros problemas)
+\end{itemize}
+
+\subsubsection{Modelo de Regressão de
+Poisson}\label{modelo-de-regressuxe3o-de-poisson}
+
+Para ajustar por covariáveis (idade do equipamento, condições
+operacionais):
+
+\[
+\log(\lambda_i) = \beta_0 + \beta_1 \cdot Preventiva_i + \beta_2 \cdot Idade_i + \ldots
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(MASS)  }\CommentTok{\# para glm.nb (binomial negativa)}
+
+\CommentTok{\# Dados exemplo (simulados)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{n\_equipamentos }\OtherTok{\textless{}{-}} \DecValTok{50}
+
+\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{equip\_id =} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_equipamentos,}
+  \AttributeTok{intensidade\_prev =} \FunctionTok{runif}\NormalTok{(n\_equipamentos, }\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),  }\CommentTok{\# preventivas/ano}
+  \AttributeTok{idade\_anos =} \FunctionTok{runif}\NormalTok{(n\_equipamentos, }\DecValTok{0}\NormalTok{, }\DecValTok{10}\NormalTok{),}
+  \AttributeTok{horas\_operacao =} \FunctionTok{runif}\NormalTok{(n\_equipamentos, }\DecValTok{3000}\NormalTok{, }\DecValTok{6000}\NormalTok{)}
+\NormalTok{)}
+
+\CommentTok{\# Simular número de falhas (menor com mais preventivas)}
+\NormalTok{dados}\SpecialCharTok{$}\NormalTok{n\_falhas }\OtherTok{\textless{}{-}} \FunctionTok{rpois}\NormalTok{(n\_equipamentos,}
+                        \AttributeTok{lambda =} \FunctionTok{exp}\NormalTok{(}\DecValTok{2} \SpecialCharTok{{-}} \FloatTok{0.15} \SpecialCharTok{*}\NormalTok{ dados}\SpecialCharTok{$}\NormalTok{intensidade\_prev }\SpecialCharTok{+}
+                                     \FloatTok{0.08} \SpecialCharTok{*}\NormalTok{ dados}\SpecialCharTok{$}\NormalTok{idade\_anos))}
+
+\CommentTok{\# Modelo de Poisson}
+\NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(n\_falhas }\SpecialCharTok{\textasciitilde{}}\NormalTok{ intensidade\_prev }\SpecialCharTok{+}\NormalTok{ idade\_anos }\SpecialCharTok{+} \FunctionTok{offset}\NormalTok{(}\FunctionTok{log}\NormalTok{(horas\_operacao}\SpecialCharTok{/}\DecValTok{1000}\NormalTok{)),}
+              \AttributeTok{data =}\NormalTok{ dados,}
+              \AttributeTok{family =} \FunctionTok{poisson}\NormalTok{(}\AttributeTok{link =} \StringTok{"log"}\NormalTok{))}
+
+\FunctionTok{summary}\NormalTok{(modelo)}
+
+\CommentTok{\# Interpretação}
+\FunctionTok{exp}\NormalTok{(}\FunctionTok{coef}\NormalTok{(modelo))  }\CommentTok{\# Rate Ratios}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Mensuração de Impacto na
+Disponibilidade}\label{sec-impacto-disponibilidade}
+
+\subsubsection{Diferença de
+Disponibilidades}\label{diferenuxe7a-de-disponibilidades}
+
+\[
+\Delta A = A_{com\_prev} - A_{sem\_prev}
+\]
+
+Ou em termos percentuais:
+
+\[
+\Delta A_{\%} = \frac{A_{com\_prev} - A_{sem\_prev}}{A_{sem\_prev}} \times 100\%
+\]
+
+\subsubsection{Análise de Séries
+Temporais}\label{anuxe1lise-de-suxe9ries-temporais}
+
+Disponibilidade pode variar ao longo do tempo. Modelos de séries
+temporais permitem:
+
+\begin{itemize}
+\tightlist
+\item
+  Detectar tendências
+\item
+  Avaliar sazonalidade
+\item
+  Comparar períodos com diferentes políticas
+\end{itemize}
+
+\subsubsection{Teste de Hipóteses}\label{teste-de-hipuxf3teses}
+
+\textbf{H₀}: Não há diferença na disponibilidade média
+
+\textbf{H₁}: Há diferença significativa
+
+Teste t para comparar médias de períodos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dados exemplo: disponibilidade mensal antes e depois de mudança}
+\NormalTok{antes }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.82}\NormalTok{, }\FloatTok{0.84}\NormalTok{, }\FloatTok{0.81}\NormalTok{, }\FloatTok{0.83}\NormalTok{, }\FloatTok{0.85}\NormalTok{, }\FloatTok{0.84}\NormalTok{, }\FloatTok{0.82}\NormalTok{, }\FloatTok{0.83}\NormalTok{, }\FloatTok{0.84}\NormalTok{, }\FloatTok{0.83}\NormalTok{, }\FloatTok{0.82}\NormalTok{, }\FloatTok{0.84}\NormalTok{)}
+\NormalTok{depois }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{0.87}\NormalTok{, }\FloatTok{0.88}\NormalTok{, }\FloatTok{0.89}\NormalTok{, }\FloatTok{0.86}\NormalTok{, }\FloatTok{0.88}\NormalTok{, }\FloatTok{0.87}\NormalTok{, }\FloatTok{0.89}\NormalTok{, }\FloatTok{0.88}\NormalTok{, }\FloatTok{0.87}\NormalTok{, }\FloatTok{0.88}\NormalTok{, }\FloatTok{0.89}\NormalTok{, }\FloatTok{0.87}\NormalTok{)}
+
+\CommentTok{\# Teste t}
+\NormalTok{resultado\_teste }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(depois, antes, }\AttributeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Disponibilidade média ANTES:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(antes), }\DecValTok{3}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Disponibilidade média ANTES: 0.831 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Disponibilidade média DEPOIS:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(depois), }\DecValTok{3}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Disponibilidade média DEPOIS: 0.877 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"Diferença:"}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\FunctionTok{mean}\NormalTok{(depois) }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(antes), }\DecValTok{3}\NormalTok{), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Diferença: 0.047 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cat}\NormalTok{(}\StringTok{"p{-}valor:"}\NormalTok{, }\FunctionTok{format.pval}\NormalTok{(resultado\_teste}\SpecialCharTok{$}\NormalTok{p.value), }\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+p-valor: 0.00000000025923 
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (resultado\_teste}\SpecialCharTok{$}\NormalTok{p.value }\SpecialCharTok{\textless{}} \FloatTok{0.05}\NormalTok{) \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{✓ Diferença estatisticamente significativa (α = 0.05)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \FunctionTok{cat}\NormalTok{(}\StringTok{"}\SpecialCharTok{\textbackslash{}n}\StringTok{✗ Diferença NÃO estatisticamente significativa (α = 0.05)}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+
+✓ Diferença estatisticamente significativa (α = 0.05)
+\end{verbatim}
+
+\subsubsection{Análise de Covariância
+(ANCOVA)}\label{anuxe1lise-de-covariuxe2ncia-ancova}
+
+Para controlar efeitos de variáveis confundidoras:
+
+\[
+Disponibilidade = \beta_0 + \beta_1 \cdot Política + \beta_2 \cdot Idade + \beta_3 \cdot Demanda + \epsilon
+\]
+
+\section{Resumo}\label{resumo-1}
+
+🔔 \textbf{Pontos-chave:}
+
+\begin{itemize}
+\tightlist
+\item
+  Gestão eficaz requer organização, sistemas de informação e equipes
+  capacitadas
+\item
+  Eventos recorrentes exigem modelos específicos (NHPP, processos de
+  renovação)
+\item
+  Periodicidade ótima de preventiva equilibra custos e confiabilidade
+\item
+  Impacto da manutenção deve ser mensurado com métodos estatísticos
+  robustos
+\item
+  Disponibilidade e incidência de falhas são métricas complementares
+\end{itemize}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Próximo capítulo:} Fundamentos de Confiabilidade
+
 \part{Fundamentos e Teoria}
 
 \chapter{Fundamentos de
 Confiabilidade}\label{fundamentos-de-confiabilidade}
 
-\section{Introdução}\label{introduuxe7uxe3o}
+\section{Introdução}\label{introduuxe7uxe3o-1}
 
 A \textbf{confiabilidade} é a probabilidade de um item desempenhar sua
 função de forma adequada, sob condições estabelecidas, durante um
@@ -1426,7 +2864,7 @@ A taxa de falha (ou função de risco) é definida como:
 MTTF = \int_0^\infty R(t) \, dt
 }\end{equation}
 
-\subsection{Disponibilidade}\label{disponibilidade}
+\subsection{Disponibilidade}\label{disponibilidade-1}
 
 A disponibilidade é a probabilidade de um sistema estar operacional em
 um dado momento:
@@ -1544,7 +2982,7 @@ operacional \\
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/01-fundamentos_files/figure-pdf/exemplo-metricas-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/04-fundamentos_files/figure-pdf/exemplo-metricas-1.pdf}}
 
 \subsection{Análise dos Resultados}\label{anuxe1lise-dos-resultados}
 
@@ -1654,7 +3092,7 @@ Adicional}\label{referuxeancias-e-leitura-adicional}
 \chapter{Probabilidades e Distribuições para Vida
 Útil}\label{probabilidades-e-distribuiuxe7uxf5es-para-vida-uxfatil}
 
-\section{Introdução}\label{introduuxe7uxe3o-1}
+\section{Introdução}\label{introduuxe7uxe3o-2}
 
 Este capítulo apresenta as principais distribuições de probabilidade
 utilizadas para modelar o tempo até a falha de componentes e sistemas.
@@ -1716,7 +3154,7 @@ R(t) = e^{-\lambda t}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/02-distribuicoes_files/figure-pdf/exp-example-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-distribuicoes_files/figure-pdf/exp-example-1.pdf}}
 
 \section{Distribuição Weibull}\label{distribuiuxe7uxe3o-weibull}
 
@@ -1788,7 +3226,7 @@ R(t) = e^{-(t/\eta)^\beta}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/02-distribuicoes_files/figure-pdf/weibull-example-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-distribuicoes_files/figure-pdf/weibull-example-1.pdf}}
 
 \section{Distribuição Lognormal}\label{distribuiuxe7uxe3o-lognormal}
 
@@ -1845,7 +3283,7 @@ f(t) = \frac{1}{t\sigma\sqrt{2\pi}} e^{-\frac{(\ln t - \mu)^2}{2\sigma^2}}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/02-distribuicoes_files/figure-pdf/lognormal-example-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-distribuicoes_files/figure-pdf/lognormal-example-1.pdf}}
 
 \section{Comparação de
 Distribuições}\label{comparauxe7uxe3o-de-distribuiuxe7uxf5es}
@@ -1871,7 +3309,7 @@ Distribuições}\label{comparauxe7uxe3o-de-distribuiuxe7uxf5es}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/02-distribuicoes_files/figure-pdf/comparison-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-distribuicoes_files/figure-pdf/comparison-1.pdf}}
 
 \section{Escolha do Modelo}\label{escolha-do-modelo}
 
@@ -1909,7 +3347,7 @@ usando teste de qualidade de ajuste.
 Weibull(β=2, η=100) e verifique se a média empírica se aproxima da
 teórica.
 
-\section{Resumo}\label{resumo}
+\section{Resumo}\label{resumo-2}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -1932,7 +3370,7 @@ teórica.
 \chapter{Estimativa de Parâmetros e
 Inferência}\label{estimativa-de-paruxe2metros-e-inferuxeancia}
 
-\section{Introdução}\label{introduuxe7uxe3o-2}
+\section{Introdução}\label{introduuxe7uxe3o-3}
 
 Este capítulo aborda métodos para estimar parâmetros de distribuições de
 vida útil a partir de dados observados.
@@ -1940,7 +3378,7 @@ vida útil a partir de dados observados.
 \section{Método da Máxima Verossimilhança
 (MLE)}\label{muxe9todo-da-muxe1xima-verossimilhanuxe7a-mle}
 
-\subsection{Conceito}\label{conceito}
+\subsection{Conceito}\label{conceito-1}
 
 O método MLE busca os parâmetros que \textbf{maximizam a probabilidade}
 de observar os dados coletados.
@@ -2025,7 +3463,7 @@ scale 0.3158044 1.0000000
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/03-estimacao_files/figure-pdf/mle-weibull-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/06-estimacao_files/figure-pdf/mle-weibull-1.pdf}}
 
 \section{Intervalos de Confiança}\label{intervalos-de-confianuxe7a}
 
@@ -2082,7 +3520,7 @@ usando MLE.
 
 📝 \textbf{Exercício 3}: Use AIC/BIC para comparar modelos.
 
-\section{Resumo}\label{resumo-1}
+\section{Resumo}\label{resumo-3}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2105,7 +3543,7 @@ usando MLE.
 \chapter{Análise de Dados de Falha com
 R}\label{anuxe1lise-de-dados-de-falha-com-r}
 
-\section{Introdução}\label{introduuxe7uxe3o-3}
+\section{Introdução}\label{introduuxe7uxe3o-4}
 
 Análise prática de dados de falha incluindo censura, tabelas de vida e
 visualizações.
@@ -2205,7 +3643,7 @@ tempo & status & equipamento & n\_risk & n\_event & survival\\
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/04-analise-falhas_files/figure-pdf/km-curve-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/07-analise-falhas_files/figure-pdf/km-curve-1.pdf}}
 
 \section{Exercícios}\label{exercuxedcios-3}
 
@@ -2213,7 +3651,7 @@ tempo & status & equipamento & n\_risk & n\_event & survival\\
 
 📝 \textbf{Exercício 2}: Compare curvas KM de grupos diferentes.
 
-\section{Resumo}\label{resumo-2}
+\section{Resumo}\label{resumo-4}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2234,7 +3672,7 @@ tempo & status & equipamento & n\_risk & n\_event & survival\\
 \chapter{Modelagem Weibull na
 Prática}\label{modelagem-weibull-na-pruxe1tica}
 
-\section{Introdução}\label{introduuxe7uxe3o-4}
+\section{Introdução}\label{introduuxe7uxe3o-5}
 
 Aplicação prática da distribuição Weibull em análise de confiabilidade
 industrial.
@@ -2259,7 +3697,7 @@ industrial.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-weibull_files/figure-pdf/weibull-fit-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/08-weibull_files/figure-pdf/weibull-fit-1.pdf}}
 
 \section{Interpretação de
 Parâmetros}\label{interpretauxe7uxe3o-de-paruxe2metros}
@@ -2293,7 +3731,7 @@ Vida característica: tempo no qual 63.2\% dos itens falharam.
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/05-weibull_files/figure-pdf/diagnostic-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/08-weibull_files/figure-pdf/diagnostic-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -2377,7 +3815,7 @@ Centrífugas}\label{caso-pruxe1tico-bombas-centruxedfugas}
 
 📝 \textbf{Exercício 3}: Compare Weibull vs.~Lognormal para seus dados.
 
-\section{Resumo}\label{resumo-3}
+\section{Resumo}\label{resumo-5}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2398,7 +3836,7 @@ Centrífugas}\label{caso-pruxe1tico-bombas-centruxedfugas}
 \chapter{Análise de Sobrevivência e Modelos
 Semiparamétricos}\label{anuxe1lise-de-sobrevivuxeancia-e-modelos-semiparamuxe9tricos}
 
-\section{Introdução}\label{introduuxe7uxe3o-5}
+\section{Introdução}\label{introduuxe7uxe3o-6}
 
 Análise de sobrevivência com modelos de regressão, incluindo
 Kaplan-Meier e Cox.
@@ -2509,7 +3947,7 @@ GLOBAL      0.291  1 0.59
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/06-sobrevivencia_files/figure-pdf/cox-assumptions-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/09-sobrevivencia_files/figure-pdf/cox-assumptions-1.pdf}}
 
 \section{Curvas de Sobrevivência por
 Grupo}\label{curvas-de-sobrevivuxeancia-por-grupo}
@@ -2529,7 +3967,7 @@ Grupo}\label{curvas-de-sobrevivuxeancia-por-grupo}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/06-sobrevivencia_files/figure-pdf/survival-curves-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/09-sobrevivencia_files/figure-pdf/survival-curves-1.pdf}}
 
 \section{Modelos Paramétricos AFT}\label{modelos-paramuxe9tricos-aft}
 
@@ -2554,7 +3992,7 @@ Grupo}\label{curvas-de-sobrevivuxeancia-por-grupo}
 
 📝 \textbf{Exercício 3}: Interprete hazard ratios e seus IC.
 
-\section{Resumo}\label{resumo-4}
+\section{Resumo}\label{resumo-6}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2577,7 +4015,7 @@ Grupo}\label{curvas-de-sobrevivuxeancia-por-grupo}
 \chapter{Manutenção Preventiva e Otimização de
 Políticas}\label{manutenuxe7uxe3o-preventiva-e-otimizauxe7uxe3o-de-poluxedticas}
 
-\section{Introdução}\label{introduuxe7uxe3o-6}
+\section{Introdução}\label{introduuxe7uxe3o-7}
 
 Otimização de intervalos de manutenção preventiva baseada em modelos de
 confiabilidade.
@@ -2661,7 +4099,7 @@ Numérica}\label{exemplo-otimizauxe7uxe3o-numuxe9rica}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/07-manutencao-preventiva_files/figure-pdf/otimizacao-intervalo-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-manutencao-preventiva_files/figure-pdf/otimizacao-intervalo-1.pdf}}
 
 \section{Análise de Sensibilidade}\label{anuxe1lise-de-sensibilidade}
 
@@ -2696,7 +4134,7 @@ Numérica}\label{exemplo-otimizauxe7uxe3o-numuxe9rica}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/07-manutencao-preventiva_files/figure-pdf/sensibilidade-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-manutencao-preventiva_files/figure-pdf/sensibilidade-1.pdf}}
 
 \section{Política Block
 vs.~Age-Based}\label{poluxedtica-block-vs.-age-based}
@@ -2731,7 +4169,7 @@ Cada componente substituído individualmente.
 
 📝 \textbf{Exercício 3}: Compare políticas block vs.~age por simulação.
 
-\section{Resumo}\label{resumo-5}
+\section{Resumo}\label{resumo-7}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2752,7 +4190,7 @@ Cada componente substituído individualmente.
 \chapter{Manutenção Preditiva com Dados
 Sensor}\label{manutenuxe7uxe3o-preditiva-com-dados-sensor}
 
-\section{Introdução}\label{introduuxe7uxe3o-7}
+\section{Introdução}\label{introduuxe7uxe3o-8}
 
 Uso de dados de sensores e machine learning para predição de falhas.
 
@@ -2920,7 +4358,7 @@ Forest.
 📝 \textbf{Exercício 3}: Crie dashboard Shiny para monitoramento em
 tempo real.
 
-\section{Resumo}\label{resumo-6}
+\section{Resumo}\label{resumo-8}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -2943,7 +4381,7 @@ tempo real.
 \chapter{Modelos de Confiabilidade de
 Sistema}\label{modelos-de-confiabilidade-de-sistema}
 
-\section{Introdução}\label{introduuxe7uxe3o-8}
+\section{Introdução}\label{introduuxe7uxe3o-9}
 
 Análise de confiabilidade de sistemas complexos com múltiplos
 componentes.
@@ -2987,7 +4425,7 @@ R_{\text{série}}(t) = \prod_{i=1}^n R_i(t)
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/09-sistemas_files/figure-pdf/sistema-serie-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/12-sistemas_files/figure-pdf/sistema-serie-1.pdf}}
 
 \section{Sistemas em Paralelo}\label{sistemas-em-paralelo}
 
@@ -3019,7 +4457,7 @@ R_{\text{paralelo}}(t) = 1 - \prod_{i=1}^n [1 - R_i(t)]
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/09-sistemas_files/figure-pdf/sistema-paralelo-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/12-sistemas_files/figure-pdf/sistema-paralelo-1.pdf}}
 
 \section{Sistema k-out-of-n}\label{sistema-k-out-of-n}
 
@@ -3054,7 +4492,7 @@ R_{k/n}(t) = \sum_{i=k}^n \binom{n}{i} R(t)^i [1-R(t)]^{n-i}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/09-sistemas_files/figure-pdf/k-out-of-n-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/12-sistemas_files/figure-pdf/k-out-of-n-1.pdf}}
 
 \section{Análise de Árvore de Falhas
 (FTA)}\label{anuxe1lise-de-uxe1rvore-de-falhas-fta}
@@ -3176,7 +4614,7 @@ série-paralelo.
 
 📝 \textbf{Exercício 3}: Elabore FMEA completa de um equipamento.
 
-\section{Resumo}\label{resumo-7}
+\section{Resumo}\label{resumo-9}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -3201,7 +4639,7 @@ série-paralelo.
 \chapter{Simulação Monte Carlo Aplicada à
 Confiabilidade}\label{simulauxe7uxe3o-monte-carlo-aplicada-uxe0-confiabilidade}
 
-\section{Introdução}\label{introduuxe7uxe3o-9}
+\section{Introdução}\label{introduuxe7uxe3o-10}
 
 Uso de simulação Monte Carlo para avaliar confiabilidade e políticas de
 manutenção sob incerteza.
@@ -3259,7 +4697,7 @@ Vida}\label{simulauxe7uxe3o-de-tempos-de-vida}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-simulacao_files/figure-pdf/simulacao-weibull-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/13-simulacao_files/figure-pdf/simulacao-weibull-1.pdf}}
 
 \subsection{Estatísticas Simuladas}\label{estatuxedsticas-simuladas}
 
@@ -3346,7 +4784,7 @@ MTTF Sistema Série: 525.87 h
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-simulacao_files/figure-pdf/sim-sistema-serie-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/13-simulacao_files/figure-pdf/sim-sistema-serie-1.pdf}}
 
 \section{Avaliação de Políticas de
 Manutenção}\label{avaliauxe7uxe3o-de-poluxedticas-de-manutenuxe7uxe3o}
@@ -3425,7 +4863,7 @@ Preventiva}\label{simulauxe7uxe3o-de-poluxedtica-preventiva}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-simulacao_files/figure-pdf/sim-politica-preventiva-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/13-simulacao_files/figure-pdf/sim-politica-preventiva-1.pdf}}
 
 \section{Análise de Incerteza}\label{anuxe1lise-de-incerteza}
 
@@ -3459,7 +4897,7 @@ Incerteza}\label{propagauxe7uxe3o-de-incerteza}
 \end{Highlighting}
 \end{Shaded}
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/10-simulacao_files/figure-pdf/incerteza-parametros-1.pdf}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/13-simulacao_files/figure-pdf/incerteza-parametros-1.pdf}}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -3483,7 +4921,7 @@ simulação.
 📝 \textbf{Exercício 3}: Analise impacto da incerteza paramétrica na
 decisão de manutenção.
 
-\section{Resumo}\label{resumo-8}
+\section{Resumo}\label{resumo-10}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -3505,7 +4943,7 @@ decisão de manutenção.
 
 \chapter{Estudos de Caso Industriais}\label{estudos-de-caso-industriais}
 
-\section{Introdução}\label{introduuxe7uxe3o-10}
+\section{Introdução}\label{introduuxe7uxe3o-11}
 
 Este capítulo apresenta estudos de caso completos aplicando as técnicas
 de confiabilidade e manutenção em contextos industriais reais.
@@ -3854,7 +5292,7 @@ Sucesso}\label{fatores-cruxedticos-de-sucesso}
 
 📝 \textbf{Exercício 3}: Crie dashboard de monitoramento com Shiny.
 
-\section{Resumo}\label{resumo-9}
+\section{Resumo}\label{resumo-11}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -3877,7 +5315,7 @@ Sucesso}\label{fatores-cruxedticos-de-sucesso}
 \chapter{Boas Práticas e Governança de Dados de
 Manutenção}\label{boas-pruxe1ticas-e-governanuxe7a-de-dados-de-manutenuxe7uxe3o}
 
-\section{Introdução}\label{introduuxe7uxe3o-11}
+\section{Introdução}\label{introduuxe7uxe3o-12}
 
 Estratégias para gestão eficaz de dados de manutenção, qualidade,
 versionamento e integração.
@@ -4299,7 +5737,7 @@ Docker}\label{containerizauxe7uxe3o-com-docker}
 
 📝 \textbf{Exercício 3}: Crie dashboard de qualidade de dados.
 
-\section{Resumo}\label{resumo-10}
+\section{Resumo}\label{resumo-12}
 
 🔔 \textbf{Pontos-chave:}
 
@@ -4868,7 +6306,7 @@ Book}\label{estrutura-de-projeto-quarto-book}
 
 📝 \textbf{Exercício 1}: Descrição do exercício.
 
-\section*{Resumo}\label{resumo-11}
+\section*{Resumo}\label{resumo-13}
 \addcontentsline{toc}{section}{Resumo}
 
 \markright{Resumo}
@@ -4898,8 +6336,6 @@ Book}\label{estrutura-de-projeto-quarto-book}
 :::
 
 ### Figuras
-
-
 
 
 
@@ -5841,7 +7277,177 @@ análises!
 \markboth{Referências}{Referências}
 
 \phantomsection\label{refs}
-\begin{CSLReferences}{0}{1}
+\begin{CSLReferences}{0}{0}
+\bibitem[\citeproctext]{ref-correa2012}
+\CSLLeftMargin{{[}1{]} }%
+\CSLRightInline{H. L. Corrêa and C. A. Corrêa, \emph{Administração de
+produção e operações: Manufatura e serviços; uma abordagem estratégica}.
+Atlas, 2012. Available:
+\url{https://books.google.com.br/books?id=eptZlQEACAAJ}}
+
+\bibitem[\citeproctext]{ref-fernandes2021}
+\CSLLeftMargin{{[}2{]} }%
+\CSLRightInline{R. de S. Fernandes, L. R. C. de Sousa, and T. L. Santos,
+{``Analysis, investigation and evaluation of quality management in the
+mining process: A case study on divergencies in iron ore stock
+deviations,''} \emph{Revista Produção Online}, vol. 21, no. 3, pp.
+770--793, 2021, doi:
+\href{https://doi.org/10.14488/1676-1901.v21i3.4252}{10.14488/1676-1901.v21i3.4252}.}
+
+\bibitem[\citeproctext]{ref-fernandes2023}
+\CSLLeftMargin{{[}3{]} }%
+\CSLRightInline{R. de S. Fernandes, T. R. Rocha, J. M. Coelho, and D. F.
+Andrade, {``Development of a measurement instrument to evaluate
+integrated management systems and differences in perception: An approach
+to item response theory and the quality management process,''}
+\emph{Production}, vol. 33, 2023, doi:
+\href{https://doi.org/10.1590/0103-6513.20220069}{10.1590/0103-6513.20220069}.}
+
+\bibitem[\citeproctext]{ref-gackowiec2020}
+\CSLLeftMargin{{[}4{]} }%
+\CSLRightInline{P. Gackowiec, M. Podobińska-Staniec, E. Brzychczy, C.
+Kúhlbach, and T. Özver, {``Review of key performance indicators for
+process monitoring in the mining industry,''} \emph{Energies}, vol. 13,
+no. 19, p. 5169, 2020, doi:
+\href{https://doi.org/10.3390/en13195169}{10.3390/en13195169}.}
+
+\bibitem[\citeproctext]{ref-carvalho2014}
+\CSLLeftMargin{{[}5{]} }%
+\CSLRightInline{P. S. L. Carvalho, M. M. Silva, M. A. R. Rocio, and J.
+Moszkowicz, {``Minério de ferro.''} 2014.}
+
+\bibitem[\citeproctext]{ref-luz2018}
+\CSLLeftMargin{{[}6{]} }%
+\CSLRightInline{A. B. da Luz and F. A. F. Lins, \emph{Introdução ao
+tratamento de minérios}. CETEM/MCTIC, 2018.}
+
+\bibitem[\citeproctext]{ref-rocha2021}
+\CSLLeftMargin{{[}7{]} }%
+\CSLRightInline{C. S. Rocha, E. L. de S. S. Cardoso, R. de S. Fernandes,
+N. C. N. M. Branco, and R. M. de N. Luz, {``Quality assessment of
+divergences causes in weighing copper ore at a mining company in the
+amazon region,''} \emph{International Journal of Development Research},
+vol. 11, no. 8, pp. 49633--49639, 2021, doi:
+\href{https://doi.org/10.37118/ijdr.22578.08.2021}{10.37118/ijdr.22578.08.2021}.}
+
+\bibitem[\citeproctext]{ref-fernandes2023b}
+\CSLLeftMargin{{[}8{]} }%
+\CSLRightInline{R. de S. Fernandes, J. C. de C. Sousa, and R. M. de N.
+Luz, {``Integrated management analysis of production performance,
+maintenance, and PDCA cycle: A case study of the IPCC mining process,''}
+\emph{Revista Produção Online}, vol. 22, no. 2, pp. 2731--2762, 2023,
+doi:
+\href{https://doi.org/10.14488/1676-1901.v22i2.4661}{10.14488/1676-1901.v22i2.4661}.}
+
+\bibitem[\citeproctext]{ref-osanloo2020}
+\CSLLeftMargin{{[}9{]} }%
+\CSLRightInline{M. Osanloo and M. Paricheh, {``In-pit crushing and
+conveying technology in open-pit mining operations: A literature review
+and research agenda,''} \emph{International Journal of Mining,
+Reclamation and Environment}, vol. 34, no. 6, pp. 430--457, 2020, doi:
+\href{https://doi.org/10.1080/17480930.2019.1565054}{10.1080/17480930.2019.1565054}.}
+
+\bibitem[\citeproctext]{ref-mining2015}
+\CSLLeftMargin{{[}10{]} }%
+\CSLRightInline{International Council on Mining and Metals, {``Critical
+control management: Implementation guide.''} 2015. Available:
+\url{https://books.google.com.br/books?id=kroRDAEACAAJ}}
+
+\bibitem[\citeproctext]{ref-iso55000}
+\CSLLeftMargin{{[}11{]} }%
+\CSLRightInline{ABNT, {``ISO-55000:2014 gestão de ativos: Visão geral,
+princípios e terminologia.''} 2014.}
+
+\bibitem[\citeproctext]{ref-iso5462}
+\CSLLeftMargin{{[}12{]} }%
+\CSLRightInline{ABNT, {``ISO-5462:1994 reliability and maintainability
+-- terminology.''} 1994.}
+
+\bibitem[\citeproctext]{ref-pascual2016}
+\CSLLeftMargin{{[}13{]} }%
+\CSLRightInline{R. Pascual, R. Madariaga, G. Santelices, D. Godoy, and
+E. L. Droguett, {``A structured methodology to optimise throughput of
+production lines,''} \emph{International Journal of Mining, Reclamation
+and Environment}, vol. 30, no. 1, pp. 25--36, 2016, doi:
+\href{https://doi.org/10.1080/17480930.2014.962235}{10.1080/17480930.2014.962235}.}
+
+\bibitem[\citeproctext]{ref-qiao2017}
+\CSLLeftMargin{{[}14{]} }%
+\CSLRightInline{G. Qiao, C. Schlenoff, and B. A. Weiss, {``Quick
+positional health assessment for industrial robot prognostics and health
+management (PHM),''} in \emph{2017 IEEE international conference on
+robotics and automation (ICRA)}, 2017.}
+
+\bibitem[\citeproctext]{ref-slack2013}
+\CSLLeftMargin{{[}15{]} }%
+\CSLRightInline{N. Slack, S. Chambers, R. Johnston, and A. Betts,
+\emph{Gerenciamento de operações e de processos: Princípios e práticas
+de impacto estratégico}, 2nd ed. Bookman Editora, 2013. Available:
+\url{https://books.google.com.br/books?id=wLo3AgAAQBAJ}}
+
+\bibitem[\citeproctext]{ref-zampolli2019}
+\CSLLeftMargin{{[}16{]} }%
+\CSLRightInline{M. Zampolli, \emph{Gestão de ativos: Guia para a
+aplicação da norma ABNT NBR ISO 55001 considerando as diretrizes da ISO
+55002:2018}, 2nd ed. 2019. Available:
+\url{https://abcobre.org.br/wp-content/uploads/2021/04/gestao-de-ativos-guia-para-aplicacao-da-norma-abnt-nbr-iso-55001.pdf}}
+
+\bibitem[\citeproctext]{ref-doyen2004}
+\CSLLeftMargin{{[}17{]} }%
+\CSLRightInline{L. Doyen and O. Gaudoin, {``Classes of imperfect repair
+models based on reduction of failure intensity or virtual age,''}
+\emph{Reliability Engineering \& System Safety}, vol. 84, no. 1, pp.
+45--56, 2004, doi:
+\href{https://doi.org/10.1016/S0951-8320(03)00173-X}{10.1016/S0951-8320(03)00173-X}.}
+
+\bibitem[\citeproctext]{ref-gilardoni2007}
+\CSLLeftMargin{{[}18{]} }%
+\CSLRightInline{G. L. Gilardoni and E. A. Colosimo, {``Optimal
+maintenance time for repairable systems,''} \emph{Journal of Quality
+Technology}, vol. 39, no. 1, pp. 48--53, 2007, doi:
+\href{https://doi.org/10.1080/00224065.2007.11917672}{10.1080/00224065.2007.11917672}.}
+
+\bibitem[\citeproctext]{ref-toledo2016}
+\CSLLeftMargin{{[}19{]} }%
+\CSLRightInline{M. L. G. de Toledo, M. A. Freitas, E. A. Colosimo, and
+G. L. Gilardoni, {``Optimal periodic maintenance policy under imperfect
+repair: A case study on the engines of off-road vehicles,''} \emph{IIE
+Transactions}, vol. 48, no. 8, pp. 747--758, 2016, doi:
+\href{https://doi.org/10.1080/0740817X.2016.1147663}{10.1080/0740817X.2016.1147663}.}
+
+\bibitem[\citeproctext]{ref-gilardoni2016}
+\CSLLeftMargin{{[}20{]} }%
+\CSLRightInline{G. L. Gilardoni, M. L. G. de Toledo, M. A. Freitas, and
+E. A. Colosimo, {``Dynamics of an optimal maintenance policy for
+imperfect repair models,''} \emph{European Journal of Operational
+Research}, vol. 248, no. 3, pp. 1104--1112, 2016, doi:
+\href{https://doi.org/10.1016/j.ejor.2015.07.056}{10.1016/j.ejor.2015.07.056}.}
+
+\bibitem[\citeproctext]{ref-doyen2011}
+\CSLLeftMargin{{[}21{]} }%
+\CSLRightInline{L. Doyen and O. Gaudoin, {``Modeling and assessment of
+aging and efficiency of corrective and planned preventive
+maintenance,''} \emph{IEEE Transactions on Reliability}, vol. 60, no. 4,
+pp. 759--769, 2011, doi:
+\href{https://doi.org/10.1109/TR.2011.2171115}{10.1109/TR.2011.2171115}.}
+
+\bibitem[\citeproctext]{ref-mohtasham2021}
+\CSLLeftMargin{{[}22{]} }%
+\CSLRightInline{M. Mohtasham, H. Mirzaei-Nasirabad, H. Askari-Nasab, and
+B. Alizadeh, {``Truck fleet size selection in open-pit mines based on
+the match factor using a MINLP model,''} \emph{Mining Technology}, vol.
+130, no. 3, pp. 159--175, 2021, doi:
+\href{https://doi.org/10.1080/25726668.2021.1919374}{10.1080/25726668.2021.1919374}.}
+
+\bibitem[\citeproctext]{ref-kang2016}
+\CSLLeftMargin{{[}23{]} }%
+\CSLRightInline{N. Kang, C. Zhao, J. Li, and J. A. Horst, {``A
+hierarchical structure of key performance indicators for operation
+management and continuous improvement in production systems,''}
+\emph{International Journal of Production Research}, vol. 54, no. 21,
+pp. 6333--6350, 2016, doi:
+\href{https://doi.org/10.1080/00207543.2015.1136082}{10.1080/00207543.2015.1136082}.}
+
 \end{CSLReferences}
 
 \section*{Recursos Adicionais}\label{recursos-adicionais-1}
@@ -6164,7 +7770,7 @@ ou tem sugestões de melhoria:
 \tightlist
 \item
   Twitter/X:
-  \href{https://twitter.com/rafaelfernandes}{(\textbf{rafaelfernandes?})}
+  \href{https://twitter.com/rafaelfernandes}{@rafaelfernandes}
 \item
   LinkedIn: \href{https://linkedin.com/in/rafaelfernandes}{Rafael
   Fernandes}
@@ -6183,6 +7789,7 @@ Contribuir com o projeto
 \emph{Última atualização: Novembro de 2025}
 
 
+\backmatter
 
 
 \end{document}

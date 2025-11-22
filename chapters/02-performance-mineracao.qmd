@@ -82,11 +82,6 @@ $$
 HC = HT + HM + HO
 $$
 
-A @fig-categorias-horas ilustra o fluxo de relacionamento entre as categorias de horas:
-
-![Fluxo de relacionamento entre categorias de horas](../images/figura-categorias-horas.png){#fig-categorias-horas}
-
-
 ::: {.callout-note}
 ## Legenda das Categorias de Horas
 
@@ -159,13 +154,13 @@ $$ {#eq-perda-df}
 **Perda de Produção por Utilização:**
 
 $$
-PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}
+PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{programado}
 $$ {#eq-perda-uf}
 
 **Perda de Produção por Produtividade:**
 
 $$
-PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
+PP_{PR} = (PR_{programado} - PR_{realizado}) \times (HD_{programado} - HO_{realizado})
 $$ {#eq-perda-pr}
 
 ```{r}
