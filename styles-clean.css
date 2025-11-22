@@ -15,19 +15,27 @@
 }
 
 /* ===== SIDEBAR - CONFIGURAÇÃO BÁSICA ===== */
+#quarto-sidebar,
+.sidebar,
 .sidebar-navigation {
   background: var(--color-teal) !important;
 }
 
-.sidebar nav a {
+#quarto-sidebar a,
+.sidebar a,
+.sidebar nav a,
+.sidebar-item-text {
   color: #ffffff !important;
 }
 
+#quarto-sidebar a:hover,
+.sidebar a:hover,
 .sidebar nav a:hover {
   background: var(--color-teal-dark) !important;
   color: #ffffff !important;
 }
 
+#quarto-sidebar .active,
 .sidebar .active {
   background: var(--color-cyan-mid) !important;
   color: var(--color-brown-dark) !important;
