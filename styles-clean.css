@@ -1,0 +1,62 @@
+/* Custom CSS for QuartoBook - Versão Limpa */
+
+/* Paleta de Cores */
+:root {
+  --color-brown-dark: #543005;
+  --color-brown-med: #8c510a;
+  --color-brown: #bf812d;
+  --color-brown-light: #dfc27d;
+  --color-cream: #f6e8c3;
+  --color-cyan-light: #c7eae5;
+  --color-cyan-mid: #80cdc1;
+  --color-teal: #35978f;
+  --color-teal-dark: #01665e;
+  --color-teal-deep: #003c30;
+}
+
+/* ===== SIDEBAR - CONFIGURAÇÃO BÁSICA ===== */
+.sidebar-navigation {
+  background: var(--color-teal) !important;
+}
+
+.sidebar nav a {
+  color: var(--color-cream) !important;
+}
+
+.sidebar nav a:hover {
+  background: var(--color-teal-dark) !important;
+  color: var(--color-brown-light) !important;
+}
+
+.sidebar .active {
+  background: var(--color-cyan-mid) !important;
+  color: var(--color-brown-dark) !important;
+  font-weight: bold !important;
+}
+
+/* ===== CONTEÚDO ===== */
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+}
+
+h1 {
+  color: var(--color-brown-dark);
+  border-bottom: 2px solid var(--color-brown);
+}
+
+h2 { color: var(--color-brown-med); }
+h3 { color: var(--color-brown); }
+
+figcaption {
+  background: linear-gradient(90deg, var(--color-cyan-mid) 10%, var(--color-cyan-light) 90%);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--color-brown-dark);
+  font-weight: bold;
+}
+
+table thead tr { background: var(--color-cyan-mid); }
+table thead th { color: var(--color-brown-dark); }
+table tbody tr:nth-child(even) { background: var(--color-cyan-light); }

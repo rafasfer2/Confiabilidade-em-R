@@ -38,7 +38,7 @@ format:
     theme:
       light: flatly
       dark: darkly
-    css: styles.css
+    css: styles-clean.css
     code-fold: true
     code-tools: true
     toc: true
