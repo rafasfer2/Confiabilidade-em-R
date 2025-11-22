@@ -131,7 +131,7 @@ figcaption {
 
 /* Table of Contents - reduce indentation and increase space */
 .sidebar-navigation {
-  padding-left: 0.5em !important;
+  padding-left: 0.25em !important;
   padding-right: 0.5em !important;
 }
 
@@ -146,7 +146,7 @@ nav[role="doc-toc"] ul,
 nav[role="doc-toc"] ul ul,
 #TOC ul ul,
 .sidebar nav[role="navigation"] ul ul {
-  padding-left: 0.5em !important;
+  padding-left: 0.25em !important;
 }
 
 /* Remove extra indentation from chapter items */
@@ -159,7 +159,7 @@ nav[role="doc-toc"] ul ul,
 nav[role="doc-toc"] ul ul ul,
 #TOC ul ul ul,
 .sidebar nav[role="navigation"] ul ul ul {
-  padding-left: 0.5em !important;
+  padding-left: 0.25em !important;
 }
 
 nav[role="doc-toc"] li,
