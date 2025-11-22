@@ -36,74 +36,99 @@ body, html {
   top: 0 !important;
   width: var(--sidebar-width) !important;
   height: 100vh !important;
-  background: var(--color-teal) !important;
+  background: var(--color-teal-dark) !important;
   overflow-y: auto;
   z-index: 100;
-  padding: 0.5rem !important;
+  padding: 0 !important;
   margin: 0 !important;
 }
 
-/* Espaçamento e fonte maior */
+/* Título do livro no topo da sidebar */
+#quarto-sidebar .sidebar-title {
+  background: var(--color-teal-dark) !important;
+  color: white !important;
+  padding: 1.2rem 1rem !important;
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  border-bottom: 2px solid var(--color-teal) !important;
+  margin: 0 !important;
+}
+
+/* Reset de espaçamento */
 #quarto-sidebar .sidebar-item {
   display: block !important;
   width: 100% !important;
-  margin: 0.4rem 0 !important;
+  margin: 0 !important;
   padding: 0 !important;
+  list-style: none !important;
 }
 
 #quarto-sidebar .sidebar-item > a {
   display: block !important;
   width: 100% !important;
-  padding: 0.7rem 0.8rem !important;
+  padding: 0.8rem 1rem !important;
   margin: 0 !important;
   font-size: 1rem !important;
-  border-radius: 4px !important;
-  transition: all 0.2s ease !important;
+  font-weight: bold !important;
+  border-radius: 0 !important;
+  transition: none !important;
+  border: none !important;
 }
 
-#quarto-sidebar a,
-#quarto-sidebar .sidebar-item-text,
-#quarto-sidebar .chapter-number {
-  color: #ffffff !important;
-  font-size: 1rem !important;
+/* Alternância de cores: ímpar (teal escuro) e par (branco) */
+#quarto-sidebar .sidebar-item:nth-child(odd) > a {
+  background: var(--color-teal-dark) !important;
+  color: white !important;
 }
 
-/* Hover cinza por item individual */
-#quarto-sidebar .sidebar-item > a:hover {
-  background: #e3e3e3 !important;
+#quarto-sidebar .sidebar-item:nth-child(odd) .sidebar-item-text,
+#quarto-sidebar .sidebar-item:nth-child(odd) .chapter-number {
+  color: white !important;
 }
 
-#quarto-sidebar .sidebar-item > a:hover .sidebar-item-text,
-#quarto-sidebar .sidebar-item > a:hover .chapter-number {
+#quarto-sidebar .sidebar-item:nth-child(even) > a {
+  background: white !important;
+  color: var(--color-teal-dark) !important;
+}
+
+#quarto-sidebar .sidebar-item:nth-child(even) .sidebar-item-text,
+#quarto-sidebar .sidebar-item:nth-child(even) .chapter-number {
+  color: var(--color-teal-dark) !important;
+}
+
+/* Prefácio em destaque dourado */
+#quarto-sidebar .sidebar-item:first-child > a,
+#quarto-sidebar .sidebar-item[data-type="preface"] > a {
+  background: #f4d03f !important;
   color: var(--color-teal-deep) !important;
 }
 
-/* Item ativo ouro - seletores mais específicos */
-#quarto-sidebar .sidebar-item.active > a,
-#quarto-sidebar li.active > a,
-#quarto-sidebar li.sidebar-item.active > div > a {
-  background: transparent !important;
+#quarto-sidebar .sidebar-item:first-child .sidebar-item-text,
+#quarto-sidebar .sidebar-item:first-child .chapter-number {
+  color: var(--color-teal-deep) !important;
 }
 
-#quarto-sidebar .sidebar-item.active > a .sidebar-item-text,
-#quarto-sidebar .sidebar-item.active > a .chapter-number,
-#quarto-sidebar li.active > a .sidebar-item-text,
-#quarto-sidebar li.active > a .chapter-number,
-#quarto-sidebar li.sidebar-item.active .sidebar-item-text,
-#quarto-sidebar li.sidebar-item.active .chapter-number {
-  color: #d4af37 !important;
+/* Números de capítulo em destaque */
+#quarto-sidebar .chapter-number {
   font-weight: bold !important;
+  margin-right: 0.5rem !important;
 }
 
-/* Não aplicar hover em item ativo */
-#quarto-sidebar .sidebar-item.active > a:hover,
-#quarto-sidebar li.active > a:hover {
-  background: transparent !important;
+/* Item ativo com borda esquerda */
+#quarto-sidebar .sidebar-item.active > a,
+#quarto-sidebar li.active > a {
+  border-left: 4px solid #d4af37 !important;
+  padding-left: calc(1rem - 4px) !important;
+  font-weight: 900 !important;
 }
 
-#quarto-sidebar .sidebar-item.active > a:hover .sidebar-item-text,
-#quarto-sidebar .sidebar-item.active > a:hover .chapter-number {
-  color: #d4af37 !important;
+/* Hover mantém as cores originais mas escurece/clareia ligeiramente */
+#quarto-sidebar .sidebar-item:nth-child(odd) > a:hover {
+  background: var(--color-teal-deep) !important;
+}
+
+#quarto-sidebar .sidebar-item:nth-child(even) > a:hover {
+  background: #f5f5f5 !important;
 }
 
 /* ===== CABEÇALHO GLOBAL ===== */
