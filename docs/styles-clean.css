@@ -37,6 +37,7 @@ body, html {
   background: var(--color-teal) !important;
   overflow-y: auto;
   z-index: 100;
+  padding: 0.5rem !important;
 }
 
 #quarto-sidebar a,
@@ -62,13 +63,15 @@ body.nav-sidebar {
 
 .page-columns {
   margin: 0 !important;
-  padding: 1rem 2rem !important;
+  padding: 1rem !important;
   max-width: 100% !important;
 }
 
 main.content {
   width: 100% !important;
   max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
 }
 
 /* ===== TOC DIREITA ===== */
@@ -79,9 +82,14 @@ main.content {
   width: var(--toc-width) !important;
   height: 100vh !important;
   background: var(--color-cream) !important;
-  padding: 1rem !important;
+  padding: 0.5rem !important;
   overflow-y: auto;
   z-index: 100;
+}
+
+#TOC {
+  margin: 0 !important;
+  padding: 0.5rem !important;
 }
 
 #TOC a,
