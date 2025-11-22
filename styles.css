@@ -218,15 +218,24 @@ nav[role="doc-toc"] li,
   box-shadow: 2px 0 6px rgba(0,0,0,0.2);
   display: block !important;
   visibility: visible !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
-/* Força sidebar sempre visível (não colapsada) */
-#quarto-sidebar.collapse:not(.show) {
+/* Força sidebar sempre visível - sobrescreve Bootstrap collapse */
+#quarto-sidebar,
+#quarto-sidebar.collapse,
+#quarto-sidebar.collapse.show,
+#quarto-sidebar.collapsing,
+.sidebar.collapse,
+.sidebar.collapse-horizontal {
   display: block !important;
-}
-
-.sidebar.collapse {
-  display: block !important;
+  visibility: visible !important;
+  width: 300px !important;
+  height: 100vh !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
 }
 
 /* Adjust main content to not overlap with sidebar */
