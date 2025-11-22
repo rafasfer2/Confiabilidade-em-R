@@ -66,7 +66,7 @@ body, html {
   padding: 0 !important;
 }
 
-/* Base: todos os links cinza claro */
+/* Base: todos os links SEM FUNDO (transparente/teal do sidebar) */
 #quarto-sidebar .sidebar-item-text {
   display: block !important;
   padding: 0.7rem 1rem !important;
@@ -75,8 +75,8 @@ body, html {
   font-weight: normal !important;
   border-radius: 0 !important;
   border: none !important;
-  background: #f5f5f5 !important;
-  color: var(--color-teal-dark) !important;
+  background: transparent !important;
+  color: white !important;
 }
 
 /* Prefácio: dourado */
@@ -85,20 +85,29 @@ body, html {
   color: var(--color-teal-deep) !important;
 }
 
-/* Capítulos PARES (2, 4, 6, 8, 10): teal escuro */
+/* Capítulos PARES (2, 4, 6, 8, 10): texto amarelo ouro */
 #quarto-sidebar a[href*="02-"].sidebar-item-text,
 #quarto-sidebar a[href*="04-"].sidebar-item-text,
 #quarto-sidebar a[href*="06-"].sidebar-item-text,
 #quarto-sidebar a[href*="08-"].sidebar-item-text,
 #quarto-sidebar a[href*="10-"].sidebar-item-text {
-  background: var(--color-teal-dark) !important;
-  color: white !important;
+  color: #d4af37 !important;
 }
 
-/* Item ATIVO: texto ouro + negrito (mantém fundo da cor original) */
+/* Item ATIVO: negrito */
 #quarto-sidebar .sidebar-item-text.active {
-  color: #d4af37 !important;
   font-weight: bold !important;
+}
+
+/* HOVER: fundo branco */
+#quarto-sidebar .sidebar-item-text:hover {
+  background: white !important;
+  color: var(--color-teal-dark) !important;
+}
+
+/* HOVER no prefácio mantém dourado mais escuro */
+#quarto-sidebar a[href*="preface"].sidebar-item-text:hover {
+  background: #e6c030 !important;
 }
 
 /* Hover sutil */
