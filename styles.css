@@ -282,37 +282,7 @@ main.content {
   padding-left: 6px !important;
 }
 
-/* TOC dentro da sidebar: harmonização visual */
-#quarto-sidebar #TOC {
-  margin-top: .75em;
-  border-top: 1px solid var(--color-teal-dark);
-  padding-top: .5em;
-}
-#toc-title { display: none; }
-/* Oculta link topo duplicado (Bem-vindo) mantendo seções internas */
-#TOC > ul > li > a.nav-link.active { display: none; }
-#TOC > ul { padding-left: 0 !important; }
-#TOC > ul > li > ul { padding-left: 0 !important; }
-
-/* Hierarquia compacta: Cap(0), 2.1(.5em), 2.1.1(1em), 2.1.1.1(1.5em) */
-#TOC ul ul { padding-left: .5em !important; }   /* nível 2: 2.1 */
-#TOC ul ul ul { padding-left: 1em !important; }  /* nível 3: 2.1.1 */
-#TOC ul ul ul ul { padding-left: 1.5em !important; } /* nível 4 */
-
-#TOC a {
-  font-size: 0.8rem;
-  padding: 3px 6px;
-  display: block;
-  color: var(--color-sidebar-text) !important;
-  border-radius: 3px;
-  line-height: 1.25;
-}
-#TOC a:hover {
-  background: var(--color-teal-dark);
-  color: var(--color-accent-hover) !important;
-  text-decoration: none;
-}
-#TOC li { margin-bottom: 0.15em; }
+/* TOC na direita (toc-location: right) - estilos removidos para usar padrão do Quarto */
 
 /* Sidebar collapse icons */
 .sidebar .chapter-number::before,
