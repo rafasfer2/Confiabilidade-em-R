@@ -6,19 +6,13 @@ No contexto brasileiro, a exploração de reserva de minerais, principalmente de
 
 Em particular, as atividades de exploração iniciam-se com a preparação da área a ser lavrada para que ela possa ser perfurada e detonada. Então a escavação e o carregamento, são feitos por equipamentos de carga que ficam alocados na frente da lavra. Estes retiram o material e o carregam nos equipamentos de transporte, caminhões, correias transportadoras, vagões, entre outros. Os equipamentos de transporte levam o material até um determinado ponto de descarga, podendo estes serem britadores, pilha estéril ou pilha pulmão, onde o ciclo da operação recomeça [@fernandes2023b; @osanloo2020].
 
-## Contexto da Empresa em Estudo
-
 A empresa em estudo, trata-se de uma mineradora de grande porte localizada no sudeste do Pará em que estabelece, como responsabilidade para a equipe de Engenharia da Confiabilidade, identificar e gerenciar riscos associados aos seus ativos críticos, classificados assim como os que podem causar um evento material indesejado (MUE – *Material Unwanted Event*) [@mining2015]. Desta forma, um **incidente** é um evento não planejado ou uma ocorrência que resulta em dano ou outra perda [@iso55000], e, por sua vez, a **falha** é um incidente que interrompe o funcionamento e acarreta a indisponibilidade do equipamento [@iso5462].
-
-## Gestão de Ativos e Manutenção
 
 Nesse sentido, a gestão de ativos deve guiar a forma como as organizações buscam um desempenho operacional excelente, integrando de forma eficiente o Planejamento e Controle Operacional (PCO) e o Planejamento e Controle da Manutenção (PCM) [@pascual2016; @qiao2017].
 
 No escopo de gestão de processos, a função primordial da operação é garantir a realização dos planos de gestão sem impactar as metas dos planos de produção [@slack2013]. De outra forma, a operação desempenha um papel crucial na consecução dos resultados de produção, e uma falha pode impactar diretamente nos resultados esperados. Portanto, garantir a confiabilidade dos ativos físicos, gerir os riscos e minimizar as falhas são atividades integradas entre PCO e PCM [@zampolli2019].
 
 Complementarmente, para exercer um papel estratégico, a manutenção precisa estar alinhada com os resultados empresariais da organização, principalmente, ao assegurar a disponibilidade dos equipamentos para a operação, reduzindo a probabilidade de paradas de produção não planejadas, minimizando a necessidade de manutenção corretiva (MC) e priorizando as manutenções preventivas (MP).
-
-## Manutenção Preventiva: Desafios e Oportunidades
 
 A manutenção preventiva é uma estratégia importante para melhorar a disponibilidade física (DF) de um sistema ou equipamento, reduzir o tempo de inatividade e prolongar a vida útil dos equipamentos. No entanto, embora esse tipo de manutenção seja uma tática importante para reduzir a frequência de ocorrência de falhas no sistema, pode haver casos em que a MP possa interferir ou prejudicar a disponibilidade dos equipamentos, onde o tempo de execução da manutenção é maior que o tempo planejado no plano de preventiva.
 

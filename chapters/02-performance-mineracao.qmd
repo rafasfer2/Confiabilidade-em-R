@@ -2,13 +2,7 @@
 
 ## Ciclo de Processos de Carregamento e Transporte {#sec-ciclo-processos}
 
-O ciclo operacional de carregamento e transporte na mineração é composto por diversas etapas sequenciais que se repetem continuamente. A @fig-ciclo-processos ilustra este ciclo, que envolve as seguintes fases principais:
-
-1. **Carregamento**: Equipamento de carga (escavadeira ou carregadeira) enche a caçamba do caminhão
-2. **Transporte carregado**: Caminhão desloca-se até o ponto de descarga
-3. **Descarga**: Basculamento da caçamba no britador ou pilha
-4. **Retorno vazio**: Caminhão retorna à frente de carregamento
-5. **Fila**: Aguardo para novo carregamento (quando necessário)
+O ciclo de processos de carregamento e transporte, pertencente à etapa de lavra na mineração, ocorre apenas quando o caminhão se encontra com status de “apto para operação” em que as métricas de análise e indicadores próprios são estabelecidos para otimização do processo. A @fig-ciclo-processos mostra que o ciclo inicia no direcionamento do caminhão, que percorre vazio até o ponto de carga (TVV – tempo de viagem vazio), aguarda na fila para carga (TFC – tempo de fila para carga), e realiza a manobra (TMC – tempo de manobra para carregar) para o carregamento pela escavadeira (TC – tempo de carregamento). Com o caminhão cheio, ocorre o transporte (TVC – tempo de viagem cheio), aguarda na fila para basculamento (TFB – tempo de fila para bascular) e, finalmente, o basculamento (TB– tempo de basculamento). Para um único turno de trabalho da operação, um determinado número de ciclos (NC) é realizado.
 
 ![Ciclo de processos de carregamento e transporte](images/Figura 01.png){#fig-ciclo-processos}
 

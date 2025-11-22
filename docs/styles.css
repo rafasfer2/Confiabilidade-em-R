@@ -130,29 +130,31 @@ figcaption {
 }
 
 /* Table of Contents - reduce indentation */
-.sidebar nav[role="doc-toc"] ul {
-  padding-left: 1em;
-}
-
-.sidebar nav[role="doc-toc"] ul ul {
-  padding-left: 1em;
-}
-
-.sidebar nav[role="doc-toc"] li {
-  margin-left: 0;
-}
-
-/* Adjust TOC text */
+nav[role="doc-toc"] ul,
 #TOC ul {
-  padding-left: 1.2em;
+  padding-left: 0.5em !important;
+  margin-left: 0 !important;
 }
 
+nav[role="doc-toc"] ul ul,
 #TOC ul ul {
-  padding-left: 1em;
+  padding-left: 0.8em !important;
 }
 
+nav[role="doc-toc"] ul ul ul,
+#TOC ul ul ul {
+  padding-left: 0.8em !important;
+}
+
+nav[role="doc-toc"] li,
 #TOC li {
   margin-bottom: 0.3em;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+.sidebar nav[role="doc-toc"] ul {
+  padding-left: 0.5em !important;
 }
 
 /* Print-specific adjustments */

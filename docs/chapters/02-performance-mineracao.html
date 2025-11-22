@@ -461,14 +461,7 @@ window.Quarto = {
 
 <section id="sec-ciclo-processos" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-ciclo-processos"><span class="header-section-number">2.1</span> Ciclo de Processos de Carregamento e Transporte</h2>
-<p>O ciclo operacional de carregamento e transporte na mineração é composto por diversas etapas sequenciais que se repetem continuamente. A <a href="#fig-ciclo-processos" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> ilustra este ciclo, que envolve as seguintes fases principais:</p>
-<ol type="1">
-<li><strong>Carregamento</strong>: Equipamento de carga (escavadeira ou carregadeira) enche a caçamba do caminhão</li>
-<li><strong>Transporte carregado</strong>: Caminhão desloca-se até o ponto de descarga</li>
-<li><strong>Descarga</strong>: Basculamento da caçamba no britador ou pilha</li>
-<li><strong>Retorno vazio</strong>: Caminhão retorna à frente de carregamento</li>
-<li><strong>Fila</strong>: Aguardo para novo carregamento (quando necessário)</li>
-</ol>
+<p>O ciclo de processos de carregamento e transporte, pertencente à etapa de lavra na mineração, ocorre apenas quando o caminhão se encontra com status de “apto para operação” em que as métricas de análise e indicadores próprios são estabelecidos para otimização do processo. A <a href="#fig-ciclo-processos" class="quarto-xref">Figure&nbsp;<span>2.2</span></a> mostra que o ciclo inicia no direcionamento do caminhão, que percorre vazio até o ponto de carga (TVV – tempo de viagem vazio), aguarda na fila para carga (TFC – tempo de fila para carga), e realiza a manobra (TMC – tempo de manobra para carregar) para o carregamento pela escavadeira (TC – tempo de carregamento). Com o caminhão cheio, ocorre o transporte (TVC – tempo de viagem cheio), aguarda na fila para basculamento (TFB – tempo de fila para bascular) e, finalmente, o basculamento (TB– tempo de basculamento). Para um único turno de trabalho da operação, um determinado número de ciclos (NC) é realizado.</p>
 <div id="fig-ciclo-processos" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-ciclo-processos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -627,51 +620,55 @@ PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados programados vs realizados</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(<span class="st">"Horas Calendário (HC)"</span>, <span class="st">"Horas Manutenção (HM)"</span>,</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Horas Disponíveis (HD)"</span>, <span class="st">"Horas Ociosas (HO)"</span>,</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Horas Trabalhadas (HT)"</span>, <span class="st">"Massa Transportada (MT)"</span>),</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">72</span>, <span class="dv">648</span>, <span class="dv">65</span>, <span class="dv">583</span>, <span class="dv">140000</span>),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">95</span>, <span class="dv">625</span>, <span class="dv">88</span>, <span class="dv">537</span>, <span class="dv">125000</span>),</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"t"</span>)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular ICDs</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>icds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(<span class="st">"Disponibilidade Física (DF)"</span>,</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Utilização Física (UF)"</span>,</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Produtividade (PR)"</span>),</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span><span class="sc">/</span><span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">583</span><span class="sc">/</span><span class="dv">648</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">140000</span><span class="sc">/</span><span class="dv">583</span>, <span class="dv">1</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">625</span><span class="sc">/</span><span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">537</span><span class="sc">/</span><span class="dv">625</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">125000</span><span class="sc">/</span><span class="dv">537</span>, <span class="dv">1</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"%"</span>, <span class="st">"%"</span>, <span class="st">"t/h"</span>)</span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular perdas</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>PR_real <span class="ot">&lt;-</span> <span class="dv">125000</span><span class="sc">/</span><span class="dv">537</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>perdas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipo_Perda =</span> <span class="fu">c</span>(<span class="st">"Perda por DF"</span>, <span class="st">"Perda por UF"</span>, <span class="st">"Perda por PR"</span>),</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="at">Calculo =</span> <span class="fu">c</span>(</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">648</span>, <span class="st">" - "</span>, <span class="dv">625</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">88</span>, <span class="st">" - "</span>, <span class="dv">65</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(<span class="dv">140000</span><span class="sc">/</span><span class="dv">583</span>, <span class="dv">1</span>), <span class="st">" - "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>), <span class="st">") × "</span>, <span class="dv">583</span>)</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  <span class="at">Perda_ton =</span> <span class="fu">c</span>(</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">-</span> <span class="dv">625</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">88</span> <span class="sc">-</span> <span class="dv">65</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">140000</span><span class="sc">/</span><span class="dv">583</span> <span class="sc">-</span> PR_real) <span class="sc">*</span> <span class="dv">583</span>, <span class="dv">0</span>)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentar resultados</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dados, <span class="at">caption =</span> <span class="st">"Dados Programados vs Realizados"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Calendário (HC)"</span>, <span class="st">"Horas Manutenção (HM)"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Disponíveis (HD)"</span>, <span class="st">"Horas Ociosas (HO)"</span>,</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Trabalhadas (HT)"</span>, <span class="st">"Massa Transportada (MT)"</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">72</span>, <span class="dv">648</span>, <span class="dv">65</span>, <span class="dv">583</span>, <span class="dv">140000</span>),</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">95</span>, <span class="dv">625</span>, <span class="dv">88</span>, <span class="dv">537</span>, <span class="dv">125000</span>),</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"t"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular ICDs</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>icds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disponibilidade Física (DF)"</span>,</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Utilização Física (UF)"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Produtividade (PR)"</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">583</span> <span class="sc">/</span> <span class="dv">648</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">625</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">537</span> <span class="sc">/</span> <span class="dv">625</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span>, <span class="dv">1</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"%"</span>, <span class="st">"%"</span>, <span class="st">"t/h"</span>)</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular perdas</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>PR_real <span class="ot">&lt;-</span> <span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>perdas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipo_Perda =</span> <span class="fu">c</span>(<span class="st">"Perda por DF"</span>, <span class="st">"Perda por UF"</span>, <span class="st">"Perda por PR"</span>),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  <span class="at">Calculo =</span> <span class="fu">c</span>(</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">648</span>, <span class="st">" - "</span>, <span class="dv">625</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">88</span>, <span class="st">" - "</span>, <span class="dv">65</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>), <span class="st">" - "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>), <span class="st">") × "</span>, <span class="dv">583</span>)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>  <span class="at">Perda_ton =</span> <span class="fu">c</span>(</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">-</span> <span class="dv">625</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">88</span> <span class="sc">-</span> <span class="dv">65</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span> <span class="sc">-</span> PR_real) <span class="sc">*</span> <span class="dv">583</span>, <span class="dv">0</span>)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentar resultados</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dados, <span class="at">caption =</span> <span class="st">"Dados Programados vs Realizados"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -768,9 +765,11 @@ PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perdas, <span class="at">caption =</span> <span class="st">"Análise de Perda de Produção"</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>      <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo de Perda"</span>, <span class="st">"Cálculo"</span>, <span class="st">"Perda (t)"</span>)) <span class="sc">%&gt;%</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perdas,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Análise de Perda de Produção"</span>,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo de Perda"</span>, <span class="st">"Cálculo"</span>, <span class="st">"Perda (t)"</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-striped table-hover caption-top table-sm small" data-quarto-postprocess="true">
@@ -1485,268 +1484,262 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">## Ciclo de Processos de Carregamento e Transporte {#sec-ciclo-processos}</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>O ciclo operacional de carregamento e transporte na mineração é composto por diversas etapas sequenciais que se repetem continuamente. A @fig-ciclo-processos ilustra este ciclo, que envolve as seguintes fases principais:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>O ciclo de processos de carregamento e transporte, pertencente à etapa de lavra na mineração, ocorre apenas quando o caminhão se encontra com status de “apto para operação” em que as métricas de análise e indicadores próprios são estabelecidos para otimização do processo. A @fig-ciclo-processos mostra que o ciclo inicia no direcionamento do caminhão, que percorre vazio até o ponto de carga (TVV – tempo de viagem vazio), aguarda na fila para carga (TFC – tempo de fila para carga), e realiza a manobra (TMC – tempo de manobra para carregar) para o carregamento pela escavadeira (TC – tempo de carregamento). Com o caminhão cheio, ocorre o transporte (TVC – tempo de viagem cheio), aguarda na fila para basculamento (TFB – tempo de fila para bascular) e, finalmente, o basculamento (TB– tempo de basculamento). Para um único turno de trabalho da operação, um determinado número de ciclos (NC) é realizado.</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>**Carregamento**: Equipamento de carga (escavadeira ou carregadeira) enche a caçamba do caminhão</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>**Transporte carregado**: Caminhão desloca-se até o ponto de descarga</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>**Descarga**: Basculamento da caçamba no britador ou pilha</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>**Retorno vazio**: Caminhão retorna à frente de carregamento</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>**Fila**: Aguardo para novo carregamento (quando necessário)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="al">![Ciclo de processos de carregamento e transporte](images/Figura 01.png)</span>{#fig-ciclo-processos}</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>O tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>:::</span>
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="al">![Ciclo de processos de carregamento e transporte](images/Figura 01.png)</span>{#fig-ciclo-processos}</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">## Status do Equipamento {#sec-status-equipamento}</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>O tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>Como a medição é feita baseado em durações de tempo, os apontamentos são realizados sempre que o caminhão alterar o seu status de operação, estes, que são subdivididos em **4 classes**: apto para operação, liberado pela manutenção, em manutenção ou em parada operacional.</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>Estas classes exercem um importante direcionamento das responsabilidades de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem problemas operacionais distintos. Por exemplo, quando o caminhão está:</span>
 <span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">## Status do Equipamento {#sec-status-equipamento}</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">### Apto para Operação</span></span>
 <span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>Como a medição é feita baseado em durações de tempo, os apontamentos são realizados sempre que o caminhão alterar o seu status de operação, estes, que são subdivididos em **4 classes**: apto para operação, liberado pela manutenção, em manutenção ou em parada operacional.</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>A equipe de **operação** é responsável e está focada no ciclo dos processos de carregamento e transporte. Seu principal desafio reside na seleção e dimensionamento dos equipamentos. Segundo @mohtasham2021, isso está relacionada à seleção e dimensionamento adequado dos equipamentos de carregamento e transporte para realizar a tarefa de manuseio de materiais de forma ideal durante a operação da mina e, resultando a melhoria do indicador produtividade.</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>Estas classes exercem um importante direcionamento das responsabilidades de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem problemas operacionais distintos. Por exemplo, quando o caminhão está:</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="fu">### Liberado pela Manutenção</span></span>
 <span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="fu">### Apto para Operação</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>Este status é o momento imediatamente posterior à execução da manutenção, e consiste na **transição de responsabilidade** da equipe de manutenção para equipe de operação. Um acordo nível de serviço (ANS) entre as equipes deve ser pré-estabelecido para uma eficiente transição.</span>
 <span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>A equipe de **operação** é responsável e está focada no ciclo dos processos de carregamento e transporte. Seu principal desafio reside na seleção e dimensionamento dos equipamentos. Segundo @mohtasham2021, isso está relacionada à seleção e dimensionamento adequado dos equipamentos de carregamento e transporte para realizar a tarefa de manuseio de materiais de forma ideal durante a operação da mina e, resultando a melhoria do indicador produtividade.</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="fu">### Em Manutenção</span></span>
 <span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a><span class="fu">### Liberado pela Manutenção</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>Esta é uma atividade de responsabilidade da **equipe de manutenção** e incluem funções e processos de planejamento, inspeção, programação e confiabilidade.</span>
 <span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>Este status é o momento imediatamente posterior à execução da manutenção, e consiste na **transição de responsabilidade** da equipe de manutenção para equipe de operação. Um acordo nível de serviço (ANS) entre as equipes deve ser pré-estabelecido para uma eficiente transição.</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parada Operacional</span></span>
 <span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a><span class="fu">### Em Manutenção</span></span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>Grandes paradas são planejadas e gerenciadas considerando as contingências necessárias. Apesar de pertencer à equipe de operação, o **planejamento** é realizado pela gerência e considerando todo a cadeia produtiva.</span>
 <span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>Esta é uma atividade de responsabilidade da **equipe de manutenção** e incluem funções e processos de planejamento, inspeção, programação e confiabilidade.</span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="fu">### Parada Operacional</span></span>
-<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>Grandes paradas são planejadas e gerenciadas considerando as contingências necessárias. Apesar de pertencer à equipe de operação, o **planejamento** é realizado pela gerência e considerando todo a cadeia produtiva.</span>
-<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-status-equipamento</span></span>
-<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Transições entre status do equipamento"</span></span>
-<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
-<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: fig-status-equipamento</span></span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-cap: "Transições entre status do equipamento"</span></span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: false</span></span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a><span class="st">digraph status {</span></span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a><span class="st">  graph [rankdir = TB, bgcolor = transparent]</span></span>
 <span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(DiagrammeR)</span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = box, style = 'filled,rounded', fontname = Helvetica]</span></span>
 <span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="fu">grViz</span>(<span class="st">"</span></span>
-<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="st">digraph status {</span></span>
-<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="st">  graph [rankdir = TB, bgcolor = transparent]</span></span>
-<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a><span class="st">  node [shape = box, style = 'filled,rounded', fontname = Helvetica]</span></span>
-<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="st">  APO [label = 'Apto para</span><span class="sc">\\</span><span class="st">nOperação', fillcolor = '#2ECC71']</span></span>
-<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="st">  LIB [label = 'Liberado pela</span><span class="sc">\\</span><span class="st">nManutenção', fillcolor = '#3498DB']</span></span>
-<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="st">  MAN [label = 'Em</span><span class="sc">\\</span><span class="st">nManutenção', fillcolor = '#E74C3C']</span></span>
-<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="st">  PAR [label = 'Parada</span><span class="sc">\\</span><span class="st">nOperacional', fillcolor = '#95A5A6']</span></span>
-<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="st">  LIB -&gt; APO [label = '  operação</span><span class="sc">\\</span><span class="st">n  assume  ']</span></span>
-<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="st">  APO -&gt; MAN [label = '  falha ou</span><span class="sc">\\</span><span class="st">n  preventiva  ']</span></span>
-<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a><span class="st">  MAN -&gt; LIB [label = '  conclusão</span><span class="sc">\\</span><span class="st">n  serviço  ']</span></span>
-<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="st">  APO -&gt; PAR [label = '  parada</span><span class="sc">\\</span><span class="st">n  planejada  ']</span></span>
-<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a><span class="st">  PAR -&gt; APO [label = '  retomada</span><span class="sc">\\</span><span class="st">n  operação  ']</span></span>
-<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
-<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
-<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="fu">## Elementos de Suporte {#sec-elementos-suporte}</span></span>
-<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a>Para o cálculo de indicadores, é comum realizar a síntese de algumas categorias de horas ou, de outra forma, a junção de horas. Assim, os **elementos de tempo de segundo nível** são:</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a><span class="st">  APO [label = 'Apto para</span><span class="sc">\\</span><span class="st">nOperação', fillcolor = '#2ECC71']</span></span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a><span class="st">  LIB [label = 'Liberado pela</span><span class="sc">\\</span><span class="st">nManutenção', fillcolor = '#3498DB']</span></span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="st">  MAN [label = 'Em</span><span class="sc">\\</span><span class="st">nManutenção', fillcolor = '#E74C3C']</span></span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a><span class="st">  PAR [label = 'Parada</span><span class="sc">\\</span><span class="st">nOperacional', fillcolor = '#95A5A6']</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a><span class="st">  LIB -&gt; APO [label = '  operação</span><span class="sc">\\</span><span class="st">n  assume  ']</span></span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a><span class="st">  APO -&gt; MAN [label = '  falha ou</span><span class="sc">\\</span><span class="st">n  preventiva  ']</span></span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a><span class="st">  MAN -&gt; LIB [label = '  conclusão</span><span class="sc">\\</span><span class="st">n  serviço  ']</span></span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a><span class="st">  APO -&gt; PAR [label = '  parada</span><span class="sc">\\</span><span class="st">n  planejada  ']</span></span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a><span class="st">  PAR -&gt; APO [label = '  retomada</span><span class="sc">\\</span><span class="st">n  operação  ']</span></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a><span class="st">}</span></span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a><span class="st">"</span>)</span>
+<span id="cb4-63"><a href="#cb4-63" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-64"><a href="#cb4-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-65"><a href="#cb4-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Elementos de Suporte {#sec-elementos-suporte}</span></span>
+<span id="cb4-66"><a href="#cb4-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-67"><a href="#cb4-67" aria-hidden="true" tabindex="-1"></a>Para o cálculo de indicadores, é comum realizar a síntese de algumas categorias de horas ou, de outra forma, a junção de horas. Assim, os **elementos de tempo de segundo nível** são:</span>
+<span id="cb4-68"><a href="#cb4-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-69"><a href="#cb4-69" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas de manutenção corretiva total** (HMCT = HMC + HAC)</span>
+<span id="cb4-70"><a href="#cb4-70" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas de manutenção preventiva** (HMP = MPS)</span>
+<span id="cb4-71"><a href="#cb4-71" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas não produtivas** (HNTP = HTI + HTD)</span>
+<span id="cb4-72"><a href="#cb4-72" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas ociosas** (HO = HOI + HOE)</span>
+<span id="cb4-73"><a href="#cb4-73" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas produtivas** (HTP = HEF + HAO)</span>
 <span id="cb4-74"><a href="#cb4-74" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas de manutenção corretiva total** (HMCT = HMC + HAC)</span>
-<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas de manutenção preventiva** (HMP = MPS)</span>
-<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas não produtivas** (HNTP = HTI + HTD)</span>
-<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas ociosas** (HO = HOI + HOE)</span>
-<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas produtivas** (HTP = HEF + HAO)</span>
+<span id="cb4-75"><a href="#cb4-75" aria-hidden="true" tabindex="-1"></a>Por fim, para o **terceiro nível** temos:</span>
+<span id="cb4-76"><a href="#cb4-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-77"><a href="#cb4-77" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas** (HT = HEF + HAO + HTD + HTI)</span>
+<span id="cb4-78"><a href="#cb4-78" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas em manutenção** (HM = HMC + HAC + MPS + MPNS)</span>
+<span id="cb4-79"><a href="#cb4-79" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas ociosas** (HO)</span>
 <span id="cb4-80"><a href="#cb4-80" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>Por fim, para o **terceiro nível** temos:</span>
+<span id="cb4-81"><a href="#cb4-81" aria-hidden="true" tabindex="-1"></a>Em todos os níveis a soma das categorias representam as **horas calendário** (HC), por exemplo, temos que:</span>
 <span id="cb4-82"><a href="#cb4-82" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas trabalhadas** (HT = HEF + HAO + HTD + HTI)</span>
-<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas em manutenção** (HM = HMC + HAC + MPS + MPNS)</span>
-<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Horas ociosas** (HO)</span>
+<span id="cb4-83"><a href="#cb4-83" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-84"><a href="#cb4-84" aria-hidden="true" tabindex="-1"></a>HC = HT + HM + HO</span>
+<span id="cb4-85"><a href="#cb4-85" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-86"><a href="#cb4-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>Em todos os níveis a soma das categorias representam as **horas calendário** (HC), por exemplo, temos que:</span>
-<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a>HC = HT + HM + HO</span>
-<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
-<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="fu">## Legenda das Categorias de Horas</span></span>
-<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HMC**: Horas de Manutenção Corretiva</span>
-<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HAC**: Horas de Aguardo Corretiva</span>
-<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MPS**: Manutenção Preventiva Sistemática</span>
-<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MPNS**: Manutenção Preventiva Não Sistemática</span>
-<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HTI**: Horas de Trabalho Improdutivo</span>
-<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HTD**: Horas de Trabalho em Deslocamento</span>
-<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HOI**: Horas Ociosas Internas</span>
-<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HOE**: Horas Ociosas Externas</span>
-<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HEF**: Horas Efetivas</span>
-<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HAO**: Horas de Apoio à Operação</span>
-<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-87"><a href="#cb4-87" aria-hidden="true" tabindex="-1"></a>::: {.callout-note}</span>
+<span id="cb4-88"><a href="#cb4-88" aria-hidden="true" tabindex="-1"></a><span class="fu">## Legenda das Categorias de Horas</span></span>
+<span id="cb4-89"><a href="#cb4-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-90"><a href="#cb4-90" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HMC**: Horas de Manutenção Corretiva</span>
+<span id="cb4-91"><a href="#cb4-91" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HAC**: Horas de Aguardo Corretiva</span>
+<span id="cb4-92"><a href="#cb4-92" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MPS**: Manutenção Preventiva Sistemática</span>
+<span id="cb4-93"><a href="#cb4-93" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**MPNS**: Manutenção Preventiva Não Sistemática</span>
+<span id="cb4-94"><a href="#cb4-94" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HTI**: Horas de Trabalho Improdutivo</span>
+<span id="cb4-95"><a href="#cb4-95" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HTD**: Horas de Trabalho em Deslocamento</span>
+<span id="cb4-96"><a href="#cb4-96" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HOI**: Horas Ociosas Internas</span>
+<span id="cb4-97"><a href="#cb4-97" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HOE**: Horas Ociosas Externas</span>
+<span id="cb4-98"><a href="#cb4-98" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HEF**: Horas Efetivas</span>
+<span id="cb4-99"><a href="#cb4-99" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HAO**: Horas de Apoio à Operação</span>
+<span id="cb4-100"><a href="#cb4-100" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-101"><a href="#cb4-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-102"><a href="#cb4-102" aria-hidden="true" tabindex="-1"></a><span class="fu">## Indicadores Chave de Desempenho (ICD) {#sec-icd}</span></span>
+<span id="cb4-103"><a href="#cb4-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-104"><a href="#cb4-104" aria-hidden="true" tabindex="-1"></a>Desta forma, ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor nominal será dado pela soma da duração de todos os apontamentos, cuja razão esteja configurada para contabilizar esta categoria. Como o principal produto do ciclo de transporte é a **massa transportada (MT)**, este configura-se como elemento quantitativo.</span>
+<span id="cb4-105"><a href="#cb4-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-106"><a href="#cb4-106" aria-hidden="true" tabindex="-1"></a>Os ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com @kang2016, há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.</span>
 <span id="cb4-107"><a href="#cb4-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a><span class="fu">## Indicadores Chave de Desempenho (ICD) {#sec-icd}</span></span>
+<span id="cb4-108"><a href="#cb4-108" aria-hidden="true" tabindex="-1"></a>Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.</span>
 <span id="cb4-109"><a href="#cb4-109" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>Desta forma, ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor nominal será dado pela soma da duração de todos os apontamentos, cuja razão esteja configurada para contabilizar esta categoria. Como o principal produto do ciclo de transporte é a **massa transportada (MT)**, este configura-se como elemento quantitativo.</span>
+<span id="cb4-110"><a href="#cb4-110" aria-hidden="true" tabindex="-1"></a>A @fig-ciclo-processos apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.</span>
 <span id="cb4-111"><a href="#cb4-111" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a>Os ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com @kang2016, há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.</span>
+<span id="cb4-112"><a href="#cb4-112" aria-hidden="true" tabindex="-1"></a><span class="al">![Ciclo de processos de carregamento e transporte](images/Figura 01.png)</span>{#fig-ciclo-processos}</span>
 <span id="cb4-113"><a href="#cb4-113" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.</span>
+<span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a><span class="fu">### Disponibilidade Física (DF)</span></span>
 <span id="cb4-115"><a href="#cb4-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>A @fig-ciclo-processos apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.</span>
+<span id="cb4-116"><a href="#cb4-116" aria-hidden="true" tabindex="-1"></a>O ICD de **DF** indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de "em manutenção".</span>
 <span id="cb4-117"><a href="#cb4-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a><span class="al">![Ciclo de processos de carregamento e transporte](images/Figura 01.png)</span>{#fig-ciclo-processos}</span>
-<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a><span class="fu">### Disponibilidade Física (DF)</span></span>
+<span id="cb4-118"><a href="#cb4-118" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-119"><a href="#cb4-119" aria-hidden="true" tabindex="-1"></a>DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%</span>
+<span id="cb4-120"><a href="#cb4-120" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-121"><a href="#cb4-121" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>O ICD de **DF** indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de "em manutenção".</span>
+<span id="cb4-122"><a href="#cb4-122" aria-hidden="true" tabindex="-1"></a>Onde:</span>
 <span id="cb4-123"><a href="#cb4-123" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a>DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%</span>
-<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-124"><a href="#cb4-124" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HD**: Horas Disponíveis</span>
+<span id="cb4-125"><a href="#cb4-125" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HC**: Horas Calendário</span>
+<span id="cb4-126"><a href="#cb4-126" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HM**: Horas de Manutenção</span>
 <span id="cb4-127"><a href="#cb4-127" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a>Onde:</span>
+<span id="cb4-128"><a href="#cb4-128" aria-hidden="true" tabindex="-1"></a><span class="fu">### Utilização Física (UF)</span></span>
 <span id="cb4-129"><a href="#cb4-129" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HD**: Horas Disponíveis</span>
-<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HC**: Horas Calendário</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**HM**: Horas de Manutenção</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a><span class="fu">### Utilização Física (UF)</span></span>
+<span id="cb4-130"><a href="#cb4-130" aria-hidden="true" tabindex="-1"></a>De forma diferente, a **taxa de utilização física (UF)** leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em "liberado pela manutenção" ou "parada operacional".</span>
+<span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>UF = \frac{HT}{HD} \times 100\%</span>
+<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>De forma diferente, a **taxa de utilização física (UF)** leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em "liberado pela manutenção" ou "parada operacional".</span>
+<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a><span class="fu">### Produtividade (PR)</span></span>
 <span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>UF = \frac{HT}{HD} \times 100\%</span>
+<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>As horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de **Produtividade (PR)**, este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status "apto para operação".</span>
+<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### Produtividade (PR)</span></span>
+<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>PR = \frac{MT}{HT}</span>
+<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>As horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de **Produtividade (PR)**, este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status "apto para operação".</span>
+<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>Onde **MT** é a massa total transportada (em toneladas).</span>
 <span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>PR = \frac{MT}{HT}</span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a><span class="fu">### Perda de Produção por Indicadores {#sec-perda-producao}</span></span>
+<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>Por fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a **perda de produção por indicadores de desempenho**, verificando a representatividade em toneladas para cada indicador.</span>
 <span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>Onde **MT** é a massa total transportada (em toneladas).</span>
+<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>As equações de cálculo da perda de produção para cada indicador são descritas a seguir:</span>
 <span id="cb4-151"><a href="#cb4-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### Perda de Produção por Indicadores {#sec-perda-producao}</span></span>
+<span id="cb4-152"><a href="#cb4-152" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Disponibilidade Física:**</span>
 <span id="cb4-153"><a href="#cb4-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>Por fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a **perda de produção por indicadores de desempenho**, verificando a representatividade em toneladas para cada indicador.</span>
-<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>As equações de cálculo da perda de produção para cada indicador são descritas a seguir:</span>
+<span id="cb4-154"><a href="#cb4-154" aria-hidden="true" tabindex="-1"></a>$$</span>
+<span id="cb4-155"><a href="#cb4-155" aria-hidden="true" tabindex="-1"></a>PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}</span>
+<span id="cb4-156"><a href="#cb4-156" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-df}</span>
 <span id="cb4-157"><a href="#cb4-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Disponibilidade Física:**</span>
+<span id="cb4-158"><a href="#cb4-158" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Utilização:**</span>
 <span id="cb4-159"><a href="#cb4-159" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-160"><a href="#cb4-160" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}</span>
-<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-df}</span>
+<span id="cb4-161"><a href="#cb4-161" aria-hidden="true" tabindex="-1"></a>PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}</span>
+<span id="cb4-162"><a href="#cb4-162" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-uf}</span>
 <span id="cb4-163"><a href="#cb4-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Utilização:**</span>
+<span id="cb4-164"><a href="#cb4-164" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Produtividade:**</span>
 <span id="cb4-165"><a href="#cb4-165" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-166"><a href="#cb4-166" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}</span>
-<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-uf}</span>
+<span id="cb4-167"><a href="#cb4-167" aria-hidden="true" tabindex="-1"></a>PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}</span>
+<span id="cb4-168"><a href="#cb4-168" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-pr}</span>
 <span id="cb4-169"><a href="#cb4-169" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-170"><a href="#cb4-170" aria-hidden="true" tabindex="-1"></a>**Perda de Produção por Produtividade:**</span>
-<span id="cb4-171"><a href="#cb4-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a>PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}</span>
-<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a>$$ {#eq-perda-pr}</span>
-<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: exemplo-calculo-icds</span></span>
-<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
-<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Exemplo de cálculo de ICDs e perda de produção"</span></span>
-<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
-<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados programados vs realizados</span></span>
-<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
-<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Calendário (HC)"</span>, <span class="st">"Horas Manutenção (HM)"</span>,</span>
-<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Disponíveis (HD)"</span>, <span class="st">"Horas Ociosas (HO)"</span>,</span>
-<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Trabalhadas (HT)"</span>, <span class="st">"Massa Transportada (MT)"</span></span>
-<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">72</span>, <span class="dv">648</span>, <span class="dv">65</span>, <span class="dv">583</span>, <span class="dv">140000</span>),</span>
-<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">95</span>, <span class="dv">625</span>, <span class="dv">88</span>, <span class="dv">537</span>, <span class="dv">125000</span>),</span>
-<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"t"</span>)</span>
-<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular ICDs</span></span>
-<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>icds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
-<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disponibilidade Física (DF)"</span>,</span>
-<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Utilização Física (UF)"</span>,</span>
-<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Produtividade (PR)"</span></span>
-<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(</span>
-<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">583</span> <span class="sc">/</span> <span class="dv">648</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>)</span>
-<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(</span>
-<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">625</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">537</span> <span class="sc">/</span> <span class="dv">625</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
-<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span>, <span class="dv">1</span>)</span>
-<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"%"</span>, <span class="st">"%"</span>, <span class="st">"t/h"</span>)</span>
-<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular perdas</span></span>
-<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>PR_real <span class="ot">&lt;-</span> <span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span></span>
-<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>perdas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipo_Perda =</span> <span class="fu">c</span>(<span class="st">"Perda por DF"</span>, <span class="st">"Perda por UF"</span>, <span class="st">"Perda por PR"</span>),</span>
-<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>  <span class="at">Calculo =</span> <span class="fu">c</span>(</span>
-<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">648</span>, <span class="st">" - "</span>, <span class="dv">625</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
-<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">88</span>, <span class="st">" - "</span>, <span class="dv">65</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
-<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>), <span class="st">" - "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>), <span class="st">") × "</span>, <span class="dv">583</span>)</span>
-<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a>  <span class="at">Perda_ton =</span> <span class="fu">c</span>(</span>
-<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">-</span> <span class="dv">625</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
-<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">88</span> <span class="sc">-</span> <span class="dv">65</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
-<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span> <span class="sc">-</span> PR_real) <span class="sc">*</span> <span class="dv">583</span>, <span class="dv">0</span>)</span>
-<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentar resultados</span></span>
-<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dados, <span class="at">caption =</span> <span class="st">"Dados Programados vs Realizados"</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(icds, <span class="at">caption =</span> <span class="st">"Indicadores-Chave de Desempenho"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-172"><a href="#cb4-172" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb4-173"><a href="#cb4-173" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: exemplo-calculo-icds</span></span>
+<span id="cb4-174"><a href="#cb4-174" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb4-175"><a href="#cb4-175" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Exemplo de cálculo de ICDs e perda de produção"</span></span>
+<span id="cb4-176"><a href="#cb4-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-177"><a href="#cb4-177" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb4-178"><a href="#cb4-178" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb4-179"><a href="#cb4-179" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-180"><a href="#cb4-180" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados programados vs realizados</span></span>
+<span id="cb4-181"><a href="#cb4-181" aria-hidden="true" tabindex="-1"></a>dados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-182"><a href="#cb4-182" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
+<span id="cb4-183"><a href="#cb4-183" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Calendário (HC)"</span>, <span class="st">"Horas Manutenção (HM)"</span>,</span>
+<span id="cb4-184"><a href="#cb4-184" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Disponíveis (HD)"</span>, <span class="st">"Horas Ociosas (HO)"</span>,</span>
+<span id="cb4-185"><a href="#cb4-185" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Horas Trabalhadas (HT)"</span>, <span class="st">"Massa Transportada (MT)"</span></span>
+<span id="cb4-186"><a href="#cb4-186" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-187"><a href="#cb4-187" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">72</span>, <span class="dv">648</span>, <span class="dv">65</span>, <span class="dv">583</span>, <span class="dv">140000</span>),</span>
+<span id="cb4-188"><a href="#cb4-188" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(<span class="dv">720</span>, <span class="dv">95</span>, <span class="dv">625</span>, <span class="dv">88</span>, <span class="dv">537</span>, <span class="dv">125000</span>),</span>
+<span id="cb4-189"><a href="#cb4-189" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"h"</span>, <span class="st">"t"</span>)</span>
+<span id="cb4-190"><a href="#cb4-190" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-191"><a href="#cb4-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-192"><a href="#cb4-192" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular ICDs</span></span>
+<span id="cb4-193"><a href="#cb4-193" aria-hidden="true" tabindex="-1"></a>icds <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-194"><a href="#cb4-194" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(</span>
+<span id="cb4-195"><a href="#cb4-195" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Disponibilidade Física (DF)"</span>,</span>
+<span id="cb4-196"><a href="#cb4-196" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Utilização Física (UF)"</span>,</span>
+<span id="cb4-197"><a href="#cb4-197" aria-hidden="true" tabindex="-1"></a>    <span class="st">"Produtividade (PR)"</span></span>
+<span id="cb4-198"><a href="#cb4-198" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-199"><a href="#cb4-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">Programado =</span> <span class="fu">c</span>(</span>
+<span id="cb4-200"><a href="#cb4-200" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb4-201"><a href="#cb4-201" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">583</span> <span class="sc">/</span> <span class="dv">648</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb4-202"><a href="#cb4-202" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>)</span>
+<span id="cb4-203"><a href="#cb4-203" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-204"><a href="#cb4-204" aria-hidden="true" tabindex="-1"></a>  <span class="at">Realizado =</span> <span class="fu">c</span>(</span>
+<span id="cb4-205"><a href="#cb4-205" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">625</span> <span class="sc">/</span> <span class="dv">720</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb4-206"><a href="#cb4-206" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">537</span> <span class="sc">/</span> <span class="dv">625</span>) <span class="sc">*</span> <span class="dv">100</span>, <span class="dv">1</span>),</span>
+<span id="cb4-207"><a href="#cb4-207" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>(<span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span>, <span class="dv">1</span>)</span>
+<span id="cb4-208"><a href="#cb4-208" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-209"><a href="#cb4-209" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"%"</span>, <span class="st">"%"</span>, <span class="st">"t/h"</span>)</span>
+<span id="cb4-210"><a href="#cb4-210" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-211"><a href="#cb4-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-212"><a href="#cb4-212" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcular perdas</span></span>
+<span id="cb4-213"><a href="#cb4-213" aria-hidden="true" tabindex="-1"></a>PR_real <span class="ot">&lt;-</span> <span class="dv">125000</span> <span class="sc">/</span> <span class="dv">537</span></span>
+<span id="cb4-214"><a href="#cb4-214" aria-hidden="true" tabindex="-1"></a>perdas <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb4-215"><a href="#cb4-215" aria-hidden="true" tabindex="-1"></a>  <span class="at">Tipo_Perda =</span> <span class="fu">c</span>(<span class="st">"Perda por DF"</span>, <span class="st">"Perda por UF"</span>, <span class="st">"Perda por PR"</span>),</span>
+<span id="cb4-216"><a href="#cb4-216" aria-hidden="true" tabindex="-1"></a>  <span class="at">Calculo =</span> <span class="fu">c</span>(</span>
+<span id="cb4-217"><a href="#cb4-217" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">648</span>, <span class="st">" - "</span>, <span class="dv">625</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
+<span id="cb4-218"><a href="#cb4-218" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="dv">88</span>, <span class="st">" - "</span>, <span class="dv">65</span>, <span class="st">") × "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>)),</span>
+<span id="cb4-219"><a href="#cb4-219" aria-hidden="true" tabindex="-1"></a>    <span class="fu">paste0</span>(<span class="st">"("</span>, <span class="fu">round</span>(<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span>, <span class="dv">1</span>), <span class="st">" - "</span>, <span class="fu">round</span>(PR_real, <span class="dv">1</span>), <span class="st">") × "</span>, <span class="dv">583</span>)</span>
+<span id="cb4-220"><a href="#cb4-220" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb4-221"><a href="#cb4-221" aria-hidden="true" tabindex="-1"></a>  <span class="at">Perda_ton =</span> <span class="fu">c</span>(</span>
+<span id="cb4-222"><a href="#cb4-222" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">648</span> <span class="sc">-</span> <span class="dv">625</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
+<span id="cb4-223"><a href="#cb4-223" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">88</span> <span class="sc">-</span> <span class="dv">65</span>) <span class="sc">*</span> PR_real, <span class="dv">0</span>),</span>
+<span id="cb4-224"><a href="#cb4-224" aria-hidden="true" tabindex="-1"></a>    <span class="fu">round</span>((<span class="dv">140000</span> <span class="sc">/</span> <span class="dv">583</span> <span class="sc">-</span> PR_real) <span class="sc">*</span> <span class="dv">583</span>, <span class="dv">0</span>)</span>
+<span id="cb4-225"><a href="#cb4-225" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb4-226"><a href="#cb4-226" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-227"><a href="#cb4-227" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-228"><a href="#cb4-228" aria-hidden="true" tabindex="-1"></a><span class="co"># Apresentar resultados</span></span>
+<span id="cb4-229"><a href="#cb4-229" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(dados, <span class="at">caption =</span> <span class="st">"Dados Programados vs Realizados"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-230"><a href="#cb4-230" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-231"><a href="#cb4-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-232"><a href="#cb4-232" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(icds, <span class="at">caption =</span> <span class="st">"Indicadores-Chave de Desempenho"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb4-233"><a href="#cb4-233" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-234"><a href="#cb4-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-235"><a href="#cb4-235" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perdas,</span>
+<span id="cb4-236"><a href="#cb4-236" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Análise de Perda de Produção"</span>,</span>
+<span id="cb4-237"><a href="#cb4-237" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo de Perda"</span>, <span class="st">"Cálculo"</span>, <span class="st">"Perda (t)"</span>)</span>
+<span id="cb4-238"><a href="#cb4-238" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
 <span id="cb4-239"><a href="#cb4-239" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perdas,</span>
-<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">caption =</span> <span class="st">"Análise de Perda de Produção"</span>,</span>
-<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a>  <span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Tipo de Perda"</span>, <span class="st">"Cálculo"</span>, <span class="st">"Perda (t)"</span>)</span>
-<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>), <span class="at">full_width =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
-<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretação das Perdas</span></span>
-<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a>A análise de perda de produção permite identificar qual indicador teve maior impacto negativo na produção realizada, direcionando as ações de melhoria:</span>
-<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por DF**: Indica problemas de manutenção</span>
-<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por UF**: Indica problemas operacionais (ociosidade)</span>
-<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por PR**: Indica problemas de eficiência do ciclo</span>
-<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a>:::</span>
-<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumo</span></span>
-<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a>🔔 **Pontos-chave:**</span>
+<span id="cb4-240"><a href="#cb4-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb4-241"><a href="#cb4-241" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-242"><a href="#cb4-242" aria-hidden="true" tabindex="-1"></a>::: {.callout-important}</span>
+<span id="cb4-243"><a href="#cb4-243" aria-hidden="true" tabindex="-1"></a><span class="fu">## Interpretação das Perdas</span></span>
+<span id="cb4-244"><a href="#cb4-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-245"><a href="#cb4-245" aria-hidden="true" tabindex="-1"></a>A análise de perda de produção permite identificar qual indicador teve maior impacto negativo na produção realizada, direcionando as ações de melhoria:</span>
+<span id="cb4-246"><a href="#cb4-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-247"><a href="#cb4-247" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por DF**: Indica problemas de manutenção</span>
+<span id="cb4-248"><a href="#cb4-248" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por UF**: Indica problemas operacionais (ociosidade)</span>
+<span id="cb4-249"><a href="#cb4-249" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**Perda por PR**: Indica problemas de eficiência do ciclo</span>
+<span id="cb4-250"><a href="#cb4-250" aria-hidden="true" tabindex="-1"></a>:::</span>
+<span id="cb4-251"><a href="#cb4-251" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-252"><a href="#cb4-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## Resumo</span></span>
+<span id="cb4-253"><a href="#cb4-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-254"><a href="#cb4-254" aria-hidden="true" tabindex="-1"></a>🔔 **Pontos-chave:**</span>
+<span id="cb4-255"><a href="#cb4-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-256"><a href="#cb4-256" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>O ciclo de carregamento e transporte é composto por etapas sequenciais</span>
+<span id="cb4-257"><a href="#cb4-257" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Status do equipamento define responsabilidades entre operação e manutenção</span>
+<span id="cb4-258"><a href="#cb4-258" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Elementos de suporte estruturam o cálculo dos ICDs através de categorias de horas</span>
+<span id="cb4-259"><a href="#cb4-259" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DF, UF e PR são os principais indicadores de desempenho</span>
+<span id="cb4-260"><a href="#cb4-260" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Perdas de produção podem ser mensuradas por indicador</span>
 <span id="cb4-261"><a href="#cb4-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>O ciclo de carregamento e transporte é composto por etapas sequenciais</span>
-<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Status do equipamento define responsabilidades entre operação e manutenção</span>
-<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Elementos de suporte estruturam o cálculo dos ICDs através de categorias de horas</span>
-<span id="cb4-265"><a href="#cb4-265" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DF, UF e PR são os principais indicadores de desempenho</span>
-<span id="cb4-266"><a href="#cb4-266" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Perdas de produção podem ser mensuradas por indicador</span>
-<span id="cb4-267"><a href="#cb4-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-268"><a href="#cb4-268" aria-hidden="true" tabindex="-1"></a>---</span>
-<span id="cb4-269"><a href="#cb4-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-270"><a href="#cb4-270" aria-hidden="true" tabindex="-1"></a>**Próximo capítulo:** Fatores Moderadores da Manutenção</span>
+<span id="cb4-262"><a href="#cb4-262" aria-hidden="true" tabindex="-1"></a>---</span>
+<span id="cb4-263"><a href="#cb4-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-264"><a href="#cb4-264" aria-hidden="true" tabindex="-1"></a>**Próximo capítulo:** Fatores Moderadores da Manutenção</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
