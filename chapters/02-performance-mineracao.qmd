@@ -10,39 +10,11 @@ O ciclo operacional de carregamento e transporte na mineração é composto por 
 4. **Retorno vazio**: Caminhão retorna à frente de carregamento
 5. **Fila**: Aguardo para novo carregamento (quando necessário)
 
-```{r}
-#| label: fig-ciclo-processos
-#| fig-cap: "Ciclo de processos de carregamento e transporte"
-#| echo: false
-#| eval: false
-
-library(DiagrammeR)
-
-grViz("
-digraph ciclo_operacional {
-  graph [rankdir = LR, bgcolor = transparent]
-
-  node [shape = box, style = filled, fillcolor = lightblue,
-        fontname = Helvetica, fontsize = 10]
-
-  Fila [label = 'Fila']
-  Carreg [label = 'Carregamento', fillcolor = lightgreen]
-  Transp [label = 'Transporte\\nCarregado', fillcolor = lightyellow]
-  Descarga [label = 'Descarga', fillcolor = lightcoral]
-  Retorno [label = 'Retorno\\nVazio', fillcolor = lightgray]
-
-  Carreg -> Transp -> Descarga -> Retorno -> Fila -> Carreg
-
-  {rank = same; Carreg; Descarga}
-}
-")
-```
+![Ciclo de processos de carregamento e transporte](images/Figura 01.png){#fig-ciclo-processos}
 
 ::: {.callout-note}
 O tempo total do ciclo influencia diretamente a produtividade da operação e é afetado por fatores como distância de transporte, condições da pista, eficiência do equipamento de carga e organização do tráfego.
 :::
-
-![Ciclo de processos de carregamento e transporte](images/ciclo-carregamento-transporte.svg){#fig-ciclo-processos}
 
 ## Status do Equipamento {#sec-status-equipamento}
 
@@ -139,9 +111,9 @@ Os ICDs são derivados de elementos de medição, logo, como um elemento pode se
 
 Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.
 
-A Figure 2 apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.
+A @fig-ciclo-processos apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.
 
-![Relações de apontamentos entre status e categoria de horas](images/fig-relacoes-status-horas.png){#fig-relacoes-icds}
+![Ciclo de processos de carregamento e transporte](images/Figura 01.png){#fig-ciclo-processos}
 
 ### Disponibilidade Física (DF)
 
@@ -209,9 +181,11 @@ library(kableExtra)
 
 # Dados programados vs realizados
 dados <- data.frame(
-  Indicador = c("Horas Calendário (HC)", "Horas Manutenção (HM)",
-                "Horas Disponíveis (HD)", "Horas Ociosas (HO)",
-                "Horas Trabalhadas (HT)", "Massa Transportada (MT)"),
+  Indicador = c(
+    "Horas Calendário (HC)", "Horas Manutenção (HM)",
+    "Horas Disponíveis (HD)", "Horas Ociosas (HO)",
+    "Horas Trabalhadas (HT)", "Massa Transportada (MT)"
+  ),
   Programado = c(720, 72, 648, 65, 583, 140000),
   Realizado = c(720, 95, 625, 88, 537, 125000),
   Unidade = c("h", "h", "h", "h", "h", "t")
@@ -219,35 +193,37 @@ dados <- data.frame(
 
 # Calcular ICDs
 icds <- data.frame(
-  Indicador = c("Disponibilidade Física (DF)",
-                "Utilização Física (UF)",
-                "Produtividade (PR)"),
+  Indicador = c(
+    "Disponibilidade Física (DF)",
+    "Utilização Física (UF)",
+    "Produtividade (PR)"
+  ),
   Programado = c(
-    round((648/720) * 100, 1),
-    round((583/648) * 100, 1),
-    round(140000/583, 1)
+    round((648 / 720) * 100, 1),
+    round((583 / 648) * 100, 1),
+    round(140000 / 583, 1)
   ),
   Realizado = c(
-    round((625/720) * 100, 1),
-    round((537/625) * 100, 1),
-    round(125000/537, 1)
+    round((625 / 720) * 100, 1),
+    round((537 / 625) * 100, 1),
+    round(125000 / 537, 1)
   ),
   Unidade = c("%", "%", "t/h")
 )
 
 # Calcular perdas
-PR_real <- 125000/537
+PR_real <- 125000 / 537
 perdas <- data.frame(
   Tipo_Perda = c("Perda por DF", "Perda por UF", "Perda por PR"),
   Calculo = c(
     paste0("(", 648, " - ", 625, ") × ", round(PR_real, 1)),
     paste0("(", 88, " - ", 65, ") × ", round(PR_real, 1)),
-    paste0("(", round(140000/583, 1), " - ", round(PR_real, 1), ") × ", 583)
+    paste0("(", round(140000 / 583, 1), " - ", round(PR_real, 1), ") × ", 583)
   ),
   Perda_ton = c(
     round((648 - 625) * PR_real, 0),
     round((88 - 65) * PR_real, 0),
-    round((140000/583 - PR_real) * 583, 0)
+    round((140000 / 583 - PR_real) * 583, 0)
   )
 )
 
@@ -258,8 +234,10 @@ kable(dados, caption = "Dados Programados vs Realizados") %>%
 kable(icds, caption = "Indicadores-Chave de Desempenho") %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 
-kable(perdas, caption = "Análise de Perda de Produção",
-      col.names = c("Tipo de Perda", "Cálculo", "Perda (t)")) %>%
+kable(perdas,
+  caption = "Análise de Perda de Produção",
+  col.names = c("Tipo de Perda", "Cálculo", "Perda (t)")
+) %>%
   kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
 ```
 
