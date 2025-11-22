@@ -56,8 +56,6 @@ body, html {
 
 /* Reset de espaçamento - ZERO margem entre itens */
 #quarto-sidebar .sidebar-item {
-  display: block !important;
-  width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
@@ -68,74 +66,37 @@ body, html {
   padding: 0 !important;
 }
 
-#quarto-sidebar .sidebar-item-container > a {
+/* Base: todos os links cinza claro */
+#quarto-sidebar .sidebar-item-text {
   display: block !important;
-  width: 100% !important;
   padding: 0.7rem 1rem !important;
   margin: 0 !important;
   font-size: 1rem !important;
   font-weight: normal !important;
   border-radius: 0 !important;
-  transition: none !important;
   border: none !important;
-}
-
-/* Todos os itens SEM chapter-number: fundo teal, texto branco */
-#quarto-sidebar .sidebar-item-container > a:not(:has(.chapter-number)) {
-  background: var(--color-teal-dark) !important;
-  color: white !important;
-}
-
-/* Prefácio (preface.html): destaque dourado */
-#quarto-sidebar a[href*="preface"] {
-  background: #f4d03f !important;
-  color: var(--color-teal-deep) !important;
-}
-
-/* DEFAULT: todos com chapter-number = fundo branco */
-#quarto-sidebar a:has(.chapter-number) {
   background: #f5f5f5 !important;
   color: var(--color-teal-dark) !important;
 }
 
-#quarto-sidebar a:has(.chapter-number) .menu-text,
-#quarto-sidebar a:has(.chapter-number) .chapter-number {
-  color: var(--color-teal-dark) !important;
+/* Prefácio: dourado */
+#quarto-sidebar a[href*="preface"].sidebar-item-text {
+  background: #f4d03f !important;
+  color: var(--color-teal-deep) !important;
 }
 
-/* Capítulos PARES (2, 4, 6...): sobrescreve com fundo teal */
-#quarto-sidebar a[href*="02-"],
-#quarto-sidebar a[href*="04-"],
-#quarto-sidebar a[href*="06-"],
-#quarto-sidebar a[href*="08-"],
-#quarto-sidebar a[href*="10-"] {
+/* Capítulos PARES (2, 4, 6, 8, 10): teal escuro */
+#quarto-sidebar a[href*="02-"].sidebar-item-text,
+#quarto-sidebar a[href*="04-"].sidebar-item-text,
+#quarto-sidebar a[href*="06-"].sidebar-item-text,
+#quarto-sidebar a[href*="08-"].sidebar-item-text,
+#quarto-sidebar a[href*="10-"].sidebar-item-text {
   background: var(--color-teal-dark) !important;
   color: white !important;
 }
 
-#quarto-sidebar a[href*="02-"] .menu-text,
-#quarto-sidebar a[href*="02-"] .chapter-number,
-#quarto-sidebar a[href*="04-"] .menu-text,
-#quarto-sidebar a[href*="04-"] .chapter-number,
-#quarto-sidebar a[href*="06-"] .menu-text,
-#quarto-sidebar a[href*="06-"] .chapter-number,
-#quarto-sidebar a[href*="08-"] .menu-text,
-#quarto-sidebar a[href*="08-"] .chapter-number,
-#quarto-sidebar a[href*="10-"] .menu-text,
-#quarto-sidebar a[href*="10-"] .chapter-number {
-  color: white !important;
-}
-
-/* Números de capítulo sem negrito por padrão */
-#quarto-sidebar .chapter-number {
-  font-weight: normal !important;
-  margin-right: 0.5rem !important;
-}
-
-/* Item ATIVO: amarelo ouro + negrito */
-#quarto-sidebar .sidebar-link.active,
-#quarto-sidebar .sidebar-link.active .menu-text,
-#quarto-sidebar .sidebar-link.active .chapter-number {
+/* Item ATIVO: texto ouro + negrito (mantém fundo da cor original) */
+#quarto-sidebar .sidebar-item-text.active {
   color: #d4af37 !important;
   font-weight: bold !important;
 }
