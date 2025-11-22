@@ -32,6 +32,13 @@
   color: #ffffff !important;
 }
 
+
+/* Números de capítulos também brancos */
+#quarto-sidebar .chapter-number,
+.sidebar .chapter-number,
+.sidebar-item .chapter-number {
+  color: #ffffff !important;
+}
 #quarto-sidebar a:hover,
 .sidebar a:hover,
 .sidebar nav a:hover {
