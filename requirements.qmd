@@ -59,48 +59,74 @@ Figuras, tabelas e equações são numeradas e referenciadas ao longo do texto:
 
 ```{r}
 #| label: fig-weibull
-#| fig-cap: "Exemplo de ajuste de distribuição Weibull"
+#| fig-cap: "Distribuição Weibull ajustada aos tempos de falha de equipamentos"
 #| echo: false
+#| warning: false
+#| message: false
 
-set.seed(123)
 library(ggplot2)
 library(dplyr)
+library(fitdistrplus)
 
-# Gerar dados sintéticos de tempos até falha (Weibull)
-n <- 200
-shape <- 2.1
-scale <- 1500
-falhas <- rweibull(n, shape = shape, scale = scale)
+# Carregar dados de falhas
+data <- read.csv("resources/data/falhas.csv")
 
+# Filtrar apenas falhas completas (não censuradas)
+falhas <- data %>%
+  filter(censura == 0) %>%
+  pull(tempo_ate_falha)
+
+# Ajustar distribuição Weibull
+fit_weibull <- fitdist(falhas, "weibull")
+shape_est <- fit_weibull$estimate["shape"]
+scale_est <- fit_weibull$estimate["scale"]
+
+# Criar dataframe para plot
 df <- tibble(tempo = falhas)
 
-# Estimativa de parâmetros via método dos momentos simples
-weibull_shape_est <- 1 + sqrt(6)/pi * sd(log(df$tempo))
-weibull_scale_est <- exp(mean(log(df$tempo)))
-
+# Histograma com curva Weibull ajustada
 ggplot(df, aes(x = tempo)) +
-	geom_histogram(aes(y = ..density..), bins = 30, fill = "#2E86C1", alpha = 0.6) +
-	stat_function(fun = dweibull, args = list(shape = shape, scale = scale), color = "#E74C3C", size = 1) +
-	labs(x = "Tempo até falha", y = "Densidade") +
-	theme_minimal(base_size = 12)
+  geom_histogram(aes(y = after_stat(density)), bins = 20,
+                 fill = "#2E86C1", alpha = 0.6, color = "white") +
+  stat_function(fun = dweibull,
+                args = list(shape = shape_est, scale = scale_est),
+                color = "#E74C3C", linewidth = 1.2) +
+  labs(x = "Tempo até falha (horas)",
+       y = "Densidade",
+       subtitle = sprintf("Parâmetros: β = %.2f, η = %.0f", shape_est, scale_est)) +
+  theme_minimal(base_size = 12) +
+  theme(plot.subtitle = element_text(color = "#E74C3C", face = "italic"))
 ```
 
 ```{r}
 #| label: tbl-mtbf
-#| tbl-cap: "Exemplo de cálculo de MTBF para três ativos"
+#| tbl-cap: "Cálculo de MTBF por tipo de equipamento"
 #| echo: false
+#| warning: false
+#| message: false
+
 library(dplyr)
 
-set.seed(456)
-ativos <- data.frame(
-	Ativo = c("Caminhão A", "Caminhão B", "Caminhão C"),
-	Horas_Operacao = c(4200, 3800, 4500),
-	Falhas = c(7, 9, 6)
-)
+# Carregar dados
+data <- read.csv("resources/data/falhas.csv")
 
-ativos <- ativos %>% mutate(MTBF = Horas_Operacao / Falhas)
+# Calcular MTBF por ativo (apenas falhas completas)
+mtbf_summary <- data %>%
+  filter(censura == 0) %>%
+  mutate(tipo = sub("_.*", "", ativo)) %>%
+  group_by(tipo) %>%
+  summarise(
+    n_falhas = n(),
+    tempo_total = sum(tempo_ate_falha),
+    mtbf = round(tempo_total / n_falhas, 1),
+    .groups = "drop"
+  )
 
-knitr::kable(ativos, format = "html", digits = 1, col.names = c("Ativo", "Horas de Operação", "Nº Falhas", "MTBF (h)"))
+mtbf_summary %>%
+  dplyr::select(tipo, n_falhas, mtbf) %>%
+  knitr::kable(format = "html",
+               col.names = c("Tipo de Equipamento", "Nº de Falhas", "MTBF (horas)"),
+               align = c("l", "c", "c"))
 ```
 
 ## Requisitos de Software
