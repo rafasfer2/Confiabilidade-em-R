@@ -174,10 +174,29 @@ nav[role="doc-toc"] li,
   padding-left: 0.25em !important;
 }
 
-/* Increase sidebar width to reduce text wrapping */
+/* Increase sidebar width and fix main content position */
 .sidebar {
   width: 300px !important;
   max-width: 300px !important;
+  position: fixed !important;
+  left: 0 !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+}
+
+/* Adjust main content to not overlap with sidebar */
+body.nav-sidebar {
+  padding-left: 0 !important;
+}
+
+.page-columns {
+  margin-left: 320px !important;
+  padding-left: 1em !important;
+}
+
+main.content {
+  margin-left: 0 !important;
 }
 
 /* Adjust font size for better fit */

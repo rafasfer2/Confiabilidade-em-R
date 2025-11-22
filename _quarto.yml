@@ -9,7 +9,7 @@ book:
   date: today
   sidebar:
     style: docked
-    collapse-level: 2
+    collapse-level: 3
 
   chapters:
     - index.qmd
