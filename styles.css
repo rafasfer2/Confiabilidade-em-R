@@ -216,6 +216,17 @@ nav[role="doc-toc"] li,
   color: var(--color-sidebar-text) !important;
   border-right: 4px solid var(--color-teal-dark);
   box-shadow: 2px 0 6px rgba(0,0,0,0.2);
+  display: block !important;
+  visibility: visible !important;
+}
+
+/* Força sidebar sempre visível (não colapsada) */
+#quarto-sidebar.collapse:not(.show) {
+  display: block !important;
+}
+
+.sidebar.collapse {
+  display: block !important;
 }
 
 /* Adjust main content to not overlap with sidebar */
