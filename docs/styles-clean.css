@@ -11,6 +11,8 @@
   --color-teal: #35978f;
   --color-teal-dark: #01665e;
   --color-teal-deep: #003c30;
+  --color-gold: #d4af37;
+  --color-hover-gray: #e3e3e3;
   --sidebar-width: 280px;
   --toc-width: 240px;
 }
@@ -47,11 +49,20 @@ body, html {
   color: #ffffff !important;
 }
 
-#quarto-sidebar a:hover {
-  background: var(--color-teal-dark) !important;
+/* Hover cinza apenas para itens não ativos */
+#quarto-sidebar .sidebar-item:not(.active):hover,
+#quarto-sidebar a.sidebar-item-text:not(.active):hover,
+#quarto-sidebar a:not(.active):hover {
+  background: var(--color-hover-gray) !important;
+  color: var(--color-teal-deep) !important;
 }
 
-#quarto-sidebar .active {
+/* Item ativo ouro */
+#quarto-sidebar .sidebar-item.active > a,
+#quarto-sidebar .sidebar-item.active .sidebar-item-text,
+#quarto-sidebar .sidebar-item.active .chapter-number,
+#quarto-sidebar .active > .sidebar-item-container > a {
+  color: var(--color-gold) !important;
   font-weight: bold !important;
   background: transparent !important;
 }
