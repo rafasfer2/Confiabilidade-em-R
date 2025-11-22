@@ -43,49 +43,67 @@ body, html {
   margin: 0 !important;
 }
 
-#quarto-sidebar a,
-#quarto-sidebar .sidebar-item-text,
-#quarto-sidebar .chapter-number {
-  color: #ffffff !important;
-}
-
-/* Hover cinza apenas para itens não ativos */
-#quarto-sidebar .sidebar-item:not(.active):hover {
-  background: #e3e3e3 !important;
-}
-
-#quarto-sidebar .sidebar-item:not(.active):hover > a,
-#quarto-sidebar .sidebar-item:not(.active):hover .sidebar-item-text,
-#quarto-sidebar .sidebar-item:not(.active):hover .chapter-number {
-  color: var(--color-teal-deep) !important;
-}
-
+/* Espaçamento e fonte maior */
 #quarto-sidebar .sidebar-item {
   display: block !important;
   width: 100% !important;
-  margin: 0 !important;
+  margin: 0.4rem 0 !important;
   padding: 0 !important;
 }
 
 #quarto-sidebar .sidebar-item > a {
   display: block !important;
   width: 100% !important;
-  padding: 0.6rem 0.8rem !important;
+  padding: 0.7rem 0.8rem !important;
   margin: 0 !important;
+  font-size: 1rem !important;
+  border-radius: 4px !important;
+  transition: all 0.2s ease !important;
 }
 
-/* Item ativo ouro */
-#quarto-sidebar .sidebar-item.active .sidebar-item-text,
-#quarto-sidebar .sidebar-item.active .chapter-number,
-#quarto-sidebar .active .sidebar-item-text,
-#quarto-sidebar .active .chapter-number {
+#quarto-sidebar a,
+#quarto-sidebar .sidebar-item-text,
+#quarto-sidebar .chapter-number {
+  color: #ffffff !important;
+  font-size: 1rem !important;
+}
+
+/* Hover cinza por item individual */
+#quarto-sidebar .sidebar-item > a:hover {
+  background: #e3e3e3 !important;
+}
+
+#quarto-sidebar .sidebar-item > a:hover .sidebar-item-text,
+#quarto-sidebar .sidebar-item > a:hover .chapter-number {
+  color: var(--color-teal-deep) !important;
+}
+
+/* Item ativo ouro - seletores mais específicos */
+#quarto-sidebar .sidebar-item.active > a,
+#quarto-sidebar li.active > a,
+#quarto-sidebar li.sidebar-item.active > div > a {
+  background: transparent !important;
+}
+
+#quarto-sidebar .sidebar-item.active > a .sidebar-item-text,
+#quarto-sidebar .sidebar-item.active > a .chapter-number,
+#quarto-sidebar li.active > a .sidebar-item-text,
+#quarto-sidebar li.active > a .chapter-number,
+#quarto-sidebar li.sidebar-item.active .sidebar-item-text,
+#quarto-sidebar li.sidebar-item.active .chapter-number {
   color: #d4af37 !important;
   font-weight: bold !important;
 }
 
-#quarto-sidebar .sidebar-item.active > a,
-#quarto-sidebar .active > a {
+/* Não aplicar hover em item ativo */
+#quarto-sidebar .sidebar-item.active > a:hover,
+#quarto-sidebar li.active > a:hover {
   background: transparent !important;
+}
+
+#quarto-sidebar .sidebar-item.active > a:hover .sidebar-item-text,
+#quarto-sidebar .sidebar-item.active > a:hover .chapter-number {
+  color: #d4af37 !important;
 }
 
 /* ===== CABEÇALHO GLOBAL ===== */
