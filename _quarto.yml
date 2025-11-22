@@ -55,6 +55,13 @@ book:
 
 bibliography: references.bib
 csl: ieee.csl
+lang: pt-BR
+language:
+  pt-BR:
+    fig: "Figura"
+    figures: "Figuras"
+    table: "Tabela"
+    tables: "Tabelas"
 
 format:
   html:

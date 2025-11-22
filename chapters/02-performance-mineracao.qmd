@@ -15,10 +15,12 @@ O tempo total do ciclo influencia diretamente a produtividade da operação e é
 Como a medição é feita baseado em durações de tempo, os apontamentos são realizados sempre que o caminhão alterar o seu status de operação, estes, que são subdivididos em **4 classes**: apto para operação, liberado pela manutenção, em manutenção ou em parada operacional.
 
 Estas classes exercem um importante direcionamento das responsabilidades de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem problemas operacionais distintos. Por exemplo, quando o caminhão está:
-•	“apto para operação”: a equipe de operação é responsável e está focada no ciclo dos processos de carregamento e transporte. Seu principal desafio reside na seleção e dimensionamento dos equipamentos. Segundo Mohtasham et al. (2021), isso está relacionada à seleção e dimensionamento adequado dos equipamentos de carregamento e transporte para realizar a tarefa de manuseio de materiais de forma ideal durante a operação da mina e, resultando a melhoria do indicador produtividade.
-•	“liberado pela manutenção”: Este status é o momento imediatamente posterior à execução da manutenção, e consiste na transição de responsabilidade da equipe de manutenção para equipe de operação. Um acordo nível de serviço (ANS) entre as equipes deve ser pré-estabelecido para uma eficiente transição.
-•	“em manutenção”: Esta é uma atividade de responsabilidade da equipe de manutenção e incluem funções e processos de planejamento, inspeção, programação e confiabilidade.
-•	“parada operacional”: Grandes paradas são planejadas e gerenciadas considerando as contingências necessárias. Apesar de pertencer à equipe de operação, o planejamento é realizado pela gerência e considerando todo a cadeia produtiva.
+Por exemplo, quando o caminhão está:
+
+- "apto para operação": equipe de operação responsável e focada no ciclo de carregamento e transporte. Principal desafio: seleção e dimensionamento dos equipamentos. Segundo Mohtasham et al. (2021), relaciona-se à escolha adequada dos equipamentos para manuseio ideal de materiais, resultando em melhoria da produtividade.
+- "liberado pela manutenção": momento imediatamente posterior à execução da manutenção; transição de responsabilidade da manutenção para operação. Um acordo de nível de serviço (ANS) deve ser pré-estabelecido para eficiência na transição.
+- "em manutenção": responsabilidade da equipe de manutenção, envolvendo planejamento, inspeção, programação e confiabilidade.
+- "parada operacional": grandes paradas planejadas e gerenciadas considerando contingências; embora pertença à operação, o planejamento é conduzido pela gerência considerando toda a cadeia produtiva.
 
 
 ```{r}
@@ -95,8 +97,6 @@ Os ICDs são derivados de elementos de medição, logo, como um elemento pode se
 Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.
 
 A @fig-ciclo-processos apresenta um exemplo das relações de status de equipamento e elementos de suporte, retirado dos dados em estudo. Em contrário às análises teóricas das relações, é possível observar outras ligações com as categorias de horas, estas que representam o segundo tipo básico de relacionamento.
-
-![Ciclo de processos de carregamento e transporte](images/Figura 01.png){#fig-ciclo-processos}
 
 ### Disponibilidade Física (DF)
 
