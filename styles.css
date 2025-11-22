@@ -1,5 +1,30 @@
 /* Custom CSS for QuartoBook - ABNT-like formatting */
 
+/* --------------------------------------------------
+   Paleta de Cores do Projeto
+   #543005 #8c510a #bf812d #dfc27d #f6e8c3
+   #c7eae5 #80cdc1 #35978f #01665e #003c30
+   Aplicação principal: sidebar (#35978f) com texto claro
+   -------------------------------------------------- */
+:root {
+  --color-brown-dark: #543005;
+  --color-brown-med: #8c510a;
+  --color-brown: #bf812d;
+  --color-brown-light: #dfc27d;
+  --color-cream: #f6e8c3;
+  --color-cyan-light: #c7eae5;
+  --color-cyan-mid: #80cdc1;
+  --color-teal: #35978f; /* sidebar background */
+  --color-teal-dark: #01665e;
+  --color-teal-deep: #003c30;
+  --color-accent: var(--color-brown);
+  --color-accent-hover: var(--color-brown-light);
+  --color-sidebar-text: var(--color-cream);
+  --color-sidebar-muted: var(--color-cyan-light);
+  --color-sidebar-active-bg: var(--color-cyan-mid);
+  --color-sidebar-active-text: var(--color-brown-dark);
+}
+
 /* Body text formatting */
 body {
   font-family: 'Times New Roman', Times, serif;
@@ -183,6 +208,10 @@ nav[role="doc-toc"] li,
   top: 0 !important;
   height: 100vh !important;
   overflow-y: auto !important;
+  background: var(--color-teal) !important;
+  color: var(--color-sidebar-text) !important;
+  border-right: 4px solid var(--color-teal-dark);
+  box-shadow: 2px 0 6px rgba(0,0,0,0.2);
 }
 
 /* Adjust main content to not overlap with sidebar */
@@ -205,6 +234,18 @@ main.content {
   line-height: 1.3;
   word-wrap: break-word;
   hyphens: auto;
+  display: block;
+  padding: 4px 10px;
+  color: var(--color-sidebar-text) !important;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background .15s ease, color .15s ease;
+}
+
+.sidebar nav a:hover {
+  background: var(--color-teal-dark);
+  color: var(--color-accent-hover) !important;
+  text-decoration: none;
 }
 
 /* Reduce chapter number spacing */
@@ -228,8 +269,10 @@ main.content {
 /* Highlight current page in sidebar */
 .sidebar .active {
   font-weight: bold;
-  border-left: 3px solid #007bff;
-  padding-left: 0.5em !important;
+  border-left: 4px solid var(--color-accent);
+  background: var(--color-sidebar-active-bg);
+  color: var(--color-sidebar-active-text) !important;
+  padding-left: 6px !important;
 }
 
 /* Sidebar collapse icons */
@@ -237,6 +280,48 @@ main.content {
 .sidebar-item-toggle {
   margin-right: 0.3em;
 }
+
+/* Estado do toggle (quando expandido) - ícones herdados do Quarto */
+.sidebar-item-toggle { color: var(--color-sidebar-muted); }
+.sidebar-item-toggle:hover { color: var(--color-accent-hover); }
+
+/* Separadores e títulos de parte */
+.sidebar .sidebar-section-header, .sidebar .sidebar-item .part {
+  font-weight: bold;
+  color: var(--color-sidebar-muted);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+  padding: 6px 10px 2px;
+}
+
+/* Foco via teclado acessível */
+.sidebar nav a:focus {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* Scrollbar estilizada (webkit) */
+.sidebar::-webkit-scrollbar { width: 8px; }
+.sidebar::-webkit-scrollbar-track { background: var(--color-teal-deep); }
+.sidebar::-webkit-scrollbar-thumb { background: var(--color-teal-dark); border-radius: 4px; }
+.sidebar::-webkit-scrollbar-thumb:hover { background: var(--color-accent); }
+
+/* Ajuste das cores de links fora do sidebar (conteúdo) */
+main a { color: var(--color-brown-med); }
+main a:hover { color: var(--color-brown-light); }
+
+/* Callouts harmonizados com a paleta */
+.callout-note { border-left: 4px solid var(--color-teal-dark); }
+.callout-important { border-left: 4px solid var(--color-brown-med); }
+
+/* Tabela cabeçalho */
+table thead tr { background: var(--color-cyan-mid); }
+table thead th { color: var(--color-brown-dark); }
+
+/* Figcaption tonalidade */
+figcaption { color: var(--color-brown-dark); }
+
 
 /* Print-specific adjustments */
 @media print {
