@@ -3,7 +3,7 @@ project:
   output-dir: docs
 
 book:
-  title: "Confiabilidade e Manutenção: Princípios e Prática"
+  title: "Confiabilidade e Manutenção: Aplicações em R"
   author:
     - name: "Rafael da Silva Fernandes"
       affiliation: "Universidade Federal de Itajubá"
@@ -54,7 +54,7 @@ format:
           document.addEventListener('DOMContentLoaded', function() {
             const header = document.getElementById('quarto-header');
             if (header) {
-              const title = document.querySelector('title')?.textContent || 'Confiabilidade e Manutenção: Princípios e Prática';
+              const title = document.querySelector('title')?.textContent || 'Confiabilidade e Manutenção: Aplicações em R';
               header.innerHTML = `
                 <div class="navbar-container">
                   <div class="quarto-navbar-tools quarto-navbar-tools-start">

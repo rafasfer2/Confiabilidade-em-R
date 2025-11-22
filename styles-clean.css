@@ -50,20 +50,41 @@ body, html {
 }
 
 /* Hover cinza apenas para itens não ativos */
-#quarto-sidebar .sidebar-item:not(.active):hover,
-#quarto-sidebar a.sidebar-item-text:not(.active):hover,
-#quarto-sidebar a:not(.active):hover {
-  background: var(--color-hover-gray) !important;
+#quarto-sidebar .sidebar-item:not(.active):hover {
+  background: #e3e3e3 !important;
+}
+
+#quarto-sidebar .sidebar-item:not(.active):hover > a,
+#quarto-sidebar .sidebar-item:not(.active):hover .sidebar-item-text,
+#quarto-sidebar .sidebar-item:not(.active):hover .chapter-number {
   color: var(--color-teal-deep) !important;
 }
 
+#quarto-sidebar .sidebar-item {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+#quarto-sidebar .sidebar-item > a {
+  display: block !important;
+  width: 100% !important;
+  padding: 0.6rem 0.8rem !important;
+  margin: 0 !important;
+}
+
 /* Item ativo ouro */
-#quarto-sidebar .sidebar-item.active > a,
 #quarto-sidebar .sidebar-item.active .sidebar-item-text,
 #quarto-sidebar .sidebar-item.active .chapter-number,
-#quarto-sidebar .active > .sidebar-item-container > a {
-  color: var(--color-gold) !important;
+#quarto-sidebar .active .sidebar-item-text,
+#quarto-sidebar .active .chapter-number {
+  color: #d4af37 !important;
   font-weight: bold !important;
+}
+
+#quarto-sidebar .sidebar-item.active > a,
+#quarto-sidebar .active > a {
   background: transparent !important;
 }
 
@@ -86,7 +107,7 @@ body, html {
 #quarto-header .navbar-title {
   color: var(--color-teal-dark) !important;
   font-size: 1.2rem !important;
-  font-weight: normal !important;
+  font-weight: bold !important;
   flex: 1 !important;
   text-align: center !important;
 }
@@ -213,7 +234,7 @@ body.nav-sidebar {
 
 .page-columns {
   margin: 0 !important;
-  padding: 0.5rem !important;
+  padding: 0.3rem !important;
   max-width: 100% !important;
 }
 
@@ -267,6 +288,7 @@ body {
 #title-block-header {
   background: transparent !important;
   padding: 0 !important;
+  margin-top: 1.5rem !important;
   margin-bottom: 2rem;
   border-radius: 8px;
   overflow: hidden;
@@ -275,13 +297,13 @@ body {
 /* Área do título - fundo cinza */
 #title-block-header .quarto-title {
   background: #E8E8E8 !important;
-  padding: 2rem 2.5rem !important;
+  padding: 1.5rem 2rem !important;
   margin: 0 !important;
 }
 
 #title-block-header .title {
   color: var(--color-teal-dark) !important;
-  font-size: 2.8rem !important;
+  font-size: 2.2rem !important;
   font-weight: bold !important;
   margin: 0 !important;
   border: none !important;
