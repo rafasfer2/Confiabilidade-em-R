@@ -335,7 +335,7 @@ body.nav-sidebar {
 main.content {
   width: 100% !important;
   max-width: 100% !important;
-  padding: 0 1rem !important;
+  padding: 0 !important;
   margin: 0 !important;
 }
 
@@ -348,6 +348,24 @@ main.content, main.content .quarto-title, main.content .quarto-title-block, main
 /* Ajusta bloco do título para ocupar largura total sem criar recuo adicional */
 main.content #title-block-header .quarto-title-block > div {
   margin: 0 !important;
+}
+
+/* Padding interno apenas para elementos de conteúdo */
+main.content > * {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
+}
+
+main.content h1,
+main.content h2,
+main.content h3,
+main.content h4,
+main.content p,
+main.content ul,
+main.content ol,
+main.content blockquote {
+  padding-left: 1.5rem !important;
+  padding-right: 1.5rem !important;
 }
 
 @media (min-width: 992px) {
