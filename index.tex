@@ -247,24 +247,23 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Confiabilidade e Manutenção: Aplicações em R},
+  pdftitle={Confiabilidade e Manutenção},
   pdfauthor={Rafael da Silva Fernandes},
   pdflang={pt-BR},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
 
-\title{Confiabilidade e Manutenção: Aplicações em R}
+\title{Confiabilidade e Manutenção}
 \usepackage{etoolbox}
 \makeatletter
 \providecommand{\subtitle}[1]{% add subtitle to \maketitle
   \apptocmd{\@title}{\par {\large #1 \par}}{}{}
 }
 \makeatother
-\subtitle{Análise de Dados de Falha, Modelagem de Vida Útil e
-Estratégias de Manutenção}
+\subtitle{Aplicações em R}
 \author{Rafael da Silva Fernandes}
-\date{2025-11-22}
+\date{2025-11-23}
 
 \begin{document}
 \frontmatter
@@ -285,10 +284,10 @@ Estratégias de Manutenção}
 
 \markboth{Bem-vindo}{Bem-vindo}
 
-Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Aplicações em
-R''}!
+Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Princípios e
+Prática''}!
 
-\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, toprule=.15mm, opacityback=0, colback=white, breakable, left=2mm, bottomrule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, colback=white, left=2mm, toprule=.15mm, colframe=quarto-callout-note-color-frame, arc=.35mm, leftrule=.75mm, rightrule=.15mm, opacityback=0, breakable, bottomrule=.15mm]
 \begin{minipage}[t]{5.5mm}
 \textcolor{quarto-callout-note-color}{\faInfo}
 \end{minipage}%
@@ -376,33 +375,19 @@ principal.
 
 \markright{📖 Estrutura}
 
-O livro está organizado em quatro partes:
+O livro está organizado em \textbf{quatro partes principais}:
 
-\subsection*{Parte I: Fundamentos e
-Teoria}\label{parte-i-fundamentos-e-teoria}
-\addcontentsline{toc}{subsection}{Parte I: Fundamentos e Teoria}
-
-Conceitos básicos, distribuições de probabilidade e métodos de
-estimação.
-
-\subsection*{Parte II: Análise e Modelagem
-Prática}\label{parte-ii-anuxe1lise-e-modelagem-pruxe1tica}
-\addcontentsline{toc}{subsection}{Parte II: Análise e Modelagem Prática}
-
-Análise de dados de falha, modelagem Weibull e análise de sobrevivência.
-
-\subsection*{Parte III: Estratégias de
-Manutenção}\label{parte-iii-estratuxe9gias-de-manutenuxe7uxe3o}
-\addcontentsline{toc}{subsection}{Parte III: Estratégias de Manutenção}
-
-Manutenção preventiva, preditiva e modelagem de sistemas complexos.
-
-\subsection*{Parte IV: Métodos Avançados e
-Aplicações}\label{parte-iv-muxe9todos-avanuxe7ados-e-aplicauxe7uxf5es}
-\addcontentsline{toc}{subsection}{Parte IV: Métodos Avançados e
-Aplicações}
-
-Simulação, estudos de caso industriais e governança de dados.
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Parte I:} Contexto e Aplicação em Mineração
+\item
+  \textbf{Parte II:} Fundamentos de Confiabilidade
+\item
+  \textbf{Parte III:} Estratégias de Manutenção
+\item
+  \textbf{Parte IV:} Tópicos Avançados
+\end{itemize}
 
 \section*{💻 Requisitos}\label{requisitos}
 \addcontentsline{toc}{section}{💻 Requisitos}
@@ -412,38 +397,34 @@ Simulação, estudos de caso industriais e governança de dados.
 \begin{itemize}
 \tightlist
 \item
-  \textbf{R} (versão ≥ 4.0)
+  \textbf{R} (versão ≥ 4.0) e \textbf{RStudio} ou VS Code
 \item
-  \textbf{RStudio} ou VS Code
-\item
-  \textbf{Pacotes R} --- \texttt{tidyverse}, \texttt{survival},
-  \texttt{flexsurv}, \texttt{ggplot2}, entre outros
+  \textbf{Pacotes R} principais: \texttt{tidyverse}, \texttt{survival},
+  \texttt{flexsurv}, \texttt{ggplot2}
 \end{itemize}
 
-Veja instruções detalhadas de instalação no capítulo
-\href{setup.qmd}{Instalação e Ambiente}.
+Veja instruções completas em \href{setup.qmd}{Instalação e Ambiente}.
 
-\section*{🔗 Recursos Adicionais}\label{recursos-adicionais}
-\addcontentsline{toc}{section}{🔗 Recursos Adicionais}
+\section*{🔗 Recursos}\label{recursos}
+\addcontentsline{toc}{section}{🔗 Recursos}
 
-\markright{🔗 Recursos Adicionais}
+\markright{🔗 Recursos}
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Código fonte:}
-  \href{https://github.com/seu-usuario/QuartoBook}{GitHub}
+  \textbf{Código:}
+  \href{https://github.com/rafasfer2/QuartoBook}{GitHub}
 \item
-  \textbf{Dados de exemplo:} Disponíveis em \texttt{resources/data/}
+  \textbf{Dados:} Disponíveis em \texttt{resources/data/}
 \item
-  \textbf{Discussões:}
-  \href{https://github.com/seu-usuario/QuartoBook/issues}{Issues no
-  GitHub}
+  \textbf{Issues:}
+  \href{https://github.com/rafasfer2/QuartoBook/issues}{GitHub Issues}
 \end{itemize}
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-tip-color-frame, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, colback=white, left=2mm, toprule=.15mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, leftrule=.75mm, coltitle=black, opacityback=0, breakable, titlerule=0mm, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, arc=.35mm]
 
 Inicie pelo \href{preface.qmd}{Prefácio} para entender melhor o contexto
 e objetivos deste livro, ou vá direto para \href{requirements.qmd}{Como
@@ -1573,7 +1554,7 @@ determinado número de ciclos (NC) é realizado.
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/figura-01.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/Figure_01 - Ciclo de Transporte.png}}
 
 }
 
@@ -1582,7 +1563,7 @@ transporte}
 
 \end{figure}%
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-note-color-frame, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, colback=white, left=2mm, toprule=.15mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, leftrule=.75mm, coltitle=black, opacityback=0, breakable, titlerule=0mm, rightrule=.15mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, arc=.35mm]
 
 O tempo total do ciclo influencia diretamente a produtividade da
 operação e é afetado por fatores como distância de transporte, condições
@@ -1697,7 +1678,7 @@ níveis a soma das categorias representam as \textbf{horas calendário}
 HC = HT + HM + HO
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-note-color-frame, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, colback=white, left=2mm, toprule=.15mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, leftrule=.75mm, coltitle=black, opacityback=0, breakable, titlerule=0mm, rightrule=.15mm, colframe=quarto-callout-note-color-frame, toptitle=1mm, colbacktitle=quarto-callout-note-color!10!white, bottomrule=.15mm, arc=.35mm]
 
 \begin{itemize}
 \tightlist
@@ -1942,7 +1923,7 @@ Perda por PR & (240.1 - 232.8) × 583 & 4292\\
 
 Exemplo de cálculo de ICDs e perda de produção
 
-\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-important-color-frame, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, colback=white, left=2mm, toprule=.15mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, leftrule=.75mm, coltitle=black, opacityback=0, breakable, titlerule=0mm, rightrule=.15mm, colframe=quarto-callout-important-color-frame, toptitle=1mm, colbacktitle=quarto-callout-important-color!10!white, bottomrule=.15mm, arc=.35mm]
 
 A análise de perda de produção permite identificar qual indicador teve
 maior impacto negativo na produção realizada, direcionando as ações de
@@ -2824,10 +2805,10 @@ Disponibilidade = \beta_0 + \beta_1 \cdot Política + \beta_2 \cdot Idade + \bet
 
 \textbf{Próximo capítulo:} Fundamentos de Confiabilidade
 
-\part{Fundamentos e Teoria}
+\part{Fundamentos de Confiabilidade}
 
 \chapter{Fundamentos de
-Confiabilidade}\label{fundamentos-de-confiabilidade}
+Confiabilidade}\label{fundamentos-de-confiabilidade-1}
 
 \section{Introdução}\label{introduuxe7uxe3o-1}
 
@@ -3548,8 +3529,6 @@ usando MLE.
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Próximo capítulo:} Análise de Dados de Falha com R
-
-\part{Análise e Modelagem Prática}
 
 \chapter{Análise de Dados de Falha com
 R}\label{anuxe1lise-de-dados-de-falha-com-r}
@@ -4389,6 +4368,8 @@ tempo real.
 
 \textbf{Próximo capítulo:} Modelos de Confiabilidade de Sistema
 
+\part{Tópicos Avançados}
+
 \chapter{Modelos de Confiabilidade de
 Sistema}\label{modelos-de-confiabilidade-de-sistema}
 
@@ -4644,8 +4625,6 @@ série-paralelo.
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \textbf{Próximo capítulo:} Simulação Monte Carlo
-
-\part{Métodos Avançados e Aplicações}
 
 \chapter{Simulação Monte Carlo Aplicada à
 Confiabilidade}\label{simulauxe7uxe3o-monte-carlo-aplicada-uxe0-confiabilidade}
@@ -5770,1515 +5749,189 @@ Docker}\label{containerizauxe7uxe3o-com-docker}
 
 \textbf{Próximo:} Apêndices
 
-\part{Apêndices}
+\bookmarksetup{startatroot}
 
-\chapter*{Apêndice A: Pacotes e Funções Úteis em
-R}\label{apuxeandice-a-pacotes-e-funuxe7uxf5es-uxfateis-em-r}
-\addcontentsline{toc}{chapter}{Apêndice A: Pacotes e Funções Úteis em R}
+\chapter*{Considerações Finais}\label{considerauxe7uxf5es-finais}
+\addcontentsline{toc}{chapter}{Considerações Finais}
 
-\markboth{Apêndice A: Pacotes e Funções Úteis em R}{Apêndice A: Pacotes
-e Funções Úteis em R}
+\markboth{Considerações Finais}{Considerações Finais}
 
-\section*{Pacotes Essenciais para
-Confiabilidade}\label{pacotes-essenciais-para-confiabilidade}
-\addcontentsline{toc}{section}{Pacotes Essenciais para Confiabilidade}
+\section*{Síntese do Aprendizado}\label{suxedntese-do-aprendizado}
+\addcontentsline{toc}{section}{Síntese do Aprendizado}
 
-\markright{Pacotes Essenciais para Confiabilidade}
+\markright{Síntese do Aprendizado}
 
-\subsection*{Manipulação de Dados}\label{manipulauxe7uxe3o-de-dados}
-\addcontentsline{toc}{subsection}{Manipulação de Dados}
+Ao longo deste livro, exploramos os fundamentos e aplicações práticas de
+\textbf{confiabilidade e manutenção} usando R. Você aprendeu:
 
-\subsubsection*{\texorpdfstring{\texttt{tidyverse}}{tidyverse}}\label{tidyverse}
-\addcontentsline{toc}{subsubsection}{\texttt{tidyverse}}
+✅ \textbf{Fundamentos} --- Conceitos de confiabilidade, métricas e
+distribuições de vida útil
 
-Coleção de pacotes para ciência de dados.
+✅ \textbf{Modelagem} --- Ajuste de distribuições (Weibull, exponencial,
+lognormal) a dados reais
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(tidyverse)}
+✅ \textbf{Análise de Sobrevivência} --- Técnicas para dados censurados
+e modelos de Cox
 
-\CommentTok{\# dplyr {-} manipulação}
-\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{filter}\NormalTok{(status }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{tempo\_dias =}\NormalTok{ tempo }\SpecialCharTok{/} \DecValTok{24}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{group\_by}\NormalTok{(tipo) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{summarise}\NormalTok{(}\AttributeTok{mtbf =} \FunctionTok{mean}\NormalTok{(tempo\_dias))}
+✅ \textbf{Estratégias de Manutenção} --- Otimização de políticas
+preventivas e preditivas
 
-\CommentTok{\# ggplot2 {-} visualização}
-\FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ tempo, }\AttributeTok{y =}\NormalTok{ confiabilidade)) }\SpecialCharTok{+}
-  \FunctionTok{geom\_line}\NormalTok{() }\SpecialCharTok{+}
-  \FunctionTok{theme\_minimal}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
+✅ \textbf{Machine Learning} --- Predição de falhas usando dados de
+sensores
 
-\subsection*{Análise de
-Sobrevivência}\label{anuxe1lise-de-sobrevivuxeancia}
-\addcontentsline{toc}{subsection}{Análise de Sobrevivência}
+✅ \textbf{Simulação} --- Avaliação de políticas sob incerteza com Monte
+Carlo
 
-\subsubsection*{\texorpdfstring{\texttt{survival}}{survival}}\label{survival}
-\addcontentsline{toc}{subsubsection}{\texttt{survival}}
+✅ \textbf{Boas Práticas} --- Governança de dados e reprodutibilidade
 
-Pacote padrão para análise de sobrevivência.
+\section*{Próximos Passos}\label{pruxf3ximos-passos-1}
+\addcontentsline{toc}{section}{Próximos Passos}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(survival)}
+\markright{Próximos Passos}
 
-\CommentTok{\# Criar objeto Surv}
-\NormalTok{surv\_obj }\OtherTok{\textless{}{-}} \FunctionTok{Surv}\NormalTok{(}\AttributeTok{time =}\NormalTok{ tempo, }\AttributeTok{event =}\NormalTok{ status)}
-
-\CommentTok{\# Kaplan{-}Meier}
-\NormalTok{km\_fit }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(surv\_obj }\SpecialCharTok{\textasciitilde{}}\NormalTok{ grupo)}
-
-\CommentTok{\# Modelo Cox}
-\NormalTok{cox\_model }\OtherTok{\textless{}{-}} \FunctionTok{coxph}\NormalTok{(surv\_obj }\SpecialCharTok{\textasciitilde{}}\NormalTok{ idade }\SpecialCharTok{+}\NormalTok{ temperatura, }\AttributeTok{data =}\NormalTok{ dados)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Funções principais:} - \texttt{Surv()} - Criar objeto de
-sobrevivência - \texttt{survfit()} - Ajustar Kaplan-Meier -
-\texttt{coxph()} - Regressão de Cox - \texttt{survdiff()} - Teste
-log-rank
-
-\subsubsection*{\texorpdfstring{\texttt{flexsurv}}{flexsurv}}\label{flexsurv}
-\addcontentsline{toc}{subsubsection}{\texttt{flexsurv}}
-
-Modelos paramétricos flexíveis.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(flexsurv)}
-
-\CommentTok{\# Modelo Weibull AFT}
-\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{flexsurvreg}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(tempo, status) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ temperatura,}
-                   \AttributeTok{dist =} \StringTok{"weibull"}\NormalTok{)}
-
-\CommentTok{\# Distribuições disponíveis:}
-\CommentTok{\# "weibull", "exp", "lnorm", "gamma", "gompertz", etc.}
-\end{Highlighting}
-\end{Shaded}
-
-\subsubsection*{\texorpdfstring{\texttt{WeibullR}}{WeibullR}}\label{weibullr}
-\addcontentsline{toc}{subsubsection}{\texttt{WeibullR}}
-
-Especializado em análise Weibull.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(WeibullR)}
-
-\CommentTok{\# Criar objeto Weibull}
-\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{wblr}\NormalTok{(tempos, }\AttributeTok{suspensoes =}\NormalTok{ censuras)}
-
-\CommentTok{\# Adicionar intervalos de confiança}
-\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{wblr.conf}\NormalTok{(fit)}
-
-\CommentTok{\# Plotar papel de Weibull}
-\FunctionTok{wblr.plot}\NormalTok{(fit)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Ajuste de
-Distribuições}\label{ajuste-de-distribuiuxe7uxf5es}
-\addcontentsline{toc}{subsection}{Ajuste de Distribuições}
-
-\subsubsection*{\texorpdfstring{\texttt{fitdistrplus}}{fitdistrplus}}\label{fitdistrplus}
-\addcontentsline{toc}{subsubsection}{\texttt{fitdistrplus}}
-
-Ajuste e diagnóstico de distribuições.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(fitdistrplus)}
-
-\CommentTok{\# Ajustar distribuição}
-\NormalTok{fit\_weibull }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(dados, }\StringTok{"weibull"}\NormalTok{)}
-\NormalTok{fit\_lnorm }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(dados, }\StringTok{"lnorm"}\NormalTok{)}
-
-\CommentTok{\# Comparar ajustes}
-\FunctionTok{gofstat}\NormalTok{(}\FunctionTok{list}\NormalTok{(fit\_weibull, fit\_lnorm))}
-
-\CommentTok{\# Plotar diagnósticos}
-\FunctionTok{plot}\NormalTok{(fit\_weibull)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Machine Learning}\label{machine-learning}
-\addcontentsline{toc}{subsection}{Machine Learning}
-
-\subsubsection*{\texorpdfstring{\texttt{caret}}{caret}}\label{caret}
-\addcontentsline{toc}{subsubsection}{\texttt{caret}}
-
-Framework unificado para ML.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(caret)}
-
-\CommentTok{\# Treinar modelo}
-\NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{train}\NormalTok{(falha }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .,}
-                \AttributeTok{data =}\NormalTok{ treino,}
-                \AttributeTok{method =} \StringTok{"rf"}\NormalTok{,}
-                \AttributeTok{trControl =} \FunctionTok{trainControl}\NormalTok{(}\AttributeTok{method =} \StringTok{"cv"}\NormalTok{, }\AttributeTok{number =} \DecValTok{5}\NormalTok{))}
-
-\CommentTok{\# Importância de variáveis}
-\FunctionTok{varImp}\NormalTok{(modelo)}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Métodos disponíveis:} - \texttt{"rf"} - Random Forest -
-\texttt{"xgbTree"} - XGBoost - \texttt{"glm"} - Regressão Logística -
-\texttt{"svmRadial"} - SVM
-
-\subsubsection*{\texorpdfstring{\texttt{randomForest}}{randomForest}}\label{randomforest}
-\addcontentsline{toc}{subsubsection}{\texttt{randomForest}}
-
-Implementação específica de Random Forest.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(randomForest)}
-
-\NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{randomForest}\NormalTok{(falha }\SpecialCharTok{\textasciitilde{}}\NormalTok{ .,}
-                       \AttributeTok{data =}\NormalTok{ treino,}
-                       \AttributeTok{ntree =} \DecValTok{500}\NormalTok{,}
-                       \AttributeTok{importance =} \ConstantTok{TRUE}\NormalTok{)}
-
-\CommentTok{\# Matriz de confusão}
-\FunctionTok{predict}\NormalTok{(modelo, teste)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Séries Temporais}\label{suxe9ries-temporais}
-\addcontentsline{toc}{subsection}{Séries Temporais}
-
-\subsubsection*{\texorpdfstring{\texttt{prophet}}{prophet}}\label{prophet}
-\addcontentsline{toc}{subsubsection}{\texttt{prophet}}
-
-Previsão de séries temporais (Facebook).
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(prophet)}
-
-\CommentTok{\# Preparar dados (requer colunas \textquotesingle{}ds\textquotesingle{} e \textquotesingle{}y\textquotesingle{})}
-\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{ds =}\NormalTok{ datas, }\AttributeTok{y =}\NormalTok{ valores)}
-
-\CommentTok{\# Ajustar modelo}
-\NormalTok{m }\OtherTok{\textless{}{-}} \FunctionTok{prophet}\NormalTok{(df)}
-
-\CommentTok{\# Previsão}
-\NormalTok{future }\OtherTok{\textless{}{-}} \FunctionTok{make\_future\_dataframe}\NormalTok{(m, }\AttributeTok{periods =} \DecValTok{30}\NormalTok{)}
-\NormalTok{forecast }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(m, future)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsubsection*{\texorpdfstring{\texttt{anomalize}}{anomalize}}\label{anomalize}
-\addcontentsline{toc}{subsubsection}{\texttt{anomalize}}
-
-Detecção de anomalias em séries temporais.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(anomalize)}
-
-\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{time\_decompose}\NormalTok{(temperatura) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{anomalize}\NormalTok{(remainder) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{time\_recompose}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{plot\_anomalies}\NormalTok{()}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Visualização}\label{visualizauxe7uxe3o}
-\addcontentsline{toc}{subsection}{Visualização}
-
-\subsubsection*{\texorpdfstring{\texttt{survminer}}{survminer}}\label{survminer}
-\addcontentsline{toc}{subsubsection}{\texttt{survminer}}
-
-Visualizações para análise de sobrevivência.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(survminer)}
-
-\CommentTok{\# Curva KM estilizada}
-\FunctionTok{ggsurvplot}\NormalTok{(km\_fit,}
-           \AttributeTok{conf.int =} \ConstantTok{TRUE}\NormalTok{,}
-           \AttributeTok{risk.table =} \ConstantTok{TRUE}\NormalTok{,}
-           \AttributeTok{pval =} \ConstantTok{TRUE}\NormalTok{,}
-           \AttributeTok{palette =} \StringTok{"jco"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsubsection*{\texorpdfstring{\texttt{plotly}}{plotly}}\label{plotly}
-\addcontentsline{toc}{subsubsection}{\texttt{plotly}}
-
-Gráficos interativos.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(plotly)}
-
-\CommentTok{\# Converter ggplot}
-\NormalTok{p }\OtherTok{\textless{}{-}} \FunctionTok{ggplot}\NormalTok{(dados, }\FunctionTok{aes}\NormalTok{(x, y)) }\SpecialCharTok{+} \FunctionTok{geom\_line}\NormalTok{()}
-\FunctionTok{ggplotly}\NormalTok{(p)}
-
-\CommentTok{\# Plot direto}
-\FunctionTok{plot\_ly}\NormalTok{(dados, }\AttributeTok{x =} \SpecialCharTok{\textasciitilde{}}\NormalTok{tempo, }\AttributeTok{y =} \SpecialCharTok{\textasciitilde{}}\NormalTok{confiabilidade, }\AttributeTok{type =} \StringTok{"scatter"}\NormalTok{, }\AttributeTok{mode =} \StringTok{"lines"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Tabelas}\label{tabelas}
-\addcontentsline{toc}{subsection}{Tabelas}
-
-\subsubsection*{\texorpdfstring{\texttt{kableExtra}}{kableExtra}}\label{kableextra}
-\addcontentsline{toc}{subsubsection}{\texttt{kableExtra}}
-
-Tabelas estilizadas para relatórios.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(kableExtra)}
-
-\NormalTok{dados }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable}\NormalTok{() }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{row\_spec}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{bold =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{color =} \StringTok{"white"}\NormalTok{, }\AttributeTok{background =} \StringTok{"steelblue"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsubsection*{\texorpdfstring{\texttt{DT}}{DT}}\label{dt}
-\addcontentsline{toc}{subsubsection}{\texttt{DT}}
-
-Tabelas interativas.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(DT)}
-
-\FunctionTok{datatable}\NormalTok{(dados,}
-          \AttributeTok{filter =} \StringTok{"top"}\NormalTok{,}
-          \AttributeTok{options =} \FunctionTok{list}\NormalTok{(}\AttributeTok{pageLength =} \DecValTok{25}\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Simulação}\label{simulauxe7uxe3o}
-\addcontentsline{toc}{subsection}{Simulação}
-
-\subsubsection*{\texorpdfstring{\texttt{simmer}}{simmer}}\label{simmer}
-\addcontentsline{toc}{subsubsection}{\texttt{simmer}}
-
-Simulação de eventos discretos.
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(simmer)}
-
-\CommentTok{\# Criar ambiente de simulação}
-\NormalTok{env }\OtherTok{\textless{}{-}} \FunctionTok{simmer}\NormalTok{()}
-
-\CommentTok{\# Definir trajetórias e recursos}
-\CommentTok{\# ...}
-
-\CommentTok{\# Executar simulação}
-\FunctionTok{run}\NormalTok{(env, }\AttributeTok{until =} \DecValTok{1000}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Snippets Úteis}\label{snippets-uxfateis}
-\addcontentsline{toc}{section}{Snippets Úteis}
-
-\markright{Snippets Úteis}
-
-\subsection*{Calcular MTTF de Weibull}\label{calcular-mttf-de-weibull}
-\addcontentsline{toc}{subsection}{Calcular MTTF de Weibull}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{mttf\_weibull }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(beta, eta) \{}
-\NormalTok{  eta }\SpecialCharTok{*} \FunctionTok{gamma}\NormalTok{(}\DecValTok{1} \SpecialCharTok{+} \DecValTok{1}\SpecialCharTok{/}\NormalTok{beta)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Confiabilidade em Tempo t}\label{confiabilidade-em-tempo-t}
-\addcontentsline{toc}{subsection}{Confiabilidade em Tempo t}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{confiabilidade\_weibull }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, beta, eta) \{}
-  \FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{(t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{beta)}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Bootstrap IC}\label{bootstrap-ic}
-\addcontentsline{toc}{subsection}{Bootstrap IC}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{bootstrap\_ci }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data, stat\_fun, }\AttributeTok{n\_boot =} \DecValTok{1000}\NormalTok{, }\AttributeTok{conf =} \FloatTok{0.95}\NormalTok{) \{}
-\NormalTok{  boot\_stats }\OtherTok{\textless{}{-}} \FunctionTok{replicate}\NormalTok{(n\_boot, \{}
-\NormalTok{    sample\_boot }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(data, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
-    \FunctionTok{stat\_fun}\NormalTok{(sample\_boot)}
-\NormalTok{  \})}
-
-\NormalTok{  alpha }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ conf}
-  \FunctionTok{quantile}\NormalTok{(boot\_stats, }\FunctionTok{c}\NormalTok{(alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{, }\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ alpha}\SpecialCharTok{/}\DecValTok{2}\NormalTok{))}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Plotar Taxa de Falha}\label{plotar-taxa-de-falha}
-\addcontentsline{toc}{subsection}{Plotar Taxa de Falha}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{plot\_hazard }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(beta, eta, }\AttributeTok{t\_max =} \DecValTok{1000}\NormalTok{) \{}
-\NormalTok{  t }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, t\_max, }\AttributeTok{length.out =} \DecValTok{200}\NormalTok{)}
-\NormalTok{  hazard }\OtherTok{\textless{}{-}}\NormalTok{ (beta}\SpecialCharTok{/}\NormalTok{eta) }\SpecialCharTok{*}\NormalTok{ (t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{(beta }\SpecialCharTok{{-}} \DecValTok{1}\NormalTok{)}
-
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{data.frame}\NormalTok{(t, hazard), }\FunctionTok{aes}\NormalTok{(t, hazard)) }\SpecialCharTok{+}
-    \FunctionTok{geom\_line}\NormalTok{(}\AttributeTok{color =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{linewidth =} \FloatTok{1.2}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \FunctionTok{paste}\NormalTok{(}\StringTok{"Taxa de Falha (β ="}\NormalTok{, beta, }\StringTok{")"}\NormalTok{),}
-         \AttributeTok{x =} \StringTok{"Tempo"}\NormalTok{, }\AttributeTok{y =} \StringTok{"λ(t)"}\NormalTok{) }\SpecialCharTok{+}
-    \FunctionTok{theme\_minimal}\NormalTok{()}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Instalação Rápida}\label{instalauxe7uxe3o-ruxe1pida}
-\addcontentsline{toc}{section}{Instalação Rápida}
-
-\markright{Instalação Rápida}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Todos os pacotes essenciais}
-\FunctionTok{install.packages}\NormalTok{(}\FunctionTok{c}\NormalTok{(}
-  \CommentTok{\# Manipulação}
-  \StringTok{"tidyverse"}\NormalTok{, }\StringTok{"data.table"}\NormalTok{, }\StringTok{"lubridate"}\NormalTok{,}
-
-  \CommentTok{\# Confiabilidade}
-  \StringTok{"survival"}\NormalTok{, }\StringTok{"flexsurv"}\NormalTok{, }\StringTok{"WeibullR"}\NormalTok{, }\StringTok{"reliability"}\NormalTok{,}
-  \StringTok{"fitdistrplus"}\NormalTok{,}
-
-  \CommentTok{\# Machine Learning}
-  \StringTok{"caret"}\NormalTok{, }\StringTok{"randomForest"}\NormalTok{, }\StringTok{"xgboost"}\NormalTok{,}
-
-  \CommentTok{\# Séries Temporais}
-  \StringTok{"prophet"}\NormalTok{, }\StringTok{"anomalize"}\NormalTok{, }\StringTok{"forecast"}\NormalTok{,}
-
-  \CommentTok{\# Visualização}
-  \StringTok{"survminer"}\NormalTok{, }\StringTok{"plotly"}\NormalTok{, }\StringTok{"patchwork"}\NormalTok{,}
-
-  \CommentTok{\# Tabelas}
-  \StringTok{"kableExtra"}\NormalTok{, }\StringTok{"DT"}\NormalTok{, }\StringTok{"gt"}\NormalTok{,}
-
-  \CommentTok{\# Relatórios}
-  \StringTok{"knitr"}\NormalTok{, }\StringTok{"rmarkdown"}\NormalTok{, }\StringTok{"quarto"}\NormalTok{,}
-
-  \CommentTok{\# Outros}
-  \StringTok{"broom"}\NormalTok{, }\StringTok{"here"}\NormalTok{, }\StringTok{"pins"}
-\NormalTok{))}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Recursos Online}\label{recursos-online}
-\addcontentsline{toc}{section}{Recursos Online}
-
-\markright{Recursos Online}
+\subsection*{📚 Aprofundamento}\label{aprofundamento}
+\addcontentsline{toc}{subsection}{📚 Aprofundamento}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://cran.r-project.org/web/views/Survival.html}{CRAN Task
-  View: Survival Analysis}
+  Explore os \textbf{apêndices} para referências rápidas de pacotes e
+  funções
 \item
-  \href{https://cran.r-project.org/web/packages/survival/vignettes/survival.pdf}{survival
-  package vignette}
+  Pratique com os \textbf{exercícios} propostos em cada capítulo
 \item
-  \href{https://r4ds.hadley.nz/}{R for Data Science}
-\item
-  \href{https://posit.co/resources/cheatsheets/}{Posit Cheatsheets}
+  Aplique as técnicas aos \textbf{seus próprios dados} industriais
 \end{itemize}
 
-\chapter*{Apêndice B: Templates Quarto e
-Automação}\label{apuxeandice-b-templates-quarto-e-automauxe7uxe3o}
-\addcontentsline{toc}{chapter}{Apêndice B: Templates Quarto e Automação}
+\subsection*{🔬 Tópicos Avançados}\label{tuxf3picos-avanuxe7ados-1}
+\addcontentsline{toc}{subsection}{🔬 Tópicos Avançados}
 
-\markboth{Apêndice B: Templates Quarto e Automação}{Apêndice B:
-Templates Quarto e Automação}
-
-\section*{Estrutura de Projeto Quarto
-Book}\label{estrutura-de-projeto-quarto-book}
-\addcontentsline{toc}{section}{Estrutura de Projeto Quarto Book}
-
-\markright{Estrutura de Projeto Quarto Book}
-
-\subsection*{\texorpdfstring{Arquivo
-\texttt{\_quarto.yml}}{Arquivo \_quarto.yml}}\label{arquivo-_quarto.yml}
-\addcontentsline{toc}{subsection}{Arquivo \texttt{\_quarto.yml}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{project}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{type}\KeywordTok{:}\AttributeTok{ book}
-\AttributeTok{  }\FunctionTok{output{-}dir}\KeywordTok{:}\AttributeTok{ docs}
-
-\FunctionTok{book}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{title}\KeywordTok{:}\AttributeTok{ }\StringTok{"Confiabilidade e Manutenção"}
-\AttributeTok{  }\FunctionTok{subtitle}\KeywordTok{:}\AttributeTok{ }\StringTok{"Aplicações em R"}
-\AttributeTok{  }\FunctionTok{author}\KeywordTok{:}\AttributeTok{ }\StringTok{"Seu Nome"}
-\AttributeTok{  }\FunctionTok{date}\KeywordTok{:}\AttributeTok{ today}
-
-\AttributeTok{  }\FunctionTok{chapters}\KeywordTok{:}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ index.qmd}
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ preface.qmd}
-
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{part}\KeywordTok{:}\AttributeTok{ }\StringTok{"Parte I"}
-\AttributeTok{      }\FunctionTok{chapters}\KeywordTok{:}
-\AttributeTok{        }\KeywordTok{{-}}\AttributeTok{ chapters/01{-}intro.qmd}
-\AttributeTok{        }\KeywordTok{{-}}\AttributeTok{ chapters/02{-}analise.qmd}
-
-\AttributeTok{    }\KeywordTok{{-}}\AttributeTok{ references.qmd}
-
-\FunctionTok{bibliography}\KeywordTok{:}\AttributeTok{ references.bib}
-
-\FunctionTok{format}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{html}\KeywordTok{:}
-\AttributeTok{    }\FunctionTok{theme}\KeywordTok{:}
-\AttributeTok{      }\FunctionTok{light}\KeywordTok{:}\AttributeTok{ flatly}
-\AttributeTok{      }\FunctionTok{dark}\KeywordTok{:}\AttributeTok{ darkly}
-\AttributeTok{    }\FunctionTok{code{-}fold}\KeywordTok{:}\AttributeTok{ show}
-\AttributeTok{    }\FunctionTok{code{-}tools}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-\AttributeTok{    }\FunctionTok{toc{-}depth}\KeywordTok{:}\AttributeTok{ }\DecValTok{3}
-\AttributeTok{    }\FunctionTok{number{-}sections}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-
-\AttributeTok{  }\FunctionTok{pdf}\KeywordTok{:}
-\AttributeTok{    }\FunctionTok{documentclass}\KeywordTok{:}\AttributeTok{ scrbook}
-\AttributeTok{    }\FunctionTok{toc}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-\AttributeTok{    }\FunctionTok{number{-}sections}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-
-\FunctionTok{execute}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{echo}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-\AttributeTok{  }\FunctionTok{warning}\KeywordTok{:}\AttributeTok{ }\CharTok{false}
-\AttributeTok{  }\FunctionTok{message}\KeywordTok{:}\AttributeTok{ }\CharTok{false}
-\AttributeTok{  }\FunctionTok{cache}\KeywordTok{:}\AttributeTok{ }\CharTok{true}
-\AttributeTok{  }\FunctionTok{freeze}\KeywordTok{:}\AttributeTok{ auto}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Template de Capítulo}\label{template-de-capuxedtulo}
-\addcontentsline{toc}{section}{Template de Capítulo}
-
-\markright{Template de Capítulo}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{\# Título do Capítulo}
-
-\FunctionTok{\#\# Introdução}
-
-\NormalTok{Breve introdução ao tema...}
-
-\FunctionTok{\#\# Conceitos}
-
-\FunctionTok{\#\#\# Subseção 1}
-
-\NormalTok{Explicação com equação:}
-
-\NormalTok{$$}
-\NormalTok{R(t) = e\^{}\{{-}\textbackslash{}lambda t\}}
-\NormalTok{$$ \{\#eq{-}confiabilidade\}}
-
-\FunctionTok{\#\#\# Exemplo Prático}
-
-\NormalTok{💡 **Exemplo**: Descrição do exemplo}
-
-\NormalTok{::: \{.cell\}}
-
-\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{.r .cell{-}code\}}
-\InformationTok{\# Exemplo ilustrativo (não executado)}
-\InformationTok{\# library(tidyverse)}
-\InformationTok{\# dados \textless{}{-} data.frame(...)}
-\InformationTok{\# ggplot(dados, aes(x, y)) + geom\_line()}
-\end{Highlighting}
-\end{Shaded}
-
-:::
-
-\section*{Exercícios}\label{exercuxedcios-12}
-\addcontentsline{toc}{section}{Exercícios}
-
-\markright{Exercícios}
-
-📝 \textbf{Exercício 1}: Descrição do exercício.
-
-\section*{Resumo}\label{resumo-13}
-\addcontentsline{toc}{section}{Resumo}
-
-\markright{Resumo}
-
-🔔 \textbf{Pontos-chave:}
+Para ir além:
 
 \begin{itemize}
 \tightlist
 \item
-  Ponto 1
+  \textbf{Análise Bayesiana} --- Incorporar conhecimento prévio na
+  modelagem
 \item
-  Ponto 2
+  \textbf{Deep Learning} --- Redes neurais para predição de falhas
+\item
+  \textbf{Otimização Multi-objetivo} --- Balancear custo,
+  disponibilidade e risco
+\item
+  \textbf{Digital Twins} --- Gêmeos digitais para simulação em tempo
+  real
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\subsection*{💼 Aplicação Prática}\label{aplicauxe7uxe3o-pruxe1tica}
+\addcontentsline{toc}{subsection}{💼 Aplicação Prática}
 
-\textbf{Próximo capítulo:} Nome do próximo
-
-\begin{verbatim}
-
-## Opções de Chunks
-
-### Controle de Execução
-
-::: {.cell}
-
-:::
-
-### Figuras
-
-
-
-
-
-
-
-
-::: {.cell layout-align="center"}
-
-```{.r .cell-code}
-# Código do gráfico
-\end{verbatim}
-
-:::
-
-\subsection*{Tabelas}\label{tabelas-1}
-\addcontentsline{toc}{subsection}{Tabelas}
-
-\begin{table}
-
-\caption{\label{tbl-exemplo}Legenda da tabela}
-
-\centering{
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Código da tabela}
-\end{Highlighting}
-\end{Shaded}
-
-}
-
-\end{table}%
-
-\section*{Referências Cruzadas}\label{referuxeancias-cruzadas-1}
-\addcontentsline{toc}{section}{Referências Cruzadas}
-
-\markright{Referências Cruzadas}
-
-\subsection*{Figuras}\label{figuras}
-\addcontentsline{toc}{subsection}{Figuras}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Veja @fig{-}exemplo para detalhes.}
-
-\NormalTok{::: \{.cell\}}
-
-\InformationTok{\textasciigrave{}\textasciigrave{}\textasciigrave{}\{.r .cell{-}code\}}
-\InformationTok{plot(1:10)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{figure}[H]
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{appendices/B-templates_files/figure-pdf/fig-exemplo-2-1.pdf}}
-
-}
-
-\caption{\label{fig-exemplo-2}Minha figura}
-
-\end{figure}%
-
-:::
-
-\begin{verbatim}
-
-### Tabelas
-
-```markdown
-A @tbl-resultados apresenta os dados.
-
-::: {#tbl-resultados .cell tbl-cap='Resultados'}
-
-```{.r .cell-code}
-# knitr::kable(dados)
-\end{verbatim}
-
-:::
-
-\begin{verbatim}
-
-### Equações
-
-```markdown
-Como mostra a @eq-weibull:
-
-$$
-f(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta-1} e^{-(t/\eta)^\beta}
-$$ {#eq-weibull}
-\end{verbatim}
-
-\subsection*{Capítulos e Seções}\label{capuxedtulos-e-seuxe7uxf5es}
-\addcontentsline{toc}{subsection}{Capítulos e Seções}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{Como discutido no @sec{-}introducao...}
-
-\FunctionTok{\#\# Introdução \{\#sec{-}introducao\}}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{CI/CD com GitHub Actions}\label{cicd-com-github-actions}
-\addcontentsline{toc}{section}{CI/CD com GitHub Actions}
-
-\markright{CI/CD com GitHub Actions}
-
-\subsection*{\texorpdfstring{\texttt{.github/workflows/quarto-publish.yml}}{.github/workflows/quarto-publish.yml}}\label{githubworkflowsquarto-publish.yml}
-\addcontentsline{toc}{subsection}{\texttt{.github/workflows/quarto-publish.yml}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Render and Publish Quarto Book}
-
-\FunctionTok{on}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{push}\KeywordTok{:}
-\AttributeTok{    }\FunctionTok{branches}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{main}\KeywordTok{]}
-\AttributeTok{  }\FunctionTok{pull\_request}\KeywordTok{:}
-\AttributeTok{    }\FunctionTok{branches}\KeywordTok{:}\AttributeTok{ }\KeywordTok{[}\AttributeTok{main}\KeywordTok{]}
-
-\FunctionTok{jobs}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{build{-}deploy}\KeywordTok{:}
-\AttributeTok{    }\FunctionTok{runs{-}on}\KeywordTok{:}\AttributeTok{ ubuntu{-}latest}
-
-\AttributeTok{    }\FunctionTok{steps}\KeywordTok{:}
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Checkout repository}
-\AttributeTok{        }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ actions/checkout@v3}
-
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Setup R}
-\AttributeTok{        }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ r{-}lib/actions/setup{-}r@v2}
-\AttributeTok{        }\FunctionTok{with}\KeywordTok{:}
-\AttributeTok{          }\FunctionTok{r{-}version}\KeywordTok{:}\AttributeTok{ }\StringTok{\textquotesingle{}4.5.1\textquotesingle{}}
-
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Install R packages}
-\FunctionTok{        run}\KeywordTok{: }\CharTok{|}
-\NormalTok{          install.packages(c("tidyverse", "survival", "ggplot2"))}
-\AttributeTok{        }\FunctionTok{shell}\KeywordTok{:}\AttributeTok{ Rscript \{0\}}
-
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Setup Quarto}
-\AttributeTok{        }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ quarto{-}dev/quarto{-}actions/setup@v2}
-\AttributeTok{        }\FunctionTok{with}\KeywordTok{:}
-\AttributeTok{          }\FunctionTok{version}\KeywordTok{:}\AttributeTok{ }\StringTok{\textquotesingle{}1.6.39\textquotesingle{}}
-
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Render Quarto Book}
-\AttributeTok{        }\FunctionTok{run}\KeywordTok{:}\AttributeTok{ quarto render}
-
-\AttributeTok{      }\KeywordTok{{-}}\AttributeTok{ }\FunctionTok{name}\KeywordTok{:}\AttributeTok{ Deploy to GitHub Pages}
-\AttributeTok{        }\FunctionTok{if}\KeywordTok{:}\AttributeTok{ github.ref == \textquotesingle{}refs/heads/main\textquotesingle{}}
-\AttributeTok{        }\FunctionTok{uses}\KeywordTok{:}\AttributeTok{ peaceiris/actions{-}gh{-}pages@v3}
-\AttributeTok{        }\FunctionTok{with}\KeywordTok{:}
-\AttributeTok{          }\FunctionTok{github\_token}\KeywordTok{:}\AttributeTok{ $\{\{ secrets.GITHUB\_TOKEN \}\}}
-\AttributeTok{          }\FunctionTok{publish\_dir}\KeywordTok{:}\AttributeTok{ ./docs}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Deploy para Quarto Pub}\label{deploy-para-quarto-pub}
-\addcontentsline{toc}{section}{Deploy para Quarto Pub}
-
-\markright{Deploy para Quarto Pub}
-
-\subsection*{Comandos}\label{comandos}
-\addcontentsline{toc}{subsection}{Comandos}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\# Publicar pela primeira vez}
-\ExtensionTok{quarto}\NormalTok{ publish quarto{-}pub}
-
-\CommentTok{\# Atualizar}
-\ExtensionTok{quarto}\NormalTok{ publish quarto{-}pub }\AttributeTok{{-}{-}update}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{\texorpdfstring{Configuração no
-\texttt{\_quarto.yml}}{Configuração no \_quarto.yml}}\label{configurauxe7uxe3o-no-_quarto.yml}
-\addcontentsline{toc}{subsection}{Configuração no \texttt{\_quarto.yml}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{project}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{type}\KeywordTok{:}\AttributeTok{ book}
-
-\FunctionTok{quarto{-}pub}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{site{-}id}\KeywordTok{:}\AttributeTok{ }\StringTok{"seu{-}site{-}id"}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Deploy para GitHub Pages}\label{deploy-para-github-pages}
-\addcontentsline{toc}{section}{Deploy para GitHub Pages}
-
-\markright{Deploy para GitHub Pages}
-
-\subsection*{Passo a Passo}\label{passo-a-passo}
-\addcontentsline{toc}{subsection}{Passo a Passo}
+Coloque em prática:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Configurar output para \texttt{docs/}}
+  \textbf{Identifique equipamentos críticos} na sua operação
+\item
+  \textbf{Colete dados} de histórico de falhas e manutenção
+\item
+  \textbf{Aplique as técnicas} aprendidas para modelagem
+\item
+  \textbf{Otimize estratégias} de manutenção baseadas nos resultados
+\item
+  \textbf{Monitore continuamente} e ajuste os modelos
 \end{enumerate}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{project}\KeywordTok{:}
-\AttributeTok{  }\FunctionTok{output{-}dir}\KeywordTok{:}\AttributeTok{ docs}
-\end{Highlighting}
-\end{Shaded}
+\section*{Recursos Contínuos}\label{recursos-contuxednuos}
+\addcontentsline{toc}{section}{Recursos Contínuos}
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{1}
-\tightlist
-\item
-  \textbf{Criar \texttt{.nojekyll}}
-\end{enumerate}
+\markright{Recursos Contínuos}
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{touch}\NormalTok{ docs/.nojekyll}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  \textbf{Configurar GitHub Pages}
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Settings → Pages
-  \item
-    Source: Deploy from branch
-  \item
-    Branch: \texttt{main} / \texttt{docs}
-  \end{itemize}
-\item
-  \textbf{Push e esperar}
-\end{enumerate}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{git}\NormalTok{ add .}
-\FunctionTok{git}\NormalTok{ commit }\AttributeTok{{-}m} \StringTok{"Update book"}
-\FunctionTok{git}\NormalTok{ push}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Deploy para Netlify}\label{deploy-para-netlify}
-\addcontentsline{toc}{section}{Deploy para Netlify}
-
-\markright{Deploy para Netlify}
-
-\subsection*{\texorpdfstring{\texttt{netlify.toml}}{netlify.toml}}\label{netlify.toml}
-\addcontentsline{toc}{subsection}{\texttt{netlify.toml}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{[build]}
-  \DataTypeTok{command} \OperatorTok{=} \StringTok{"quarto render"}
-  \DataTypeTok{publish} \OperatorTok{=} \StringTok{"docs"}
-
-\KeywordTok{[build.environment]}
-  \DataTypeTok{QUARTO\_VERSION} \OperatorTok{=} \StringTok{"1.6.39"}
-  \DataTypeTok{R\_VERSION} \OperatorTok{=} \StringTok{"4.5.1"}
-
-\KeywordTok{[[redirects]]}
-  \DataTypeTok{from} \OperatorTok{=} \StringTok{"/*"}
-  \DataTypeTok{to} \OperatorTok{=} \StringTok{"/index.html"}
-  \DataTypeTok{status} \OperatorTok{=} \DecValTok{200}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Makefile para Automação}\label{makefile-para-automauxe7uxe3o}
-\addcontentsline{toc}{section}{Makefile para Automação}
-
-\markright{Makefile para Automação}
-
-\subsection*{\texorpdfstring{\texttt{Makefile}}{Makefile}}\label{makefile}
-\addcontentsline{toc}{subsection}{\texttt{Makefile}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\OtherTok{.PHONY:}\DataTypeTok{ preview render clean deploy}
-
-\DecValTok{preview:}
-\ErrorTok{    }\NormalTok{quarto preview}
-
-\DecValTok{render:}
-\ErrorTok{    }\NormalTok{quarto render}
-
-\DecValTok{clean:}
-\ErrorTok{    }\NormalTok{rm {-}rf docs/ \_book/ .quarto/ *\_cache/ *\_files/}
-
-\DecValTok{deploy:}\DataTypeTok{ render}
-\ErrorTok{    }\NormalTok{git add docs/}
-\NormalTok{    git commit {-}m }\StringTok{"Update rendered book"}
-\NormalTok{    git push}
-
-\DecValTok{install{-}deps:}
-\ErrorTok{    }\NormalTok{Rscript {-}e }\StringTok{"install.packages(c(\textquotesingle{}tidyverse\textquotesingle{}, \textquotesingle{}survival\textquotesingle{}, \textquotesingle{}ggplot2\textquotesingle{}))"}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Uso:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{make}\NormalTok{ preview   }\CommentTok{\# Visualizar}
-\FunctionTok{make}\NormalTok{ render    }\CommentTok{\# Renderizar}
-\FunctionTok{make}\NormalTok{ clean     }\CommentTok{\# Limpar}
-\FunctionTok{make}\NormalTok{ deploy    }\CommentTok{\# Deploy}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Docker para
-Reprodutibilidade}\label{docker-para-reprodutibilidade}
-\addcontentsline{toc}{section}{Docker para Reprodutibilidade}
-
-\markright{Docker para Reprodutibilidade}
-
-\subsection*{\texorpdfstring{\texttt{Dockerfile}}{Dockerfile}}\label{dockerfile}
-\addcontentsline{toc}{subsection}{\texttt{Dockerfile}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{FROM}\NormalTok{ rocker/r{-}ver:4.5.1}
-
-\CommentTok{\# Instalar Quarto}
-\KeywordTok{RUN} \FunctionTok{wget}\NormalTok{ https://github.com/quarto{-}dev/quarto{-}cli/releases/download/v1.6.39/quarto{-}1.6.39{-}linux{-}amd64.deb}
-\KeywordTok{RUN} \ExtensionTok{dpkg} \AttributeTok{{-}i}\NormalTok{ quarto{-}1.6.39{-}linux{-}amd64.deb}
-
-\CommentTok{\# Instalar dependências R}
-\KeywordTok{RUN} \ExtensionTok{R} \AttributeTok{{-}e} \StringTok{"install.packages(c(\textquotesingle{}tidyverse\textquotesingle{}, \textquotesingle{}survival\textquotesingle{}, \textquotesingle{}ggplot2\textquotesingle{}))"}
-
-\CommentTok{\# Copiar projeto}
-\KeywordTok{COPY}\NormalTok{ . /workspace}
-\KeywordTok{WORKDIR}\NormalTok{ /workspace}
-
-\CommentTok{\# Renderizar}
-\KeywordTok{CMD}\NormalTok{ [}\StringTok{"quarto"}\NormalTok{, }\StringTok{"render"}\NormalTok{]}
-\end{Highlighting}
-\end{Shaded}
-
-\textbf{Uso:}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\ExtensionTok{docker}\NormalTok{ build }\AttributeTok{{-}t}\NormalTok{ meu{-}livro .}
-\ExtensionTok{docker}\NormalTok{ run }\AttributeTok{{-}v} \VariableTok{$(}\BuiltInTok{pwd}\VariableTok{)}\NormalTok{:/workspace meu{-}livro}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Scripts Auxiliares}\label{scripts-auxiliares}
-\addcontentsline{toc}{section}{Scripts Auxiliares}
-
-\markright{Scripts Auxiliares}
-
-\subsection*{\texorpdfstring{\texttt{render\_and\_open.R}}{render\_and\_open.R}}\label{render_and_open.r}
-\addcontentsline{toc}{subsection}{\texttt{render\_and\_open.R}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#!/usr/bin/env Rscript}
-
-\CommentTok{\# Renderizar e abrir no navegador}
-\FunctionTok{system}\NormalTok{(}\StringTok{"quarto render"}\NormalTok{)}
-\FunctionTok{system}\NormalTok{(}\StringTok{"open docs/index.html"}\NormalTok{)  }\CommentTok{\# macOS}
-\CommentTok{\# system("xdg{-}open docs/index.html")  \# Linux}
-\CommentTok{\# system("start docs/index.html")  \# Windows}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{\texorpdfstring{\texttt{check\_links.sh}}{check\_links.sh}}\label{check_links.sh}
-\addcontentsline{toc}{subsection}{\texttt{check\_links.sh}}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\CommentTok{\#!/bin/bash}
-\CommentTok{\# Verificar links quebrados}
-
-\ExtensionTok{quarto}\NormalTok{ render}
-\BuiltInTok{cd}\NormalTok{ docs}
-\ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ http.server 8000 }\KeywordTok{\&}
-\VariableTok{SERVER\_PID}\OperatorTok{=}\VariableTok{$!}
-\FunctionTok{sleep}\NormalTok{ 2}
-
-\CommentTok{\# Usar linkchecker ou similar}
-\ExtensionTok{linkchecker}\NormalTok{ http://localhost:8000}
-
-\BuiltInTok{kill} \VariableTok{$SERVER\_PID}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Boas Práticas}\label{boas-pruxe1ticas-1}
-\addcontentsline{toc}{section}{Boas Práticas}
-
-\markright{Boas Práticas}
-
-✅ \textbf{Fazer:} - Usar \texttt{freeze:\ auto} para cache inteligente
-- Versionar dados pequenos com Git LFS - Documentar requisitos em
-\texttt{README.md} - Testar localmente antes de fazer push - Usar CI/CD
-para deploy automático
-
-❌ \textbf{Evitar:} - Commitar arquivos gerados (\texttt{\_book/},
-\texttt{docs/}) - Dados grandes sem Git LFS - Executar código demorado
-sem cache - Dependências não documentadas
-
-\section*{Recursos}\label{recursos}
-\addcontentsline{toc}{section}{Recursos}
-
-\markright{Recursos}
+\subsection*{🌐 Comunidade}\label{comunidade}
+\addcontentsline{toc}{subsection}{🌐 Comunidade}
 
 \begin{itemize}
 \tightlist
 \item
-  \href{https://quarto.org/docs/books/}{Quarto Books Guide}
+  \href{https://rfordatasci.com/}{R4DS Online Learning Community}
 \item
-  \href{https://docs.github.com/actions}{GitHub Actions Documentation}
+  \href{https://stackoverflow.com/questions/tagged/r}{Stack Overflow - R
+  Tag}
 \item
-  \href{https://quartopub.com/}{Quarto Pub}
+  \href{https://community.rstudio.com/}{RStudio Community}
 \item
-  \href{https://docs.netlify.com/}{Netlify Docs}
+  \href{https://stats.stackexchange.com/}{Cross Validated}
 \end{itemize}
 
-\chapter*{Apêndice C: Cheatsheets e
-Fórmulas}\label{apuxeandice-c-cheatsheets-e-fuxf3rmulas}
-\addcontentsline{toc}{chapter}{Apêndice C: Cheatsheets e Fórmulas}
+\subsection*{📖 Leitura Adicional}\label{leitura-adicional}
+\addcontentsline{toc}{subsection}{📖 Leitura Adicional}
 
-\markboth{Apêndice C: Cheatsheets e Fórmulas}{Apêndice C: Cheatsheets e
-Fórmulas}
+\textbf{Livros:} - ``Applied Survival Analysis'' - Hosmer, Lemeshow \&
+May - ``Reliability Engineering'' - Elsayed - ``Weibull Analysis
+Handbook'' - Bryan Dodson
 
-\section*{Distribuições de Vida
-Útil}\label{distribuiuxe7uxf5es-de-vida-uxfatil}
-\addcontentsline{toc}{section}{Distribuições de Vida Útil}
+\textbf{Artigos:} - IEEE Transactions on Reliability - Reliability
+Engineering \& System Safety Journal
 
-\markright{Distribuições de Vida Útil}
-
-\subsection*{Distribuição
-Exponencial}\label{distribuiuxe7uxe3o-exponencial-1}
-\addcontentsline{toc}{subsection}{Distribuição Exponencial}
-
-\begin{longtable}[]{@{}ll@{}}
-\toprule\noalign{}
-Propriedade & Fórmula \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{PDF} & \(f(t) = \lambda e^{-\lambda t}\) \\
-\textbf{CDF} & \(F(t) = 1 - e^{-\lambda t}\) \\
-\textbf{Confiabilidade} & \(R(t) = e^{-\lambda t}\) \\
-\textbf{Taxa de falha} & \(\lambda(t) = \lambda\) (constante) \\
-\textbf{MTTF} & \(1/\lambda\) \\
-\textbf{Variância} & \(1/\lambda^2\) \\
-\end{longtable}
-
-\textbf{Quando usar:} Falhas aleatórias, componentes eletrônicos, fase
-útil da vida.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Distribuição Weibull}\label{distribuiuxe7uxe3o-weibull-2}
-\addcontentsline{toc}{subsection}{Distribuição Weibull}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5714}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4286}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Propriedade
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Fórmula
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{PDF} &
-\(f(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta-1} e^{-(t/\eta)^\beta}\) \\
-\textbf{CDF} & \(F(t) = 1 - e^{-(t/\eta)^\beta}\) \\
-\textbf{Confiabilidade} & \(R(t) = e^{-(t/\eta)^\beta}\) \\
-\textbf{Taxa de falha} &
-\(\lambda(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta-1}\) \\
-\textbf{MTTF} & \(\eta \cdot \Gamma\left(1 + \frac{1}{\beta}\right)\) \\
-\end{longtable}
-
-\textbf{Parâmetros:} - \textbf{β (beta)}: forma - β \textless{} 1:
-mortalidade infantil - β = 1: taxa constante (exponencial) - β
-\textgreater{} 1: desgaste/envelhecimento - \textbf{η (eta)}: escala
-(vida característica)
-
-\textbf{Quando usar:} Maioria dos casos industriais, muito flexível.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Distribuição
-Lognormal}\label{distribuiuxe7uxe3o-lognormal-1}
-\addcontentsline{toc}{subsection}{Distribuição Lognormal}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5714}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4286}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Propriedade
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Fórmula
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{PDF} &
-\(f(t) = \frac{1}{t\sigma\sqrt{2\pi}} e^{-\frac{(\ln t - \mu)^2}{2\sigma^2}}\) \\
-\textbf{CDF} & \(F(t) = \Phi\left(\frac{\ln t - \mu}{\sigma}\right)\) \\
-\textbf{Confiabilidade} &
-\(R(t) = 1 - \Phi\left(\frac{\ln t - \mu}{\sigma}\right)\) \\
-\textbf{Mediana} & \(e^\mu\) \\
-\textbf{MTTF} & \(e^{\mu + \sigma^2/2}\) \\
-\end{longtable}
-
-\textbf{Quando usar:} Fadiga, degradação multiplicativa, tempos de
-reparo.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Distribuição Gamma}\label{distribuiuxe7uxe3o-gamma}
-\addcontentsline{toc}{subsection}{Distribuição Gamma}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.5714}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 2\tabcolsep) * \real{0.4286}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Propriedade
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Fórmula
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{PDF} &
-\(f(t) = \frac{\lambda^\alpha}{\Gamma(\alpha)} t^{\alpha-1} e^{-\lambda t}\) \\
-\textbf{MTTF} & \(\alpha / \lambda\) \\
-\end{longtable}
-
-\textbf{Quando usar:} Processos de Poisson, soma de exponenciais.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Métricas de
-Confiabilidade}\label{muxe9tricas-de-confiabilidade}
-\addcontentsline{toc}{section}{Métricas de Confiabilidade}
-
-\markright{Métricas de Confiabilidade}
-
-\begin{longtable}[]{@{}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}
-  >{\raggedright\arraybackslash}p{(\linewidth - 6\tabcolsep) * \real{0.2500}}@{}}
-\toprule\noalign{}
-\begin{minipage}[b]{\linewidth}\raggedright
-Métrica
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Símbolo
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Fórmula
-\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
-Unidade
-\end{minipage} \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-\textbf{Confiabilidade} & \(R(t)\) & \(P(T > t)\) & - \\
-\textbf{Taxa de falha} & \(\lambda(t)\) & \(\frac{f(t)}{R(t)}\) &
-falhas/tempo \\
-\textbf{MTTF} & - & \(\int_0^\infty R(t) dt\) & tempo \\
-\textbf{MTBF} & - & Tempo médio entre falhas & tempo \\
-\textbf{MTTR} & - & Tempo médio de reparo & tempo \\
-\textbf{Disponibilidade} & \(A\) & \(\frac{MTBF}{MTBF + MTTR}\) & - \\
-\end{longtable}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Sistemas}\label{sistemas}
-\addcontentsline{toc}{section}{Sistemas}
-
-\markright{Sistemas}
-
-\subsection*{Sistema Série}\label{sistema-suxe9rie-1}
-\addcontentsline{toc}{subsection}{Sistema Série}
-
-\[R_{\text{série}}(t) = \prod_{i=1}^n R_i(t)\]
-
-\textbf{MTTF:} Não há fórmula simples (depende das distribuições).
-
-\textbf{Nota:} Confiabilidade do sistema é \textbf{menor} que a de
-qualquer componente.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Sistema Paralelo
-(Redundância)}\label{sistema-paralelo-redunduxe2ncia}
-\addcontentsline{toc}{subsection}{Sistema Paralelo (Redundância)}
-
-\[R_{\text{paralelo}}(t) = 1 - \prod_{i=1}^n [1 - R_i(t)]\]
-
-\textbf{Componentes idênticos:}
-
-\[R_{\text{paralelo}}(t) = 1 - [1 - R(t)]^n\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Sistema k-out-of-n}\label{sistema-k-out-of-n-1}
-\addcontentsline{toc}{subsection}{Sistema k-out-of-n}
-
-\[R_{k/n}(t) = \sum_{i=k}^n \binom{n}{i} R(t)^i [1-R(t)]^{n-i}\]
-
-\textbf{Casos especiais:} - n-out-of-n: sistema série - 1-out-of-n:
-sistema paralelo
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Testes Estatísticos}\label{testes-estatuxedsticos}
-\addcontentsline{toc}{section}{Testes Estatísticos}
-
-\markright{Testes Estatísticos}
-
-\subsection*{Teste de
-Kolmogorov-Smirnov}\label{teste-de-kolmogorov-smirnov}
-\addcontentsline{toc}{subsection}{Teste de Kolmogorov-Smirnov}
-
-\textbf{Hipóteses:} - \(H_0\): Dados seguem distribuição especificada -
-\(H_1\): Dados não seguem
-
-\textbf{Estatística:}
-
-\[D_n = \sup_t |F_n(t) - F(t)|\]
-
-\textbf{Decisão:} Rejeitar \(H_0\) se \(D_n > D_{\alpha, n}\) (valor
-crítico).
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Teste Log-Rank (Comparação de
-Curvas)}\label{teste-log-rank-comparauxe7uxe3o-de-curvas}
-\addcontentsline{toc}{subsection}{Teste Log-Rank (Comparação de Curvas)}
-
-\textbf{Hipóteses:} - \(H_0\): Curvas de sobrevivência são iguais -
-\(H_1\): Curvas diferem
-
-\textbf{Estatística:}
-
-\[\chi^2 = \sum_{i=1}^g \frac{(O_i - E_i)^2}{E_i}\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Intervalos de Confiança}\label{intervalos-de-confianuxe7a-1}
-\addcontentsline{toc}{section}{Intervalos de Confiança}
-
-\markright{Intervalos de Confiança}
-
-\subsection*{IC para Taxa de Falha
-(Exponencial)}\label{ic-para-taxa-de-falha-exponencial}
-\addcontentsline{toc}{subsection}{IC para Taxa de Falha (Exponencial)}
-
-\[\left[\frac{2n}{{\chi^2_{1-\alpha/2, 2n}}}, \frac{2n}{{\chi^2_{\alpha/2, 2n}}}\right] \cdot \frac{1}{T}\]
-
-onde \(n\) = número de falhas, \(T\) = tempo total.
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{IC Bootstrap (Genérico)}\label{ic-bootstrap-genuxe9rico}
-\addcontentsline{toc}{subsection}{IC Bootstrap (Genérico)}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  Reamostrar dados com reposição (B vezes)
-\item
-  Calcular estatística para cada amostra
-\item
-  IC: percentis \(\alpha/2\) e \(1-\alpha/2\)
-\end{enumerate}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Códigos R Rápidos}\label{cuxf3digos-r-ruxe1pidos}
-\addcontentsline{toc}{section}{Códigos R Rápidos}
-
-\markright{Códigos R Rápidos}
-
-\subsection*{Ajustar Weibull}\label{ajustar-weibull}
-\addcontentsline{toc}{subsection}{Ajustar Weibull}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(fitdistrplus)}
-\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{fitdist}\NormalTok{(dados, }\StringTok{"weibull"}\NormalTok{)}
-\FunctionTok{summary}\NormalTok{(fit)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Kaplan-Meier}\label{kaplan-meier}
-\addcontentsline{toc}{subsection}{Kaplan-Meier}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\FunctionTok{library}\NormalTok{(survival)}
-\NormalTok{km }\OtherTok{\textless{}{-}} \FunctionTok{survfit}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(tempo, status) }\SpecialCharTok{\textasciitilde{}} \DecValTok{1}\NormalTok{)}
-\FunctionTok{plot}\NormalTok{(km, }\AttributeTok{xlab =} \StringTok{"Tempo"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"R(t)"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Modelo Cox}\label{modelo-cox}
-\addcontentsline{toc}{subsection}{Modelo Cox}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{cox }\OtherTok{\textless{}{-}} \FunctionTok{coxph}\NormalTok{(}\FunctionTok{Surv}\NormalTok{(tempo, status) }\SpecialCharTok{\textasciitilde{}}\NormalTok{ covariate, }\AttributeTok{data =}\NormalTok{ df)}
-\FunctionTok{summary}\NormalTok{(cox)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Simular Weibull}\label{simular-weibull}
-\addcontentsline{toc}{subsection}{Simular Weibull}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{rweibull}\NormalTok{(}\AttributeTok{n =} \DecValTok{100}\NormalTok{, }\AttributeTok{shape =} \DecValTok{2}\NormalTok{, }\AttributeTok{scale =} \DecValTok{1000}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\subsection*{Calcular Confiabilidade}\label{calcular-confiabilidade}
-\addcontentsline{toc}{subsection}{Calcular Confiabilidade}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{R }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(t, beta, eta) }\FunctionTok{exp}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{(t}\SpecialCharTok{/}\NormalTok{eta)}\SpecialCharTok{\^{}}\NormalTok{beta)}
-\FunctionTok{R}\NormalTok{(}\DecValTok{500}\NormalTok{, }\AttributeTok{beta =} \DecValTok{2}\NormalTok{, }\AttributeTok{eta =} \DecValTok{1000}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Fórmulas de Manutenção}\label{fuxf3rmulas-de-manutenuxe7uxe3o}
-\addcontentsline{toc}{section}{Fórmulas de Manutenção}
-
-\markright{Fórmulas de Manutenção}
-
-\subsection*{Custo por Hora
-(Preventiva)}\label{custo-por-hora-preventiva}
-\addcontentsline{toc}{subsection}{Custo por Hora (Preventiva)}
-
-\[C(T_p) = \frac{C_p R(T_p) + C_f [1 - R(T_p)]}{\int_0^{T_p} R(t) dt}\]
+\subsection*{🛠️ Ferramentas}\label{ferramentas}
+\addcontentsline{toc}{subsection}{🛠️ Ferramentas}
 
 \begin{itemize}
 \tightlist
 \item
-  \(C_p\): custo preventiva
+  \textbf{Pacotes R:} Mantenha-se atualizado com novos pacotes no CRAN
 \item
-  \(C_f\): custo falha
+  \textbf{Python:} Considere \texttt{lifelines}, \texttt{reliability},
+  \texttt{scikit-survival}
 \item
-  \(T_p\): intervalo preventivo
+  \textbf{Software Comercial:} Reliasoft, Minitab, JMP
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\section*{Contribua}\label{contribua}
+\addcontentsline{toc}{section}{Contribua}
 
-\subsection*{Disponibilidade com
-Manutenção}\label{disponibilidade-com-manutenuxe7uxe3o}
-\addcontentsline{toc}{subsection}{Disponibilidade com Manutenção}
+\markright{Contribua}
 
-\[A = \frac{MTBF}{MTBF + MTTR}\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Taxa de Falha Média}\label{taxa-de-falha-muxe9dia}
-\addcontentsline{toc}{subsection}{Taxa de Falha Média}
-
-\[\overline{\lambda} = \frac{1}{MTBF}\]
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Interpretação Visual}\label{interpretauxe7uxe3o-visual}
-\addcontentsline{toc}{section}{Interpretação Visual}
-
-\markright{Interpretação Visual}
-
-\subsection*{Papel de Weibull}\label{papel-de-weibull}
-\addcontentsline{toc}{subsection}{Papel de Weibull}
-
-\textbf{Eixos:} - X: \(\ln(t)\) - Y: \(\ln(-\ln(R(t)))\)
-
-\textbf{Reta indica Weibull:} - Inclinação = \(\beta\) - Intercepto
-relacionado a \(\eta\)
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\subsection*{Curva Bathtub (Banheira)}\label{curva-bathtub-banheira}
-\addcontentsline{toc}{subsection}{Curva Bathtub (Banheira)}
-
-\begin{verbatim}
-Taxa de Falha λ(t)
-  │
-  │ \___________________/─────
-  │   ↑       ↑        ↑
-  │   │       │        │
-  │ Infant  Useful   Wear-out
-  │ Mortality Life     Phase
-  └─────────────────────────→ Tempo
-\end{verbatim}
+Este livro é um projeto em evolução! Suas contribuições são bem-vindas:
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Fase 1:} β \textless{} 1 (mortalidade infantil)
+  🐛 \textbf{Reporte bugs} no
+  \href{https://github.com/rafasfer2/QuartoBook/issues}{GitHub Issues}
 \item
-  \textbf{Fase 2:} β ≈ 1 (vida útil)
+  💡 \textbf{Sugira melhorias} ou novos capítulos
 \item
-  \textbf{Fase 3:} β \textgreater{} 1 (desgaste)
+  📝 \textbf{Compartilhe casos de uso} reais
+\item
+  ⭐ \textbf{Dê uma estrela} no GitHub se achou útil
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\section*{Agradecimentos}\label{agradecimentos-1}
+\addcontentsline{toc}{section}{Agradecimentos}
 
-\section*{Conversões Úteis}\label{conversuxf5es-uxfateis}
-\addcontentsline{toc}{section}{Conversões Úteis}
+\markright{Agradecimentos}
 
-\markright{Conversões Úteis}
-
-\subsection*{Parâmetros Weibull}\label{paruxe2metros-weibull}
-\addcontentsline{toc}{subsection}{Parâmetros Weibull}
-
-\textbf{De β e η para λ (exponencial) quando β = 1:}
-
-\[\lambda = \frac{1}{\eta}\]
-
-\textbf{MTTF para Weibull:}
-
-\[MTTF = \eta \cdot \Gamma\left(1 + \frac{1}{\beta}\right)\]
-
-\textbf{Valores de Γ:} - Γ(1) = 1 - Γ(1.5) ≈ 0.886 - Γ(2) = 1
+Obrigado por dedicar seu tempo a este livro. Espero que ele tenha
+contribuído para sua jornada profissional em análise de confiabilidade e
+manutenção.
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\subsection*{Confiabilidade para Falha}\label{confiabilidade-para-falha}
-\addcontentsline{toc}{subsection}{Confiabilidade para Falha}
+\begin{tcolorbox}[enhanced jigsaw, bottomtitle=1mm, colback=white, left=2mm, toprule=.15mm, opacitybacktitle=0.6, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Continue Aprendendo}, leftrule=.75mm, coltitle=black, opacityback=0, breakable, titlerule=0mm, rightrule=.15mm, colframe=quarto-callout-tip-color-frame, toptitle=1mm, colbacktitle=quarto-callout-tip-color!10!white, bottomrule=.15mm, arc=.35mm]
 
-\[F(t) = 1 - R(t)\]
+A análise de confiabilidade é uma área em constante evolução.
+Mantenha-se atualizado, pratique regularmente e compartilhe seu
+conhecimento com a comunidade.
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+\end{tcolorbox}
 
-\subsection*{Hazard Rate para PDF}\label{hazard-rate-para-pdf}
-\addcontentsline{toc}{subsection}{Hazard Rate para PDF}
-
-\[f(t) = \lambda(t) \cdot R(t)\]
+\textbf{Bons estudos e sucesso em suas análises!} 📊✨
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\section*{Atalhos de
-Interpretação}\label{atalhos-de-interpretauxe7uxe3o}
-\addcontentsline{toc}{section}{Atalhos de Interpretação}
-
-\markright{Atalhos de Interpretação}
-
-\begin{longtable}[]{@{}lll@{}}
-\toprule\noalign{}
-Situação & Distribuição Provável & β Típico \\
-\midrule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-Componente eletrônico novo & Exponencial & 1.0 \\
-Rolamento industrial & Weibull & 1.5 - 3.0 \\
-Fadiga mecânica & Lognormal & - \\
-Software bugs & Exponencial ou Weibull (β \textless{} 1) & 0.5 - 1.0 \\
-Equipamento sem manutenção & Weibull & 2.5 - 4.0 \\
-\end{longtable}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\section*{Referências Rápidas}\label{referuxeancias-ruxe1pidas}
-\addcontentsline{toc}{section}{Referências Rápidas}
-
-\markright{Referências Rápidas}
-
-\subsection*{Pacotes R}\label{pacotes-r}
-\addcontentsline{toc}{subsection}{Pacotes R}
-
-\begin{itemize}
-\tightlist
-\item
-  \texttt{survival} - Análise de sobrevivência
-\item
-  \texttt{flexsurv} - Modelos paramétricos
-\item
-  \texttt{WeibullR} - Análise Weibull
-\item
-  \texttt{fitdistrplus} - Ajuste de distribuições
-\item
-  \texttt{caret} - Machine learning
-\end{itemize}
-
-\subsection*{Websites}\label{websites}
-\addcontentsline{toc}{subsection}{Websites}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{http://reliawiki.org/}{reliawiki.org}
-\item
-  \href{https://www.weibull.com/}{Weibull.com}
-\item
-  \href{https://www.itl.nist.gov/div898/handbook/}{NIST Engineering
-  Statistics Handbook}
-\end{itemize}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\textbf{💡 Dica:} Imprima este apêndice para referência rápida durante
-análises!
+\emph{Rafael da Silva Fernandes} \emph{Novembro de 2025}
 
 \bookmarksetup{startatroot}
 
@@ -7452,7 +6105,7 @@ management and continuous improvement in production systems''},
 
 \end{CSLReferences}
 
-\section*{Recursos Adicionais}\label{recursos-adicionais-1}
+\section*{Recursos Adicionais}\label{recursos-adicionais}
 \addcontentsline{toc}{section}{Recursos Adicionais}
 
 \markright{Recursos Adicionais}
@@ -7468,327 +6121,6 @@ management and continuous improvement in production systems''},
 \item
   \href{https://supabase.com/docs}{Supabase Documentation}
 \end{itemize}
-
-\bookmarksetup{startatroot}
-
-\chapter*{Créditos e Agradecimentos}\label{cruxe9ditos-e-agradecimentos}
-\addcontentsline{toc}{chapter}{Créditos e Agradecimentos}
-
-\markboth{Créditos e Agradecimentos}{Créditos e Agradecimentos}
-
-\section*{Autor}\label{autor}
-\addcontentsline{toc}{section}{Autor}
-
-\markright{Autor}
-
-\textbf{Rafael da Silva Fernandes} Engenheiro, Analista de Dados e
-Entusiasta de R
-
-\begin{itemize}
-\tightlist
-\item
-  📧 Email: rafael@example.com
-\item
-  💼 LinkedIn:
-  \href{https://linkedin.com/in/rafaelfernandes}{linkedin.com/in/rafaelfernandes}
-\item
-  🐙 GitHub:
-  \href{https://github.com/rafaelfernandes}{github.com/rafaelfernandes}
-\end{itemize}
-
-\section*{Sobre o Autor}\label{sobre-o-autor}
-\addcontentsline{toc}{section}{Sobre o Autor}
-
-\markright{Sobre o Autor}
-
-Rafael da Silva Fernandes é engenheiro com experiência em análise de
-confiabilidade, manutenção industrial e ciência de dados. Este livro é
-fruto de anos de prática aplicando métodos estatísticos para otimização
-de estratégias de manutenção em ambientes industriais.
-
-\section*{Agradecimentos}\label{agradecimentos-1}
-\addcontentsline{toc}{section}{Agradecimentos}
-
-\markright{Agradecimentos}
-
-Este livro não seria possível sem o apoio e contribuição de diversas
-pessoas e comunidades:
-
-\subsection*{Comunidade R}\label{comunidade-r}
-\addcontentsline{toc}{subsection}{Comunidade R}
-
-Agradeço à \textbf{comunidade R} e aos desenvolvedores dos pacotes
-open-source que tornaram este trabalho possível:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Hadley Wickham} e equipe do \texttt{tidyverse}
-\item
-  \textbf{Terry Therneau} pelo pacote \texttt{survival}
-\item
-  \textbf{Christopher Jackson} pelo \texttt{flexsurv}
-\item
-  \textbf{David Gohel} pelo \texttt{officer} e \texttt{flextable}
-\item
-  Desenvolvedores do \textbf{Quarto} e \textbf{Posit}
-\end{itemize}
-
-\subsection*{Revisores e Colaboradores}\label{revisores-e-colaboradores}
-\addcontentsline{toc}{subsection}{Revisores e Colaboradores}
-
-Agradecimentos especiais a:
-
-\begin{itemize}
-\tightlist
-\item
-  Colegas de trabalho que forneceram feedback valioso
-\item
-  Beta readers que testaram os exemplos
-\item
-  Comunidade GitHub que reportou issues e sugeriu melhorias
-\end{itemize}
-
-\subsection*{Instituições}\label{instituiuxe7uxf5es}
-\addcontentsline{toc}{subsection}{Instituições}
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Empresas} que forneceram dados anonimizados para estudos de
-  caso
-\item
-  \textbf{Universidades} que promovem pesquisa em confiabilidade
-\item
-  \textbf{Comunidades online} (Stack Overflow, RStudio Community, Cross
-  Validated)
-\end{itemize}
-
-\subsection*{Família}\label{famuxedlia}
-\addcontentsline{toc}{subsection}{Família}
-
-Gratidão à minha família pelo apoio durante o desenvolvimento deste
-livro.
-
-\section*{Ferramentas Utilizadas}\label{ferramentas-utilizadas}
-\addcontentsline{toc}{section}{Ferramentas Utilizadas}
-
-\markright{Ferramentas Utilizadas}
-
-Este livro foi desenvolvido com:
-
-\begin{itemize}
-\tightlist
-\item
-  \textbf{Quarto} --- Sistema de publicação científica
-  (\href{https://quarto.org}{quarto.org})
-\item
-  \textbf{R} --- Linguagem de programação estatística
-  (\href{https://www.r-project.org}{r-project.org})
-\item
-  \textbf{RStudio / VS Code} --- IDEs para desenvolvimento
-\item
-  \textbf{GitHub} --- Versionamento e colaboração
-\item
-  \textbf{Git} --- Controle de versão
-\end{itemize}
-
-\subsection*{Pacotes R Principais}\label{pacotes-r-principais}
-\addcontentsline{toc}{subsection}{Pacotes R Principais}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{tidyverse      }\CommentTok{\# Manipulação e visualização de dados}
-\NormalTok{survival       }\CommentTok{\# Análise de sobrevivência}
-\NormalTok{flexsurv       }\CommentTok{\# Modelos paramétricos flexíveis}
-\NormalTok{WeibullR       }\CommentTok{\# Análise Weibull}
-\NormalTok{fitdistrplus   }\CommentTok{\# Ajuste de distribuições}
-\NormalTok{ggplot2        }\CommentTok{\# Visualizações}
-\NormalTok{knitr          }\CommentTok{\# Relatórios reproduzíveis}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Licença e Uso}\label{licenuxe7a-e-uso}
-\addcontentsline{toc}{section}{Licença e Uso}
-
-\markright{Licença e Uso}
-
-\subsection*{Conteúdo}\label{conteuxfado}
-\addcontentsline{toc}{subsection}{Conteúdo}
-
-Este livro está licenciado sob
-\href{https://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative
-Commons BY-NC-SA 4.0}.
-
-Você pode: - ✅ Compartilhar --- copiar e redistribuir - ✅ Adaptar ---
-remixar e transformar
-
-Desde que: - 📝 Atribua crédito apropriado - 🚫 Não use para fins
-comerciais - 🔄 Compartilhe adaptações sob a mesma licença
-
-\subsection*{Código}\label{cuxf3digo}
-\addcontentsline{toc}{subsection}{Código}
-
-Todo o código R apresentado neste livro está licenciado sob
-\href{https://opensource.org/licenses/MIT}{MIT License} e pode ser usado
-livremente em projetos pessoais e comerciais.
-
-\section*{Como Citar este Livro}\label{como-citar-este-livro}
-\addcontentsline{toc}{section}{Como Citar este Livro}
-
-\markright{Como Citar este Livro}
-
-\subsection*{Formato ABNT}\label{formato-abnt}
-\addcontentsline{toc}{subsection}{Formato ABNT}
-
-\begin{verbatim}
-FERNANDES, Rafael da Silva. Confiabilidade e Manutenção: Aplicações em R.
-1. ed. [S.l.]: Publicação Independente, 2025. Disponível em:
-https://seu-site.com/livro. Acesso em: DD mmm. AAAA.
-\end{verbatim}
-
-\subsection*{Formato BibTeX}\label{formato-bibtex}
-\addcontentsline{toc}{subsection}{Formato BibTeX}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\VariableTok{@book}\NormalTok{\{}\OtherTok{fernandes2025confiabilidade}\NormalTok{,}
-  \DataTypeTok{title}\NormalTok{     = \{Confiabilidade e Manutenção: Aplicações em R\},}
-  \DataTypeTok{author}\NormalTok{    = \{Fernandes, Rafael da Silva\},}
-  \DataTypeTok{year}\NormalTok{      = \{2025\},}
-  \DataTypeTok{publisher}\NormalTok{ = \{Publicação Independente\},}
-  \DataTypeTok{url}\NormalTok{       = \{https://seu{-}site.com/livro\},}
-  \DataTypeTok{note}\NormalTok{      = \{Acesso em: DD/MM/AAAA\}}
-\NormalTok{\}}
-\end{Highlighting}
-\end{Shaded}
-
-\section*{Contribuições}\label{contribuiuxe7uxf5es}
-\addcontentsline{toc}{section}{Contribuições}
-
-\markright{Contribuições}
-
-Contribuições são bem-vindas! Se você encontrou erros, tem sugestões ou
-quer contribuir com exemplos:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Reporte issues:}
-  \href{https://github.com/seu-usuario/QuartoBook/issues}{GitHub Issues}
-\item
-  \textbf{Envie pull requests:}
-  \href{https://github.com/seu-usuario/QuartoBook}{GitHub}
-\item
-  \textbf{Entre em contato:} rafael@example.com
-\end{enumerate}
-
-\section*{Changelog}\label{changelog}
-\addcontentsline{toc}{section}{Changelog}
-
-\markright{Changelog}
-
-\subsection*{Versão 1.0 (Novembro
-2025)}\label{versuxe3o-1.0-novembro-2025}
-\addcontentsline{toc}{subsection}{Versão 1.0 (Novembro 2025)}
-
-\begin{itemize}
-\tightlist
-\item
-  ✨ Lançamento inicial
-\item
-  📚 12 capítulos principais
-\item
-  📖 3 apêndices
-\item
-  💻 Exemplos reproduzíveis em R
-\item
-  📊 Estudos de caso industriais
-\end{itemize}
-
-\subsection*{Planejado para Versões
-Futuras}\label{planejado-para-versuxf5es-futuras}
-\addcontentsline{toc}{subsection}{Planejado para Versões Futuras}
-
-\begin{itemize}
-\tightlist
-\item
-  🔄 Capítulo sobre análise bayesiana
-\item
-  🤖 Machine learning avançado para manutenção preditiva
-\item
-  📱 Aplicações Shiny interativas
-\item
-  🌐 Tradução para inglês
-\end{itemize}
-
-\section*{Feedback}\label{feedback}
-\addcontentsline{toc}{section}{Feedback}
-
-\markright{Feedback}
-
-Sua opinião é importante! Se você gostou do livro, encontrou algo útil
-ou tem sugestões de melhoria:
-
-\begin{itemize}
-\tightlist
-\item
-  ⭐ Deixe uma estrela no
-  \href{https://github.com/seu-usuario/QuartoBook}{GitHub}
-\item
-  💬 Compartilhe nas redes sociais
-\item
-  📧 Envie feedback para rafael@example.com
-\item
-  📝 Escreva uma review
-\end{itemize}
-
-\section*{Recursos Adicionais}\label{recursos-adicionais-2}
-\addcontentsline{toc}{section}{Recursos Adicionais}
-
-\markright{Recursos Adicionais}
-
-\subsection*{Links Úteis}\label{links-uxfateis}
-\addcontentsline{toc}{subsection}{Links Úteis}
-
-\begin{itemize}
-\tightlist
-\item
-  \href{https://seu-site.com/livro}{Site do projeto}
-\item
-  \href{https://github.com/seu-usuario/QuartoBook}{Repositório GitHub}
-\item
-  \href{https://github.com/seu-usuario/QuartoBook/tree/main/resources/data}{Dados
-  de exemplo}
-\item
-  \href{https://seu-site.com/livro/faq}{FAQ}
-\end{itemize}
-
-\subsection*{Redes Sociais}\label{redes-sociais}
-\addcontentsline{toc}{subsection}{Redes Sociais}
-
-\begin{itemize}
-\tightlist
-\item
-  Twitter/X:
-  \href{https://twitter.com/rafaelfernandes}{@rafaelfernandes}
-\item
-  LinkedIn: \href{https://linkedin.com/in/rafaelfernandes}{Rafael
-  Fernandes}
-\end{itemize}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\textbf{Obrigado por ler!} 🙏
-
-Se este livro foi útil para você, considere: - ⭐ Dar uma estrela no
-GitHub - 📢 Compartilhar com colegas - 💬 Deixar feedback - 🤝
-Contribuir com o projeto
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
-\emph{Última atualização: Novembro de 2025}
 
 
 \backmatter

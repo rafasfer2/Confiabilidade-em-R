@@ -44,7 +44,7 @@
     "href": "index.html#estrutura",
     "title": "Confiabilidade e Manutenção",
     "section": "📖 Estrutura",
-    "text": "📖 Estrutura\nO livro está organizado em quatro partes:\n\nParte I: Fundamentos e Teoria\nConceitos básicos, distribuições de probabilidade e métodos de estimação.\n\n\nParte II: Análise e Modelagem Prática\nAnálise de dados de falha, modelagem Weibull e análise de sobrevivência.\n\n\nParte III: Estratégias de Manutenção\nManutenção preventiva, preditiva e modelagem de sistemas complexos.\n\n\nParte IV: Métodos Avançados e Aplicações\nSimulação, estudos de caso industriais e governança de dados.",
+    "text": "📖 Estrutura\nO livro está organizado em quatro partes principais:\n\nParte I: Contexto e Aplicação em Mineração\nParte II: Fundamentos de Confiabilidade\nParte III: Estratégias de Manutenção\nParte IV: Tópicos Avançados",
     "crumbs": [
       "Bem-vindo"
     ]
@@ -54,17 +54,17 @@
     "href": "index.html#requisitos",
     "title": "Confiabilidade e Manutenção",
     "section": "💻 Requisitos",
-    "text": "💻 Requisitos\n\nR (versão ≥ 4.0)\nRStudio ou VS Code\nPacotes R — tidyverse, survival, flexsurv, ggplot2, entre outros\n\nVeja instruções detalhadas de instalação no capítulo Instalação e Ambiente.",
+    "text": "💻 Requisitos\n\nR (versão ≥ 4.0) e RStudio ou VS Code\nPacotes R principais: tidyverse, survival, flexsurv, ggplot2\n\nVeja instruções completas em Instalação e Ambiente.",
     "crumbs": [
       "Bem-vindo"
     ]
   },
   {
-    "objectID": "index.html#recursos-adicionais",
-    "href": "index.html#recursos-adicionais",
+    "objectID": "index.html#recursos",
+    "href": "index.html#recursos",
     "title": "Confiabilidade e Manutenção",
-    "section": "🔗 Recursos Adicionais",
-    "text": "🔗 Recursos Adicionais\n\nCódigo fonte: GitHub\nDados de exemplo: Disponíveis em resources/data/\nDiscussões: Issues no GitHub\n\n\n\n\n\n\n\n\nPronto para começar?\n\n\n\nInicie pelo Prefácio para entender melhor o contexto e objetivos deste livro, ou vá direto para Como Usar este Livro para configurar seu ambiente.\n\n\n\nBoa leitura e bons estudos! 📊✨",
+    "section": "🔗 Recursos",
+    "text": "🔗 Recursos\n\nCódigo: GitHub\nDados: Disponíveis em resources/data/\nIssues: GitHub Issues\n\n\n\n\n\n\n\n\nPronto para começar?\n\n\n\nInicie pelo Prefácio para entender melhor o contexto e objetivos deste livro, ou vá direto para Como Usar este Livro para configurar seu ambiente.\n\n\n\nBoa leitura e bons estudos! 📊✨",
     "crumbs": [
       "Bem-vindo"
     ]
@@ -461,6 +461,76 @@
     "crumbs": [
       "Contexto e Aplicação em Mineração",
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Fatores Moderadores da Manutenção</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Considerações Finais",
+    "section": "",
+    "text": "Síntese do Aprendizado\nAo longo deste livro, exploramos os fundamentos e aplicações práticas de confiabilidade e manutenção usando R. Você aprendeu:\n✅ Fundamentos — Conceitos de confiabilidade, métricas e distribuições de vida útil\n✅ Modelagem — Ajuste de distribuições (Weibull, exponencial, lognormal) a dados reais\n✅ Análise de Sobrevivência — Técnicas para dados censurados e modelos de Cox\n✅ Estratégias de Manutenção — Otimização de políticas preventivas e preditivas\n✅ Machine Learning — Predição de falhas usando dados de sensores\n✅ Simulação — Avaliação de políticas sob incerteza com Monte Carlo\n✅ Boas Práticas — Governança de dados e reprodutibilidade",
+    "crumbs": [
+      "Considerações Finais"
+    ]
+  },
+  {
+    "objectID": "summary.html#próximos-passos",
+    "href": "summary.html#próximos-passos",
+    "title": "Considerações Finais",
+    "section": "Próximos Passos",
+    "text": "Próximos Passos\n\n📚 Aprofundamento\n\nExplore os apêndices para referências rápidas de pacotes e funções\nPratique com os exercícios propostos em cada capítulo\nAplique as técnicas aos seus próprios dados industriais\n\n\n\n🔬 Tópicos Avançados\nPara ir além:\n\nAnálise Bayesiana — Incorporar conhecimento prévio na modelagem\nDeep Learning — Redes neurais para predição de falhas\nOtimização Multi-objetivo — Balancear custo, disponibilidade e risco\nDigital Twins — Gêmeos digitais para simulação em tempo real\n\n\n\n💼 Aplicação Prática\nColoque em prática:\n\nIdentifique equipamentos críticos na sua operação\nColete dados de histórico de falhas e manutenção\nAplique as técnicas aprendidas para modelagem\nOtimize estratégias de manutenção baseadas nos resultados\nMonitore continuamente e ajuste os modelos",
+    "crumbs": [
+      "Considerações Finais"
+    ]
+  },
+  {
+    "objectID": "summary.html#recursos-contínuos",
+    "href": "summary.html#recursos-contínuos",
+    "title": "Considerações Finais",
+    "section": "Recursos Contínuos",
+    "text": "Recursos Contínuos\n\n🌐 Comunidade\n\nR4DS Online Learning Community\nStack Overflow - R Tag\nRStudio Community\nCross Validated\n\n\n\n📖 Leitura Adicional\nLivros: - “Applied Survival Analysis” - Hosmer, Lemeshow & May - “Reliability Engineering” - Elsayed - “Weibull Analysis Handbook” - Bryan Dodson\nArtigos: - IEEE Transactions on Reliability - Reliability Engineering & System Safety Journal\n\n\n🛠️ Ferramentas\n\nPacotes R: Mantenha-se atualizado com novos pacotes no CRAN\nPython: Considere lifelines, reliability, scikit-survival\nSoftware Comercial: Reliasoft, Minitab, JMP",
+    "crumbs": [
+      "Considerações Finais"
+    ]
+  },
+  {
+    "objectID": "summary.html#contribua",
+    "href": "summary.html#contribua",
+    "title": "Considerações Finais",
+    "section": "Contribua",
+    "text": "Contribua\nEste livro é um projeto em evolução! Suas contribuições são bem-vindas:\n\n🐛 Reporte bugs no GitHub Issues\n💡 Sugira melhorias ou novos capítulos\n📝 Compartilhe casos de uso reais\n⭐ Dê uma estrela no GitHub se achou útil",
+    "crumbs": [
+      "Considerações Finais"
+    ]
+  },
+  {
+    "objectID": "summary.html#agradecimentos",
+    "href": "summary.html#agradecimentos",
+    "title": "Considerações Finais",
+    "section": "Agradecimentos",
+    "text": "Agradecimentos\nObrigado por dedicar seu tempo a este livro. Espero que ele tenha contribuído para sua jornada profissional em análise de confiabilidade e manutenção.\n\n\n\n\n\n\n\nContinue Aprendendo\n\n\n\nA análise de confiabilidade é uma área em constante evolução. Mantenha-se atualizado, pratique regularmente e compartilhe seu conhecimento com a comunidade.\n\n\nBons estudos e sucesso em suas análises! 📊✨\n\nRafael da Silva Fernandes Novembro de 2025",
+    "crumbs": [
+      "Considerações Finais"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "Referências",
+    "section": "",
+    "text": "Recursos Adicionais",
+    "crumbs": [
+      "Referências"
+    ]
+  },
+  {
+    "objectID": "references.html#recursos-adicionais",
+    "href": "references.html#recursos-adicionais",
+    "title": "Referências",
+    "section": "",
+    "text": "Documentação Quarto\nR for Data Science\nShiny Documentation\nSupabase Documentation",
+    "crumbs": [
+      "Referências"
     ]
   }
 ]

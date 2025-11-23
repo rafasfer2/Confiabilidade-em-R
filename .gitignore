@@ -1,35 +1,35 @@
-# ===== Quarto Book =====
-# Diretório de saída do Quarto Book
-/_book/
+# Quarto
 /.quarto/
+/_site/
+/_book/
+/docs/
+*.html
 
-# Cache de renderização
-*_cache/
-*_files/
-*_freeze/
-
-# Arquivos temporários do Quarto
-.quarto
-*.quarto_ipynb
-
-# ===== R =====
-.Rproj.user
+# R
 .Rhistory
 .RData
-.Ruserdata
+.Rproj.user
+.Renviron
 *.Rproj
 
-# ===== Sistema =====
+# Cache
+*_cache/
+*_files/
+/_freeze/
+
+# OS
 .DS_Store
 Thumbs.db
 *~
-*.bak
-*.tmp
 
-# ===== Editor =====
+# IDE
+.vscode/
 .idea/
-*.swp
-*.swo
 
-# ===== Logs =====
+# Logs
 *.log
+
+# Temporary
+tmp/
+temp/
+*.tmp

@@ -3,15 +3,14 @@
 ## Autor
 
 **Rafael da Silva Fernandes**
-Engenheiro, Analista de Dados e Entusiasta de R
+Engenheiro, Analista de Dados
+Universidade Federal de Itajubá
 
-- 📧 Email: rafael@example.com
-- 💼 LinkedIn: [linkedin.com/in/rafaelfernandes](https://linkedin.com/in/rafaelfernandes)
-- 🐙 GitHub: [github.com/rafaelfernandes](https://github.com/rafaelfernandes)
+- 🐙 GitHub: [github.com/rafasfer2](https://github.com/rafasfer2)
 
 ## Sobre o Autor
 
-Rafael da Silva Fernandes é engenheiro com experiência em análise de confiabilidade, manutenção industrial e ciência de dados. Este livro é fruto de anos de prática aplicando métodos estatísticos para otimização de estratégias de manutenção em ambientes industriais.
+Engenheiro com experiência em análise de confiabilidade, manutenção industrial e ciência de dados. Este livro é fruto de anos de prática aplicando métodos estatísticos para otimização de estratégias de manutenção em ambientes industriais.
 
 ## Agradecimentos
 
@@ -92,8 +91,8 @@ Todo o código R apresentado neste livro está licenciado sob [MIT License](http
 
 ```
 FERNANDES, Rafael da Silva. Confiabilidade e Manutenção: Aplicações em R.
-1. ed. [S.l.]: Publicação Independente, 2025. Disponível em:
-https://seu-site.com/livro. Acesso em: DD mmm. AAAA.
+1. ed. Itajubá: UNIFEI, 2025. Disponível em:
+https://github.com/rafasfer2/QuartoBook. Acesso em: [data de acesso].
 ```
 
 ### Formato BibTeX
@@ -103,69 +102,26 @@ https://seu-site.com/livro. Acesso em: DD mmm. AAAA.
   title     = {Confiabilidade e Manutenção: Aplicações em R},
   author    = {Fernandes, Rafael da Silva},
   year      = {2025},
-  publisher = {Publicação Independente},
-  url       = {https://seu-site.com/livro},
-  note      = {Acesso em: DD/MM/AAAA}
+  publisher = {Universidade Federal de Itajubá},
+  address   = {Itajubá, MG},
+  url       = {https://github.com/rafasfer2/QuartoBook}
 }
 ```
 
 ## Contribuições
 
-Contribuições são bem-vindas! Se você encontrou erros, tem sugestões ou quer contribuir com exemplos:
+Contribuições são bem-vindas! Se você encontrou erros ou tem sugestões:
 
-1. **Reporte issues:** [GitHub Issues](https://github.com/seu-usuario/QuartoBook/issues)
-2. **Envie pull requests:** [GitHub](https://github.com/seu-usuario/QuartoBook)
-3. **Entre em contato:** rafael@example.com
-
-## Changelog
-
-### Versão 1.0 (Novembro 2025)
-
-- ✨ Lançamento inicial
-- 📚 12 capítulos principais
-- 📖 3 apêndices
-- 💻 Exemplos reproduzíveis em R
-- 📊 Estudos de caso industriais
-
-### Planejado para Versões Futuras
-
-- 🔄 Capítulo sobre análise bayesiana
-- 🤖 Machine learning avançado para manutenção preditiva
-- 📱 Aplicações Shiny interativas
-- 🌐 Tradução para inglês
+- **Reporte issues:** [GitHub Issues](https://github.com/rafasfer2/QuartoBook/issues)
+- **Pull requests:** [GitHub](https://github.com/rafasfer2/QuartoBook)
 
 ## Feedback
 
-Sua opinião é importante! Se você gostou do livro, encontrou algo útil ou tem sugestões de melhoria:
+Se este livro foi útil:
 
-- ⭐ Deixe uma estrela no [GitHub](https://github.com/seu-usuario/QuartoBook)
-- 💬 Compartilhe nas redes sociais
-- 📧 Envie feedback para rafael@example.com
-- 📝 Escreva uma review
-
-## Recursos Adicionais
-
-### Links Úteis
-
-- [Site do projeto](https://seu-site.com/livro)
-- [Repositório GitHub](https://github.com/seu-usuario/QuartoBook)
-- [Dados de exemplo](https://github.com/seu-usuario/QuartoBook/tree/main/resources/data)
-- [FAQ](https://seu-site.com/livro/faq)
-
-### Redes Sociais
-
-- Twitter/X: [\@rafaelfernandes](https://twitter.com/rafaelfernandes)
-- LinkedIn: [Rafael Fernandes](https://linkedin.com/in/rafaelfernandes)
-
----
-
-**Obrigado por ler!** 🙏
-
-Se este livro foi útil para você, considere:
-- ⭐ Dar uma estrela no GitHub
-- 📢 Compartilhar com colegas
-- 💬 Deixar feedback
-- 🤝 Contribuir com o projeto
+- ⭐ Deixe uma estrela no [GitHub](https://github.com/rafasfer2/QuartoBook)
+- 💬 Compartilhe com colegas
+- 🤝 Contribua com exemplos ou melhorias
 
 ---
 

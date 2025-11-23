@@ -1,0 +1,145 @@
+/* Custom CSS for QuartoBook - Versão Limpa */
+
+/* Paleta de Cores */
+:root {
+  --color-brown-dark: #543005;
+  --color-brown-med: #8c510a;
+  --color-brown: #bf812d;
+  --color-brown-light: #dfc27d;
+  --color-cream: #f6e8c3;
+  --color-cyan-light: #c7eae5;
+  --color-cyan-mid: #80cdc1;
+  --color-teal: #35978f;
+  --color-teal-dark: #01665e;
+  --color-teal-deep: #003c30;
+  /* Layout variables */
+  --sidebar-width: 300px;
+  --toc-width: 250px;
+  --layout-max-width: 1200px;
+}
+
+/* ===== SIDEBAR - CONFIGURAÇÃO BÁSICA ===== */
+#quarto-sidebar,
+.sidebar,
+.sidebar-navigation {
+  background: var(--color-teal) !important;
+}
+
+#quarto-sidebar a,
+.sidebar a,
+.sidebar nav a,
+.sidebar-item-text {
+  color: #ffffff !important;
+}
+
+
+/* Números de capítulos também brancos */
+#quarto-sidebar .chapter-number,
+.sidebar .chapter-number,
+.sidebar-item .chapter-number {
+  color: #ffffff !important;
+}
+#quarto-sidebar a:hover,
+.sidebar a:hover,
+.sidebar nav a:hover {
+  background: var(--color-teal-dark) !important;
+  color: #ffffff !important;
+}
+
+#quarto-sidebar .active,
+.sidebar .active {
+  font-weight: bold !important;
+  background: transparent !important;
+}
+
+/* ===== TOC À DIREITA ===== */
+#quarto-margin-sidebar,
+.margin-sidebar,
+#TOC {
+  background: var(--color-cream) !important;
+  padding: 1em !important;
+  border-radius: 8px;
+}
+
+#TOC a,
+#TOC h2,
+.toc-active a {
+  color: var(--color-teal-deep) !important;
+}
+
+#TOC a:hover {
+  color: var(--color-teal) !important;
+  text-decoration: underline;
+
+#TOC .active,
+#TOC a.active {
+  font-weight: bold !important;
+  background: transparent !important;
+}
+}
+
+/* ===== CONTEÚDO ===== */
+body {
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 12pt;
+  line-height: 1.5;
+}
+
+/* ===== LAYOUT PROPORCIONAL ===== */
+/* Centraliza conjunto conteúdo + TOC, mantendo sidebar fixa à esquerda */
+body.nav-sidebar .page-columns {
+  max-width: var(--layout-max-width);
+  margin-left: calc(var(--sidebar-width) + 20px) !important;
+  margin-right: auto;
+  padding-right: 0;
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+}
+
+/* Conteúdo principal ocupa restante exceto TOC */
+body.nav-sidebar main.content {
+  flex: 1 1 auto;
+  max-width: calc(var(--layout-max-width) - var(--toc-width) - 2rem);
+}
+
+/* TOC/margin sidebar largura fixa proporcional */
+#quarto-margin-sidebar.sidebar.margin-sidebar {
+  flex: 0 0 var(--toc-width);
+  max-width: var(--toc-width);
+}
+
+/* Ajuste responsivo: telas muito largas aumentam limite */
+@media (min-width: 1400px) {
+  :root { --layout-max-width: 1350px; }
+}
+@media (min-width: 1700px) {
+  :root { --layout-max-width: 1500px; }
+}
+
+/* Telas menores: TOC abaixo do conteúdo para evitar aperto */
+@media (max-width: 1100px) {
+  body.nav-sidebar .page-columns { flex-direction: column; }
+  #quarto-margin-sidebar.sidebar.margin-sidebar { flex: 1 1 auto; max-width: 100%; }
+  body.nav-sidebar main.content { max-width: 100%; }
+}
+
+h1 {
+  color: var(--color-brown-dark);
+  border-bottom: 2px solid var(--color-brown);
+}
+
+h2 { color: var(--color-brown-med); }
+h3 { color: var(--color-brown); }
+
+figcaption {
+  background: linear-gradient(90deg, var(--color-cyan-mid) 10%, var(--color-cyan-light) 90%);
+  padding: 4px 8px;
+  border-radius: 4px;
+  color: var(--color-brown-dark);
+  font-weight: bold;
+}
+
+table thead tr { background: var(--color-cyan-mid); }
+table thead th { color: var(--color-brown-dark); }
+table tbody tr:nth-child(even) { background: var(--color-cyan-light); }

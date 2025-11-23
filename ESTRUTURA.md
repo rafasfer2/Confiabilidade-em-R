@@ -22,18 +22,29 @@ QuartoBook/
 - ✅ `setup.qmd` - Instalação e ambiente
 
 #### Capítulos (chapters/)
-1. ✅ `01-fundamentos.qmd` - Fundamentos de Confiabilidade
-2. ✅ `02-distribuicoes.qmd` - Probabilidades e Distribuições para Vida Útil
-3. ✅ `03-estimacao.qmd` - Estimativa de Parâmetros e Inferência
-4. ✅ `04-analise-falhas.qmd` - Análise de Dados de Falha com R
-5. ✅ `05-weibull.qmd` - Modelagem Weibull na Prática
-6. ✅ `06-sobrevivencia.qmd` - Análise de Sobrevivência
-7. ✅ `07-manutencao-preventiva.qmd` - Manutenção Preventiva
-8. ✅ `08-manutencao-preditiva.qmd` - Manutenção Preditiva
-9. ✅ `09-sistemas.qmd` - Modelos de Confiabilidade de Sistema
-10. ✅ `10-simulacao.qmd` - Simulação Monte Carlo
-11. ✅ `11-estudos-caso.qmd` - Estudos de Caso Industriais
-12. ✅ `12-governanca.qmd` - Governança de Dados
+
+**Parte I: Contexto e Aplicação em Mineração**
+1. ✅ `01-introducao.qmd` - Introdução à Confiabilidade na Mineração
+2. ✅ `02-performance-mineracao.qmd` - Performance de Equipamentos
+3. ✅ `03-fatores-moderadores.qmd` - Fatores Moderadores
+
+**Parte II: Fundamentos de Confiabilidade**
+4. ✅ `04-fundamentos.qmd` - Fundamentos de Confiabilidade
+5. ✅ `05-distribuicoes.qmd` - Distribuições de Vida Útil
+6. ✅ `06-estimacao.qmd` - Estimação de Parâmetros
+7. ✅ `07-analise-falhas.qmd` - Análise de Dados de Falha
+8. ✅ `08-weibull.qmd` - Modelagem Weibull
+9. ✅ `09-sobrevivencia.qmd` - Análise de Sobrevivência
+
+**Parte III: Estratégias de Manutenção**
+10. ✅ `10-manutencao-preventiva.qmd` - Manutenção Preventiva
+11. ✅ `11-manutencao-preditiva.qmd` - Manutenção Preditiva
+
+**Parte IV: Tópicos Avançados**
+12. ✅ `12-sistemas.qmd` - Modelos de Sistemas
+13. ✅ `13-simulacao.qmd` - Simulação Monte Carlo
+14. ✅ `14-estudos-caso.qmd` - Estudos de Caso
+15. ✅ `15-governanca.qmd` - Governança de Dados
 
 #### Apêndices (appendices/)
 - ✅ `A-pacotes.qmd` - Pacotes e Funções Úteis em R
@@ -41,6 +52,7 @@ QuartoBook/
 - ✅ `C-cheatsheet.qmd` - Cheatsheets e Fórmulas
 
 #### Finais
+- ✅ `summary.qmd` - Considerações finais
 - ✅ `references.qmd` - Referências bibliográficas
 - ✅ `credits.qmd` - Créditos e Agradecimentos
 
@@ -121,15 +133,11 @@ Opções de publicação:
 - Netlify
 - Vercel
 
-## 📝 Observações sobre Arquivos Antigos
+## 📝 Arquivos Organizados
 
-Os arquivos originais foram **preservados**:
-- `intro.qmd` - Conteúdo sobre SIAM
-- `summary.qmd` - Análises SIAM
-
-**Recomendação:**
-- Mova para uma pasta `old/` se não forem mais necessários
-- Ou delete se o conteúdo foi migrado
+✅ **Removidos:** `intro.qmd` (conteúdo obsoleto sobre SIAM)
+✅ **Atualizado:** `summary.qmd` (agora contém considerações finais do livro)
+✅ **Consolidado:** Conteúdo principal em `index.qmd` e `preface.qmd`
 
 ## 🚀 Como Usar
 
@@ -194,15 +202,15 @@ git push
 
 ## 📚 Resumo
 
-Total de arquivos criados/modificados:
-- ✅ 4 arquivos de introdução
-- ✅ 12 capítulos principais
+Total de arquivos do livro:
+- ✅ 4 arquivos iniciais (index, preface, requirements, setup)
+- ✅ 15 capítulos principais (organizados em 4 partes)
 - ✅ 3 apêndices
-- ✅ 2 arquivos finais
-- ✅ 1 configuração principal
-- ✅ 1 script de instalação
+- ✅ 3 arquivos finais (summary, references, credits)
+- ✅ 1 configuração principal (_quarto.yml)
+- ✅ Estrutura de diretórios (resources/, docs/, images/)
 
-**Total:** 23 arquivos + estrutura de diretórios
+**Total:** 26 arquivos principais + infraestrutura
 
 ---
 

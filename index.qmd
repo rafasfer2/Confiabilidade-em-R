@@ -35,33 +35,25 @@ Este livro fornece uma introdução **prática e aplicada** aos conceitos de con
 
 ## 📖 Estrutura
 
-O livro está organizado em quatro partes:
+O livro está organizado em **quatro partes principais**:
 
-### Parte I: Fundamentos e Teoria
-Conceitos básicos, distribuições de probabilidade e métodos de estimação.
-
-### Parte II: Análise e Modelagem Prática
-Análise de dados de falha, modelagem Weibull e análise de sobrevivência.
-
-### Parte III: Estratégias de Manutenção
-Manutenção preventiva, preditiva e modelagem de sistemas complexos.
-
-### Parte IV: Métodos Avançados e Aplicações
-Simulação, estudos de caso industriais e governança de dados.
+- **Parte I:** Contexto e Aplicação em Mineração
+- **Parte II:** Fundamentos de Confiabilidade
+- **Parte III:** Estratégias de Manutenção
+- **Parte IV:** Tópicos Avançados
 
 ## 💻 Requisitos
 
-- **R** (versão ≥ 4.0)
-- **RStudio** ou VS Code
-- **Pacotes R** — `tidyverse`, `survival`, `flexsurv`, `ggplot2`, entre outros
+- **R** (versão ≥ 4.0) e **RStudio** ou VS Code
+- **Pacotes R** principais: `tidyverse`, `survival`, `flexsurv`, `ggplot2`
 
-Veja instruções detalhadas de instalação no capítulo [Instalação e Ambiente](setup.qmd).
+Veja instruções completas em [Instalação e Ambiente](setup.qmd).
 
-## 🔗 Recursos Adicionais
+## 🔗 Recursos
 
-- **Código fonte:** [GitHub](https://github.com/seu-usuario/QuartoBook)
-- **Dados de exemplo:** Disponíveis em `resources/data/`
-- **Discussões:** [Issues no GitHub](https://github.com/seu-usuario/QuartoBook/issues)
+- **Código:** [GitHub](https://github.com/rafasfer2/QuartoBook)
+- **Dados:** Disponíveis em `resources/data/`
+- **Issues:** [GitHub Issues](https://github.com/rafasfer2/QuartoBook/issues)
 
 ---
 

@@ -272,17 +272,18 @@ body.theme-night h3 {
 
 /* ===== RODAPÉ ===== */
 #quarto-footer {
-  position: fixed !important;
-  bottom: 0 !important;
+  position: relative !important;
+  bottom: auto !important;
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
+  margin-top: 3rem !important;
   background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%) !important;
   color: white !important;
-  padding: 0.6rem 2rem !important;
+  padding: 0.8rem 2rem !important;
   font-size: 0.85rem !important;
   text-align: center !important;
-  z-index: 1050 !important;
+  z-index: 10 !important;
   box-shadow: 0 -2px 8px rgba(0,0,0,0.1) !important;
 }
 
@@ -333,8 +334,11 @@ body.nav-sidebar {
   padding-left: 300px !important;
   padding-right: var(--toc-width) !important;
   padding-top: 60px !important;
-  padding-bottom: 60px !important;
+  padding-bottom: 2rem !important;
   margin: 0 !important;
+  min-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 main.content {
@@ -344,6 +348,7 @@ main.content {
   margin: 0 !important;
   position: relative !important;
   left: 0 !important;
+  flex: 1 0 auto !important;
 }
 
 /* ANULA todos os containers internos que criam margens */
@@ -402,14 +407,19 @@ main.content blockquote {
 
 /* Título "Índice" ou "On this page" */
 #TOC h2,
-#TOC .h2,
-#TOC > ul > li:first-child {
+#TOC .h2 {
   color: var(--color-teal-deep) !important;
   font-weight: bold !important;
   font-size: 1.2rem !important;
   padding-bottom: 0.5rem !important;
   margin-bottom: 0.5rem !important;
   border-bottom: 2px solid var(--color-teal) !important;
+}
+
+/* Remove borda de TODOS os itens de lista */
+#TOC > ul > li {
+  border-bottom: none !important;
+  border: none !important;
 }
 
 /* Links do TOC - fonte MENOR que corpo */
@@ -442,14 +452,27 @@ main.content blockquote {
   font-weight: bold !important;
   font-size: 0.9rem !important;
   border-bottom: none !important;
+  border: none !important;
   text-decoration: none !important;
 }
 
+/* Remove especificamente bordas do primeiro item após o título */
+#TOC > ul > li:first-child,
+#TOC > ul > li:first-child > a {
+  border-bottom: none !important;
+  border-top: none !important;
+  border: none !important;
+}
+
 /* Remove TODAS as bordas de TODOS os níveis */
+#TOC ul,
 #TOC ul > li,
 #TOC ul > li > a,
 #TOC > ul > li,
-#TOC > ul > li > a {
+#TOC > ul > li > a,
+#TOC ul li:first-child,
+#TOC ul > li:first-child,
+#TOC ul > li:first-child > a {
   border: none !important;
   border-bottom: none !important;
   border-top: none !important;

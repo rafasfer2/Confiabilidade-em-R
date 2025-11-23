@@ -26,6 +26,30 @@ book:
         - chapters/02-performance-mineracao.qmd
         - chapters/03-fatores-moderadores.qmd
 
+    # - part: "Fundamentos de Confiabilidade"
+    #   chapters:
+    #     - chapters/04-fundamentos.qmd
+    #     - chapters/05-distribuicoes.qmd
+    #     - chapters/06-estimacao.qmd
+    #     - chapters/07-analise-falhas.qmd
+    #     - chapters/08-weibull.qmd
+    #     - chapters/09-sobrevivencia.qmd
+
+    # - part: "Estratégias de Manutenção"
+    #   chapters:
+    #     - chapters/10-manutencao-preventiva.qmd
+    #     - chapters/11-manutencao-preditiva.qmd
+
+    # - part: "Tópicos Avançados"
+    #   chapters:
+    #     - chapters/12-sistemas.qmd
+    #     - chapters/13-simulacao.qmd
+    #     - chapters/14-estudos-caso.qmd
+    #     - chapters/15-governanca.qmd
+
+    - summary.qmd
+    - references.qmd
+
 bibliography: references.bib
 csl: ieee.csl
 lang: pt-BR

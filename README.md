@@ -10,12 +10,15 @@ Este livro oferece uma abordagem **prática e aplicada** sobre **confiabilidade*
 
 ### Conteúdo
 
-**Parte I: Fundamentos e Teoria**
+**Parte I: Contexto e Aplicação em Mineração**
+- Introdução à Confiabilidade na Mineração
+- Performance de Equipamentos de Mineração
+- Fatores Moderadores da Confiabilidade
+
+**Parte II: Fundamentos de Confiabilidade**
 - Fundamentos de Confiabilidade
 - Distribuições de Probabilidade para Vida Útil
 - Estimação de Parâmetros e Inferência
-
-**Parte II: Análise e Modelagem Prática**
 - Análise de Dados de Falha com R
 - Modelagem Weibull na Prática
 - Análise de Sobrevivência e Modelos de Cox
@@ -23,12 +26,12 @@ Este livro oferece uma abordagem **prática e aplicada** sobre **confiabilidade*
 **Parte III: Estratégias de Manutenção**
 - Manutenção Preventiva e Otimização de Políticas
 - Manutenção Preditiva com Dados de Sensores
-- Modelos de Confiabilidade de Sistemas
 
-**Parte IV: Métodos Avançados e Aplicações**
-- Simulação Monte Carlo para Confiabilidade
+**Parte IV: Tópicos Avançados**
+- Modelos de Confiabilidade de Sistemas
+- Simulação Monte Carlo
 - Estudos de Caso Industriais
-- Governança de Dados e Melhores Práticas
+- Governança de Dados e Boas Práticas
 
 **Público-alvo:** Engenheiros de confiabilidade, analistas de manutenção, cientistas de dados, estudantes e profissionais da indústria.
 
@@ -68,20 +71,33 @@ QuartoBook/
 ├── preface.qmd              # Prefácio
 ├── requirements.qmd         # Como usar
 ├── setup.qmd                # Instalação
-├── chapters/                # 12 capítulos principais
-│   ├── 01-fundamentos.qmd
-│   ├── 02-distribuicoes.qmd
-│   └── ...
-├── appendices/              # 3 apêndices
+├── chapters/                # 15 capítulos principais
+│   ├── 01-introducao.qmd
+│   ├── 02-performance-mineracao.qmd
+│   ├── 03-fatores-moderadores.qmd
+│   ├── 04-fundamentos.qmd
+│   ├── 05-distribuicoes.qmd
+│   ├── 06-estimacao.qmd
+│   ├── 07-analise-falhas.qmd
+│   ├── 08-weibull.qmd
+│   ├── 09-sobrevivencia.qmd
+│   ├── 10-manutencao-preventiva.qmd
+│   ├── 11-manutencao-preditiva.qmd
+│   ├── 12-sistemas.qmd
+│   ├── 13-simulacao.qmd
+│   ├── 14-estudos-caso.qmd
+│   └── 15-governanca.qmd
+├── appendices/              # Apêndices
 │   ├── A-pacotes.qmd
 │   ├── B-templates.qmd
 │   └── C-cheatsheet.qmd
 ├── resources/               # Scripts e dados
-│   ├── install_packages.R
-│   └── data/
+│   ├── data/               # Dados de exemplo
+│   ├── scripts/            # Scripts R auxiliares
+│   └── images/             # Figuras
 ├── docs/                    # Output renderizado
+├── summary.qmd              # Considerações finais
 ├── references.qmd           # Referências
-├── credits.qmd              # Créditos
 └── README.md                # Este arquivo
 ```
 
@@ -163,14 +179,14 @@ Este livro pode ser hospedado em várias plataformas:
 git init
 git add .
 git commit -m "Initial commit"
-git remote add origin https://github.com/seu-usuario/QuartoBook.git
+git remote add origin https://github.com/rafasfer2/QuartoBook.git
 git push -u origin main
 
 # 3. Habilitar GitHub Pages
 # Settings → Pages → Source: GitHub Actions
 ```
 
-O GitHub Actions renderiza e publica automaticamente em: `https://seu-usuario.github.io/QuartoBook/`
+O GitHub Actions renderiza e publica automaticamente em: `https://rafasfer2.github.io/QuartoBook/`
 
 ### Quarto Pub
 
