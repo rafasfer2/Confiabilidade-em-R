@@ -29,6 +29,17 @@ body, html {
   padding: 0 !important;
 }
 
+/* Remove TODOS os containers e margens automáticas do Quarto */
+.quarto-container,
+.page-columns,
+.page-rows-contents,
+.page-layout-article {
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 /* ===== SIDEBAR ESQUERDA ===== */
 #quarto-sidebar {
   position: fixed !important;
@@ -326,28 +337,25 @@ body.nav-sidebar {
   margin: 0 !important;
 }
 
-.page-columns {
-  margin: 0 !important;
-  padding: 0 !important;
-  max-width: 100% !important;
-}
-
 main.content {
   width: 100% !important;
   max-width: 100% !important;
   padding: 0 !important;
   margin: 0 !important;
+  position: relative !important;
+  left: 0 !important;
 }
 
-/* Força alinhamento mais próximo da sidebar, eliminando centralizações ocultas */
-main.content, main.content .quarto-title, main.content .quarto-title-block, main.content header.quarto-title-block {
-  margin-left: 0 !important;
-  padding-left: 0 !important;
-}
-
-/* Ajusta bloco do título para ocupar largura total sem criar recuo adicional */
+/* ANULA todos os containers internos que criam margens */
+main.content > div,
+main.content .quarto-title,
+main.content .quarto-title-block,
+main.content header.quarto-title-block,
+main.content #title-block-header,
 main.content #title-block-header .quarto-title-block > div {
   margin: 0 !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 /* Padding interno apenas para elementos de conteúdo */
