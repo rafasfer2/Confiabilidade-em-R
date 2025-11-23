@@ -403,9 +403,9 @@ main.content > * {
 
 /* ===== TIPOGRAFIA ===== */
 body {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 12pt;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* ===== TÍTULO DO LIVRO ===== */
