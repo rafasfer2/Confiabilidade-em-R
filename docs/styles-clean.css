@@ -422,17 +422,18 @@ body {
 
 #title-block-header .title {
   color: var(--color-teal-dark) !important;
-  font-size: 2.2rem !important;
+  font-size: 1.6rem !important;
   font-weight: bold !important;
   margin: 0 !important;
   border: none !important;
   line-height: 1.3 !important;
+  white-space: nowrap !important;
 }
 
 /* Subtítulo - quebra de linha */
 #title-block-header .subtitle {
   color: var(--color-teal-dark) !important;
-  font-size: 1.5rem !important;
+  font-size: 1.2rem !important;
   font-weight: normal !important;
   margin: 0.5rem 0 0 0 !important;
   display: block !important;
