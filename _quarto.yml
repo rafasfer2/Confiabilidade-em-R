@@ -67,13 +67,99 @@ format:
           document.addEventListener('DOMContentLoaded', function() {
             const header = document.getElementById('quarto-header');
             if (header) {
-              const fullTitle = document.querySelector('title')?.textContent || '';
-              const bookTitle = fullTitle.split(':')[0].trim();
               header.innerHTML = `
                 <div class="navbar-container">
-                  <div class="navbar-title">${bookTitle}<span class="edicao"> 1ª ed.</span></div>
+                  <div class="quarto-navbar-tools quarto-navbar-tools-start">
+                    <button id="sidebar-toggle" title="Ocultar/Mostrar Sidebar" aria-label="Toggle Sidebar"><i class="bi bi-list"></i></button>
+                    <button id="search-toggle" title="Buscar" aria-label="Buscar"><i class="bi bi-search"></i></button>
+                    <div class="dropdown" id="format-menu">
+                      <button class="dropdown-toggle" title="Opções de formatação" aria-label="Formatação"><i class="bi bi-gear"></i></button>
+                      <div class="dropdown-content">
+                        <div class="format-option">
+                          <label>Fonte</label>
+                          <button data-font="serif">Serif</button>
+                          <button data-font="sans">Sans</button>
+                        </div>
+                        <div class="format-option">
+                          <label>Tema</label>
+                          <button data-theme="white">White</button>
+                          <button data-theme="sepia">Sepia</button>
+                          <button data-theme="night">Night</button>
+                        </div>
+                        <div class="format-option">
+                          <label>Espaçamento</label>
+                          <button data-spacing="minus">-</button>
+                          <button data-spacing="plus">+</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="navbar-title">Confiabilidade e Manutenção: Aplicações em R<span class="edicao"> 1ª ed.</span></div>
+                  <div class="quarto-navbar-tools quarto-navbar-tools-end">
+                    <a href="https://twitter.com" target="_blank" title="Twitter" aria-label="Twitter"><i class="bi bi-twitter"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    <a href="#" title="Compartilhar" aria-label="Compartilhar"><i class="bi bi-share"></i></a>
+                  </div>
                 </div>
               `;
+
+              // Toggle Sidebar
+              document.getElementById('sidebar-toggle')?.addEventListener('click', function() {
+                const sidebar = document.getElementById('quarto-sidebar');
+                const body = document.body;
+                if (sidebar) {
+                  sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
+                  body.style.paddingLeft = sidebar.style.display === 'none' ? '0' : 'var(--sidebar-width)';
+                }
+              });
+
+              // Toggle Search
+              document.getElementById('search-toggle')?.addEventListener('click', function() {
+                const searchInput = document.getElementById('quarto-search-text');
+                if (searchInput) searchInput.focus();
+              });
+
+              // Format Menu Dropdown
+              const formatBtn = document.querySelector('#format-menu .dropdown-toggle');
+              const formatContent = document.querySelector('#format-menu .dropdown-content');
+              formatBtn?.addEventListener('click', function(e) {
+                e.stopPropagation();
+                formatContent.style.display = formatContent.style.display === 'block' ? 'none' : 'block';
+              });
+
+              document.addEventListener('click', function() {
+                if (formatContent) formatContent.style.display = 'none';
+              });
+
+              // Font change
+              document.querySelectorAll('[data-font]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                  document.body.style.fontFamily = this.dataset.font === 'serif' ?
+                    "'Times New Roman', Times, serif" :
+                    "Arial, Helvetica, sans-serif";
+                });
+              });
+
+              // Theme change
+              document.querySelectorAll('[data-theme]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                  const theme = this.dataset.theme;
+                  document.body.classList.remove('theme-white', 'theme-sepia', 'theme-night');
+                  document.body.classList.add('theme-' + theme);
+                });
+              });
+
+              // Spacing change
+              document.querySelectorAll('[data-spacing]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                  const content = document.querySelector('main.content');
+                  if (content) {
+                    const currentSize = parseFloat(window.getComputedStyle(content).fontSize);
+                    const newSize = this.dataset.spacing === 'plus' ? currentSize + 1 : currentSize - 1;
+                    content.style.fontSize = newSize + 'px';
+                  }
+                });
+              });
             }
           });
           </script>

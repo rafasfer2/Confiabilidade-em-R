@@ -195,36 +195,36 @@
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
-  \renewcommand*\contentsname{Table of contents}
+  \renewcommand*\contentsname{Índice}
 \else
-  \newcommand\contentsname{Table of contents}
+  \newcommand\contentsname{Índice}
 \fi
 \ifdefined\listfigurename
-  \renewcommand*\listfigurename{List of Figures}
+  \renewcommand*\listfigurename{Lista de Figuras}
 \else
-  \newcommand\listfigurename{List of Figures}
+  \newcommand\listfigurename{Lista de Figuras}
 \fi
 \ifdefined\listtablename
-  \renewcommand*\listtablename{List of Tables}
+  \renewcommand*\listtablename{Lista de Tabelas}
 \else
-  \newcommand\listtablename{List of Tables}
+  \newcommand\listtablename{Lista de Tabelas}
 \fi
 \ifdefined\figurename
-  \renewcommand*\figurename{Figure}
+  \renewcommand*\figurename{Figura}
 \else
-  \newcommand\figurename{Figure}
+  \newcommand\figurename{Figura}
 \fi
 \ifdefined\tablename
-  \renewcommand*\tablename{Table}
+  \renewcommand*\tablename{Tabela}
 \else
-  \newcommand\tablename{Table}
+  \newcommand\tablename{Tabela}
 \fi
 }
 \@ifpackageloaded{float}{}{\usepackage{float}}
 \floatstyle{ruled}
 \@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
-\floatname{codelisting}{Listing}
-\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\floatname{codelisting}{Listagem}
+\newcommand*\listoflistings{\listof{codelisting}{Lista de Listagens}}
 \makeatother
 \makeatletter
 \makeatother
@@ -233,6 +233,15 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 
+\ifLuaTeX
+\usepackage[bidi=basic]{babel}
+\else
+\usepackage[bidi=default]{babel}
+\fi
+\babelprovide[main,import]{brazilian}
+% get rid of language-specific shorthands (see #6817):
+\let\LanguageShortHands\languageshorthands
+\def\languageshorthands#1{}
 \usepackage{bookmark}
 
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -240,6 +249,7 @@
 \hypersetup{
   pdftitle={Confiabilidade e Manutenção: Aplicações em R},
   pdfauthor={Rafael da Silva Fernandes},
+  pdflang={pt-BR},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
@@ -260,7 +270,7 @@ Estratégias de Manutenção}
 \frontmatter
 \maketitle
 
-\renewcommand*\contentsname{Table of contents}
+\renewcommand*\contentsname{Índice}
 {
 \setcounter{tocdepth}{2}
 \tableofcontents
@@ -278,7 +288,7 @@ Estratégias de Manutenção}
 Bem-vindo ao livro \textbf{``Confiabilidade e Manutenção: Aplicações em
 R''}!
 
-\begin{tcolorbox}[enhanced jigsaw, colback=white, left=2mm, breakable, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm, arc=.35mm, opacityback=0, leftrule=.75mm, toprule=.15mm]
+\begin{tcolorbox}[enhanced jigsaw, arc=.35mm, toprule=.15mm, opacityback=0, colback=white, breakable, left=2mm, bottomrule=.15mm, leftrule=.75mm, colframe=quarto-callout-note-color-frame, rightrule=.15mm]
 \begin{minipage}[t]{5.5mm}
 \textcolor{quarto-callout-note-color}{\faInfo}
 \end{minipage}%
@@ -433,7 +443,7 @@ Veja instruções detalhadas de instalação no capítulo
 
 \begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
-\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-tip-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-tip-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-tip-color}{\faLightbulb}\hspace{0.5em}{Pronto para começar?}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-tip-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-tip-color-frame, coltitle=black]
 
 Inicie pelo \href{preface.qmd}{Prefácio} para entender melhor o contexto
 e objetivos deste livro, ou vá direto para \href{requirements.qmd}{Como
@@ -725,11 +735,11 @@ texto:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Figuras:} Figure~\ref{fig-weibull}
+  \textbf{Figuras:} Figura~\ref{fig-weibull}
 \item
-  \textbf{Tabelas:} Table~\ref{tbl-mtbf}
+  \textbf{Tabelas:} Tabela~\ref{tbl-mtbf}
 \item
-  \textbf{Equações:} Equation~\ref{eq-confiabilidade}
+  \textbf{Equações:} Equação~\ref{eq-confiabilidade}
 \end{itemize}
 
 \begin{figure}
@@ -1544,33 +1554,26 @@ Mineração}\label{sec-performance-mineracao}
 \section{Ciclo de Processos de Carregamento e
 Transporte}\label{sec-ciclo-processos}
 
-O ciclo operacional de carregamento e transporte na mineração é composto
-por diversas etapas sequenciais que se repetem continuamente. A
-Figure~\ref{fig-ciclo-processos} ilustra este ciclo, que envolve as
-seguintes fases principais:
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  \textbf{Carregamento}: Equipamento de carga (escavadeira ou
-  carregadeira) enche a caçamba do caminhão
-\item
-  \textbf{Transporte carregado}: Caminhão desloca-se até o ponto de
-  descarga
-\item
-  \textbf{Descarga}: Basculamento da caçamba no britador ou pilha
-\item
-  \textbf{Retorno vazio}: Caminhão retorna à frente de carregamento
-\item
-  \textbf{Fila}: Aguardo para novo carregamento (quando necessário)
-\end{enumerate}
+O ciclo de processos de carregamento e transporte, pertencente à etapa
+de lavra na mineração, ocorre apenas quando o caminhão se encontra com
+status de ``apto para operação'' em que as métricas de análise e
+indicadores próprios são estabelecidos para otimização do processo. A
+Figura~\ref{fig-ciclo-processos} mostra que o ciclo inicia no
+direcionamento do caminhão, que percorre vazio até o ponto de carga (TVV
+-- tempo de viagem vazio), aguarda na fila para carga (TFC -- tempo de
+fila para carga), e realiza a manobra (TMC -- tempo de manobra para
+carregar) para o carregamento pela escavadeira (TC -- tempo de
+carregamento). Com o caminhão cheio, ocorre o transporte (TVC -- tempo
+de viagem cheio), aguarda na fila para basculamento (TFB -- tempo de
+fila para bascular) e, finalmente, o basculamento (TB-- tempo de
+basculamento). Para um único turno de trabalho da operação, um
+determinado número de ciclos (NC) é realizado.
 
 \begin{figure}
 
 \centering{
 
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/images/Figura 01.png}}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/figura-01.png}}
 
 }
 
@@ -1579,7 +1582,7 @@ transporte}
 
 \end{figure}%
 
-\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Note}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Nota}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-note-color-frame, coltitle=black]
 
 O tempo total do ciclo influencia diretamente a produtividade da
 operação e é afetado por fatores como distância de transporte, condições
@@ -1598,39 +1601,61 @@ Estas classes exercem um importante direcionamento das responsabilidades
 de acompanhamento dos indicadores chaves de desempenho (ICDs) e possuem
 problemas operacionais distintos. Por exemplo, quando o caminhão está:
 
-\subsection{Apto para Operação}\label{apto-para-operauxe7uxe3o}
+\begin{itemize}
+\item
+  \textbf{``apto para operação'':} equipe de operação responsável e
+  focada no ciclo de carregamento e transporte. Principal desafio:
+  seleção e dimensionamento dos equipamentos. Segundo Mohtasham et
+  al.~(2021), relaciona-se à escolha adequada dos equipamentos para
+  manuseio ideal de materiais, resultando em melhoria da produtividade.
+\item
+  \textbf{``liberado pela manutenção'':} momento imediatamente posterior
+  à execução da manutenção; transição de responsabilidade da manutenção
+  para operação. Um acordo de nível de serviço (ANS) deve ser
+  pré-estabelecido para eficiência na transição.
+\item
+  \textbf{``em manutenção'':} responsabilidade da equipe de manutenção,
+  envolvendo planejamento, inspeção, programação e confiabilidade.
+\item
+  \textbf{``parada operacional'':} grandes paradas planejadas e
+  gerenciadas considerando contingências; embora pertença à operação, o
+  planejamento é conduzido pela gerência considerando toda a cadeia
+  produtiva.
+\end{itemize}
 
-A equipe de \textbf{operação} é responsável e está focada no ciclo dos
-processos de carregamento e transporte. Seu principal desafio reside na
-seleção e dimensionamento dos equipamentos. Segundo {[}22{]}, isso está
-relacionada à seleção e dimensionamento adequado dos equipamentos de
-carregamento e transporte para realizar a tarefa de manuseio de
-materiais de forma ideal durante a operação da mina e, resultando a
-melhoria do indicador produtividade.
+\section{Categoria de Horas}\label{sec-elementos-suporte}
 
-\subsection{Liberado pela
-Manutenção}\label{liberado-pela-manutenuxe7uxe3o}
+Categoria de horas corresponde à divisão do tempo em classes de serviços
+ou condição dos equipamentos, detalhando as horas na execução de
+atividades de operação e manutenção no equipamento. Para melhor cálculo
+dos indicadores, os tempos de funcionamento são agrupados em horas
+dependendo da ocorrência dos eventos e do conjunto de equipamentos que
+compõe o sistema. No ciclo de processos de transporte, os dados
+coletados em caminhões ``off-highway'' são obtidos dos horímetros
+instalados no sistema de medição e denominados tempos operacionais. A
+partir daí, estas são apontadas no banco de dados em categorias de
+horas, que são as: horas efetivas (HEF), horas de atraso operacional
+(HAO), horas trabalhadas diversas (HTD), horas trabalhadas de
+infraestrutura (HTI); horas ociosas interna (HOI); horas ociosas externa
+(HOE); horas de manutenção corretiva (HMC), horas de acidente (HAC);
+horas preventivas sistemática (MPS) e horas preventivas não sistemática
+(MPNS). Iremos denominar estes elementos com o tempo de primeiro nível.
 
-Este status é o momento imediatamente posterior à execução da
-manutenção, e consiste na \textbf{transição de responsabilidade} da
-equipe de manutenção para equipe de operação. Um acordo nível de serviço
-(ANS) entre as equipes deve ser pré-estabelecido para uma eficiente
-transição.
+A Figura~\ref{fig-categorias-horas} ilustra o fluxo de relacionamento
+entre estas categorias:
 
-\subsection{Em Manutenção}\label{em-manutenuxe7uxe3o}
+\begin{figure}
 
-Esta é uma atividade de responsabilidade da \textbf{equipe de
-manutenção} e incluem funções e processos de planejamento, inspeção,
-programação e confiabilidade.
+\centering{
 
-\subsection{Parada Operacional}\label{parada-operacional}
+\pandocbounded{\includegraphics[keepaspectratio]{chapters/../images/figura-categorias-horas.png}}
 
-Grandes paradas são planejadas e gerenciadas considerando as
-contingências necessárias. Apesar de pertencer à equipe de operação, o
-\textbf{planejamento} é realizado pela gerência e considerando todo a
-cadeia produtiva.
+}
 
-\section{Elementos de Suporte}\label{sec-elementos-suporte}
+\caption{\label{fig-categorias-horas}Fluxo de relacionamento entre
+categorias de horas}
+
+\end{figure}%
 
 Para o cálculo de indicadores, é comum realizar a síntese de algumas
 categorias de horas ou, de outra forma, a junção de horas. Assim, os
@@ -1662,14 +1687,17 @@ Por fim, para o \textbf{terceiro nível} temos:
   \textbf{Horas ociosas} (HO)
 \end{itemize}
 
-Em todos os níveis a soma das categorias representam as \textbf{horas
-calendário} (HC), por exemplo, temos que:
+Ao agrupar as categorias de horas em dia, semana, mês ou ano, o valor
+nominal será dado pela soma da duração de todos os apontamentos, cuja
+razão esteja configurada para contabilizar esta categoria. Em todos os
+níveis a soma das categorias representam as \textbf{horas calendário}
+(HC), por exemplo, temos que:
 
 \[
 HC = HT + HM + HO
 \]
 
-\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-note-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-note-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-note-color}{\faInfo}\hspace{0.5em}{Legenda das Categorias de Horas}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-note-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-note-color-frame, coltitle=black]
 
 \begin{itemize}
 \tightlist
@@ -1699,16 +1727,12 @@ HC = HT + HM + HO
 
 \section{Indicadores Chave de Desempenho (ICD)}\label{sec-icd}
 
-Desta forma, ao agrupar as categorias de horas em dia, semana, mês ou
-ano, o valor nominal será dado pela soma da duração de todos os
-apontamentos, cuja razão esteja configurada para contabilizar esta
-categoria. Como o principal produto do ciclo de transporte é a
-\textbf{massa transportada (MT)}, este configura-se como elemento
-quantitativo.
+O principal produto do ciclo de transporte é a \textbf{massa
+transportada (MT)}, este configura-se como elemento quantitativo.
 
 Os ICDs são derivados de elementos de medição, logo, como um elemento
 pode ser usado nas definições de vários ICDs, é improvável que eles
-sejam independentes entre si. De acordo com {[}23{]}, há dois tipos
+sejam independentes entre si. De acordo com {[}22{]}, há dois tipos
 básicos de relacionamento, o primeiro dado pela relação de identidade
 dos ICDs, baseado em suas definições e, o outro, é a relevância com
 elementos de suporte compartilhados que podem ser obtidos por comparação
@@ -1718,25 +1742,6 @@ Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou
 sistema, derivado de dados monitorados de elementos de suporte. Os ICDs
 podem ser agrupados por aqueles que representam um grupo de aspectos com
 atributos semelhantes.
-
-A Figure~\ref{fig-ciclo-processos} apresenta um exemplo das relações de
-status de equipamento e elementos de suporte, retirado dos dados em
-estudo. Em contrário às análises teóricas das relações, é possível
-observar outras ligações com as categorias de horas, estas que
-representam o segundo tipo básico de relacionamento.
-
-\begin{figure}
-
-\centering{
-
-\pandocbounded{\includegraphics[keepaspectratio]{chapters/images/Figura 01.png}}
-
-}
-
-\caption{\label{fig-ciclo-processos}Ciclo de processos de carregamento e
-transporte}
-
-\end{figure}%
 
 \subsection{Disponibilidade Física
 (DF)}\label{disponibilidade-fuxedsica-df}
@@ -1813,13 +1818,13 @@ PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}
 \textbf{Perda de Produção por Utilização:}
 
 \begin{equation}\phantomsection\label{eq-perda-uf}{
-PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{realizado}
+PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{programado}
 }\end{equation}
 
 \textbf{Perda de Produção por Produtividade:}
 
 \begin{equation}\phantomsection\label{eq-perda-pr}{
-PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
+PP_{PR} = (PR_{programado} - PR_{realizado}) \times (HD_{programado} - HO_{realizado})
 }\end{equation}
 
 \begin{Shaded}
@@ -1829,9 +1834,11 @@ PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
 
 \CommentTok{\# Dados programados vs realizados}
 \NormalTok{dados }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}\StringTok{"Horas Calendário (HC)"}\NormalTok{, }\StringTok{"Horas Manutenção (HM)"}\NormalTok{,}
-                \StringTok{"Horas Disponíveis (HD)"}\NormalTok{, }\StringTok{"Horas Ociosas (HO)"}\NormalTok{,}
-                \StringTok{"Horas Trabalhadas (HT)"}\NormalTok{, }\StringTok{"Massa Transportada (MT)"}\NormalTok{),}
+  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Horas Calendário (HC)"}\NormalTok{, }\StringTok{"Horas Manutenção (HM)"}\NormalTok{,}
+    \StringTok{"Horas Disponíveis (HD)"}\NormalTok{, }\StringTok{"Horas Ociosas (HO)"}\NormalTok{,}
+    \StringTok{"Horas Trabalhadas (HT)"}\NormalTok{, }\StringTok{"Massa Transportada (MT)"}
+\NormalTok{  ),}
   \AttributeTok{Programado =} \FunctionTok{c}\NormalTok{(}\DecValTok{720}\NormalTok{, }\DecValTok{72}\NormalTok{, }\DecValTok{648}\NormalTok{, }\DecValTok{65}\NormalTok{, }\DecValTok{583}\NormalTok{, }\DecValTok{140000}\NormalTok{),}
   \AttributeTok{Realizado =} \FunctionTok{c}\NormalTok{(}\DecValTok{720}\NormalTok{, }\DecValTok{95}\NormalTok{, }\DecValTok{625}\NormalTok{, }\DecValTok{88}\NormalTok{, }\DecValTok{537}\NormalTok{, }\DecValTok{125000}\NormalTok{),}
   \AttributeTok{Unidade =} \FunctionTok{c}\NormalTok{(}\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"h"}\NormalTok{, }\StringTok{"t"}\NormalTok{)}
@@ -1839,35 +1846,37 @@ PP_{PR} = (PR_{programado} - PR_{realizado}) \times HT_{programado}
 
 \CommentTok{\# Calcular ICDs}
 \NormalTok{icds }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
-  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}\StringTok{"Disponibilidade Física (DF)"}\NormalTok{,}
-                \StringTok{"Utilização Física (UF)"}\NormalTok{,}
-                \StringTok{"Produtividade (PR)"}\NormalTok{),}
+  \AttributeTok{Indicador =} \FunctionTok{c}\NormalTok{(}
+    \StringTok{"Disponibilidade Física (DF)"}\NormalTok{,}
+    \StringTok{"Utilização Física (UF)"}\NormalTok{,}
+    \StringTok{"Produtividade (PR)"}
+\NormalTok{  ),}
   \AttributeTok{Programado =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{round}\NormalTok{((}\DecValTok{648}\SpecialCharTok{/}\DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
-    \FunctionTok{round}\NormalTok{((}\DecValTok{583}\SpecialCharTok{/}\DecValTok{648}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
-    \FunctionTok{round}\NormalTok{(}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{648} \SpecialCharTok{/} \DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{583} \SpecialCharTok{/} \DecValTok{648}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{(}\DecValTok{140000} \SpecialCharTok{/} \DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{)}
 \NormalTok{  ),}
   \AttributeTok{Realizado =} \FunctionTok{c}\NormalTok{(}
-    \FunctionTok{round}\NormalTok{((}\DecValTok{625}\SpecialCharTok{/}\DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
-    \FunctionTok{round}\NormalTok{((}\DecValTok{537}\SpecialCharTok{/}\DecValTok{625}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
-    \FunctionTok{round}\NormalTok{(}\DecValTok{125000}\SpecialCharTok{/}\DecValTok{537}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{625} \SpecialCharTok{/} \DecValTok{720}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{537} \SpecialCharTok{/} \DecValTok{625}\NormalTok{) }\SpecialCharTok{*} \DecValTok{100}\NormalTok{, }\DecValTok{1}\NormalTok{),}
+    \FunctionTok{round}\NormalTok{(}\DecValTok{125000} \SpecialCharTok{/} \DecValTok{537}\NormalTok{, }\DecValTok{1}\NormalTok{)}
 \NormalTok{  ),}
   \AttributeTok{Unidade =} \FunctionTok{c}\NormalTok{(}\StringTok{"\%"}\NormalTok{, }\StringTok{"\%"}\NormalTok{, }\StringTok{"t/h"}\NormalTok{)}
 \NormalTok{)}
 
 \CommentTok{\# Calcular perdas}
-\NormalTok{PR\_real }\OtherTok{\textless{}{-}} \DecValTok{125000}\SpecialCharTok{/}\DecValTok{537}
+\NormalTok{PR\_real }\OtherTok{\textless{}{-}} \DecValTok{125000} \SpecialCharTok{/} \DecValTok{537}
 \NormalTok{perdas }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
   \AttributeTok{Tipo\_Perda =} \FunctionTok{c}\NormalTok{(}\StringTok{"Perda por DF"}\NormalTok{, }\StringTok{"Perda por UF"}\NormalTok{, }\StringTok{"Perda por PR"}\NormalTok{),}
   \AttributeTok{Calculo =} \FunctionTok{c}\NormalTok{(}
     \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\DecValTok{648}\NormalTok{, }\StringTok{" {-} "}\NormalTok{, }\DecValTok{625}\NormalTok{, }\StringTok{") × "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{)),}
     \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\DecValTok{88}\NormalTok{, }\StringTok{" {-} "}\NormalTok{, }\DecValTok{65}\NormalTok{, }\StringTok{") × "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{)),}
-    \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{), }\StringTok{" {-} "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{), }\StringTok{") × "}\NormalTok{, }\DecValTok{583}\NormalTok{)}
+    \FunctionTok{paste0}\NormalTok{(}\StringTok{"("}\NormalTok{, }\FunctionTok{round}\NormalTok{(}\DecValTok{140000} \SpecialCharTok{/} \DecValTok{583}\NormalTok{, }\DecValTok{1}\NormalTok{), }\StringTok{" {-} "}\NormalTok{, }\FunctionTok{round}\NormalTok{(PR\_real, }\DecValTok{1}\NormalTok{), }\StringTok{") × "}\NormalTok{, }\DecValTok{583}\NormalTok{)}
 \NormalTok{  ),}
   \AttributeTok{Perda\_ton =} \FunctionTok{c}\NormalTok{(}
     \FunctionTok{round}\NormalTok{((}\DecValTok{648} \SpecialCharTok{{-}} \DecValTok{625}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ PR\_real, }\DecValTok{0}\NormalTok{),}
     \FunctionTok{round}\NormalTok{((}\DecValTok{88} \SpecialCharTok{{-}} \DecValTok{65}\NormalTok{) }\SpecialCharTok{*}\NormalTok{ PR\_real, }\DecValTok{0}\NormalTok{),}
-    \FunctionTok{round}\NormalTok{((}\DecValTok{140000}\SpecialCharTok{/}\DecValTok{583} \SpecialCharTok{{-}}\NormalTok{ PR\_real) }\SpecialCharTok{*} \DecValTok{583}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+    \FunctionTok{round}\NormalTok{((}\DecValTok{140000} \SpecialCharTok{/} \DecValTok{583} \SpecialCharTok{{-}}\NormalTok{ PR\_real) }\SpecialCharTok{*} \DecValTok{583}\NormalTok{, }\DecValTok{0}\NormalTok{)}
 \NormalTok{  )}
 \NormalTok{)}
 
@@ -1912,8 +1921,10 @@ Produtividade (PR) & 240.1 & 232.8 & t/h\\
 
 \begin{Shaded}
 \begin{Highlighting}[]
-\FunctionTok{kable}\NormalTok{(perdas, }\AttributeTok{caption =} \StringTok{"Análise de Perda de Produção"}\NormalTok{,}
-      \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Tipo de Perda"}\NormalTok{, }\StringTok{"Cálculo"}\NormalTok{, }\StringTok{"Perda (t)"}\NormalTok{)) }\SpecialCharTok{\%\textgreater{}\%}
+\FunctionTok{kable}\NormalTok{(perdas,}
+  \AttributeTok{caption =} \StringTok{"Análise de Perda de Produção"}\NormalTok{,}
+  \AttributeTok{col.names =} \FunctionTok{c}\NormalTok{(}\StringTok{"Tipo de Perda"}\NormalTok{, }\StringTok{"Cálculo"}\NormalTok{, }\StringTok{"Perda (t)"}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{bootstrap\_options =} \FunctionTok{c}\NormalTok{(}\StringTok{"striped"}\NormalTok{, }\StringTok{"hover"}\NormalTok{), }\AttributeTok{full\_width =} \ConstantTok{FALSE}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -1931,7 +1942,7 @@ Perda por PR & (240.1 - 232.8) × 583 & 4292\\
 
 Exemplo de cálculo de ICDs e perda de produção
 
-\begin{tcolorbox}[enhanced jigsaw, left=2mm, breakable, colbacktitle=quarto-callout-important-color!10!white, toptitle=1mm, rightrule=.15mm, colback=white, opacitybacktitle=0.6, bottomrule=.15mm, colframe=quarto-callout-important-color-frame, titlerule=0mm, bottomtitle=1mm, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, arc=.35mm, toprule=.15mm, opacityback=0, leftrule=.75mm, coltitle=black]
+\begin{tcolorbox}[enhanced jigsaw, title=\textcolor{quarto-callout-important-color}{\faExclamation}\hspace{0.5em}{Interpretação das Perdas}, bottomrule=.15mm, bottomtitle=1mm, titlerule=0mm, arc=.35mm, toptitle=1mm, rightrule=.15mm, colbacktitle=quarto-callout-important-color!10!white, opacitybacktitle=0.6, opacityback=0, colback=white, breakable, toprule=.15mm, leftrule=.75mm, left=2mm, colframe=quarto-callout-important-color-frame, coltitle=black]
 
 A análise de perda de produção permite identificar qual indicador teve
 maior impacto negativo na produção realizada, direcionando as ações de
@@ -7280,172 +7291,163 @@ análises!
 \begin{CSLReferences}{0}{0}
 \bibitem[\citeproctext]{ref-correa2012}
 \CSLLeftMargin{{[}1{]} }%
-\CSLRightInline{H. L. Corrêa and C. A. Corrêa, \emph{Administração de
-produção e operações: Manufatura e serviços; uma abordagem estratégica}.
-Atlas, 2012. Available:
+\CSLRightInline{H. L. Corrêa e C. A. Corrêa, \emph{Administração de
+produção e operações: manufatura e serviços; uma abordagem estratégica}.
+Atlas, 2012. Disponível em:
 \url{https://books.google.com.br/books?id=eptZlQEACAAJ}}
 
 \bibitem[\citeproctext]{ref-fernandes2021}
 \CSLLeftMargin{{[}2{]} }%
-\CSLRightInline{R. de S. Fernandes, L. R. C. de Sousa, and T. L. Santos,
+\CSLRightInline{R. de S. Fernandes, L. R. C. de Sousa, e T. L. Santos,
 {``Analysis, investigation and evaluation of quality management in the
-mining process: A case study on divergencies in iron ore stock
-deviations,''} \emph{Revista Produção Online}, vol. 21, no. 3, pp.
+mining process: a case study on divergencies in iron ore stock
+deviations''}, \emph{Revista Produção Online}, vol. 21, nº 3, p.
 770--793, 2021, doi:
 \href{https://doi.org/10.14488/1676-1901.v21i3.4252}{10.14488/1676-1901.v21i3.4252}.}
 
 \bibitem[\citeproctext]{ref-fernandes2023}
 \CSLLeftMargin{{[}3{]} }%
-\CSLRightInline{R. de S. Fernandes, T. R. Rocha, J. M. Coelho, and D. F.
+\CSLRightInline{R. de S. Fernandes, T. R. Rocha, J. M. Coelho, e D. F.
 Andrade, {``Development of a measurement instrument to evaluate
-integrated management systems and differences in perception: An approach
-to item response theory and the quality management process,''}
+integrated management systems and differences in perception: an approach
+to item response theory and the quality management process''},
 \emph{Production}, vol. 33, 2023, doi:
 \href{https://doi.org/10.1590/0103-6513.20220069}{10.1590/0103-6513.20220069}.}
 
 \bibitem[\citeproctext]{ref-gackowiec2020}
 \CSLLeftMargin{{[}4{]} }%
 \CSLRightInline{P. Gackowiec, M. Podobińska-Staniec, E. Brzychczy, C.
-Kúhlbach, and T. Özver, {``Review of key performance indicators for
-process monitoring in the mining industry,''} \emph{Energies}, vol. 13,
-no. 19, p. 5169, 2020, doi:
+Kúhlbach, e T. Özver, {``Review of key performance indicators for
+process monitoring in the mining industry''}, \emph{Energies}, vol. 13,
+nº 19, p. 5169, 2020, doi:
 \href{https://doi.org/10.3390/en13195169}{10.3390/en13195169}.}
 
 \bibitem[\citeproctext]{ref-carvalho2014}
 \CSLLeftMargin{{[}5{]} }%
-\CSLRightInline{P. S. L. Carvalho, M. M. Silva, M. A. R. Rocio, and J.
-Moszkowicz, {``Minério de ferro.''} 2014.}
+\CSLRightInline{P. S. L. Carvalho, M. M. Silva, M. A. R. Rocio, e J.
+Moszkowicz, {``Minério de ferro''}. 2014.}
 
 \bibitem[\citeproctext]{ref-luz2018}
 \CSLLeftMargin{{[}6{]} }%
-\CSLRightInline{A. B. da Luz and F. A. F. Lins, \emph{Introdução ao
+\CSLRightInline{A. B. da Luz e F. A. F. Lins, \emph{Introdução ao
 tratamento de minérios}. CETEM/MCTIC, 2018.}
 
 \bibitem[\citeproctext]{ref-rocha2021}
 \CSLLeftMargin{{[}7{]} }%
 \CSLRightInline{C. S. Rocha, E. L. de S. S. Cardoso, R. de S. Fernandes,
-N. C. N. M. Branco, and R. M. de N. Luz, {``Quality assessment of
+N. C. N. M. Branco, e R. M. de N. Luz, {``Quality assessment of
 divergences causes in weighing copper ore at a mining company in the
-amazon region,''} \emph{International Journal of Development Research},
-vol. 11, no. 8, pp. 49633--49639, 2021, doi:
+amazon region''}, \emph{International Journal of Development Research},
+vol. 11, nº 8, p. 49633--49639, 2021, doi:
 \href{https://doi.org/10.37118/ijdr.22578.08.2021}{10.37118/ijdr.22578.08.2021}.}
 
 \bibitem[\citeproctext]{ref-fernandes2023b}
 \CSLLeftMargin{{[}8{]} }%
-\CSLRightInline{R. de S. Fernandes, J. C. de C. Sousa, and R. M. de N.
+\CSLRightInline{R. de S. Fernandes, J. C. de C. Sousa, e R. M. de N.
 Luz, {``Integrated management analysis of production performance,
-maintenance, and PDCA cycle: A case study of the IPCC mining process,''}
-\emph{Revista Produção Online}, vol. 22, no. 2, pp. 2731--2762, 2023,
-doi:
+maintenance, and PDCA cycle: a case study of the IPCC mining process''},
+\emph{Revista Produção Online}, vol. 22, nº 2, p. 2731--2762, 2023, doi:
 \href{https://doi.org/10.14488/1676-1901.v22i2.4661}{10.14488/1676-1901.v22i2.4661}.}
 
 \bibitem[\citeproctext]{ref-osanloo2020}
 \CSLLeftMargin{{[}9{]} }%
-\CSLRightInline{M. Osanloo and M. Paricheh, {``In-pit crushing and
-conveying technology in open-pit mining operations: A literature review
-and research agenda,''} \emph{International Journal of Mining,
-Reclamation and Environment}, vol. 34, no. 6, pp. 430--457, 2020, doi:
+\CSLRightInline{M. Osanloo e M. Paricheh, {``In-pit crushing and
+conveying technology in open-pit mining operations: a literature review
+and research agenda''}, \emph{International Journal of Mining,
+Reclamation and Environment}, vol. 34, nº 6, p. 430--457, 2020, doi:
 \href{https://doi.org/10.1080/17480930.2019.1565054}{10.1080/17480930.2019.1565054}.}
 
 \bibitem[\citeproctext]{ref-mining2015}
 \CSLLeftMargin{{[}10{]} }%
 \CSLRightInline{International Council on Mining and Metals, {``Critical
-control management: Implementation guide.''} 2015. Available:
+Control Management: Implementation Guide''}. 2015. Disponível em:
 \url{https://books.google.com.br/books?id=kroRDAEACAAJ}}
 
 \bibitem[\citeproctext]{ref-iso55000}
 \CSLLeftMargin{{[}11{]} }%
-\CSLRightInline{ABNT, {``ISO-55000:2014 gestão de ativos: Visão geral,
-princípios e terminologia.''} 2014.}
+\CSLRightInline{ABNT, {``ISO-55000:2014 Gestão de ativos: visão geral,
+princípios e terminologia''}. 2014.}
 
 \bibitem[\citeproctext]{ref-iso5462}
 \CSLLeftMargin{{[}12{]} }%
-\CSLRightInline{ABNT, {``ISO-5462:1994 reliability and maintainability
--- terminology.''} 1994.}
+\CSLRightInline{ABNT, {``ISO-5462:1994 Reliability and maintainability
+-- Terminology''}. 1994.}
 
 \bibitem[\citeproctext]{ref-pascual2016}
 \CSLLeftMargin{{[}13{]} }%
-\CSLRightInline{R. Pascual, R. Madariaga, G. Santelices, D. Godoy, and
-E. L. Droguett, {``A structured methodology to optimise throughput of
-production lines,''} \emph{International Journal of Mining, Reclamation
-and Environment}, vol. 30, no. 1, pp. 25--36, 2016, doi:
+\CSLRightInline{R. Pascual, R. Madariaga, G. Santelices, D. Godoy, e E.
+L. Droguett, {``A structured methodology to optimise throughput of
+production lines''}, \emph{International Journal of Mining, Reclamation
+and Environment}, vol. 30, nº 1, p. 25--36, 2016, doi:
 \href{https://doi.org/10.1080/17480930.2014.962235}{10.1080/17480930.2014.962235}.}
 
 \bibitem[\citeproctext]{ref-qiao2017}
 \CSLLeftMargin{{[}14{]} }%
-\CSLRightInline{G. Qiao, C. Schlenoff, and B. A. Weiss, {``Quick
+\CSLRightInline{G. Qiao, C. Schlenoff, e B. A. Weiss, {``Quick
 positional health assessment for industrial robot prognostics and health
-management (PHM),''} in \emph{2017 IEEE international conference on
-robotics and automation (ICRA)}, 2017.}
+management (PHM)''}, em \emph{2017 IEEE International Conference on
+Robotics and Automation (ICRA)}, 2017.}
 
 \bibitem[\citeproctext]{ref-slack2013}
 \CSLLeftMargin{{[}15{]} }%
-\CSLRightInline{N. Slack, S. Chambers, R. Johnston, and A. Betts,
-\emph{Gerenciamento de operações e de processos: Princípios e práticas
-de impacto estratégico}, 2nd ed. Bookman Editora, 2013. Available:
+\CSLRightInline{N. Slack, S. Chambers, R. Johnston, e A. Betts,
+\emph{Gerenciamento de Operações e de Processos: Princípios e práticas
+de impacto estratégico}, 2nd ed. Bookman Editora, 2013. Disponível em:
 \url{https://books.google.com.br/books?id=wLo3AgAAQBAJ}}
 
 \bibitem[\citeproctext]{ref-zampolli2019}
 \CSLLeftMargin{{[}16{]} }%
-\CSLRightInline{M. Zampolli, \emph{Gestão de ativos: Guia para a
+\CSLRightInline{M. Zampolli, \emph{Gestão de ativos: guia para a
 aplicação da norma ABNT NBR ISO 55001 considerando as diretrizes da ISO
-55002:2018}, 2nd ed. 2019. Available:
+55002:2018}, 2nd ed. 2019. Disponível em:
 \url{https://abcobre.org.br/wp-content/uploads/2021/04/gestao-de-ativos-guia-para-aplicacao-da-norma-abnt-nbr-iso-55001.pdf}}
 
 \bibitem[\citeproctext]{ref-doyen2004}
 \CSLLeftMargin{{[}17{]} }%
-\CSLRightInline{L. Doyen and O. Gaudoin, {``Classes of imperfect repair
-models based on reduction of failure intensity or virtual age,''}
-\emph{Reliability Engineering \& System Safety}, vol. 84, no. 1, pp.
+\CSLRightInline{L. Doyen e O. Gaudoin, {``Classes of imperfect repair
+models based on reduction of failure intensity or virtual age''},
+\emph{Reliability Engineering \& System Safety}, vol. 84, nº 1, p.
 45--56, 2004, doi:
 \href{https://doi.org/10.1016/S0951-8320(03)00173-X}{10.1016/S0951-8320(03)00173-X}.}
 
 \bibitem[\citeproctext]{ref-gilardoni2007}
 \CSLLeftMargin{{[}18{]} }%
-\CSLRightInline{G. L. Gilardoni and E. A. Colosimo, {``Optimal
-maintenance time for repairable systems,''} \emph{Journal of Quality
-Technology}, vol. 39, no. 1, pp. 48--53, 2007, doi:
+\CSLRightInline{G. L. Gilardoni e E. A. Colosimo, {``Optimal maintenance
+time for repairable systems''}, \emph{Journal of Quality Technology},
+vol. 39, nº 1, p. 48--53, 2007, doi:
 \href{https://doi.org/10.1080/00224065.2007.11917672}{10.1080/00224065.2007.11917672}.}
 
 \bibitem[\citeproctext]{ref-toledo2016}
 \CSLLeftMargin{{[}19{]} }%
-\CSLRightInline{M. L. G. de Toledo, M. A. Freitas, E. A. Colosimo, and
-G. L. Gilardoni, {``Optimal periodic maintenance policy under imperfect
-repair: A case study on the engines of off-road vehicles,''} \emph{IIE
-Transactions}, vol. 48, no. 8, pp. 747--758, 2016, doi:
+\CSLRightInline{M. L. G. de Toledo, M. A. Freitas, E. A. Colosimo, e G.
+L. Gilardoni, {``Optimal periodic maintenance policy under imperfect
+repair: A case study on the engines of off-road vehicles''}, \emph{IIE
+Transactions}, vol. 48, nº 8, p. 747--758, 2016, doi:
 \href{https://doi.org/10.1080/0740817X.2016.1147663}{10.1080/0740817X.2016.1147663}.}
 
 \bibitem[\citeproctext]{ref-gilardoni2016}
 \CSLLeftMargin{{[}20{]} }%
-\CSLRightInline{G. L. Gilardoni, M. L. G. de Toledo, M. A. Freitas, and
-E. A. Colosimo, {``Dynamics of an optimal maintenance policy for
-imperfect repair models,''} \emph{European Journal of Operational
-Research}, vol. 248, no. 3, pp. 1104--1112, 2016, doi:
+\CSLRightInline{G. L. Gilardoni, M. L. G. de Toledo, M. A. Freitas, e E.
+A. Colosimo, {``Dynamics of an optimal maintenance policy for imperfect
+repair models''}, \emph{European Journal of Operational Research}, vol.
+248, nº 3, p. 1104--1112, 2016, doi:
 \href{https://doi.org/10.1016/j.ejor.2015.07.056}{10.1016/j.ejor.2015.07.056}.}
 
 \bibitem[\citeproctext]{ref-doyen2011}
 \CSLLeftMargin{{[}21{]} }%
-\CSLRightInline{L. Doyen and O. Gaudoin, {``Modeling and assessment of
-aging and efficiency of corrective and planned preventive
-maintenance,''} \emph{IEEE Transactions on Reliability}, vol. 60, no. 4,
-pp. 759--769, 2011, doi:
+\CSLRightInline{L. Doyen e O. Gaudoin, {``Modeling and Assessment of
+Aging and Efficiency of Corrective and Planned Preventive
+Maintenance''}, \emph{IEEE Transactions on Reliability}, vol. 60, nº 4,
+p. 759--769, 2011, doi:
 \href{https://doi.org/10.1109/TR.2011.2171115}{10.1109/TR.2011.2171115}.}
 
-\bibitem[\citeproctext]{ref-mohtasham2021}
-\CSLLeftMargin{{[}22{]} }%
-\CSLRightInline{M. Mohtasham, H. Mirzaei-Nasirabad, H. Askari-Nasab, and
-B. Alizadeh, {``Truck fleet size selection in open-pit mines based on
-the match factor using a MINLP model,''} \emph{Mining Technology}, vol.
-130, no. 3, pp. 159--175, 2021, doi:
-\href{https://doi.org/10.1080/25726668.2021.1919374}{10.1080/25726668.2021.1919374}.}
-
 \bibitem[\citeproctext]{ref-kang2016}
-\CSLLeftMargin{{[}23{]} }%
-\CSLRightInline{N. Kang, C. Zhao, J. Li, and J. A. Horst, {``A
-hierarchical structure of key performance indicators for operation
-management and continuous improvement in production systems,''}
-\emph{International Journal of Production Research}, vol. 54, no. 21,
-pp. 6333--6350, 2016, doi:
+\CSLLeftMargin{{[}22{]} }%
+\CSLRightInline{N. Kang, C. Zhao, J. Li, e J. A. Horst, {``A
+Hierarchical structure of key performance indicators for operation
+management and continuous improvement in production systems''},
+\emph{International Journal of Production Research}, vol. 54, nº 21, p.
+6333--6350, 2016, doi:
 \href{https://doi.org/10.1080/00207543.2015.1136082}{10.1080/00207543.2015.1136082}.}
 
 \end{CSLReferences}

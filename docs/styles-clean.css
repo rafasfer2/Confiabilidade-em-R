@@ -313,8 +313,8 @@ body.theme-night h3 {
 
 /* ===== CONTEÚDO CENTRAL ===== */
 body.nav-sidebar {
-  /* Reduz gap entre sidebar e conteúdo principal */
-  padding-left: calc(var(--sidebar-width) + 4px) !important; /* pequeno respiro de 4px */
+  /* Gap mínimo: padding exato igual à largura da sidebar */
+  padding-left: var(--sidebar-width) !important;
   padding-right: var(--toc-width) !important;
   padding-top: 60px !important;
   margin: 0 !important;
@@ -345,8 +345,8 @@ main.content #title-block-header .quarto-title-block > div {
 }
 
 @media (min-width: 992px) {
-  /* Puxa conteúdo 12px para a esquerda para reduzir faixa branca */
-  main.content { margin-left: -12px !important; }
+  /* Puxa conteúdo 30px para a esquerda - gap mínimo */
+  main.content { margin-left: -30px !important; }
 }
 
 /* ===== TOC DIREITA ===== */
@@ -380,10 +380,10 @@ main.content #title-block-header .quarto-title-block > div {
   border-bottom: 2px solid var(--color-teal) !important;
 }
 
-/* Links do TOC - fonte maior */
+/* Links do TOC - fonte MENOR que corpo */
 #TOC a {
   color: var(--color-teal-deep) !important;
-  font-size: inherit !important; /* igual ao corpo */
+  font-size: 0.9rem !important; /* menor que corpo 12pt */
   padding: 0.4rem 0.5rem !important;
   display: block !important;
   border-left: 3px solid transparent !important;
@@ -407,14 +407,14 @@ main.content #title-block-header .quarto-title-block > div {
 #TOC > ul > li > a,
 #TOC .toc-section-number {
   font-weight: bold !important;
-  font-size: inherit !important;
+  font-size: 0.9rem !important;
 }
 
 /* Subcapítulos (níveis 2, 3) sem linha embaixo */
 #TOC ul ul a {
   padding-left: 1.2rem !important;
   font-weight: normal !important;
-  font-size: inherit !important;
+  font-size: 0.85rem !important;
   border-bottom: none !important;
 }
 
@@ -424,7 +424,12 @@ main.content #title-block-header .quarto-title-block > div {
 
 #TOC ul ul li {
   border-bottom: none !important;
+  list-style: none !important;
 }
+
+/* FORÇA remoção de qualquer underline/border */
+#TOC ul ul li:after,
+#TOC ul ul a:after { border: none !important; content: none !important; }
 
 /* ===== TIPOGRAFIA ===== */
 body {
