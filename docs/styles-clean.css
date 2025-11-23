@@ -13,8 +13,8 @@
   --color-teal-deep: #003c30;
   --color-gold: #d4af37;
   --color-hover-gray: #e3e3e3;
-  --sidebar-width: 240px;
-  --toc-width: 280px;
+  --sidebar-width: 280px;
+  --toc-width: 300px;
 }
 
 /* ===== RESET MARGENS ===== */
@@ -319,13 +319,8 @@ body.nav-sidebar {
 main.content {
   width: 100% !important;
   max-width: 100% !important;
-  padding: 0 !important;
+  padding: 0 2.5rem !important;
   margin: 0 !important;
-}
-
-main.content > * {
-  padding-left: 1rem !important;
-  padding-right: 1rem !important;
 }
 
 /* ===== TOC DIREITA ===== */
