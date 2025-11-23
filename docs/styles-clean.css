@@ -330,7 +330,7 @@ body.theme-night h3 {
 /* ===== CONTEÚDO CENTRAL ===== */
 body.nav-sidebar {
   /* Gap ZERO: posiciona conteúdo exatamente após sidebar */
-  padding-left: 280px !important;
+  padding-left: 300px !important;
   padding-right: var(--toc-width) !important;
   padding-top: 60px !important;
   padding-bottom: 60px !important;
@@ -360,8 +360,8 @@ main.content #title-block-header .quarto-title-block > div {
 
 /* Padding interno apenas para elementos de conteúdo */
 main.content > * {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 main.content h1,
@@ -372,8 +372,8 @@ main.content p,
 main.content ul,
 main.content ol,
 main.content blockquote {
-  padding-left: 1.5rem !important;
-  padding-right: 1.5rem !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
 }
 
 @media (min-width: 992px) {
