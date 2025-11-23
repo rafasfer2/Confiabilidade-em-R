@@ -429,6 +429,15 @@ body {
   line-height: 1.3 !important;
 }
 
+/* Subtítulo - quebra de linha */
+#title-block-header .subtitle {
+  color: var(--color-teal-dark) !important;
+  font-size: 1.5rem !important;
+  font-weight: normal !important;
+  margin: 0.5rem 0 0 0 !important;
+  display: block !important;
+}
+
 /* Área de autor/instituição - fundo verde */
 #title-block-header .quarto-title-meta-author {
   background: var(--color-teal) !important;

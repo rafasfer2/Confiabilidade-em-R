@@ -2,7 +2,7 @@
   {
     "objectID": "index.html",
     "href": "index.html",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "",
     "text": "Bem-vindo\nBem-vindo ao livro “Confiabilidade e Manutenção: Princípios e Prática”!",
     "crumbs": [
@@ -12,7 +12,7 @@
   {
     "objectID": "index.html#o-que-você-vai-aprender",
     "href": "index.html#o-que-você-vai-aprender",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "📚 O que você vai aprender",
     "text": "📚 O que você vai aprender\n\nFundamentos de confiabilidade — Conceitos, métricas e distribuições de vida útil\nAnálise de dados de falha — Técnicas estatísticas para dados censurados\nModelagem Weibull — Aplicação prática da distribuição mais usada em engenharia\nAnálise de sobrevivência — Modelos paramétricos e semiparamétricos\nEstratégias de manutenção — Otimização de políticas preventivas e preditivas\nMachine learning — Predição de falhas com dados de sensores\nSimulação Monte Carlo — Avaliação de políticas sob incerteza\nBoas práticas — Governança de dados e reprodutibilidade",
     "crumbs": [
@@ -22,7 +22,7 @@
   {
     "objectID": "index.html#para-quem-é-este-livro",
     "href": "index.html#para-quem-é-este-livro",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "🎯 Para quem é este livro",
     "text": "🎯 Para quem é este livro\n\nEngenheiros de confiabilidade e manutenção\nAnalistas de dados em contextos industriais\nEstudantes e pesquisadores em engenharia e estatística\nGestores técnicos que tomam decisões baseadas em dados",
     "crumbs": [
@@ -32,7 +32,7 @@
   {
     "objectID": "index.html#como-usar-este-livro",
     "href": "index.html#como-usar-este-livro",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "🚀 Como usar este livro",
     "text": "🚀 Como usar este livro\n\nLeia sequencialmente — Os capítulos são progressivos\nExecute os exemplos — Todos os códigos R são reproduzíveis\nFaça os exercícios — Pratique para consolidar o aprendizado\nUse como referência — Consulte os apêndices quando necessário",
     "crumbs": [
@@ -42,7 +42,7 @@
   {
     "objectID": "index.html#estrutura",
     "href": "index.html#estrutura",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "📖 Estrutura",
     "text": "📖 Estrutura\nO livro está organizado em quatro partes:\n\nParte I: Fundamentos e Teoria\nConceitos básicos, distribuições de probabilidade e métodos de estimação.\n\n\nParte II: Análise e Modelagem Prática\nAnálise de dados de falha, modelagem Weibull e análise de sobrevivência.\n\n\nParte III: Estratégias de Manutenção\nManutenção preventiva, preditiva e modelagem de sistemas complexos.\n\n\nParte IV: Métodos Avançados e Aplicações\nSimulação, estudos de caso industriais e governança de dados.",
     "crumbs": [
@@ -52,7 +52,7 @@
   {
     "objectID": "index.html#requisitos",
     "href": "index.html#requisitos",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "💻 Requisitos",
     "text": "💻 Requisitos\n\nR (versão ≥ 4.0)\nRStudio ou VS Code\nPacotes R — tidyverse, survival, flexsurv, ggplot2, entre outros\n\nVeja instruções detalhadas de instalação no capítulo Instalação e Ambiente.",
     "crumbs": [
@@ -62,7 +62,7 @@
   {
     "objectID": "index.html#recursos-adicionais",
     "href": "index.html#recursos-adicionais",
-    "title": "Confiabilidade e Manutenção: Aplicações em R",
+    "title": "Confiabilidade e Manutenção",
     "section": "🔗 Recursos Adicionais",
     "text": "🔗 Recursos Adicionais\n\nCódigo fonte: GitHub\nDados de exemplo: Disponíveis em resources/data/\nDiscussões: Issues no GitHub\n\n\n\n\n\n\n\n\nPronto para começar?\n\n\n\nInicie pelo Prefácio para entender melhor o contexto e objetivos deste livro, ou vá direto para Como Usar este Livro para configurar seu ambiente.\n\n\n\nBoa leitura e bons estudos! 📊✨",
     "crumbs": [
