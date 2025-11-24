@@ -1,0 +1,97 @@
+# Análise de Dados de Falha com R
+
+## Introdução
+
+Análise prática de dados de falha incluindo censura, tabelas de vida e visualizações.
+
+## Tipos de Censura
+
+### Censura à Direita
+
+Observação interrompida antes da falha (mais comum).
+
+### Censura à Esquerda
+
+Falha ocorreu antes do início da observação.
+
+### Censura Intervalar
+
+Falha ocorreu em um intervalo de tempo.
+
+## Preparação de Dados
+
+```{r}
+#| label: data-prep
+#| warning: false
+
+library(survival)
+library(tidyverse)
+
+# Dados de exemplo
+dados_falha <- data.frame(
+  tempo = c(120, 145, 180, 200, 250, 300, 350, 400, 450, 500),
+  status = c(1, 1, 1, 0, 1, 0, 1, 1, 0, 1),  # 1=falha, 0=censura
+  equipamento = paste0("Equip_", 1:10)
+)
+
+# Criar objeto Surv
+surv_obj <- Surv(time = dados_falha$tempo, event = dados_falha$status)
+
+print(surv_obj)
+```
+
+## Tabela de Vida
+
+```{r}
+#| label: life-table
+
+library(kableExtra)
+
+# Criar tabela de vida
+life_table <- dados_falha %>%
+  arrange(tempo) %>%
+  mutate(
+    n_risk = n():1,
+    n_event = status,
+    survival = cumprod(1 - n_event/n_risk)
+  )
+
+kable(life_table, digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Curva de Kaplan-Meier
+
+```{r}
+#| label: km-curve
+
+library(survminer)
+
+# Ajuste Kaplan-Meier
+km_fit <- survfit(surv_obj ~ 1)
+
+# Visualizar
+ggsurvplot(km_fit,
+           data = dados_falha,
+           conf.int = TRUE,
+           risk.table = TRUE,
+           title = "Curva de Sobrevivência - Kaplan-Meier")
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Analise dados com diferentes tipos de censura.
+
+📝 **Exercício 2**: Compare curvas KM de grupos diferentes.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Censura é comum em dados de confiabilidade
+- Pacote `survival` é essencial para análise
+- Kaplan-Meier é método não-paramétrico robusto
+
+---
+
+**Próximo capítulo:** Modelagem Weibull na Prática

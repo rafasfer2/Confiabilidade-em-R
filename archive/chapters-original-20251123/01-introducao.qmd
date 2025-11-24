@@ -1,0 +1,49 @@
+# Introdução {#sec-introducao}
+
+Durante muito tempo, as empresas focaram suas atenções na capacidade de projetar produtos que incorporem características e atributos otimizados, para atender a necessidades e desejos dos clientes [@correa2012]. Entretanto, segundo @fernandes2021, com vistas ao processo de produção na indústria da mineração, a qualidade do produto está relacionada ao teor do minério explorado, tornando o aumento da produção e a redução de custos um dos principais objetivos estratégicos. Desta forma, o conjunto das excelências em cada processo, representa a qualidade da organização sendo, este, o grande objetivo das mineradoras [@fernandes2023; @gackowiec2020].
+
+No contexto brasileiro, a exploração de reserva de minerais, principalmente de minério de Ferro, é predominantemente realizada pelo método de lavra a céu aberto e envolve atividades de prospecção, exploração, desenvolvimento e explotação e, após a retirada do minério, este é transportado ao britador primário em que se inicia a etapa de beneficiamento [@carvalho2014; @luz2018; @rocha2021].
+
+Em particular, as atividades de exploração iniciam-se com a preparação da área a ser lavrada para que ela possa ser perfurada e detonada. Então a escavação e o carregamento, são feitos por equipamentos de carga que ficam alocados na frente da lavra. Estes retiram o material e o carregam nos equipamentos de transporte, caminhões, correias transportadoras, vagões, entre outros. Os equipamentos de transporte levam o material até um determinado ponto de descarga, podendo estes serem britadores, pilha estéril ou pilha pulmão, onde o ciclo da operação recomeça [@fernandes2023b; @osanloo2020].
+
+A empresa em estudo, trata-se de uma mineradora de grande porte localizada no sudeste do Pará em que estabelece, como responsabilidade para a equipe de Engenharia da Confiabilidade, identificar e gerenciar riscos associados aos seus ativos críticos, classificados assim como os que podem causar um evento material indesejado (MUE – *Material Unwanted Event*) [@mining2015]. Desta forma, um **incidente** é um evento não planejado ou uma ocorrência que resulta em dano ou outra perda [@iso55000], e, por sua vez, a **falha** é um incidente que interrompe o funcionamento e acarreta a indisponibilidade do equipamento [@iso5462].
+
+Nesse sentido, a gestão de ativos deve guiar a forma como as organizações buscam um desempenho operacional excelente, integrando de forma eficiente o Planejamento e Controle Operacional (PCO) e o Planejamento e Controle da Manutenção (PCM) [@pascual2016; @qiao2017].
+
+No escopo de gestão de processos, a função primordial da operação é garantir a realização dos planos de gestão sem impactar as metas dos planos de produção [@slack2013]. De outra forma, a operação desempenha um papel crucial na consecução dos resultados de produção, e uma falha pode impactar diretamente nos resultados esperados. Portanto, garantir a confiabilidade dos ativos físicos, gerir os riscos e minimizar as falhas são atividades integradas entre PCO e PCM [@zampolli2019].
+
+Complementarmente, para exercer um papel estratégico, a manutenção precisa estar alinhada com os resultados empresariais da organização, principalmente, ao assegurar a disponibilidade dos equipamentos para a operação, reduzindo a probabilidade de paradas de produção não planejadas, minimizando a necessidade de manutenção corretiva (MC) e priorizando as manutenções preventivas (MP).
+
+A manutenção preventiva é uma estratégia importante para melhorar a disponibilidade física (DF) de um sistema ou equipamento, reduzir o tempo de inatividade e prolongar a vida útil dos equipamentos. No entanto, embora esse tipo de manutenção seja uma tática importante para reduzir a frequência de ocorrência de falhas no sistema, pode haver casos em que a MP possa interferir ou prejudicar a disponibilidade dos equipamentos, onde o tempo de execução da manutenção é maior que o tempo planejado no plano de preventiva.
+
+A implementação de uma política ótima de manutenção, ótima no sentido de redução do custo total esperado da manutenção, é um problema que tem sido abordado por vários autores e baseia-se em sistemas que operam sob uma estratégia de manutenção, na qual MPs são realizadas em tempos pré-determinados e MCs na ocorrência de falhas entre as manutenções preventivas [@doyen2004; @gilardoni2007; @toledo2016].
+
+Uma segunda abordagem, é que o planejamento da PM não implica necessariamente em tempos determinísticos, ou seja, a periodicidade da PM pode ser alterada devido a um plano de manutenção centrada em confiabilidade (RCM – *Reliability Centered Maintenance*) ou pela adoção de uma política de manutenção com abordagem dinâmica [@gilardoni2016]. Se a análise concluir que o sistema não é suficientemente confiável, a periodicidade da PM, fixada antes do tempo de operação inicial, deve ser reduzida [@doyen2011].
+
+Ocorre que a manutenção preventiva muitas vezes vista como periódica e determinística, pode ser entendida como aleatória, pois há alterações no sistema não conhecidos ou não controlados. Desta forma, é importante fazer investigação desse problema e, para os propósitos deste trabalho, o objetivo é analisar as principais causas que influenciam no desempenho dos indicadores de performance da manutenção dos caminhões, em particular, com foco na mensuração dos impactos causados pela estratégia de manutenção preventiva adotada nos caminhões *off-road* na empresa em estudo.
+
+## Questões de Pesquisa {#sec-questoes-pesquisa}
+
+Neste contexto, este trabalho formaliza o objetivo em quatro questões de pesquisa (RQs):
+
+**RQ1:** Quão aderente são as manutenções preventivas em relação às quantidades previstas e aos tempos pré-determinados pelas pautas de manutenção?
+
+**RQ2:** Quantas falhas podem ocorrer devido à falta de aderência das manutenções preventivas?
+
+**RQ3:** Qual é o fator de impacto da manutenção preventiva?
+
+**RQ4:** Qual é o impacto total na disponibilidade física do sistema ou equipamento?
+
+## Estrutura do Trabalho
+
+Este trabalho está dividido da seguinte forma:
+
+- Na **seção 2**, é apresentado a descrição do ciclo de processos de carregamento e transporte, bem como os indicadores chaves de desempenho utilizados no contexto da mineração e seus elementos de suporte.
+- Na **seção 3**, são descritos os fatores moderados da manutenção, abordando os principais conceitos e indicadores relacionados à manutenção, além de apresentar uma proposta de novos indicadores de análise.
+- Na **seção 4**, são apresentados os materiais, as informações da frota e os dados utilizados para as análises dos resultados.
+- Já os resultados e discussões, são apresentados na **seção 5**.
+- Por fim, a **seção 6** traz as conclusões deste trabalho.
+
+---
+
+**Próximo capítulo:** Medidas de Performance Operacional na Mineração

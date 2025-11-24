@@ -1,0 +1,117 @@
+# Análise de Sobrevivência e Modelos Semiparamétricos
+
+## Introdução
+
+Análise de sobrevivência com modelos de regressão, incluindo Kaplan-Meier e Cox.
+
+## Modelo de Cox (Regressão de Riscos Proporcionais)
+
+### Formulação
+
+$$
+\lambda(t|X) = \lambda_0(t) \exp(\beta_1 X_1 + \beta_2 X_2 + \ldots + \beta_p X_p)
+$$
+
+onde $\lambda_0(t)$ é a taxa de risco basal.
+
+## Exemplo com Covariáveis
+
+```{r}
+#| label: cox-model
+#| warning: false
+
+library(survival)
+library(survminer)
+
+# Dados de exemplo com covariáveis
+dados <- data.frame(
+  tempo = c(120, 145, 180, 200, 250, 300, 350, 400, 450, 500,
+            100, 130, 160, 190, 220, 280, 320, 380, 420, 480),
+  status = c(1, 1, 1, 0, 1, 0, 1, 1, 0, 1,
+             1, 1, 1, 1, 0, 1, 0, 1, 1, 1),
+  temperatura = c(rep(70, 10), rep(90, 10)),  # °C
+  carga = c(rep("Normal", 10), rep("Alta", 10))
+)
+
+# Ajustar modelo Cox
+cox_model <- coxph(Surv(tempo, status) ~ temperatura + carga, data = dados)
+
+summary(cox_model)
+```
+
+## Interpretação dos Coeficientes
+
+```{r}
+#| label: hazard-ratios
+
+# Hazard ratios
+exp(coef(cox_model))
+
+# Intervalos de confiança
+exp(confint(cox_model))
+```
+
+## Verificação de Pressupostos
+
+```{r}
+#| label: cox-assumptions
+
+# Teste de proporcionalidade
+cox.zph(cox_model)
+
+# Gráfico de resíduos
+ggcoxzph(cox.zph(cox_model))
+```
+
+## Curvas de Sobrevivência por Grupo
+
+```{r}
+#| label: survival-curves
+
+# Curvas ajustadas
+fit_km <- survfit(Surv(tempo, status) ~ carga, data = dados)
+
+ggsurvplot(fit_km,
+           data = dados,
+           pval = TRUE,
+           conf.int = TRUE,
+           risk.table = TRUE,
+           palette = c("steelblue", "coral"),
+           title = "Sobrevivência por Nível de Carga")
+```
+
+## Modelos Paramétricos AFT
+
+```{r}
+#| label: aft-model
+#| eval: false
+
+library(flexsurv)
+
+# Modelo AFT Weibull
+aft_weibull <- flexsurvreg(Surv(tempo, status) ~ temperatura + carga,
+                            data = dados,
+                            dist = "weibull")
+
+summary(aft_weibull)
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Ajuste modelo Cox com 3 covariáveis.
+
+📝 **Exercício 2**: Compare modelo Cox vs. AFT.
+
+📝 **Exercício 3**: Interprete hazard ratios e seus IC.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Modelo Cox não requer especificação da distribuição
+- Hazard ratios quantificam efeito das covariáveis
+- Verificar pressupostos é essencial
+
+---
+
+**Próximo capítulo:** Manutenção Preventiva

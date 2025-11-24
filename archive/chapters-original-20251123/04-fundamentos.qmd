@@ -1,0 +1,186 @@
+# Fundamentos de Confiabilidade
+
+## Introdução
+
+A **confiabilidade** é a probabilidade de um item desempenhar sua função de forma adequada, sob condições estabelecidas, durante um intervalo de tempo especificado. Este conceito fundamental é a base para todas as análises de manutenção e gestão de ativos.
+
+## Conceitos Básicos
+
+### Confiabilidade $R(t)$
+
+A função confiabilidade representa a probabilidade de um sistema sobreviver até o tempo $t$:
+
+$$
+R(t) = P(T > t)
+$$ {#eq-confiabilidade}
+
+onde $T$ é a variável aleatória que representa o tempo até a falha.
+
+### Taxa de Falha $\lambda(t)$
+
+A taxa de falha (ou função de risco) é definida como:
+
+$$
+\lambda(t) = \frac{f(t)}{R(t)} = -\frac{d}{dt}\ln R(t)
+$$ {#eq-taxa-falha}
+
+### MTBF e MTTF
+
+- **MTBF** (Mean Time Between Failures): Tempo médio entre falhas para sistemas reparáveis
+- **MTTF** (Mean Time To Failure): Tempo médio até a primeira falha para sistemas não-reparáveis
+
+$$
+MTTF = \int_0^\infty R(t) \, dt
+$$ {#eq-mttf}
+
+### Disponibilidade
+
+A disponibilidade é a probabilidade de um sistema estar operacional em um dado momento:
+
+$$
+A = \frac{MTBF}{MTBF + MTTR}
+$$ {#eq-disponibilidade}
+
+onde MTTR é o Mean Time To Repair (tempo médio de reparo).
+
+## Tipos de Manutenção
+
+### Manutenção Corretiva
+
+Intervenção realizada **após** a ocorrência de falha para restaurar o funcionamento do equipamento.
+
+**Vantagens:**
+- Menor custo inicial
+- Não interrompe operação programada
+
+**Desvantagens:**
+- Paradas não programadas
+- Custos imprevistos
+- Possíveis danos secundários
+
+### Manutenção Preventiva
+
+Intervenção realizada em **intervalos predeterminados** para reduzir a probabilidade de falha.
+
+**Vantagens:**
+- Redução de falhas inesperadas
+- Planejamento de paradas
+- Maior vida útil dos equipamentos
+
+**Desvantagens:**
+- Custo fixo programado
+- Possível substituição prematura de componentes
+
+### Manutenção Preditiva
+
+Intervenção baseada em **condição do equipamento**, monitorada por sensores e análise de dados.
+
+**Vantagens:**
+- Otimização de recursos
+- Manutenção just-in-time
+- Maior disponibilidade
+
+**Desvantagens:**
+- Investimento em sensores e sistemas
+- Requer expertise em análise de dados
+
+## Métricas Fundamentais
+
+### Tabela de Métricas Principais {#tbl-metricas}
+
+| Métrica | Símbolo | Fórmula | Interpretação |
+|---------|---------|---------|---------------|
+| Confiabilidade | $R(t)$ | $P(T > t)$ | Probabilidade de sobrevivência |
+| Taxa de Falha | $\lambda(t)$ | $f(t)/R(t)$ | Risco instantâneo |
+| MTBF | - | $\int_0^\infty R(t) dt$ | Tempo médio entre falhas |
+| Disponibilidade | $A$ | $MTBF/(MTBF+MTTR)$ | Percentual operacional |
+
+## Exemplo Prático com R
+
+💡 **Exemplo**: Cálculo de métricas básicas de confiabilidade
+
+```{r}
+#| label: exemplo-metricas
+#| warning: false
+#| message: false
+
+library(tidyverse)
+
+# Dados de tempo até falha (em horas)
+tempos_falha <- c(120, 145, 180, 200, 250, 310, 420, 500, 650, 800)
+
+# Calcular MTTF
+mttf <- mean(tempos_falha)
+
+# Estimar taxa de falha (assumindo distribuição exponencial)
+lambda_est <- 1 / mttf
+
+# Calcular confiabilidade para diferentes tempos
+tempos <- seq(0, 1000, by = 50)
+confiabilidade <- exp(-lambda_est * tempos)
+
+# Criar dataframe para visualização
+df_conf <- data.frame(
+  tempo = tempos,
+  confiabilidade = confiabilidade
+)
+
+# Visualizar
+ggplot(df_conf, aes(x = tempo, y = confiabilidade)) +
+  geom_line(color = "steelblue", linewidth = 1.2) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "red") +
+  labs(
+    title = "Função Confiabilidade",
+    x = "Tempo (horas)",
+    y = "R(t)",
+    caption = paste("MTTF =", round(mttf, 1), "horas")
+  ) +
+  theme_minimal()
+```
+
+### Análise dos Resultados
+
+```{r}
+#| label: resumo-metricas
+
+cat("Métricas Calculadas:\n")
+cat("MTTF:", round(mttf, 2), "horas\n")
+cat("Taxa de falha (λ):", round(lambda_est, 6), "falhas/hora\n")
+cat("Confiabilidade em 300h:", round(exp(-lambda_est * 300), 4), "\n")
+cat("Tempo para R(t) = 0.5:", round(log(2) / lambda_est, 2), "horas\n")
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Dados os tempos de falha `c(100, 150, 200, 250, 300)` horas:
+- Calcule o MTTF
+- Estime a taxa de falha
+- Determine a confiabilidade em 200 horas
+
+📝 **Exercício 2**: Um sistema tem MTBF = 500h e MTTR = 10h:
+- Calcule a disponibilidade
+- Quantas falhas são esperadas em 1 ano de operação contínua?
+
+📝 **Exercício 3**: Compare a confiabilidade de dois sistemas:
+- Sistema A: taxa de falha constante λ = 0.001 falhas/hora
+- Sistema B: taxa de falha crescente (Weibull com β = 2)
+
+## Referências e Leitura Adicional
+
+- Rausand, M., & Høyland, A. (2004). *System Reliability Theory: Models, Statistical Methods, and Applications*.
+- O'Connor, P., & Kleyner, A. (2011). *Practical Reliability Engineering*.
+- Meeker, W. Q., & Escobar, L. A. (1998). *Statistical Methods for Reliability Data*.
+
+## Resumo do Capítulo
+
+🔔 **Pontos-chave:**
+
+- Confiabilidade é a base para análise de sistemas e equipamentos
+- Taxa de falha caracteriza o comportamento de falhas ao longo do tempo
+- MTBF e disponibilidade são métricas práticas de gestão
+- Tipos de manutenção devem ser escolhidos considerando custos e riscos
+- R fornece ferramentas poderosas para cálculo e visualização de métricas
+
+---
+
+**Próximo capítulo:** Distribuições de Probabilidade para Vida Útil

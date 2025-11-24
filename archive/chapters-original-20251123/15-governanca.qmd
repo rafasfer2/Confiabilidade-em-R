@@ -1,0 +1,393 @@
+# Boas Práticas e Governança de Dados de Manutenção
+
+## Introdução
+
+Estratégias para gestão eficaz de dados de manutenção, qualidade, versionamento e integração.
+
+## Arquitetura de Dados de Manutenção
+
+### Camadas de Dados
+
+```
+┌─────────────────────────────────────┐
+│     Camada de Visualização          │  ← Dashboards, Relatórios
+├─────────────────────────────────────┤
+│     Camada de Analytics             │  ← Modelos ML, Estatística
+├─────────────────────────────────────┤
+│     Camada de Integração (ETL)      │  ← Limpeza, Transformação
+├─────────────────────────────────────┤
+│     Camada de Armazenamento         │  ← Data Lake, Data Warehouse
+├─────────────────────────────────────┤
+│     Camada de Coleta                │  ← CMMS, IoT, Sensores
+└─────────────────────────────────────┘
+```
+
+### Fontes de Dados
+
+| Fonte | Tipo | Frequência | Exemplos |
+|-------|------|-----------|----------|
+| **CMMS** | Estruturado | Contínua | Ordens de serviço, histórico |
+| **Sensores IoT** | Time-series | Tempo real | Temperatura, vibração |
+| **Inspeções** | Semi-estruturado | Periódica | Checklists, fotos |
+| **Manuais** | Não estruturado | Estática | PDFs, especificações |
+
+## Qualidade de Dados
+
+### Dimensões de Qualidade
+
+1. **Completude** — Dados ausentes
+2. **Acurácia** — Dados corretos
+3. **Consistência** — Dados coerentes entre sistemas
+4. **Temporalidade** — Dados atualizados
+5. **Unicidade** — Sem duplicação
+
+### Verificação em R
+
+```{r}
+#| label: data-quality
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(naniar)
+
+# Carregar dados
+manutencao <- read_csv("data/ordens_servico.csv")
+
+# Verificar missing values
+vis_miss(manutencao)
+
+# Estatísticas de completude
+miss_summary <- miss_var_summary(manutencao)
+print(miss_summary)
+
+# Detectar duplicatas
+duplicatas <- manutencao %>%
+  group_by(ordem_id) %>%
+  filter(n() > 1)
+
+cat("Registros duplicados:", nrow(duplicatas), "\n")
+```
+
+### Limpeza de Dados
+
+```{r}
+#| label: data-cleaning
+#| eval: false
+
+# Pipeline de limpeza
+manutencao_clean <- manutencao %>%
+  # Remover duplicatas
+  distinct(ordem_id, .keep_all = TRUE) %>%
+  # Tratar missings
+  mutate(
+    tempo_reparo = ifelse(is.na(tempo_reparo),
+                         median(tempo_reparo, na.rm = TRUE),
+                         tempo_reparo)
+  ) %>%
+  # Validar datas
+  filter(data_fim >= data_inicio) %>%
+  # Padronizar categorias
+  mutate(
+    tipo_manutencao = str_to_upper(tipo_manutencao),
+    tipo_manutencao = case_when(
+      tipo_manutencao %in% c("PREV", "PREVENTIVA") ~ "PREVENTIVA",
+      tipo_manutencao %in% c("CORR", "CORRETIVA") ~ "CORRETIVA",
+      TRUE ~ "OUTRAS"
+    )
+  )
+```
+
+## Integração de Dados
+
+### ETL com R
+
+```{r}
+#| label: etl-pipeline
+#| eval: false
+
+library(DBI)
+library(RSQLite)
+
+# Conexão com banco
+con <- dbConnect(SQLite(), "data/manutencao.db")
+
+# Extract - Ler de múltiplas fontes
+cmms_data <- read_csv("sources/cmms_export.csv")
+sensor_data <- read_csv("sources/sensores.csv")
+inspection_data <- read_excel("sources/inspecoes.xlsx")
+
+# Transform - Limpar e integrar
+dados_integrados <- cmms_data %>%
+  left_join(sensor_data, by = c("equipamento_id", "data")) %>%
+  left_join(inspection_data, by = "equipamento_id") %>%
+  # Engenharia de features
+  mutate(
+    tempo_desde_ultima_manutencao = as.numeric(data - lag(data)),
+    custo_acumulado = cumsum(custo)
+  )
+
+# Load - Carregar no banco
+dbWriteTable(con, "manutencao_integrada", dados_integrados, overwrite = TRUE)
+
+dbDisconnect(con)
+```
+
+## Versionamento de Dados
+
+### DVC (Data Version Control)
+
+```bash
+# Inicializar DVC
+dvc init
+
+# Adicionar dados ao DVC
+dvc add data/falhas_historicas.csv
+
+# Versionar com Git
+git add data/falhas_historicas.csv.dvc .gitignore
+git commit -m "Adiciona dados históricos v1.0"
+
+# Push para remote storage (S3, Azure, etc.)
+dvc push
+```
+
+### Versionamento de Modelos
+
+```{r}
+#| label: model-versioning
+#| eval: false
+
+library(pins)
+
+# Configurar board (local ou remoto)
+board <- board_folder("models/")
+
+# Salvar modelo com versão
+pin_write(board, modelo_rf,
+          name = "modelo_predicao_falhas",
+          description = "Random Forest v2.1 - Acurácia 0.89")
+
+# Carregar versão específica
+modelo_prod <- pin_read(board, "modelo_predicao_falhas",
+                        version = "20250115T103045Z")
+```
+
+## Pipelines Automatizados
+
+### Exemplo com {targets}
+
+```{r}
+#| label: targets-pipeline
+#| eval: false
+
+library(targets)
+
+# _targets.R
+list(
+  tar_target(dados_raw, read_csv("data/raw/ordens.csv")),
+  tar_target(dados_clean, limpar_dados(dados_raw)),
+  tar_target(features, engenharia_features(dados_clean)),
+  tar_target(modelo, treinar_modelo(features)),
+  tar_target(metricas, avaliar_modelo(modelo, features)),
+  tar_target(relatorio, gerar_relatorio(metricas))
+)
+
+# Executar pipeline
+tar_make()
+
+# Visualizar dependências
+tar_visnetwork()
+```
+
+## Integração com CMMS
+
+### API REST
+
+```{r}
+#| label: cmms-api
+#| eval: false
+
+library(httr)
+
+# Função para buscar ordens de serviço
+buscar_os <- function(api_url, token, data_inicio, data_fim) {
+  response <- GET(
+    url = paste0(api_url, "/workorders"),
+    query = list(
+      start_date = data_inicio,
+      end_date = data_fim
+    ),
+    add_headers(Authorization = paste("Bearer", token))
+  )
+
+  if (status_code(response) == 200) {
+    content(response, as = "parsed")
+  } else {
+    stop("Erro na API: ", status_code(response))
+  }
+}
+
+# Usar
+os_data <- buscar_os(
+  api_url = "https://cmms.empresa.com/api",
+  token = Sys.getenv("CMMS_TOKEN"),
+  data_inicio = "2024-01-01",
+  data_fim = "2024-12-31"
+)
+```
+
+## Integração com IoT
+
+### MQTT para Sensores
+
+```{r}
+#| label: iot-mqtt
+#| eval: false
+
+library(mqtt)
+
+# Conectar ao broker MQTT
+client <- mqtt_connect("mqtt.empresa.com", port = 1883)
+
+# Subscrever tópico
+mqtt_subscribe(client, "sensores/temperatura/#")
+
+# Callback para mensagens
+mqtt_on_message(client, function(topic, payload) {
+  dados_sensor <- jsonlite::fromJSON(payload)
+
+  # Processar e armazenar
+  processar_leitura_sensor(dados_sensor)
+})
+```
+
+## Segurança e Compliance
+
+### Boas Práticas
+
+1. **Autenticação e autorização**
+   - OAuth2 para APIs
+   - RBAC (Role-Based Access Control)
+
+2. **Criptografia**
+   - Dados em trânsito (TLS)
+   - Dados em repouso (AES-256)
+
+3. **Auditoria**
+   - Logs de acesso
+   - Rastreabilidade de mudanças
+
+4. **Backup e recuperação**
+   - Backups automáticos diários
+   - Testes de recuperação trimestrais
+
+### Exemplo de Auditoria
+
+```{r}
+#| label: audit-log
+#| eval: false
+
+registrar_auditoria <- function(usuario, acao, tabela, registro_id) {
+  log_entry <- data.frame(
+    timestamp = Sys.time(),
+    usuario = usuario,
+    acao = acao,
+    tabela = tabela,
+    registro_id = registro_id,
+    ip_address = Sys.getenv("REMOTE_ADDR")
+  )
+
+  # Append ao log
+  write_csv(log_entry, "logs/audit.csv", append = TRUE)
+}
+```
+
+## Reprodutibilidade
+
+### Ambiente com {renv}
+
+```{r}
+#| label: renv-setup
+#| eval: false
+
+# Inicializar renv
+renv::init()
+
+# Salvar snapshot de pacotes
+renv::snapshot()
+
+# Restaurar ambiente
+renv::restore()
+```
+
+### Containerização com Docker
+
+```dockerfile
+# Dockerfile
+FROM rocker/r-ver:4.5.1
+
+# Instalar dependências do sistema
+RUN apt-get update && apt-get install -y \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev
+
+# Copiar projeto
+COPY . /app
+WORKDIR /app
+
+# Instalar pacotes R
+RUN Rscript -e "renv::restore()"
+
+# Executar análise
+CMD ["Rscript", "run_analysis.R"]
+```
+
+## Documentação
+
+### Metadados
+
+```yaml
+# metadata.yml
+dataset:
+  name: "Histórico de Falhas - Bombas"
+  version: "2.1"
+  date: "2025-01-15"
+  owner: "Engenharia de Confiabilidade"
+  description: |
+    Dados de falhas de bombas centrífugas coletados
+    entre 2021-2024.
+
+fields:
+  - name: bomba_id
+    type: character
+    description: Identificador único da bomba
+
+  - name: tempo_operacao
+    type: numeric
+    unit: horas
+    description: Tempo acumulado de operação até falha ou censura
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Implemente pipeline ETL para seus dados.
+
+📝 **Exercício 2**: Configure versionamento com DVC.
+
+📝 **Exercício 3**: Crie dashboard de qualidade de dados.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Governança de dados é fundamental para análises confiáveis
+- ETL automatizado reduz erros e retrabalho
+- Versionamento garante reprodutibilidade
+- Integração CMMS + IoT habilita manutenção inteligente
+- Segurança e compliance são inegociáveis
+
+---
+
+**Próximo:** Apêndices

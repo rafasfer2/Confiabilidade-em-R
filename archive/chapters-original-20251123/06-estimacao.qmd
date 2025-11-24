@@ -1,0 +1,114 @@
+# Estimativa de Parâmetros e Inferência
+
+## Introdução
+
+Este capítulo aborda métodos para estimar parâmetros de distribuições de vida útil a partir de dados observados.
+
+## Método da Máxima Verossimilhança (MLE)
+
+### Conceito
+
+O método MLE busca os parâmetros que **maximizam a probabilidade** de observar os dados coletados.
+
+### Função de Verossimilhança
+
+Para dados de falha $t_1, t_2, \ldots, t_n$:
+
+$$
+L(\theta) = \prod_{i=1}^n f(t_i; \theta)
+$$
+
+Log-verossimilhança:
+
+$$
+\ell(\theta) = \sum_{i=1}^n \log f(t_i; \theta)
+$$
+
+### Exemplo: Exponencial
+
+```{r}
+#| label: mle-exponencial
+#| warning: false
+
+library(tidyverse)
+
+# Dados simulados
+set.seed(123)
+dados <- rexp(50, rate = 0.01)
+
+# MLE analítico para exponencial
+lambda_mle <- 1 / mean(dados)
+
+cat("Lambda MLE:", lambda_mle, "\n")
+cat("MTTF estimado:", 1/lambda_mle, "\n")
+```
+
+### Exemplo: Weibull com `fitdistrplus`
+
+```{r}
+#| label: mle-weibull
+#| warning: false
+#| message: false
+
+library(fitdistrplus)
+
+# Ajuste Weibull
+fit_weibull <- fitdist(dados, "weibull")
+
+summary(fit_weibull)
+
+# Visualizar ajuste
+plot(fit_weibull)
+```
+
+## Intervalos de Confiança
+
+### Bootstrap
+
+```{r}
+#| label: bootstrap-ci
+
+# Bootstrap para IC
+boot_samples <- replicate(1000, {
+  sample_boot <- sample(dados, replace = TRUE)
+  1 / mean(sample_boot)
+})
+
+# IC 95%
+ic_lower <- quantile(boot_samples, 0.025)
+ic_upper <- quantile(boot_samples, 0.975)
+
+cat("IC 95% para lambda:", ic_lower, "-", ic_upper, "\n")
+```
+
+## Testes de Qualidade de Ajuste
+
+### Teste Kolmogorov-Smirnov
+
+```{r}
+#| label: ks-test
+
+# Testar ajuste exponencial
+ks_result <- ks.test(dados, "pexp", rate = lambda_mle)
+print(ks_result)
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Estime parâmetros de distribuição Weibull usando MLE.
+
+📝 **Exercício 2**: Compare IC paramétrico vs. bootstrap.
+
+📝 **Exercício 3**: Use AIC/BIC para comparar modelos.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- MLE é o método padrão para estimação
+- Intervalos de confiança quantificam incerteza
+- Testes de qualidade validam o ajuste
+
+---
+
+**Próximo capítulo:** Análise de Dados de Falha com R

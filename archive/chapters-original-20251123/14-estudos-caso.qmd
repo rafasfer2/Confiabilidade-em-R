@@ -1,0 +1,313 @@
+# Estudos de Caso Industriais
+
+## Introdução
+
+Este capítulo apresenta estudos de caso completos aplicando as técnicas de confiabilidade e manutenção em contextos industriais reais.
+
+## Caso 1: Bombas Centrífugas em Planta Química
+
+### Contexto
+
+Planta química com 50 bombas centrífugas críticas. Histórico de 3 anos de falhas disponível.
+
+### Objetivos
+
+1. Modelar distribuição de tempos de falha
+2. Estimar confiabilidade
+3. Otimizar política de manutenção preventiva
+
+### Análise de Dados
+
+```{r}
+#| label: caso1-dados
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(survival)
+library(flexsurv)
+
+# Carregar dados
+bombas <- read_csv("resources/data/falhas_bombas.csv")
+
+# Estrutura esperada:
+# bomba_id, tempo_operacao, status (1=falha, 0=censura), tipo, fluido, temperatura
+
+head(bombas)
+
+# Estatísticas descritivas
+bombas %>%
+  group_by(tipo) %>%
+  summarise(
+    n = n(),
+    tempo_medio = mean(tempo_operacao),
+    falhas = sum(status),
+    taxa_falha = sum(status) / n()
+  )
+```
+
+### Modelagem Weibull
+
+```{r}
+#| label: caso1-weibull
+#| eval: false
+
+# Ajustar Weibull por tipo de bomba
+fit_tipo_A <- flexsurvreg(Surv(tempo_operacao, status) ~ 1,
+                          data = filter(bombas, tipo == "A"),
+                          dist = "weibull")
+
+fit_tipo_B <- flexsurvreg(Surv(tempo_operacao, status) ~ 1,
+                          data = filter(bombas, tipo == "B"),
+                          dist = "weibull")
+
+# Comparar parâmetros
+tibble(
+  Tipo = c("A", "B"),
+  Beta = c(fit_tipo_A$res["shape", "est"],
+           fit_tipo_B$res["shape", "est"]),
+  Eta = c(fit_tipo_A$res["scale", "est"],
+          fit_tipo_B$res["scale", "est"]),
+  MTTF = c(fit_tipo_A$res["scale", "est"] * gamma(1 + 1/fit_tipo_A$res["shape", "est"]),
+           fit_tipo_B$res["scale", "est"] * gamma(1 + 1/fit_tipo_B$res["shape", "est"]))
+)
+```
+
+### Curvas de Confiabilidade
+
+```{r}
+#| label: caso1-curvas
+#| eval: false
+
+# Visualizar
+t <- seq(0, 3000, by = 50)
+
+df_conf <- data.frame(
+  tempo = rep(t, 2),
+  tipo = rep(c("A", "B"), each = length(t)),
+  confiabilidade = c(
+    exp(-(t/fit_tipo_A$res["scale", "est"])^fit_tipo_A$res["shape", "est"]),
+    exp(-(t/fit_tipo_B$res["scale", "est"])^fit_tipo_B$res["shape", "est"])
+  )
+)
+
+ggplot(df_conf, aes(x = tempo, y = confiabilidade, color = tipo)) +
+  geom_line(linewidth = 1.2) +
+  geom_hline(yintercept = 0.9, linetype = "dashed") +
+  labs(title = "Confiabilidade por Tipo de Bomba",
+       x = "Tempo de Operação (h)", y = "R(t)",
+       color = "Tipo") +
+  theme_minimal()
+```
+
+### Otimização de Manutenção
+
+```{r}
+#| label: caso1-otimizacao
+#| eval: false
+
+# Custos estimados
+C_preventiva <- 2000
+C_falha <- 15000
+
+# Função custo para Tipo A
+beta_A <- fit_tipo_A$res["shape", "est"]
+eta_A <- fit_tipo_A$res["scale", "est"]
+
+custo_tipo_A <- function(Tp) {
+  R_Tp <- exp(-(Tp/eta_A)^beta_A)
+  integral <- integrate(function(t) exp(-(t/eta_A)^beta_A), 0, Tp)$value
+  (C_preventiva * R_Tp + C_falha * (1 - R_Tp)) / integral
+}
+
+# Otimizar
+intervalos <- seq(500, 2500, by = 50)
+custos <- sapply(intervalos, custo_tipo_A)
+
+intervalo_otimo <- intervalos[which.min(custos)]
+
+cat("Intervalo ótimo Tipo A:", intervalo_otimo, "horas\n")
+```
+
+### Resultados e Recomendações
+
+**Para Tipo A:**
+- β = 2.3 → desgaste progressivo
+- Intervalo ótimo: 1200 horas
+- Economia estimada: 30% vs. política atual
+
+**Para Tipo B:**
+- β = 1.1 → falhas quase aleatórias
+- Manutenção baseada em condição recomendada
+
+---
+
+## Caso 2: Motores Elétricos em Mineração
+
+### Contexto
+
+Frota de 80 motores elétricos de alta potência. Dados de sensores disponíveis.
+
+### Abordagem
+
+1. Análise de sobrevivência tradicional
+2. Manutenção preditiva com sensores
+3. Comparação de estratégias
+
+### Análise com Covariáveis
+
+```{r}
+#| label: caso2-cox
+#| eval: false
+
+motores <- read_csv("resources/data/historico_motores.rds")
+
+# Modelo Cox
+cox_model <- coxph(Surv(tempo_operacao, falha) ~
+                   potencia + temperatura_media +
+                   vibracao_rms + carga_media,
+                   data = motores)
+
+summary(cox_model)
+```
+
+### Predição com Dados de Sensores
+
+```{r}
+#| label: caso2-preditiva
+#| eval: false
+
+library(caret)
+
+# Features extraídas
+features <- motores %>%
+  group_by(motor_id) %>%
+  summarise(
+    temp_max = max(temperatura),
+    temp_std = sd(temperatura),
+    vibr_trend = cor(seq_along(vibracao), vibracao),
+    corrente_p95 = quantile(corrente, 0.95),
+    falha_30d = any(falha & tempo_ate_falha < 30)
+  )
+
+# Modelo Random Forest
+modelo <- train(falha_30d ~ .,
+                data = features,
+                method = "rf",
+                trControl = trainControl(method = "cv", number = 5))
+
+varImp(modelo)
+```
+
+### Impacto Econômico
+
+| Estratégia | Custo Anual | Disponibilidade | Economia vs. Baseline |
+|-----------|-------------|----------------|---------------------|
+| Corretiva | R$ 450.000 | 87% | - |
+| Preventiva (fixa) | R$ 320.000 | 94% | 29% |
+| Preditiva (sensores) | R$ 280.000 | 97% | 38% |
+
+---
+
+## Caso 3: Compressores em Indústria de Gás
+
+### Contexto
+
+Compressores críticos com alto custo de parada. Implementação de gêmeo digital.
+
+### Metodologia
+
+```{r}
+#| label: caso3-gemeo-digital
+#| eval: false
+
+# Simulação de gêmeo digital
+simular_degradacao <- function(tempo_max, params) {
+  # Modelo físico + ML
+  # Predizer RUL (Remaining Useful Life)
+}
+
+# Integração com IoT
+rul_atual <- predizer_rul(dados_tempo_real)
+
+if (rul_atual < threshold_critico) {
+  enviar_alerta()
+  agendar_manutencao()
+}
+```
+
+### Resultados
+
+- Redução de 45% em paradas não programadas
+- Aumento de 12% na vida útil média
+- ROI positivo em 18 meses
+
+---
+
+## Caso 4: Transformadores em Subestação
+
+### Desafio
+
+Componentes de alta criticidade, falhas catastróficas.
+
+### Solução
+
+- Análise de óleo (DGA)
+- Termografia
+- Monitoramento contínuo
+- Modelo de degradação
+
+```{r}
+#| label: caso4-degradacao
+#| eval: false
+
+# Modelo de degradação baseado em DGA
+modelo_degradacao <- lm(indice_saude ~ log(h2) + log(ch4) +
+                        log(c2h2) + temperatura,
+                        data = dados_dga)
+
+# Predição de vida residual
+vida_residual <- estimar_vida_residual(modelo_degradacao,
+                                       novos_dados)
+```
+
+---
+
+## Lições Aprendidas
+
+### Fatores Críticos de Sucesso
+
+1. **Qualidade dos dados** — Fundamental para qualquer análise
+2. **Envolvimento operacional** — Equipes de campo devem validar modelos
+3. **Integração de sistemas** — CMMS + IoT + Analytics
+4. **Capacitação** — Treinar equipes em interpretação de modelos
+
+### Armadilhas Comuns
+
+- Overfitting em modelos preditivos
+- Ignorar contexto operacional
+- Subestimar custos de implementação
+- Falta de validação contínua
+
+---
+
+## Exercícios
+
+📝 **Exercício 1**: Aplique análise Weibull aos seus dados reais.
+
+📝 **Exercício 2**: Desenvolva análise custo-benefício completa.
+
+📝 **Exercício 3**: Crie dashboard de monitoramento com Shiny.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Estudos de caso demonstram aplicabilidade real
+- Análise deve integrar estatística + contexto operacional
+- ROI mensurável justifica investimentos
+- Manutenção preditiva oferece melhor custo-benefício
+
+---
+
+**Próximo capítulo:** Boas Práticas e Governança de Dados

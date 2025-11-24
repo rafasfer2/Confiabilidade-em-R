@@ -1,0 +1,209 @@
+# Probabilidades e Distribuições para Vida Útil
+
+## Introdução
+
+Este capítulo apresenta as principais distribuições de probabilidade utilizadas para modelar o tempo até a falha de componentes e sistemas.
+
+## Distribuição Exponencial
+
+A distribuição exponencial é o modelo mais simples, caracterizada por **taxa de falha constante**.
+
+### Função Densidade de Probabilidade
+
+$$
+f(t) = \lambda e^{-\lambda t}, \quad t \geq 0
+$$ {#eq-exp-pdf}
+
+### Função Confiabilidade
+
+$$
+R(t) = e^{-\lambda t}
+$$ {#eq-exp-reliability}
+
+### Propriedades
+
+- Taxa de falha constante: $\lambda(t) = \lambda$
+- Sem memória: $P(T > s+t | T > s) = P(T > t)$
+- MTTF = $1/\lambda$
+
+### Exemplo em R
+
+```{r}
+#| label: exp-example
+#| warning: false
+
+library(tidyverse)
+
+lambda <- 0.01  # taxa de falha
+t <- seq(0, 500, by = 10)
+
+# Funções
+pdf_exp <- dexp(t, rate = lambda)
+cdf_exp <- pexp(t, rate = lambda)
+reliability <- 1 - cdf_exp
+hazard <- rep(lambda, length(t))
+
+# Dataframe
+df <- data.frame(t, pdf_exp, cdf_exp, reliability, hazard)
+
+# Plot confiabilidade
+ggplot(df, aes(x = t, y = reliability)) +
+  geom_line(color = "steelblue", linewidth = 1.2) +
+  labs(title = "Confiabilidade - Exponencial",
+       x = "Tempo", y = "R(t)") +
+  theme_minimal()
+```
+
+## Distribuição Weibull
+
+A distribuição Weibull é a **mais utilizada** em engenharia de confiabilidade por sua flexibilidade.
+
+### Função Densidade de Probabilidade
+
+$$
+f(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta-1} e^{-(t/\eta)^\beta}
+$$ {#eq-weibull-pdf}
+
+### Parâmetros
+
+- **β (beta)**: parâmetro de forma
+  - β < 1: taxa de falha decrescente (mortalidade infantil)
+  - β = 1: taxa de falha constante (equivale à exponencial)
+  - β > 1: taxa de falha crescente (desgaste)
+
+- **η (eta)**: parâmetro de escala (vida característica)
+
+### Função Confiabilidade
+
+$$
+R(t) = e^{-(t/\eta)^\beta}
+$$ {#eq-weibull-reliability}
+
+### Taxa de Falha
+
+$$
+\lambda(t) = \frac{\beta}{\eta}\left(\frac{t}{\eta}\right)^{\beta-1}
+$$ {#eq-weibull-hazard}
+
+### Exemplo em R
+
+```{r}
+#| label: weibull-example
+
+# Diferentes formas
+beta_values <- c(0.5, 1, 1.5, 2.5)
+eta <- 100
+t <- seq(0, 200, by = 1)
+
+df_weibull <- expand.grid(t = t, beta = beta_values) %>%
+  mutate(
+    reliability = exp(-(t/eta)^beta),
+    hazard = (beta/eta) * (t/eta)^(beta-1),
+    beta_label = paste("β =", beta)
+  )
+
+# Plot taxa de falha
+ggplot(df_weibull, aes(x = t, y = hazard, color = beta_label)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Taxa de Falha - Weibull",
+       x = "Tempo", y = "λ(t)",
+       color = "Parâmetro") +
+  theme_minimal()
+```
+
+## Distribuição Lognormal
+
+A distribuição lognormal é adequada para processos onde o **logaritmo do tempo** até a falha segue distribuição normal.
+
+### Função Densidade
+
+$$
+f(t) = \frac{1}{t\sigma\sqrt{2\pi}} e^{-\frac{(\ln t - \mu)^2}{2\sigma^2}}
+$$ {#eq-lognormal-pdf}
+
+### Parâmetros
+
+- **μ (mu)**: média do logaritmo
+- **σ (sigma)**: desvio padrão do logaritmo
+
+### Quando Usar
+
+- Falhas causadas por **fadiga**
+- Processos de **degradação** multiplicativos
+- Tempos de reparo
+
+### Exemplo em R
+
+```{r}
+#| label: lognormal-example
+
+mu <- log(100)
+sigma <- 0.5
+t <- seq(0, 300, by = 1)
+
+df_lognormal <- data.frame(
+  t = t,
+  pdf = dlnorm(t, meanlog = mu, sdlog = sigma),
+  reliability = 1 - plnorm(t, meanlog = mu, sdlog = sigma)
+)
+
+ggplot(df_lognormal, aes(x = t, y = reliability)) +
+  geom_line(color = "darkgreen", linewidth = 1.2) +
+  labs(title = "Confiabilidade - Lognormal",
+       x = "Tempo", y = "R(t)") +
+  theme_minimal()
+```
+
+## Comparação de Distribuições
+
+```{r}
+#| label: comparison
+#| fig-width: 10
+#| fig-height: 6
+
+t <- seq(0, 200, by = 1)
+
+df_comp <- data.frame(
+  t = t,
+  Exponencial = exp(-0.01 * t),
+  Weibull = exp(-(t/100)^2),
+  Lognormal = 1 - plnorm(t, meanlog = log(100), sdlog = 0.5)
+) %>%
+  pivot_longer(cols = -t, names_to = "Distribuição", values_to = "R(t)")
+
+ggplot(df_comp, aes(x = t, y = `R(t)`, color = Distribuição)) +
+  geom_line(linewidth = 1.2) +
+  labs(title = "Comparação de Distribuições",
+       x = "Tempo", y = "Confiabilidade") +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+## Escolha do Modelo
+
+| Distribuição | Quando Usar | Taxa de Falha |
+|--------------|-------------|---------------|
+| **Exponencial** | Falhas aleatórias, componentes eletrônicos | Constante |
+| **Weibull** | Maioria dos casos industriais, flexível | Variável |
+| **Lognormal** | Fadiga, degradação multiplicativa | Não-monótona |
+
+## Exercícios
+
+📝 **Exercício 1**: Ajuste uma distribuição Weibull a dados de falha e estime β e η.
+
+📝 **Exercício 2**: Compare o ajuste de exponencial vs. Weibull usando teste de qualidade de ajuste.
+
+📝 **Exercício 3**: Simule 1000 tempos de falha de uma distribuição Weibull(β=2, η=100) e verifique se a média empírica se aproxima da teórica.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Exponencial: modelo simples, taxa constante
+- Weibull: mais flexível, amplamente usado
+- Lognormal: adequado para fadiga e degradação
+- Escolha do modelo depende do mecanismo de falha
+
+---
+
+**Próximo capítulo:** Estimativa de Parâmetros e Inferência

@@ -1,0 +1,682 @@
+# Fundamentos da Gestão da Manutenção {#sec-fatores-moderadores}
+
+## Introdução
+
+De acordo com a definição de @kardecnascif2009, a manutenção compreende todas as atividades técnicas, gerenciais e administrativas que visam manter ou restaurar um ativo ao seu estado operacional, para que possa atender suas funções de maneira adequada ao longo do seu ciclo de vida. Especificamente, a missão da manutenção é assegurar a disponibilidade dos ativos para que o plano de produção seja cumprido, com segurança, preservação do meio ambiente e custos adequados, evitando que falhas possam interromper o processo produtivo e gerar perdas [@kardecnascif2009; @zampolli2019].
+A gestão da manutenção, estabelece metas e objetivos por meio de normas e procedimentos de trabalho, de modo a obter-se um melhor aproveitamento dos recursos disponíveis, sejam estes pessoais, equipamentos ou materiais [@oliveira2016]. Para empresas que se dispõem a buscar padrões internacionais de desempenho da manutenção ("World Class Maintenance"), é imprescindível identificar e gerenciar os riscos às suas atividades por meio do modelo de linhas de defesa, evitando ou mitigando qualquer impacto potencial em toda a organização [@bokrantz2020].
+De outra forma, as funções manter e operar devem possuir estrutura de confiabilidade, estabelecer acordo de nível de serviços com regras de priorização de frotas para definição e acompanhamento de metas, definir critérios para tratamento sistêmico de falhas repetitivas através de estudos estatísticos, e definir sistemática para análise de eficácia dos trabalhos de confiabilidade. Encontrar as estratégias ótimas de manutenção a serem aplicadas no processo produtivo, e seus subprocessos, é a base da política de manutenção [@xenos2014].
+A confiabilidade é definida como a probabilidade de um sistema ou produto funcionar satisfatoriamente durante um determinado período, desde que usados dentro das condições operacionais específicas [@blanchardfabrycky1998]. Desta forma, temos que um sistema é qualquer parte, componente, dispositivo, subsistema, unidade funcional, equipamento ou item que possa ser considerado individualmente [@iso5462].
+A falha é o termo usado para descrever a situação em que um item não é mais capaz de desempenhar a função requerida, o que leva à indisponibilidade do equipamento [@iso5462].
+A ocorrência de falhas, ao longo do tempo, se enquadra em um escopo mais geral conhecido como o de eventos recorrentes. Entende-se por processos de eventos recorrentes, aqueles que geram eventos repetidamente ao longo do tempo e, para um sistema reparável, a ocorrência de eventos (no caso falhas) contém informações sobre como um sistema envelhece ao longo do tempo.
+As suposições em relação à forma com que um sistema envelhece, e como é afetado por uma falha e reparo, irão guiar a escolha do modelo para um sistema reparável e, consequentemente, a política de manutenção [@rigdonbasu2000]. De um modo geral, as intervenções feitas em um sistema reparável, com o intuito de corrigir ou evitar a ocorrência de falhas podem ser classificadas em dois tipos: manutenção corretiva (MC) e manutenção preventiva (MP).
+A primeira visa retornar o sistema à condição de operação após uma falha, e é adotada no caso em que as falhas afetam a função primária ou secundária do sistema. Vale ressaltar que a manutenção corretiva é caracterizada por uma ocorrência de falha inesperada, ao qual é necessário intervir no sistema com uma ação de reparo.
+Já a segunda consiste numa parada programada para melhorar a condição do sistema. A manutenção preventiva decorre de um planejamento, que leva em consideração a diminuição do desgaste do sistema para reduzir a frequência de ocorrência de falhas no mesmo.
+
+## Gestão da Manutenção {#sec-gestao-manutencao}
+
+### Estrutura Organizacional
+
+A organização da função de manutenção impacta diretamente a efetividade:
+
+#### Modelos de Gestão
+
+1. **Manutenção Centralizada**
+   - Equipe única atende toda a operação
+   - Maior especialização técnica
+   - Possível aumento no tempo de resposta
+
+2. **Manutenção Descentralizada**
+   - Equipes dedicadas por área/frota
+   - Resposta mais rápida
+   - Possível duplicação de recursos
+
+3. **Modelo Híbrido**
+   - Manutenção de rotina descentralizada
+   - Reparos complexos centralizados
+   - Equilíbrio entre especialização e agilidade
+
+### Sistemas de Informação
+
+#### CMMS (Computerized Maintenance Management System)
+
+Funcionalidades essenciais:
+
+- **Gestão de ordens de serviço**: Criação, priorização, atribuição, fechamento
+- **Controle de estoque**: Peças, ferramentas, consumíveis
+- **Histórico de equipamentos**: Registro de todas as intervenções
+- **Planejamento**: Programação de preventivas e paradas
+- **Indicadores**: Dashboards de performance
+
+```{r}
+#| label: fig-cmms-workflow
+#| fig-cap: "Fluxo de trabalho típico em um CMMS"
+#| echo: false
+#| eval: false
+
+library(DiagrammeR)
+
+grViz("
+digraph cmms_workflow {
+  graph [rankdir = TB, bgcolor = transparent]
+
+  node [shape = box, style = 'filled,rounded', fontname = Helvetica, fontsize = 10]
+
+  Deteccao [label = 'Detecção de\\nNecessidade', fillcolor = '#E8F8F5']
+  OS [label = 'Criação de\\nOrdem de Serviço', fillcolor = '#D5F4E6']
+  Priorizacao [label = 'Priorização', fillcolor = '#A9DFBF']
+  Planejamento [label = 'Planejamento\\n(peças, ferramentas)', fillcolor = '#7DCEA0']
+  Execucao [label = 'Execução', fillcolor = '#52BE80']
+  Registro [label = 'Registro de\\nAtividades', fillcolor = '#27AE60']
+  Analise [label = 'Análise de\\nDados', fillcolor = '#1E8449']
+
+  Deteccao -> OS -> Priorizacao -> Planejamento -> Execucao -> Registro -> Analise
+  Analise -> Deteccao [style = dashed, label = '  melhoria\\n  contínua  ']
+}
+")
+```
+
+### Gestão de Estoque de Peças
+
+#### Classificação ABC
+
+Classificação de itens por valor e criticidade:
+
+- **Classe A (20% dos itens, 80% do valor)**
+  - Componentes de alto valor
+  - Gestão rigorosa de estoque
+  - Exemplo: motores, transmissões
+
+- **Classe B (30% dos itens, 15% do valor)**
+  - Componentes de valor intermediário
+  - Gestão moderada
+
+- **Classe C (50% dos itens, 5% do valor)**
+  - Componentes de baixo valor, alto volume
+  - Gestão simplificada
+  - Exemplo: filtros, porcas/parafusos
+
+#### Estratégias de Estoque
+
+| Item | Estratégia | Estoque | Lead Time |
+|------|-----------|---------|-----------|
+| **Crítico + Alto Valor** | Consignação | Mínimo | Reduzido |
+| **Crítico + Baixo Valor** | Estoque Local | Alto | N/A |
+| **Não-Crítico** | Just-in-Time | Mínimo | Aceitável |
+
+### Capacitação da Equipe
+
+Competências essenciais:
+
+1. **Técnicas**: Diagnóstico, reparo, uso de ferramentas especializadas
+2. **Analíticas**: Interpretação de dados, análise de falhas
+3. **Sistêmicas**: Compreensão de interdependências entre sistemas
+4. **Digitais**: Uso de CMMS, sistemas de diagnóstico eletrônico
+
+## Análise de Dados Recorrentes {#sec-analise-dados-recorrentes}
+
+### Eventos Recorrentes em Manutenção
+
+Diferente de análises de confiabilidade tradicionais que consideram tempo até primeira falha, a manutenção de equipamentos envolve **eventos recorrentes**:
+
+- Múltiplas falhas do mesmo tipo
+- Múltiplas intervenções preventivas
+- Substituições de componentes reparáveis
+
+### Modelagem de Processos Recorrentes
+
+#### Processo de Poisson Homogêneo (HPP)
+
+Assume taxa de falha constante:
+
+$$
+\lambda(t) = \lambda
+$$
+
+Número esperado de eventos no intervalo $[0, t]$:
+
+$$
+\Lambda(t) = \lambda t
+$$
+
+**Limitação**: Não captura envelhecimento ou melhoria após reparos.
+
+#### Processo de Poisson Não-Homogêneo (NHPP)
+
+Permite taxa de falha variável no tempo:
+
+$$
+\Lambda(t) = \int_0^t \lambda(s) \, ds
+$$
+
+##### Modelo de Lei de Potência (Power Law Process)
+
+$$
+\lambda(t) = \frac{\beta}{\eta} \left(\frac{t}{\eta}\right)^{\beta-1}
+$$
+
+Onde:
+- $\beta > 1$: Deterioração (taxa crescente)
+- $\beta < 1$: Melhoria (taxa decrescente)
+- $\beta = 1$: Taxa constante (HPP)
+
+```{r}
+#| label: fig-nhpp-taxa
+#| fig-cap: "Função de taxa de falha do NHPP para diferentes valores de β"
+#| warning: false
+
+library(ggplot2)
+
+# Parâmetros
+eta <- 1000
+t <- seq(0, 3000, by = 10)
+
+# Calcular taxa para diferentes betas
+dados_taxa <- data.frame(
+  t = rep(t, 3),
+  beta = rep(c(0.8, 1.0, 1.5), each = length(t)),
+  taxa = c(
+    (0.8/eta) * (t/eta)^(0.8-1),
+    (1.0/eta) * (t/eta)^(1.0-1),
+    (1.5/eta) * (t/eta)^(1.5-1)
+  )
+)
+
+dados_taxa$beta_label <- factor(
+  dados_taxa$beta,
+  levels = c(0.8, 1.0, 1.5),
+  labels = c("β = 0.8 (Melhoria)", "β = 1.0 (Constante)", "β = 1.5 (Deterioração)")
+)
+
+ggplot(dados_taxa, aes(x = t, y = taxa, color = beta_label)) +
+  geom_line(linewidth = 1.2) +
+  labs(
+    title = "Taxa de Falha - Processo de Lei de Potência",
+    x = "Tempo (horas)",
+    y = "Taxa de Falha λ(t)",
+    color = "Parâmetro β"
+  ) +
+  scale_color_manual(values = c("#27AE60", "#95A5A6", "#E74C3C")) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold")
+  )
+```
+
+### Tipos de Reparo
+
+#### Reparo Mínimo (Minimal Repair)
+
+- Restaura equipamento à condição imediatamente anterior à falha
+- Não altera a taxa de falha subsequente
+- Modelo: **NHPP sem reinício**
+
+#### Reparo Perfeito (Perfect Repair)
+
+- Restaura equipamento a condição "como novo"
+- Reinicia o processo de envelhecimento
+- Modelo: **Processo de Renovação**
+
+#### Reparo Imperfeito (Imperfect Repair)
+
+- Melhora condição, mas não totalmente
+- Redução parcial da idade efetiva
+- Modelos: **Redução de idade virtual**, **Redução de intensidade**
+
+```{r}
+#| label: fig-tipos-reparo
+#| fig-cap: "Efeito de diferentes tipos de reparo na taxa de falha"
+#| warning: false
+#| echo: false
+#| eval: false
+
+# Simulação conceitual
+t_falha <- 1000
+tempo_total <- 3000
+
+df_reparo <- data.frame(
+  tempo = c(0, t_falha, t_falha, tempo_total,
+            0, t_falha, t_falha, t_falha + (tempo_total-t_falha),
+            0, t_falha, t_falha, tempo_total),
+  taxa = c(0, 0.003, 0.003, 0.006,
+           0, 0.003, 0, 0.003,
+           0, 0.003, 0.0015, 0.005),
+  tipo = rep(c("Mínimo", "Perfeito", "Imperfeito"), each = 4)
+)
+
+ggplot(df_reparo, aes(x = tempo, y = taxa, color = tipo)) +
+  geom_line(linewidth = 1.2) +
+  geom_vline(xintercept = t_falha, linetype = "dashed", alpha = 0.5) +
+  annotate("text", x = t_falha, y = 0.0065, label = "Reparo", size = 3) +
+  labs(
+    title = "Impacto do Tipo de Reparo na Taxa de Falha",
+    x = "Tempo",
+    y = "Taxa de Falha λ(t)",
+    color = "Tipo de Reparo"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+### Estimação de Parâmetros
+
+#### Método de Máxima Verossimilhança
+
+Para NHPP com Lei de Potência, dados $n$ eventos nos tempos $t_1, t_2, \ldots, t_n$ em um período $[0, T]$:
+
+Log-verossimilhança:
+
+$$
+\ell(\beta, \eta) = n \ln \beta - n \beta \ln \eta + (\beta - 1) \sum_{i=1}^{n} \ln t_i - \left(\frac{T}{\eta}\right)^\beta
+$$
+
+Estimadores:
+
+$$
+\hat{\beta} = \frac{n}{\sum_{i=1}^{n} \ln(T/t_i)}
+$$
+
+$$
+\hat{\eta} = T \cdot n^{-1/\hat{\beta}}
+$$
+
+```{r}
+#| label: exemplo-estimacao-nhpp
+#| warning: false
+
+# Função para estimar parâmetros do NHPP (Lei de Potência)
+estimar_nhpp <- function(tempos_falha, tempo_observacao) {
+  n <- length(tempos_falha)
+
+  # Estimador de beta
+  soma_log <- sum(log(tempo_observacao / tempos_falha))
+  beta_hat <- n / soma_log
+
+  # Estimador de eta
+  eta_hat <- tempo_observacao * n^(-1/beta_hat)
+
+  # Intervalo de confiança para beta (aproximado)
+  se_beta <- beta_hat / sqrt(n)
+  ic_beta <- beta_hat + c(-1.96, 1.96) * se_beta
+
+  return(list(
+    beta = beta_hat,
+    eta = eta_hat,
+    ic_beta = ic_beta,
+    n_eventos = n,
+    tempo_obs = tempo_observacao
+  ))
+}
+
+# Exemplo: Falhas de um caminhão em 5000 horas
+falhas <- c(450, 920, 1580, 2100, 2890, 3650, 4200, 4780)
+
+resultado <- estimar_nhpp(falhas, 5000)
+
+cat("Estimativas do NHPP:\n")
+cat("β̂ =", round(resultado$beta, 3),
+    "(IC 95%: [", round(resultado$ic_beta[1], 3), ",",
+    round(resultado$ic_beta[2], 3), "])\n")
+cat("η̂ =", round(resultado$eta, 1), "horas\n")
+
+if (resultado$beta > 1) {
+  cat("\nInterpretação: β > 1 indica DETERIORAÇÃO (taxa crescente)\n")
+} else if (resultado$beta < 1) {
+  cat("\nInterpretação: β < 1 indica MELHORIA (taxa decrescente)\n")
+} else {
+  cat("\nInterpretação: β ≈ 1 indica taxa CONSTANTE\n")
+}
+```
+
+## Política de Manutenção Preventiva Periódica {#sec-politica-preventiva}
+
+### Conceito
+
+Manutenção preventiva periódica consiste em intervenções programadas em intervalos fixos de tempo ou uso, independentemente da condição do equipamento.
+
+**Objetivos:**
+- Reduzir probabilidade de falhas
+- Aumentar vida útil de componentes
+- Melhorar previsibilidade operacional
+
+### Disponibilidade e Mantenabilidade {#sec-disponibilidade-mantenabilidade}
+
+#### Disponibilidade
+
+A disponibilidade $A$ é a fração do tempo em que o equipamento está disponível para operar:
+
+$$
+A = \frac{MTBF}{MTBF + MTTR}
+$$
+
+Ou, considerando preventivas:
+
+$$
+A = \frac{Tempo_{Operando} + Tempo_{Espera}}{Tempo_{Total}}
+$$
+
+#### Mantenabilidade
+
+Mantenabilidade $M(t)$ é a probabilidade de que um reparo seja completado no tempo $t$:
+
+$$
+M(t) = P(T_{reparo} \leq t)
+$$
+
+Para distribuição exponencial dos tempos de reparo:
+
+$$
+M(t) = 1 - e^{-\mu t}
+$$
+
+Onde $\mu = 1/MTTR$ é a taxa de reparo.
+
+#### Relação com Manutenção Preventiva
+
+Manutenções preventivas afetam:
+
+- **MTBF**: Pode aumentar ao prevenir falhas
+- **MTTR**: Preventivas geralmente mais rápidas que corretivas
+- **Disponibilidade**: Efeito líquido depende do equilíbrio
+
+```{r}
+#| label: fig-disponibilidade-vs-tp
+#| fig-cap: "Impacto do intervalo de preventiva na disponibilidade"
+#| warning: false
+#| echo: false
+#| eval: false
+
+# Simulação do impacto
+library(dplyr)
+
+simular_disponibilidade <- function(Tp, beta, eta,
+                                    tempo_prev, tempo_corr,
+                                    tempo_sim = 8760) {
+  # Simplificação: modelo determinístico
+  n_preventivas <- floor(tempo_sim / Tp)
+  tempo_em_preventivas <- n_preventivas * tempo_prev
+
+  # Estimar falhas esperadas entre preventivas
+  lambda_Tp <- (beta/eta) * (Tp/eta)^(beta-1)
+  falhas_esperadas <- lambda_Tp * tempo_sim / Tp * n_preventivas
+  tempo_em_corretivas <- falhas_esperadas * tempo_corr
+
+  tempo_disponivel <- tempo_sim - tempo_em_preventivas - tempo_em_corretivas
+  disponibilidade <- tempo_disponivel / tempo_sim
+
+  return(disponibilidade)
+}
+
+# Parâmetros
+beta <- 2.5
+eta <- 2000
+tempo_prev <- 8
+tempo_corr <- 24
+
+Tp_range <- seq(200, 1500, by 50)
+disp <- sapply(Tp_range, simular_disponibilidade,
+               beta = beta, eta = eta,
+               tempo_prev = tempo_prev, tempo_corr = tempo_corr)
+
+ggplot(data.frame(Tp = Tp_range, Disp = disp), aes(x = Tp, y = Disp)) +
+  geom_line(linewidth = 1.2, color = "#3498DB") +
+  geom_vline(xintercept = Tp_range[which.max(disp)],
+             linetype = "dashed", color = "#E74C3C") +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Disponibilidade vs. Intervalo de Preventiva",
+    x = "Intervalo de Preventiva (horas)",
+    y = "Disponibilidade (%)"
+  ) +
+  theme_minimal()
+```
+
+### Confiabilidade e Periodicidade Ótima {#sec-periodicidade-otima}
+
+#### Função Objetivo
+
+A periodicidade ótima da preventiva minimiza custos ou maximiza disponibilidade.
+
+**Custo total por unidade de tempo:**
+
+$$
+C(T_p) = \frac{C_p \cdot R(T_p) + C_f \cdot [1 - R(T_p)]}{\int_0^{T_p} R(t) \, dt}
+$$
+
+Onde:
+- $C_p$: Custo da preventiva
+- $C_f$: Custo da falha (corretiva)
+- $R(T_p)$: Confiabilidade no intervalo $T_p$
+- Denominador: Tempo médio de ciclo
+
+#### Condição de Otimalidade
+
+A derivada deve ser zero:
+
+$$
+\frac{d C(T_p)}{d T_p} = 0
+$$
+
+Simplificando (para Weibull):
+
+$$
+\frac{h(T_p^*)}{C_f/C_p - 1} = \frac{1 - R(T_p^*)}{\int_0^{T_p^*} R(t) \, dt}
+$$
+
+Onde $h(t) = \lambda(t)$ é a taxa de falha.
+
+#### Algoritmo de Busca
+
+```{r}
+#| label: otimizacao-periodicidade
+#| warning: false
+
+# Função para calcular custo por unidade de tempo
+custo_preventiva <- function(Tp, beta, eta, C_prev, C_falha) {
+  # Confiabilidade em Tp
+  R_Tp <- exp(-(Tp/eta)^beta)
+
+  # Integral da confiabilidade de 0 a Tp (tempo médio de ciclo)
+  integrand <- function(t) exp(-(t/eta)^beta)
+  integral_R <- integrate(integrand, 0, Tp)$value
+
+  # Custo por unidade de tempo
+  custo <- (C_prev * R_Tp + C_falha * (1 - R_Tp)) / integral_R
+
+  return(custo)
+}
+
+# Parâmetros exemplo
+beta <- 2.3
+eta <- 1500
+C_prev <- 5000
+C_falha <- 25000
+
+# Busca do intervalo ótimo
+intervalos <- seq(300, 1800, by = 10)
+custos <- sapply(intervalos, custo_preventiva,
+                 beta = beta, eta = eta,
+                 C_prev = C_prev, C_falha = C_falha)
+
+Tp_otimo <- intervalos[which.min(custos)]
+custo_otimo <- min(custos)
+
+cat("Intervalo ótimo de preventiva:", Tp_otimo, "horas\n")
+cat("Custo esperado:", round(custo_otimo, 2), "$/hora\n")
+
+# Visualizar
+library(ggplot2)
+ggplot(data.frame(Tp = intervalos, Custo = custos),
+       aes(x = Tp, y = Custo)) +
+  geom_line(linewidth = 1.2, color = "#2C3E50") +
+  geom_point(x = Tp_otimo, y = custo_otimo,
+             size = 4, color = "#E74C3C") +
+  geom_vline(xintercept = Tp_otimo, linetype = "dashed", alpha = 0.5) +
+  annotate("text", x = Tp_otimo + 150, y = custo_otimo,
+           label = paste("Ótimo:", Tp_otimo, "h"), hjust = 0) +
+  labs(
+    title = "Otimização do Intervalo de Manutenção Preventiva",
+    subtitle = paste("β =", beta, ", η =", eta, "| Cp =", C_prev, ", Cf =", C_falha),
+    x = "Intervalo de Preventiva (horas)",
+    y = "Custo por Hora de Operação ($/h)"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold"))
+```
+
+#### Sensibilidade aos Parâmetros
+
+O intervalo ótimo é sensível a:
+
+1. **Razão de custos $C_f/C_p$**: Maior razão → intervalos mais curtos
+2. **Parâmetro de forma $\beta$**:
+   - $\beta > 1$: Preventiva é benéfica
+   - $\beta < 1$: Preventiva pode ser contraproducente
+3. **Parâmetro de escala $\eta$**: Define escala de tempo dos intervalos
+
+## Medidas de Performance da Manutenção {#sec-medidas-performance}
+
+### Conceito de Impacto
+
+Avaliar a efetividade da manutenção preventiva requer comparar cenários:
+
+- **Com preventiva** vs. **Sem preventiva**
+- **Diferentes intervalos** de preventiva
+- **Antes** vs. **Depois** de mudança na política
+
+### Mensuração de Impacto na Incidência de Corretivas {#sec-impacto-corretivas}
+
+#### Taxa de Falhas Observada
+
+$$
+\lambda_{obs} = \frac{Número_{Falhas}}{Tempo_{Exposição}}
+$$
+
+#### Comparação de Taxas
+
+**Razão de Taxas (Rate Ratio)**:
+
+$$
+RR = \frac{\lambda_{com\_prev}}{\lambda_{sem\_prev}}
+$$
+
+- $RR < 1$: Preventiva reduz falhas
+- $RR = 1$: Sem efeito
+- $RR > 1$: Preventiva piora situação (indicando sobre-manutenção ou outros problemas)
+
+#### Modelo de Regressão de Poisson
+
+Para ajustar por covariáveis (idade do equipamento, condições operacionais):
+
+$$
+\log(\lambda_i) = \beta_0 + \beta_1 \cdot Preventiva_i + \beta_2 \cdot Idade_i + \ldots
+$$
+
+```{r}
+#| label: exemplo-regressao-poisson
+#| warning: false
+#| eval: false
+
+library(MASS)  # para glm.nb (binomial negativa)
+
+# Dados exemplo (simulados)
+set.seed(123)
+n_equipamentos <- 50
+
+dados <- data.frame(
+  equip_id = 1:n_equipamentos,
+  intensidade_prev = runif(n_equipamentos, 0, 10),  # preventivas/ano
+  idade_anos = runif(n_equipamentos, 0, 10),
+  horas_operacao = runif(n_equipamentos, 3000, 6000)
+)
+
+# Simular número de falhas (menor com mais preventivas)
+dados$n_falhas <- rpois(n_equipamentos,
+                        lambda = exp(2 - 0.15 * dados$intensidade_prev +
+                                     0.08 * dados$idade_anos))
+
+# Modelo de Poisson
+modelo <- glm(n_falhas ~ intensidade_prev + idade_anos + offset(log(horas_operacao/1000)),
+              data = dados,
+              family = poisson(link = "log"))
+
+summary(modelo)
+
+# Interpretação
+exp(coef(modelo))  # Rate Ratios
+```
+
+### Mensuração de Impacto na Disponibilidade {#sec-impacto-disponibilidade}
+
+#### Diferença de Disponibilidades
+
+$$
+\Delta A = A_{com\_prev} - A_{sem\_prev}
+$$
+
+Ou em termos percentuais:
+
+$$
+\Delta A_{\%} = \frac{A_{com\_prev} - A_{sem\_prev}}{A_{sem\_prev}} \times 100\%
+$$
+
+#### Análise de Séries Temporais
+
+Disponibilidade pode variar ao longo do tempo. Modelos de séries temporais permitem:
+
+- Detectar tendências
+- Avaliar sazonalidade
+- Comparar períodos com diferentes políticas
+
+#### Teste de Hipóteses
+
+**H₀**: Não há diferença na disponibilidade média
+
+**H₁**: Há diferença significativa
+
+Teste t para comparar médias de períodos:
+
+```{r}
+#| label: exemplo-teste-disponibilidade
+#| warning: false
+
+# Dados exemplo: disponibilidade mensal antes e depois de mudança
+antes <- c(0.82, 0.84, 0.81, 0.83, 0.85, 0.84, 0.82, 0.83, 0.84, 0.83, 0.82, 0.84)
+depois <- c(0.87, 0.88, 0.89, 0.86, 0.88, 0.87, 0.89, 0.88, 0.87, 0.88, 0.89, 0.87)
+
+# Teste t
+resultado_teste <- t.test(depois, antes, alternative = "greater")
+
+cat("Disponibilidade média ANTES:", round(mean(antes), 3), "\n")
+cat("Disponibilidade média DEPOIS:", round(mean(depois), 3), "\n")
+cat("Diferença:", round(mean(depois) - mean(antes), 3), "\n")
+cat("p-valor:", format.pval(resultado_teste$p.value), "\n")
+
+if (resultado_teste$p.value < 0.05) {
+  cat("\n✓ Diferença estatisticamente significativa (α = 0.05)\n")
+} else {
+  cat("\n✗ Diferença NÃO estatisticamente significativa (α = 0.05)\n")
+}
+```
+
+#### Análise de Covariância (ANCOVA)
+
+Para controlar efeitos de variáveis confundidoras:
+
+$$
+Disponibilidade = \beta_0 + \beta_1 \cdot Política + \beta_2 \cdot Idade + \beta_3 \cdot Demanda + \epsilon
+$$
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Gestão eficaz requer organização, sistemas de informação e equipes capacitadas
+- Eventos recorrentes exigem modelos específicos (NHPP, processos de renovação)
+- Periodicidade ótima de preventiva equilibra custos e confiabilidade
+- Impacto da manutenção deve ser mensurado com métodos estatísticos robustos
+- Disponibilidade e incidência de falhas são métricas complementares
+
+---
+
+**Próximo capítulo:** Fundamentos de Confiabilidade

@@ -1,0 +1,222 @@
+# Modelos de Confiabilidade de Sistema
+
+## Introdução
+
+Análise de confiabilidade de sistemas complexos com múltiplos componentes.
+
+## Sistemas em Série
+
+Todos os componentes devem funcionar para o sistema operar.
+
+### Confiabilidade
+
+$$
+R_{\text{série}}(t) = \prod_{i=1}^n R_i(t)
+$$
+
+### Exemplo
+
+```{r}
+#| label: sistema-serie
+#| warning: false
+
+library(tidyverse)
+
+# Confiabilidades individuais
+t <- seq(0, 1000, by = 10)
+R1 <- exp(-0.001 * t)
+R2 <- exp(-0.0015 * t)
+R3 <- exp(-0.0008 * t)
+
+# Sistema em série
+R_serie <- R1 * R2 * R3
+
+df <- data.frame(t, R1, R2, R3, R_serie)
+
+ggplot(df) +
+  geom_line(aes(t, R1, color = "Componente 1")) +
+  geom_line(aes(t, R2, color = "Componente 2")) +
+  geom_line(aes(t, R3, color = "Componente 3")) +
+  geom_line(aes(t, R_serie, color = "Sistema"), linewidth = 1.2, linetype = "dashed") +
+  labs(title = "Sistema em Série",
+       x = "Tempo (h)", y = "Confiabilidade",
+       color = "") +
+  theme_minimal()
+```
+
+## Sistemas em Paralelo
+
+Sistema funciona se **pelo menos um** componente funcionar (redundância).
+
+### Confiabilidade
+
+$$
+R_{\text{paralelo}}(t) = 1 - \prod_{i=1}^n [1 - R_i(t)]
+$$
+
+### Exemplo
+
+```{r}
+#| label: sistema-paralelo
+
+# Sistema em paralelo (redundância)
+R_paralelo <- 1 - (1 - R1) * (1 - R2) * (1 - R3)
+
+df$R_paralelo <- R_paralelo
+
+ggplot(df) +
+  geom_line(aes(t, R1, color = "Componente 1")) +
+  geom_line(aes(t, R_paralelo, color = "Sistema Paralelo"),
+            linewidth = 1.2, linetype = "dashed") +
+  labs(title = "Sistema em Paralelo (Redundância)",
+       x = "Tempo (h)", y = "Confiabilidade") +
+  theme_minimal()
+```
+
+## Sistema k-out-of-n
+
+Sistema funciona se **pelo menos k de n** componentes funcionarem.
+
+### Confiabilidade
+
+$$
+R_{k/n}(t) = \sum_{i=k}^n \binom{n}{i} R(t)^i [1-R(t)]^{n-i}
+$$
+
+### Exemplo: 2-out-of-3
+
+```{r}
+#| label: k-out-of-n
+
+# Assumindo componentes idênticos
+R <- exp(-0.001 * t)
+n <- 3
+k <- 2
+
+R_2of3 <- dbinom(2, n, R) + dbinom(3, n, R)
+
+df$R_2of3 <- R_2of3
+
+ggplot(df) +
+  geom_line(aes(t, R, color = "Componente Individual")) +
+  geom_line(aes(t, R_serie, color = "3 em Série")) +
+  geom_line(aes(t, R_2of3, color = "2-out-of-3"), linewidth = 1.2) +
+  labs(title = "Comparação de Arquiteturas",
+       x = "Tempo (h)", y = "Confiabilidade") +
+  theme_minimal()
+```
+
+## Análise de Árvore de Falhas (FTA)
+
+### Estrutura
+
+```
+                 TOP EVENT
+                     |
+              +------+------+
+              |             |
+          Gate OR       Gate AND
+              |             |
+         +----+----+   +----+----+
+         |         |   |         |
+      Event1   Event2 Event3  Event4
+```
+
+### Cálculo com R
+
+```{r}
+#| label: fta-calculation
+
+# Probabilidades de eventos básicos
+P_E1 <- 0.01
+P_E2 <- 0.02
+P_E3 <- 0.015
+P_E4 <- 0.01
+
+# Gate OR
+P_OR <- 1 - (1 - P_E1) * (1 - P_E2)
+
+# Gate AND
+P_AND <- P_E3 * P_E4
+
+# TOP EVENT (OR dos gates)
+P_TOP <- 1 - (1 - P_OR) * (1 - P_AND)
+
+cat("Probabilidade do TOP EVENT:", P_TOP, "\n")
+```
+
+## FMEA (Análise de Modos e Efeitos de Falha)
+
+### Template
+
+```{r}
+#| label: fmea-template
+
+library(kableExtra)
+
+fmea <- data.frame(
+  Componente = c("Motor", "Rolamento", "Selo"),
+  Modo_Falha = c("Superaquecimento", "Desgaste", "Vazamento"),
+  Efeito = c("Parada", "Vibração", "Contaminação"),
+  Severidade = c(10, 7, 5),
+  Ocorrencia = c(3, 6, 8),
+  Deteccao = c(5, 4, 6),
+  RPN = c(150, 168, 240)
+) %>%
+  arrange(desc(RPN))
+
+kable(fmea, caption = "Análise FMEA") %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  row_spec(which.max(fmea$RPN), bold = TRUE, color = "white", background = "red")
+```
+
+## Diagrama de Blocos de Confiabilidade (RBD)
+
+```{r}
+#| label: rbd
+#| eval: false
+
+library(DiagrammeR)
+
+# Criar RBD
+grViz("
+digraph RBD {
+  rankdir=LR
+  node [shape=box]
+
+  Input -> A
+  A -> B
+  B -> C
+  C -> Output
+
+  A -> D [style=dashed]
+  D -> C [style=dashed]
+
+  A [label='Componente A']
+  B [label='Componente B']
+  C [label='Componente C']
+  D [label='Redundância D']
+}
+")
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Calcule confiabilidade de sistema série-paralelo.
+
+📝 **Exercício 2**: Construa FTA para um sistema real.
+
+📝 **Exercício 3**: Elabore FMEA completa de um equipamento.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Sistemas série: menos confiáveis que componentes
+- Sistemas paralelo: redundância aumenta confiabilidade
+- FTA e FMEA são ferramentas essenciais
+- RBD visualiza arquitetura de confiabilidade
+
+---
+
+**Próximo capítulo:** Simulação Monte Carlo

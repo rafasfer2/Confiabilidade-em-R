@@ -15,6 +15,7 @@
   --color-hover-gray: #e3e3e3;
   --sidebar-width: 280px;
   --toc-width: 300px;
+  --content-gap: 0.5rem;
 }
 
 /* ===== RESET MARGENS ===== */
@@ -63,6 +64,28 @@ body, html {
   font-weight: bold !important;
   border-bottom: 2px solid var(--color-teal) !important;
   margin: 0 !important;
+}
+
+/* Campo de busca na sidebar */
+#quarto-sidebar .sidebar-search {
+  padding: 1rem !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+#quarto-sidebar .sidebar-search input {
+  width: 100% !important;
+  padding: 0.5rem !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  border-radius: 4px !important;
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #333 !important;
+}
+
+#quarto-sidebar .sidebar-search input:focus {
+  outline: none !important;
+  border-color: var(--color-gold) !important;
+  background: white !important;
 }
 
 /* Reset de espaçamento - ZERO margem entre itens */
@@ -225,19 +248,57 @@ body, html {
 
 .format-option button {
   margin-right: 0.5rem !important;
-  padding: 0.3rem 0.8rem !important;
-  background: #f0f0f0 !important;
-  border: 1px solid #ccc !important;
+  margin-bottom: 0.5rem !important;
+  padding: 0.5rem 1rem !important;
+  background: white !important;
+  border: 1px solid #ddd !important;
   border-radius: 4px !important;
   cursor: pointer !important;
-  font-size: 0.85rem !important;
+  font-size: 0.9rem !important;
   color: #333 !important;
+  transition: all 0.2s ease !important;
+  min-width: 80px !important;
+  text-align: center !important;
 }
 
 .format-option button:hover {
   background: var(--color-teal) !important;
   color: white !important;
   border-color: var(--color-teal) !important;
+}
+
+.format-option button.active {
+  background: var(--color-teal-dark) !important;
+  color: white !important;
+  border-color: var(--color-teal-dark) !important;
+  font-weight: bold !important;
+}
+
+/* Botões de fonte com A grande */
+.format-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 1.2rem !important;
+  font-weight: bold !important;
+  padding: 0.8rem 1.2rem !important;
+}
+
+.format-btn .font-label {
+  font-size: 0.75rem !important;
+  font-weight: normal !important;
+  margin-top: 0.2rem !important;
+}
+
+/* Botões de tema */
+.theme-btn {
+  min-width: 70px !important;
+}
+
+/* Botões de spacing */
+.spacing-btn {
+  min-width: 100px !important;
 }
 
 /* Temas de cor */
@@ -277,14 +338,14 @@ body.theme-night h3 {
   left: 0 !important;
   right: 0 !important;
   width: 100% !important;
-  margin-top: 3rem !important;
+  margin-top: 0.6rem !important;
   background: linear-gradient(135deg, #5DADE2 0%, #3498DB 100%) !important;
   color: white !important;
-  padding: 0.8rem 2rem !important;
-  font-size: 0.85rem !important;
+  padding: 0.4rem 0.8rem !important;
+  font-size: 0.82rem !important;
   text-align: center !important;
   z-index: 10 !important;
-  box-shadow: 0 -2px 8px rgba(0,0,0,0.1) !important;
+  box-shadow: 0 -1px 6px rgba(0,0,0,0.08) !important;
 }
 
 #quarto-footer a {
@@ -330,11 +391,11 @@ body.theme-night h3 {
 
 /* ===== CONTEÚDO CENTRAL ===== */
 body.nav-sidebar {
-  /* Gap ZERO: posiciona conteúdo exatamente após sidebar */
-  padding-left: 300px !important;
-  padding-right: var(--toc-width) !important;
-  padding-top: 60px !important;
-  padding-bottom: 2rem !important;
+  /* Gap SIMÉTRICO: posiciona conteúdo com margem mínima e igual nas duas laterais */
+  padding-left: calc(var(--sidebar-width) + var(--content-gap)) !important;
+  padding-right: calc(var(--toc-width) + var(--content-gap)) !important;
+  padding-top: 56px !important;
+  padding-bottom: 1.25rem !important;
   margin: 0 !important;
   min-height: 100vh !important;
   display: flex !important;
@@ -363,10 +424,31 @@ main.content #title-block-header .quarto-title-block > div {
   margin-left: 0 !important;
 }
 
-/* Padding interno apenas para elementos de conteúdo */
+/* Padding interno reduzido para elementos de conteúdo */
+/* Padding interno reduzido para elementos de conteúdo */
+/* Conteúdo: usar padding interno razoável; remover margens negativas anteriores */
 main.content > * {
-  padding-left: 0.5rem !important;
-  padding-right: 0.5rem !important;
+  padding-left: var(--content-gap) !important;
+  padding-right: var(--content-gap) !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* Compacta a margem esquerda do conteúdo principal sem alterar a largura
+   da sidebar/TOC. Aplica um pequeno deslocamento negativo interno que
+   aproxima o texto da borda da sidebar (valor conservador). */
+@media (min-width: 992px) {
+  /* Aplicar deslocamento simétrico no container principal em telas grandes */
+  /* Move o container para ocupar espaço dentro dos paddings laterais sem depender
+     de margens negativas em filhos individuais (mais robusto e simétrico). */
+  main.content {
+    margin-left: -9.0rem !important;
+    margin-right: -9.0rem !important;
+  }
+  main.content > * {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
 }
 
 main.content h1,
@@ -377,13 +459,24 @@ main.content p,
 main.content ul,
 main.content ol,
 main.content blockquote {
-  padding-left: 0.5rem !important;
-  padding-right: 0.5rem !important;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
+  max-width: none !important;
+  margin: 0 0 1rem 0 !important;
+}
+
+/* Espaçamento adicional entre parágrafos consecutivos */
+main.content p + p {
+  margin-top: 0.6rem !important;
 }
 
 @media (min-width: 992px) {
-  /* Gap ZERO: sem margem negativa, alinhamento direto */
-  main.content { margin-left: 0 !important; }
+  /* Manter a configuração de largura, sem sobrescrever deslocamentos aplicados acima */
+  /* Permitir que o conteúdo ocupe a área disponível (remover restrição para evitar margens grandes) */
+  main.content {
+    max-width: none !important;
+    width: auto !important;
+  }
 }
 
 /* ===== TOC DIREITA ===== */
@@ -422,28 +515,71 @@ main.content blockquote {
   border: none !important;
 }
 
-/* Links do TOC - fonte MENOR que corpo */
+/* Links do TOC - cor CINZA para itens normais */
 #TOC a {
-  color: var(--color-teal-deep) !important;
+  color: #666666 !important;
   font-size: 0.9rem !important; /* menor que corpo 12pt */
-  padding: 0.4rem 0.5rem !important;
+  padding: 0.28rem 0.5rem !important;
+  padding-left: 0.6rem !important;
   display: block !important;
-  border-left: 3px solid transparent !important;
-  transition: all 0.2s ease !important;
+  border-left: 4px solid transparent !important;
+  transition: all 0.15s ease !important;
 }
 
+/* Remove linha e reduz espaçamento entre tópicos do TOC */
+#TOC > ul > li:not(:last-child) {
+  border-bottom: none !important;
+  padding-bottom: 0.12rem !important;
+  margin-bottom: 0.08rem !important;
+}
+
+/* Hover - TEAL escuro com fundo */
 #TOC a:hover {
-  color: var(--color-teal) !important;
-  background: rgba(53, 151, 143, 0.1) !important;
+  color: var(--color-teal-dark) !important;
+  background: rgba(53, 151, 143, 0.15) !important;
+  font-weight: bold !important;
 }
 
-/* Item ativo com barra lateral amarela */
+/* Item ativo - DOURADO em destaque com barra lateral GROSSA (igual ao sidebar) */
 #TOC .active,
 #TOC li.active > a {
   font-weight: bold !important;
   color: #d4af37 !important;
-  border-left: 3px solid #d4af37 !important;
-  background: rgba(212, 175, 55, 0.15) !important;
+  border-left: 4px solid #d4af37 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding-left: 0.8rem !important;
+}
+
+/* ULTRA FORÇA: TOC ativo COM FUNDO TEAL E BARRA DOURADA (igual ao sidebar) */
+#TOC ul > li > a.active,
+#TOC ul > li.active > a,
+#TOC .active,
+#TOC li.active > a {
+  font-weight: bold !important;
+  color: #ffffff !important;
+  border-left: 4px solid #d4af37 !important;
+  background: var(--color-teal-dark) !important;
+  background-color: var(--color-teal-dark) !important;
+  border-color: #d4af37 !important;
+  box-shadow: none !important;
+  padding-left: 0.8rem !important;
+  outline: none !important;
+}
+
+/* Mostrar numeração no item ativo do TOC */
+#TOC .active .toc-section-number,
+#TOC li.active > a .toc-section-number {
+  display: inline !important;
+  margin-right: 0.3rem !important;
+}
+
+/* Hover no item ativo - mantém dourado mas intensifica o fundo */
+#TOC .active:hover,
+#TOC li.active > a:hover {
+  color: #d4af37 !important;
+  background: rgba(212, 175, 55, 0.3) !important;
+  font-weight: bold !important;
 }
 
 /* Capítulo atual (nível 1) sempre em negrito */
@@ -464,23 +600,27 @@ main.content blockquote {
   border: none !important;
 }
 
-/* Remove TODAS as bordas de TODOS os níveis */
+/* Remove TODAS as bordas de TODOS os níveis (exceto borda esquerda) */
 #TOC ul,
 #TOC ul > li,
-#TOC ul > li > a,
+#TOC ul > li > a:not(.active),
 #TOC > ul > li,
-#TOC > ul > li > a,
+#TOC > ul > li > a:not(.active),
 #TOC ul li:first-child,
 #TOC ul > li:first-child,
-#TOC ul > li:first-child > a {
-  border: none !important;
-  border-bottom: none !important;
+#TOC ul > li:first-child > a:not(.active) {
   border-top: none !important;
-  border-left: 3px solid transparent !important;
   border-right: none !important;
+  border-bottom: none !important;
   text-decoration: none !important;
   box-shadow: none !important;
   outline: none !important;
+}
+
+/* Borda esquerda transparente para itens não ativos */
+#TOC ul > li > a:not(.active),
+#TOC > ul > li > a:not(.active) {
+  border-left: 4px solid transparent !important;
 }
 
 /* Remove bordas de pseudo-elementos */
@@ -561,15 +701,37 @@ nav#TOC li,
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   font-size: 12pt;
-  line-height: 1.6;
+  line-height: 1.5;
 }
+
+/* Remover botão de "Código" no título da página gerado pelo Quarto */
+#quarto-code-tools-source,
+.code-tools-button {
+  display: none !important;
+}
+
+/* Recuo à esquerda para parágrafos dentro de listas */
+main.content ul li p,
+main.content ol li p {
+  margin-left: 1rem !important;
+}
+
+/* Texto justificado */
+main.content p,
+main.content li {
+  text-align: justify !important;
+  text-justify: inter-word !important;
+}
+
+/* Mantém espaçamento padrão entre parágrafos (sem sobrescrever) */
+/* Removida a regra explícita de `margin-bottom` para respeitar o espaçamento do tema Quarto. */
 
 /* ===== TÍTULO DO LIVRO ===== */
 #title-block-header {
   background: transparent !important;
   padding: 0 !important;
-  margin-top: 1.5rem !important;
-  margin-bottom: 2rem;
+  margin-top: 0.8rem !important;
+  margin-bottom: 1rem !important;
   border-radius: 8px;
   overflow: hidden;
 }
@@ -577,7 +739,7 @@ body {
 /* Área do título - fundo cinza */
 #title-block-header .quarto-title {
   background: #E8E8E8 !important;
-  padding: 1.5rem 2rem !important;
+  padding: 0.8rem var(--content-gap) !important;
   margin: 0 !important;
 }
 
@@ -603,7 +765,7 @@ body {
 /* Área de autor/instituição - fundo verde */
 #title-block-header .quarto-title-meta-author {
   background: var(--color-teal) !important;
-  padding: 1.5rem 2.5rem !important;
+  padding: 0.8rem var(--content-gap) !important;
   margin: 0 !important;
   display: block !important;
 }
@@ -650,6 +812,10 @@ h1 {
 
 h2 { color: var(--color-brown-med); }
 h3 { color: var(--color-brown); }
+
+/* Aumentar espaçamento entre h1 e h2 no conteúdo principal */
+main.content h1 { margin-bottom: 2rem !important; }
+main.content h2 { margin-top: 0.5rem !important; }
 
 figcaption {
   background: linear-gradient(90deg, var(--color-cyan-mid) 10%, var(--color-cyan-light) 90%);

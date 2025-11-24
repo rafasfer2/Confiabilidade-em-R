@@ -1,0 +1,113 @@
+# Modelagem Weibull na Prática
+
+## Introdução
+
+Aplicação prática da distribuição Weibull em análise de confiabilidade industrial.
+
+## Ajuste de Modelo Weibull
+
+```{r}
+#| label: weibull-fit
+#| warning: false
+
+library(WeibullR)
+library(survival)
+library(dplyr)
+
+# Dados de tempo até falha
+tempos <- c(120, 145, 180, 200, 250, 310, 420, 500, 650, 800)
+
+# Ajustar Weibull
+fit <- wblr(tempos, col="steelblue")
+fit <- wblr.conf(fit)
+
+# Visualizar papel de Weibull
+plot(fit, main="Análise Weibull - Bombas Industriais")
+```
+
+## Interpretação de Parâmetros
+
+### Parâmetro β (forma)
+
+- **β < 1**: Mortalidade infantil (defeitos iniciais)
+- **β ≈ 1**: Falhas aleatórias
+- **β > 1**: Desgaste (envelhecimento)
+
+### Parâmetro η (escala)
+
+Vida característica: tempo no qual 63.2% dos itens falharam.
+
+## Diagnóstico do Modelo
+
+```{r}
+#| label: diagnostic
+
+library(fitdistrplus)
+
+fit_distr <- fitdist(tempos, "weibull")
+
+# Gráficos de diagnóstico
+plot(fit_distr)
+
+# Teste de qualidade
+gofstat(fit_distr)
+```
+
+## Estimativa de Confiabilidade
+
+```{r}
+#| label: reliability-estimation
+
+beta <- fit_distr$estimate["shape"]
+eta <- fit_distr$estimate["scale"]
+
+# Confiabilidade em diferentes tempos
+tempos_pred <- c(100, 200, 300, 500, 1000)
+R_pred <- exp(-(tempos_pred/eta)^beta)
+
+data.frame(
+  Tempo = tempos_pred,
+  Confiabilidade = round(R_pred, 4)
+) %>%
+  knitr::kable()
+```
+
+## Caso Prático: Bombas Centrífugas
+
+```{r}
+#| label: case-study-pumps
+#| eval: false
+
+# Dados reais de bombas (exemplo)
+bombas <- read.csv("resources/data/falhas_bombas.csv")
+
+# Análise estratificada por tipo
+fit_bomba_A <- fitdist(bombas$tempo[bombas$tipo == "A"], "weibull")
+fit_bomba_B <- fitdist(bombas$tempo[bombas$tipo == "B"], "weibull")
+
+# Comparar parâmetros
+rbind(
+  A = fit_bomba_A$estimate,
+  B = fit_bomba_B$estimate
+)
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Ajuste modelo Weibull e interprete β.
+
+📝 **Exercício 2**: Calcule o tempo para R(t) = 0.90.
+
+📝 **Exercício 3**: Compare Weibull vs. Lognormal para seus dados.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Weibull é versátil e amplamente aplicável
+- Parâmetro β indica modo de falha
+- Papel de Weibull facilita visualização
+
+---
+
+**Próximo capítulo:** Análise de Sobrevivência

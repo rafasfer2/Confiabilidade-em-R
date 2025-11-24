@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./chapters/01-introducao.html" rel="next">
+<link href="./chapters/part1-01-ciclo-carregamento-transporte.html" rel="next">
 <link href="./requirements.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -104,6 +104,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Procurar"
   }
 }</script>
+<style>
+#TOC ul > li > a.active,
+#TOC ul > li.active > a,
+#TOC .active,
+#TOC li.active > a {
+  font-weight: bold !important;
+  color: #d4af37 !important;
+  border-left: 4px solid #d4af37 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: #d4af37 !important;
+  box-shadow: none !important;
+  padding-left: 0.8rem !important;
+  outline: none !important;
+}
+</style>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
   const header = document.getElementById('quarto-header');
@@ -111,26 +127,24 @@ document.addEventListener('DOMContentLoaded', function() {
     header.innerHTML = `
       <div class="navbar-container">
         <div class="quarto-navbar-tools quarto-navbar-tools-start">
-          <button id="sidebar-toggle" title="Ocultar/Mostrar Sidebar" aria-label="Toggle Sidebar"><i class="bi bi-list"></i></button>
-          <button id="search-toggle" title="Buscar" aria-label="Buscar"><i class="bi bi-search"></i></button>
           <div class="dropdown" id="format-menu">
             <button class="dropdown-toggle" title="Opções de formatação" aria-label="Formatação"><i class="bi bi-gear"></i></button>
             <div class="dropdown-content">
               <div class="format-option">
                 <label>Fonte</label>
-                <button data-font="serif">Serif</button>
-                <button data-font="sans">Sans</button>
+                <button data-font="serif" class="format-btn">A<span class="font-label">Serif</span></button>
+                <button data-font="sans" class="format-btn">A<span class="font-label">Sans</span></button>
               </div>
               <div class="format-option">
                 <label>Tema</label>
-                <button data-theme="white">White</button>
-                <button data-theme="sepia">Sepia</button>
-                <button data-theme="night">Night</button>
+                <button data-theme="white" class="format-btn theme-btn">White</button>
+                <button data-theme="sepia" class="format-btn theme-btn">Sepia</button>
+                <button data-theme="night" class="format-btn theme-btn">Night</button>
               </div>
               <div class="format-option">
                 <label>Espaçamento</label>
-                <button data-spacing="minus">-</button>
-                <button data-spacing="plus">+</button>
+                <button data-spacing="minus" class="format-btn spacing-btn">Spacing -</button>
+                <button data-spacing="plus" class="format-btn spacing-btn">Spacing +</button>
               </div>
             </div>
           </div>
@@ -144,49 +158,61 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     `;
 
-    // Toggle Sidebar
-    document.getElementById('sidebar-toggle')?.addEventListener('click', function() {
-      const sidebar = document.getElementById('quarto-sidebar');
-      const body = document.body;
-      if (sidebar) {
-        sidebar.style.display = sidebar.style.display === 'none' ? 'block' : 'none';
-        body.style.paddingLeft = sidebar.style.display === 'none' ? '0' : 'var(--sidebar-width)';
+    // Format Menu Dropdown - com timeout para garantir que elementos existam
+    setTimeout(function() {
+      const formatBtn = document.querySelector('#format-menu .dropdown-toggle');
+      const formatContent = document.querySelector('#format-menu .dropdown-content');
+
+      if (formatBtn && formatContent) {
+        formatBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          const isVisible = formatContent.style.display === 'block';
+          formatContent.style.display = isVisible ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('#format-menu')) {
+            formatContent.style.display = 'none';
+          }
+        });
       }
-    });
-
-    // Toggle Search
-    document.getElementById('search-toggle')?.addEventListener('click', function() {
-      const searchInput = document.getElementById('quarto-search-text');
-      if (searchInput) searchInput.focus();
-    });
-
-    // Format Menu Dropdown
-    const formatBtn = document.querySelector('#format-menu .dropdown-toggle');
-    const formatContent = document.querySelector('#format-menu .dropdown-content');
-    formatBtn?.addEventListener('click', function(e) {
-      e.stopPropagation();
-      formatContent.style.display = formatContent.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', function() {
-      if (formatContent) formatContent.style.display = 'none';
-    });
+    }, 100);
 
     // Font change
     document.querySelectorAll('[data-font]').forEach(btn => {
       btn.addEventListener('click', function() {
+        document.querySelectorAll('[data-font]').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
         document.body.style.fontFamily = this.dataset.font === 'serif' ?
           "'Times New Roman', Times, serif" :
           "Arial, Helvetica, sans-serif";
       });
     });
 
-    // Theme change
+    // Theme change with sidebar and TOC
     document.querySelectorAll('[data-theme]').forEach(btn => {
       btn.addEventListener('click', function() {
+        document.querySelectorAll('[data-theme]').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+
         const theme = this.dataset.theme;
+        const sidebar = document.getElementById('quarto-sidebar');
+        const toc = document.getElementById('quarto-margin-sidebar');
+
         document.body.classList.remove('theme-white', 'theme-sepia', 'theme-night');
         document.body.classList.add('theme-' + theme);
+
+        if (theme === 'night') {
+          if (sidebar) sidebar.style.background = '#1e1e1e';
+          if (toc) toc.style.background = '#2d2d2d';
+        } else if (theme === 'sepia') {
+          if (sidebar) sidebar.style.background = '#5b4636';
+          if (toc) toc.style.background = '#e8dcc8';
+        } else {
+          if (sidebar) sidebar.style.background = '';
+          if (toc) toc.style.background = '';
+        }
       });
     });
 
@@ -221,6 +247,9 @@ document.addEventListener('DOMContentLoaded', function() {
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./setup.html">Instalação e Ambiente</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
     </div>
   </nav>
 </header>
@@ -236,6 +265,11 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
     </div>
       </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Procurar"></div>
+        </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
@@ -265,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Contexto e Aplicação em Mineração</span></a>
+ <span class="menu-text">Medidas de Performance na Mineração</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Alternar seção">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -273,20 +307,67 @@ document.addEventListener('DOMContentLoaded', function() {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/01-introducao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span></a>
+  <a href="./chapters/part1-01-ciclo-carregamento-transporte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ciclo dos processos de carregamento e transporte</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/02-performance-mineracao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Medidas de Performance Operação na Mineração</span></span></a>
+  <a href="./chapters/part1-02-analise-dados-recorrentes.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./chapters/03-fatores-moderadores.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Fatores Moderadores da Manutenção</span></span></a>
+  <a href="./chapters/part1-03-aplicacao-pdca.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Aplicação do ciclo PDCA</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part1-04-resumo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part1-05-exercicios.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercícios</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Fundamento da Gestão da Manutenção</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Alternar seção">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part2-09-o-que-e-manutencao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">O que é Manutenção?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part2-10-o-que-e-gestao-manutencao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">O que é Gestão da Manutenção?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part2-11-planejamento-controle-manutencao.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Planejamento e controle da manutenção</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./chapters/part2-12-placeholder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">(Placeholder)</span></span></a>
   </div>
 </li>
       </ul>
@@ -1277,8 +1358,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./chapters/01-introducao.html" class="pagination-link" aria-label="Introdução">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introdução</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./chapters/part1-01-ciclo-carregamento-transporte.html" class="pagination-link" aria-label="Ciclo dos processos de carregamento e transporte">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ciclo dos processos de carregamento e transporte</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
@@ -1596,6 +1677,73 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<!-- Força carregamento final do CSS e regra específica do TOC -->
+<link rel="stylesheet" href="./styles-clean.css">
+<style>
+/* Regra final aplicada no fim do body para garantir prioridade */
+#TOC ul > li > a.active,
+#TOC ul > li.active > a,
+#TOC .active,
+#TOC li.active > a {
+  font-weight: bold !important;
+  color: #ffffff !important;
+  border-left: 4px solid #d4af37 !important;
+  background: var(--color-teal-dark) !important;
+  background-color: var(--color-teal-dark) !important;
+  border-color: #d4af37 !important;
+  box-shadow: none !important;
+  padding-left: 0.8rem !important;
+  outline: none !important;
+}
+</style>
+<script>
+// Força estilos inline nos itens ativos do TOC (maior prioridade que qualquer CSS)
+(function(){
+  function forceTOC() {
+    try {
+      var els = document.querySelectorAll('#TOC .nav-link.active, #TOC li.active > a');
+      els.forEach(function(el){
+        el.setAttribute('style', 'font-weight: bold !important; color: #ffffff !important; background: var(--color-teal-dark) !important; border-left: 4px solid #d4af37 !important; padding-left: 0.8rem !important; box-shadow: none !important;');
+      });
+    } catch(e){ console.warn('forceTOC error', e); }
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(forceTOC, 10);
+  } else {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(forceTOC, 10); });
+  }
+  // Também reaplica ao clicar em links (quando a TOC muda por JS)
+  document.addEventListener('click', function(){ setTimeout(forceTOC, 50); }, true);
+})();
+</script>
+<script>
+// Remove linhas e reduz espaçamento em TODOS os itens do TOC via inline styles
+(function(){
+  function normalizeTOC(){
+    try{
+      var lis = document.querySelectorAll('#TOC ul > li');
+      lis.forEach(function(li){
+        li.style.borderBottom = '0';
+        li.style.marginBottom = '0';
+        li.style.paddingBottom = '0';
+      });
+      var links = document.querySelectorAll('#TOC ul > li > a, #TOC a');
+      links.forEach(function(a){
+        a.style.paddingTop = '0.18rem';
+        a.style.paddingBottom = '0.18rem';
+        a.style.paddingLeft = '0.6rem';
+        a.style.borderBottom = '0';
+      });
+    }catch(e){console.warn('normalizeTOC error', e)}
+  }
+  if (document.readyState === 'complete' || document.readyState === 'interactive') {
+    setTimeout(normalizeTOC, 10);
+  } else {
+    document.addEventListener('DOMContentLoaded', function(){ setTimeout(normalizeTOC, 10); });
+  }
+  document.addEventListener('click', function(){ setTimeout(normalizeTOC, 50); }, true);
+})();
+</script>
 
 
 

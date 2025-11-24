@@ -1,0 +1,160 @@
+# Manutenção Preventiva e Otimização de Políticas
+
+## Introdução
+
+Otimização de intervalos de manutenção preventiva baseada em modelos de confiabilidade.
+
+## Políticas de Manutenção
+
+### Manutenção Baseada em Idade (Age-Based)
+
+Substituir componente quando atinge idade $T_p$.
+
+### Manutenção Baseada em Uso (Usage-Based)
+
+Substituir após $N$ ciclos de operação.
+
+### Manutenção Baseada em Condição
+
+Monitorar e intervir quando indicadores ultrapassam limites.
+
+## Otimização de Intervalos
+
+### Função Custo
+
+$$
+C(T_p) = \frac{C_p R(T_p) + C_f [1 - R(T_p)]}{\int_0^{T_p} R(t) dt}
+$$
+
+onde:
+- $C_p$ = custo de manutenção preventiva
+- $C_f$ = custo de falha corretiva
+- $T_p$ = intervalo preventivo
+
+### Exemplo: Otimização Numérica
+
+```{r}
+#| label: otimizacao-intervalo
+#| warning: false
+
+library(tidyverse)
+
+# Parâmetros Weibull
+beta <- 2.5
+eta <- 1000
+
+# Custos
+C_p <- 1000   # Custo preventiva
+C_f <- 5000   # Custo falha
+
+# Função custo esperado
+custo_esperado <- function(Tp) {
+  R_Tp <- exp(-(Tp/eta)^beta)
+  integral <- integrate(function(t) exp(-(t/eta)^beta), 0, Tp)$value
+
+  (C_p * R_Tp + C_f * (1 - R_Tp)) / integral
+}
+
+# Avaliar diferentes intervalos
+intervalos <- seq(100, 1500, by = 50)
+custos <- sapply(intervalos, custo_esperado)
+
+df_opt <- data.frame(intervalo = intervalos, custo = custos)
+
+# Intervalo ótimo
+intervalo_otimo <- intervalos[which.min(custos)]
+
+# Visualizar
+ggplot(df_opt, aes(x = intervalo, y = custo)) +
+  geom_line(color = "steelblue", linewidth = 1.2) +
+  geom_vline(xintercept = intervalo_otimo,
+             linetype = "dashed", color = "red") +
+  geom_point(data = df_opt[which.min(custos), ],
+             color = "red", size = 3) +
+  annotate("text", x = intervalo_otimo + 100,
+           y = min(custos) + 0.2,
+           label = paste("Ótimo:", intervalo_otimo, "h"),
+           color = "red") +
+  labs(title = "Otimização de Intervalo Preventivo",
+       x = "Intervalo Tp (horas)",
+       y = "Custo Esperado por Hora") +
+  theme_minimal()
+```
+
+## Análise de Sensibilidade
+
+```{r}
+#| label: sensibilidade
+
+# Variar relação de custos
+ratios <- c(2, 5, 10, 20)
+
+df_sensibilidade <- expand.grid(
+  intervalo = seq(100, 1500, by = 50),
+  ratio = ratios
+) %>%
+  mutate(
+    C_p = 1000,
+    C_f = C_p * ratio,
+    R_Tp = exp(-(intervalo/eta)^beta),
+    integral = sapply(intervalo, function(Tp) {
+      integrate(function(t) exp(-(t/eta)^beta), 0, Tp)$value
+    }),
+    custo = (C_p * R_Tp + C_f * (1 - R_Tp)) / integral,
+    ratio_label = paste("Cf/Cp =", ratio)
+  )
+
+ggplot(df_sensibilidade, aes(x = intervalo, y = custo, color = ratio_label)) +
+  geom_line(linewidth = 1) +
+  labs(title = "Sensibilidade ao Custo de Falha",
+       x = "Intervalo Preventivo (h)",
+       y = "Custo Esperado",
+       color = "Relação de Custos") +
+  theme_minimal() +
+  theme(legend.position = "top")
+```
+
+## Política Block vs. Age-Based
+
+### Block Replacement
+
+Todos os componentes substituídos em intervalos fixos.
+
+### Age-Based Replacement
+
+Cada componente substituído individualmente.
+
+```{r}
+#| label: block-vs-age
+#| eval: false
+
+# Simulação comparativa
+simular_manutencao <- function(n_componentes, tempo_max, politica, ...) {
+  # Implementação de simulação
+  # ...
+}
+
+# Comparar políticas
+resultado_block <- simular_manutencao(100, 10000, "block", Tp = 500)
+resultado_age <- simular_manutencao(100, 10000, "age", Tp = 500)
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Encontre o intervalo ótimo para seus dados.
+
+📝 **Exercício 2**: Faça análise de sensibilidade variando β.
+
+📝 **Exercício 3**: Compare políticas block vs. age por simulação.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Intervalo ótimo equilibra custos preventivo e corretivo
+- Análise de sensibilidade é crucial
+- Diferentes políticas para diferentes contextos
+
+---
+
+**Próximo capítulo:** Manutenção Preditiva com Dados Sensor

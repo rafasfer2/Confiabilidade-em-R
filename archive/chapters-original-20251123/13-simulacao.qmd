@@ -1,0 +1,234 @@
+# Simulação Monte Carlo Aplicada à Confiabilidade
+
+## Introdução
+
+Uso de simulação Monte Carlo para avaliar confiabilidade e políticas de manutenção sob incerteza.
+
+## Conceitos Básicos
+
+### Método Monte Carlo
+
+1. Definir modelo matemático
+2. Identificar variáveis aleatórias
+3. Gerar amostras aleatórias
+4. Calcular resultados para cada amostra
+5. Analisar distribuição dos resultados
+
+## Simulação de Tempos de Vida
+
+### Distribuição Weibull
+
+```{r}
+#| label: simulacao-weibull
+#| warning: false
+
+library(tidyverse)
+
+set.seed(123)
+
+# Parâmetros
+beta <- 2
+eta <- 1000
+n_sim <- 10000
+
+# Simular tempos de falha
+tempos_falha <- rweibull(n_sim, shape = beta, scale = eta)
+
+# Visualizar
+df_sim <- data.frame(tempo = tempos_falha)
+
+ggplot(df_sim, aes(x = tempo)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 bins = 50, fill = "steelblue", alpha = 0.7) +
+  stat_function(fun = dweibull,
+                args = list(shape = beta, scale = eta),
+                color = "red", linewidth = 1.2) +
+  labs(title = "Simulação Monte Carlo - Weibull",
+       x = "Tempo até Falha", y = "Densidade") +
+  theme_minimal()
+```
+
+### Estatísticas Simuladas
+
+```{r}
+#| label: estatisticas-sim
+
+# Comparar com valores teóricos
+MTTF_teorico <- eta * gamma(1 + 1/beta)
+MTTF_simulado <- mean(tempos_falha)
+
+cat("MTTF Teórico:", round(MTTF_teorico, 2), "\n")
+cat("MTTF Simulado:", round(MTTF_simulado, 2), "\n")
+cat("Erro relativo:", round(abs(MTTF_teorico - MTTF_simulado)/MTTF_teorico * 100, 2), "%\n")
+```
+
+## Simulação de Sistemas Complexos
+
+### Sistema Série
+
+```{r}
+#| label: sim-sistema-serie
+
+# Simular sistema com 3 componentes em série
+n_comp <- 3
+n_sim <- 5000
+
+# Parâmetros de cada componente
+params <- data.frame(
+  comp = 1:n_comp,
+  beta = c(2, 2.5, 1.8),
+  eta = c(1000, 1200, 900)
+)
+
+# Simular
+set.seed(456)
+falhas_sistema <- replicate(n_sim, {
+  tempos_comp <- mapply(rweibull,
+                        n = 1,
+                        shape = params$beta,
+                        scale = params$eta)
+  min(tempos_comp)  # Sistema série: falha no primeiro componente
+})
+
+# MTTF do sistema
+cat("MTTF Sistema Série:", round(mean(falhas_sistema), 2), "h\n")
+
+# Visualizar
+data.frame(tempo = falhas_sistema) %>%
+  ggplot(aes(x = tempo)) +
+  geom_histogram(bins = 50, fill = "coral", alpha = 0.7) +
+  labs(title = "Distribuição de Tempos de Falha - Sistema Série",
+       x = "Tempo até Falha do Sistema", y = "Frequência") +
+  theme_minimal()
+```
+
+## Avaliação de Políticas de Manutenção
+
+### Simulação de Política Preventiva
+
+```{r}
+#| label: sim-politica-preventiva
+
+# Função para simular política de manutenção
+simular_manutencao <- function(T_preventivo, tempo_max,
+                               beta, eta, C_prev, C_falha) {
+  tempo_atual <- 0
+  idade_componente <- 0
+  custo_total <- 0
+  n_prev <- 0
+  n_falhas <- 0
+
+  while (tempo_atual < tempo_max) {
+    # Tempo até próxima falha
+    tempo_falha <- rweibull(1, shape = beta, scale = eta)
+
+    if (idade_componente + tempo_falha < T_preventivo) {
+      # Falha antes da preventiva
+      tempo_atual <- tempo_atual + tempo_falha + idade_componente
+      custo_total <- custo_total + C_falha
+      idade_componente <- 0
+      n_falhas <- n_falhas + 1
+    } else {
+      # Preventiva executada
+      tempo_atual <- tempo_atual + T_preventivo
+      custo_total <- custo_total + C_prev
+      idade_componente <- 0
+      n_prev <- n_prev + 1
+    }
+  }
+
+  list(
+    custo_medio = custo_total / tempo_max,
+    n_preventivas = n_prev,
+    n_falhas = n_falhas
+  )
+}
+
+# Parâmetros
+beta <- 2.5
+eta <- 1000
+C_prev <- 1000
+C_falha <- 5000
+tempo_max <- 50000
+
+# Testar diferentes intervalos
+intervalos <- seq(300, 1200, by = 50)
+
+resultados <- lapply(intervalos, function(Tp) {
+  replicate(100, {
+    sim <- simular_manutencao(Tp, tempo_max, beta, eta, C_prev, C_falha)
+    sim$custo_medio
+  }) %>% mean()
+})
+
+df_politicas <- data.frame(
+  intervalo = intervalos,
+  custo_medio = unlist(resultados)
+)
+
+# Visualizar
+ggplot(df_politicas, aes(x = intervalo, y = custo_medio)) +
+  geom_line(color = "steelblue", linewidth = 1.2) +
+  geom_point(data = df_politicas[which.min(df_politicas$custo_medio), ],
+             color = "red", size = 4) +
+  labs(title = "Otimização por Simulação Monte Carlo",
+       x = "Intervalo Preventivo (h)",
+       y = "Custo Médio por Hora") +
+  theme_minimal()
+```
+
+## Análise de Incerteza
+
+### Propagação de Incerteza
+
+```{r}
+#| label: incerteza-parametros
+
+# Incerteza nos parâmetros
+n_sim <- 1000
+
+# Distribuições dos parâmetros (baseadas em IC)
+beta_sim <- rnorm(n_sim, mean = 2, sd = 0.2)
+eta_sim <- rnorm(n_sim, mean = 1000, sd = 100)
+
+# Calcular MTTF para cada combinação
+MTTF_sim <- eta_sim * gamma(1 + 1/beta_sim)
+
+# Visualizar incerteza
+data.frame(MTTF = MTTF_sim) %>%
+  ggplot(aes(x = MTTF)) +
+  geom_histogram(bins = 50, fill = "darkgreen", alpha = 0.7) +
+  geom_vline(xintercept = median(MTTF_sim),
+             color = "red", linetype = "dashed", linewidth = 1) +
+  annotate("text", x = median(MTTF_sim) + 50, y = 50,
+           label = paste("Mediana:", round(median(MTTF_sim), 1)),
+           color = "red") +
+  labs(title = "Incerteza no MTTF",
+       x = "MTTF (h)", y = "Frequência") +
+  theme_minimal()
+
+# IC 95%
+ic <- quantile(MTTF_sim, c(0.025, 0.975))
+cat("IC 95% para MTTF:", round(ic[1], 1), "-", round(ic[2], 1), "\n")
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Simule sistema paralelo (redundância).
+
+📝 **Exercício 2**: Compare políticas age-based vs. block por simulação.
+
+📝 **Exercício 3**: Analise impacto da incerteza paramétrica na decisão de manutenção.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Monte Carlo é poderoso para sistemas complexos
+- Permite avaliar políticas sem fórmulas analíticas
+- Quantifica incerteza em decisões
+- Adequado para otimização de parâmetros
+
+---
+
+**Próximo capítulo:** Estudos de Caso Industriais

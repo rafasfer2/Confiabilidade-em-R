@@ -1,0 +1,187 @@
+# Manutenção Preditiva com Dados Sensor
+
+## Introdução
+
+Uso de dados de sensores e machine learning para predição de falhas.
+
+## Preparação de Dados de Sensores
+
+```{r}
+#| label: sensor-data-prep
+#| warning: false
+#| eval: false
+
+library(tidyverse)
+library(lubridate)
+
+# Carregar dados de sensores
+sensores <- read_csv("resources/data/sensores_compressor.csv")
+
+# Pré-processamento
+sensores_clean <- sensores %>%
+  mutate(
+    timestamp = ymd_hms(timestamp),
+    temp_norm = (temperatura - mean(temperatura)) / sd(temperatura),
+    vibr_norm = (vibracao - mean(vibracao)) / sd(vibracao)
+  ) %>%
+  arrange(equipamento_id, timestamp)
+
+head(sensores_clean)
+```
+
+## Feature Engineering
+
+### Estatísticas em Janela Deslizante
+
+```{r}
+#| label: rolling-features
+#| eval: false
+
+library(zoo)
+
+# Criar features
+sensores_features <- sensores_clean %>%
+  group_by(equipamento_id) %>%
+  arrange(timestamp) %>%
+  mutate(
+    temp_mean_7d = rollmean(temperatura, k = 7*24, fill = NA, align = "right"),
+    temp_max_7d = rollmax(temperatura, k = 7*24, fill = NA, align = "right"),
+    temp_std_7d = rollapply(temperatura, width = 7*24, FUN = sd,
+                            fill = NA, align = "right"),
+    vibr_trend = c(NA, diff(vibracao))
+  ) %>%
+  ungroup()
+```
+
+## Detecção de Anomalias
+
+```{r}
+#| label: anomaly-detection
+#| warning: false
+#| eval: false
+
+library(anomalize)
+
+# Decomposição e detecção
+anomalias <- sensores_clean %>%
+  time_decompose(temperatura, method = "stl") %>%
+  anomalize(remainder, method = "iqr") %>%
+  time_recompose()
+
+# Visualizar
+anomalias %>%
+  plot_anomalies(time_recomposed = TRUE) +
+  labs(title = "Detecção de Anomalias - Temperatura")
+```
+
+## Modelo Preditivo com Machine Learning
+
+```{r}
+#| label: ml-model
+#| warning: false
+#| eval: false
+
+library(caret)
+library(randomForest)
+
+# Preparar dataset
+# Assumir que temos features + label 'falha_proxima'
+dados_treino <- sensores_features %>%
+  filter(!is.na(temp_mean_7d)) %>%
+  select(temp_mean_7d, temp_std_7d, vibr_trend, falha_proxima)
+
+# Dividir treino/teste
+set.seed(123)
+indices_treino <- createDataPartition(dados_treino$falha_proxima,
+                                      p = 0.7, list = FALSE)
+treino <- dados_treino[indices_treino, ]
+teste <- dados_treino[-indices_treino, ]
+
+# Treinar Random Forest
+modelo_rf <- randomForest(falha_proxima ~ .,
+                          data = treino,
+                          ntree = 100,
+                          importance = TRUE)
+
+# Predição
+pred_teste <- predict(modelo_rf, teste)
+
+# Matriz de confusão
+confusionMatrix(pred_teste, teste$falha_proxima)
+```
+
+## Importância de Features
+
+```{r}
+#| label: feature-importance
+#| eval: false
+
+# Plot importância
+varImpPlot(modelo_rf, main = "Importância das Variáveis")
+```
+
+## Séries Temporais com Prophet
+
+```{r}
+#| label: prophet-forecast
+#| warning: false
+#| eval: false
+
+library(prophet)
+
+# Preparar dados
+df_prophet <- sensores_clean %>%
+  select(ds = timestamp, y = temperatura)
+
+# Ajustar modelo
+m <- prophet(df_prophet, changepoint.prior.scale = 0.05)
+
+# Previsão 30 dias
+future <- make_future_dataframe(m, periods = 30, freq = "day")
+forecast <- predict(m, future)
+
+# Visualizar
+plot(m, forecast)
+prophet_plot_components(m, forecast)
+```
+
+## Threshold Dinâmico
+
+```{r}
+#| label: dynamic-threshold
+#| eval: false
+
+# Calcular threshold baseado em percentil histórico
+threshold_dinamico <- sensores_clean %>%
+  group_by(equipamento_id) %>%
+  summarize(
+    temp_p95 = quantile(temperatura, 0.95),
+    vibr_p95 = quantile(vibracao, 0.95)
+  )
+
+# Aplicar alertas
+alertas <- sensores_clean %>%
+  left_join(threshold_dinamico, by = "equipamento_id") %>%
+  filter(temperatura > temp_p95 | vibracao > vibr_p95)
+```
+
+## Exercícios
+
+📝 **Exercício 1**: Implemente detecção de anomalias com IQR.
+
+📝 **Exercício 2**: Treine modelo XGBoost e compare com Random Forest.
+
+📝 **Exercício 3**: Crie dashboard Shiny para monitoramento em tempo real.
+
+## Resumo
+
+🔔 **Pontos-chave:**
+
+- Feature engineering é crucial
+- Detecção de anomalias identifica comportamento anormal
+- Machine learning prevê falhas antes da ocorrência
+- Manutenção preditiva reduz custos e downtime
+
+---
+
+**Próximo capítulo:** Modelos de Confiabilidade de Sistema

@@ -37,7 +37,7 @@ Este livro fornece uma introdução **prática e aplicada** aos conceitos de con
 
 O livro está organizado em **quatro partes principais**:
 
-- **Parte I:** Contexto e Aplicação em Mineração
+- **Parte I:** Contexto de Mineração
 - **Parte II:** Fundamentos de Confiabilidade
 - **Parte III:** Estratégias de Manutenção
 - **Parte IV:** Tópicos Avançados
