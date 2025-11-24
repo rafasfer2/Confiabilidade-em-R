@@ -53,31 +53,31 @@ $$
 - **HEF**: Horas Efetivas
 - **HAO**: Horas de Apoio à Operação
 :::
-### 2.1.4 Indicadores chave de desempenho (ICD)
+### Indicadores chave de desempenho (ICD)
 
-### 2.1.5 Diagrama de build-up
+### Diagrama de build-up
 
-## 2.2 Política de manutenção
+## Política de manutenção
 
-### 2.2.1 Manutenção corretiva
+### Manutenção corretiva
 
-### 2.2.2 Manutenção preventiva
+### Manutenção preventiva
 
-### 2.2.3 Dinâmica de ocorrência de falhas
+### Dinâmica de ocorrência de falhas
 
-### 2.2.4 Notações e terminologia
+### Notações e terminologia
 
-### 2.2.5 Gráfico de processo de contagem
+### Gráfico de processo de contagem
 
-## 2.3 Confiabilidade e periodicidade
+## Confiabilidade e periodicidade
 
-### 2.3.1 Performance da manutenção
+### Performance da manutenção
 
-### 2.3.2 Mensuração de impacto na incidência de corretivas
+### Mensuração de impacto na incidência de corretivas
 
-### 2.3.2 Mensuração de impacto na disponibilidade
+### Mensuração de impacto na disponibilidade
 
-## 2.1.4 Indicadores Chave de Desempenho (ICD) {#sec-icd}
+## Indicadores Chave de Desempenho (ICD) {#sec-icd}
 
 O principal produto do ciclo de transporte é a **massa transportada (MT)**, este configura-se como elemento quantitativo.
 
