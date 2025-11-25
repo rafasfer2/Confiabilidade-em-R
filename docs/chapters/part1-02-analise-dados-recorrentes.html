@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>1&nbsp; Análise de dados recorrentes – Manutenção e Confiabilidade: Aplicação em R</title>
+<title>2&nbsp; Análise de dados recorrentes – Manutenção e Confiabilidade: Aplicação em R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../chapters/part1-03-aplicacao-pdca.html" rel="next">
-<link href="../setup.html" rel="prev">
+<link href="../chapters/part1-01-ciclo-carregamento-transporte.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -295,7 +295,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html">Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-01-ciclo-carregamento-transporte.html">Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Procurar" onclick="window.quartoOpenSearch();">
@@ -358,26 +358,32 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/part1-01-ciclo-carregamento-transporte.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ciclo dos processos de carregamento e transporte</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/part1-02-analise-dados-recorrentes.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part1-03-aplicacao-pdca.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Aplicação do ciclo PDCA</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Aplicação do ciclo PDCA</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part1-04-resumo.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Resumo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part1-05-exercicios.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Exercícios</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Exercícios</span></span></a>
   </div>
 </li>
       </ul>
@@ -394,25 +400,25 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part2-09-o-que-e-manutencao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">O que é Manutenção?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">O que é Manutenção?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part2-10-o-que-e-gestao-manutencao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">O que é Gestão da Manutenção?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">O que é Gestão da Manutenção?</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part2-11-planejamento-controle-manutencao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Planejamento e controle da manutenção</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Planejamento e controle da manutenção</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/part2-12-placeholder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">(Placeholder)</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">(Placeholder)</span></span></a>
   </div>
 </li>
       </ul>
@@ -439,45 +445,45 @@ window.Quarto = {
     <h2 id="toc-title">Índice</h2>
    
   <ul>
-  <li><a href="#estrutura-de-banco-de-dados" id="toc-estrutura-de-banco-de-dados" class="nav-link active" data-scroll-target="#estrutura-de-banco-de-dados"><span class="header-section-number">1.1</span> Estrutura de banco de dados</a>
+  <li><a href="#estrutura-de-banco-de-dados" id="toc-estrutura-de-banco-de-dados" class="nav-link active" data-scroll-target="#estrutura-de-banco-de-dados"><span class="header-section-number">2.1</span> Estrutura de banco de dados</a>
   <ul class="collapse">
-  <li><a href="#exemplos-de-histórico-de-dados" id="toc-exemplos-de-histórico-de-dados" class="nav-link" data-scroll-target="#exemplos-de-histórico-de-dados"><span class="header-section-number">1.1.1</span> Exemplos de histórico de dados</a></li>
-  <li><a href="#tipos-e-classes-dos-dados" id="toc-tipos-e-classes-dos-dados" class="nav-link" data-scroll-target="#tipos-e-classes-dos-dados"><span class="header-section-number">1.1.2</span> Tipos e classes dos dados</a></li>
-  <li><a href="#categoria-de-horas" id="toc-categoria-de-horas" class="nav-link" data-scroll-target="#categoria-de-horas"><span class="header-section-number">1.1.3</span> Categoria de horas</a></li>
-  <li><a href="#indicadores-chave-de-desempenho-icd" id="toc-indicadores-chave-de-desempenho-icd" class="nav-link" data-scroll-target="#indicadores-chave-de-desempenho-icd"><span class="header-section-number">1.1.4</span> Indicadores chave de desempenho (ICD)</a></li>
-  <li><a href="#diagrama-de-build-up" id="toc-diagrama-de-build-up" class="nav-link" data-scroll-target="#diagrama-de-build-up"><span class="header-section-number">1.1.5</span> Diagrama de build-up</a></li>
+  <li><a href="#exemplos-de-histórico-de-dados" id="toc-exemplos-de-histórico-de-dados" class="nav-link" data-scroll-target="#exemplos-de-histórico-de-dados"><span class="header-section-number">2.1.1</span> Exemplos de histórico de dados</a></li>
+  <li><a href="#tipos-e-classes-dos-dados" id="toc-tipos-e-classes-dos-dados" class="nav-link" data-scroll-target="#tipos-e-classes-dos-dados"><span class="header-section-number">2.1.2</span> Tipos e classes dos dados</a></li>
+  <li><a href="#categoria-de-horas" id="toc-categoria-de-horas" class="nav-link" data-scroll-target="#categoria-de-horas"><span class="header-section-number">2.1.3</span> Categoria de horas</a></li>
+  <li><a href="#indicadores-chave-de-desempenho-icd" id="toc-indicadores-chave-de-desempenho-icd" class="nav-link" data-scroll-target="#indicadores-chave-de-desempenho-icd"><span class="header-section-number">2.1.4</span> Indicadores chave de desempenho (ICD)</a></li>
+  <li><a href="#diagrama-de-build-up" id="toc-diagrama-de-build-up" class="nav-link" data-scroll-target="#diagrama-de-build-up"><span class="header-section-number">2.1.5</span> Diagrama de build-up</a></li>
   </ul></li>
-  <li><a href="#política-de-manutenção" id="toc-política-de-manutenção" class="nav-link" data-scroll-target="#política-de-manutenção"><span class="header-section-number">1.2</span> Política de manutenção</a>
+  <li><a href="#política-de-manutenção" id="toc-política-de-manutenção" class="nav-link" data-scroll-target="#política-de-manutenção"><span class="header-section-number">2.2</span> Política de manutenção</a>
   <ul class="collapse">
-  <li><a href="#manutenção-corretiva" id="toc-manutenção-corretiva" class="nav-link" data-scroll-target="#manutenção-corretiva"><span class="header-section-number">1.2.1</span> Manutenção corretiva</a></li>
-  <li><a href="#manutenção-preventiva" id="toc-manutenção-preventiva" class="nav-link" data-scroll-target="#manutenção-preventiva"><span class="header-section-number">1.2.2</span> Manutenção preventiva</a></li>
-  <li><a href="#dinâmica-de-ocorrência-de-falhas" id="toc-dinâmica-de-ocorrência-de-falhas" class="nav-link" data-scroll-target="#dinâmica-de-ocorrência-de-falhas"><span class="header-section-number">1.2.3</span> Dinâmica de ocorrência de falhas</a></li>
-  <li><a href="#notações-e-terminologia" id="toc-notações-e-terminologia" class="nav-link" data-scroll-target="#notações-e-terminologia"><span class="header-section-number">1.2.4</span> Notações e terminologia</a></li>
-  <li><a href="#gráfico-de-processo-de-contagem" id="toc-gráfico-de-processo-de-contagem" class="nav-link" data-scroll-target="#gráfico-de-processo-de-contagem"><span class="header-section-number">1.2.5</span> Gráfico de processo de contagem</a></li>
+  <li><a href="#manutenção-corretiva" id="toc-manutenção-corretiva" class="nav-link" data-scroll-target="#manutenção-corretiva"><span class="header-section-number">2.2.1</span> Manutenção corretiva</a></li>
+  <li><a href="#manutenção-preventiva" id="toc-manutenção-preventiva" class="nav-link" data-scroll-target="#manutenção-preventiva"><span class="header-section-number">2.2.2</span> Manutenção preventiva</a></li>
+  <li><a href="#dinâmica-de-ocorrência-de-falhas" id="toc-dinâmica-de-ocorrência-de-falhas" class="nav-link" data-scroll-target="#dinâmica-de-ocorrência-de-falhas"><span class="header-section-number">2.2.3</span> Dinâmica de ocorrência de falhas</a></li>
+  <li><a href="#notações-e-terminologia" id="toc-notações-e-terminologia" class="nav-link" data-scroll-target="#notações-e-terminologia"><span class="header-section-number">2.2.4</span> Notações e terminologia</a></li>
+  <li><a href="#gráfico-de-processo-de-contagem" id="toc-gráfico-de-processo-de-contagem" class="nav-link" data-scroll-target="#gráfico-de-processo-de-contagem"><span class="header-section-number">2.2.5</span> Gráfico de processo de contagem</a></li>
   </ul></li>
-  <li><a href="#confiabilidade-e-periodicidade" id="toc-confiabilidade-e-periodicidade" class="nav-link" data-scroll-target="#confiabilidade-e-periodicidade"><span class="header-section-number">1.3</span> Confiabilidade e periodicidade</a>
+  <li><a href="#confiabilidade-e-periodicidade" id="toc-confiabilidade-e-periodicidade" class="nav-link" data-scroll-target="#confiabilidade-e-periodicidade"><span class="header-section-number">2.3</span> Confiabilidade e periodicidade</a>
   <ul class="collapse">
-  <li><a href="#performance-da-manutenção" id="toc-performance-da-manutenção" class="nav-link" data-scroll-target="#performance-da-manutenção"><span class="header-section-number">1.3.1</span> Performance da manutenção</a></li>
-  <li><a href="#mensuração-de-impacto-na-incidência-de-corretivas" id="toc-mensuração-de-impacto-na-incidência-de-corretivas" class="nav-link" data-scroll-target="#mensuração-de-impacto-na-incidência-de-corretivas"><span class="header-section-number">1.3.2</span> Mensuração de impacto na incidência de corretivas</a></li>
-  <li><a href="#mensuração-de-impacto-na-disponibilidade" id="toc-mensuração-de-impacto-na-disponibilidade" class="nav-link" data-scroll-target="#mensuração-de-impacto-na-disponibilidade"><span class="header-section-number">1.3.3</span> Mensuração de impacto na disponibilidade</a></li>
+  <li><a href="#performance-da-manutenção" id="toc-performance-da-manutenção" class="nav-link" data-scroll-target="#performance-da-manutenção"><span class="header-section-number">2.3.1</span> Performance da manutenção</a></li>
+  <li><a href="#mensuração-de-impacto-na-incidência-de-corretivas" id="toc-mensuração-de-impacto-na-incidência-de-corretivas" class="nav-link" data-scroll-target="#mensuração-de-impacto-na-incidência-de-corretivas"><span class="header-section-number">2.3.2</span> Mensuração de impacto na incidência de corretivas</a></li>
+  <li><a href="#mensuração-de-impacto-na-disponibilidade" id="toc-mensuração-de-impacto-na-disponibilidade" class="nav-link" data-scroll-target="#mensuração-de-impacto-na-disponibilidade"><span class="header-section-number">2.3.3</span> Mensuração de impacto na disponibilidade</a></li>
   </ul></li>
-  <li><a href="#sec-icd" id="toc-sec-icd" class="nav-link" data-scroll-target="#sec-icd"><span class="header-section-number">1.4</span> Indicadores Chave de Desempenho (ICD)</a>
+  <li><a href="#sec-icd" id="toc-sec-icd" class="nav-link" data-scroll-target="#sec-icd"><span class="header-section-number">2.4</span> Indicadores Chave de Desempenho (ICD)</a>
   <ul class="collapse">
-  <li><a href="#disponibilidade-física-df" id="toc-disponibilidade-física-df" class="nav-link" data-scroll-target="#disponibilidade-física-df"><span class="header-section-number">1.4.1</span> Disponibilidade Física (DF)</a></li>
-  <li><a href="#utilização-física-uf" id="toc-utilização-física-uf" class="nav-link" data-scroll-target="#utilização-física-uf"><span class="header-section-number">1.4.2</span> Utilização Física (UF)</a></li>
-  <li><a href="#produtividade-pr" id="toc-produtividade-pr" class="nav-link" data-scroll-target="#produtividade-pr"><span class="header-section-number">1.4.3</span> Produtividade (PR)</a></li>
-  <li><a href="#sec-perda-producao" id="toc-sec-perda-producao" class="nav-link" data-scroll-target="#sec-perda-producao"><span class="header-section-number">1.4.4</span> Perda de Produção por Indicadores</a></li>
+  <li><a href="#disponibilidade-física-df" id="toc-disponibilidade-física-df" class="nav-link" data-scroll-target="#disponibilidade-física-df"><span class="header-section-number">2.4.1</span> Disponibilidade Física (DF)</a></li>
+  <li><a href="#utilização-física-uf" id="toc-utilização-física-uf" class="nav-link" data-scroll-target="#utilização-física-uf"><span class="header-section-number">2.4.2</span> Utilização Física (UF)</a></li>
+  <li><a href="#produtividade-pr" id="toc-produtividade-pr" class="nav-link" data-scroll-target="#produtividade-pr"><span class="header-section-number">2.4.3</span> Produtividade (PR)</a></li>
+  <li><a href="#sec-perda-producao" id="toc-sec-perda-producao" class="nav-link" data-scroll-target="#sec-perda-producao"><span class="header-section-number">2.4.4</span> Perda de Produção por Indicadores</a></li>
   </ul></li>
-  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">1.5</span> Resumo</a></li>
+  <li><a href="#resumo" id="toc-resumo" class="nav-link" data-scroll-target="#resumo"><span class="header-section-number">2.5</span> Resumo</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html">Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/part1-01-ciclo-carregamento-transporte.html">Medidas de Performance na Mineração</a></li><li class="breadcrumb-item"><a href="../chapters/part1-02-analise-dados-recorrentes.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
+<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Análise de dados recorrentes</span></h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Código</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Mostrar o código</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Esconder o código</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">Ver o código fonte</a></li></ul></div></div>
 </div>
 
 
@@ -494,16 +500,16 @@ window.Quarto = {
 </header>
 
 
-<section id="estrutura-de-banco-de-dados" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="estrutura-de-banco-de-dados"><span class="header-section-number">1.1</span> Estrutura de banco de dados</h2>
-<section id="exemplos-de-histórico-de-dados" class="level3" data-number="1.1.1">
-<h3 data-number="1.1.1" class="anchored" data-anchor-id="exemplos-de-histórico-de-dados"><span class="header-section-number">1.1.1</span> Exemplos de histórico de dados</h3>
+<section id="estrutura-de-banco-de-dados" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="estrutura-de-banco-de-dados"><span class="header-section-number">2.1</span> Estrutura de banco de dados</h2>
+<section id="exemplos-de-histórico-de-dados" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="exemplos-de-histórico-de-dados"><span class="header-section-number">2.1.1</span> Exemplos de histórico de dados</h3>
 </section>
-<section id="tipos-e-classes-dos-dados" class="level3" data-number="1.1.2">
-<h3 data-number="1.1.2" class="anchored" data-anchor-id="tipos-e-classes-dos-dados"><span class="header-section-number">1.1.2</span> Tipos e classes dos dados</h3>
+<section id="tipos-e-classes-dos-dados" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="tipos-e-classes-dos-dados"><span class="header-section-number">2.1.2</span> Tipos e classes dos dados</h3>
 </section>
-<section id="categoria-de-horas" class="level3" data-number="1.1.3">
-<h3 data-number="1.1.3" class="anchored" data-anchor-id="categoria-de-horas"><span class="header-section-number">1.1.3</span> Categoria de horas</h3>
+<section id="categoria-de-horas" class="level3" data-number="2.1.3">
+<h3 data-number="2.1.3" class="anchored" data-anchor-id="categoria-de-horas"><span class="header-section-number">2.1.3</span> Categoria de horas</h3>
 <p>Categoria de horas corresponde à divisão do tempo em classes de serviços ou condição dos equipamentos, detalhando as horas na execução de atividades de operação e manutenção no equipamento. Para melhor cálculo dos indicadores, os tempos de funcionamento são agrupados em horas dependendo da ocorrência dos eventos e do conjunto de equipamentos que compõe o sistema. No ciclo de processos de transporte, os dados coletados em caminhões “off-highway” são obtidos dos horímetros instalados no sistema de medição e denominados tempos operacionais. A partir daí, estas são apontadas no banco de dados em categorias de horas, que são as: horas efetivas (HEF), horas de atraso operacional (HAO), horas trabalhadas diversas (HTD), horas trabalhadas de infraestrutura (HTI); horas ociosas interna (HOI); horas ociosas externa (HOE); horas de manutenção corretiva (HMC), horas de acidente (HAC); horas preventivas sistemática (MPS) e horas preventivas não sistemática (MPNS). Iremos denominar estes elementos com o tempo de primeiro nível.</p>
 <p>A Figura @ref(fig-categorias-horas) ilustra o fluxo de relacionamento entre estas categorias:</p>
 <div id="fig-categorias-horas" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -512,7 +518,7 @@ window.Quarto = {
 <img src="../images/fig-categorias-horas.png" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-categorias-horas-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figura&nbsp;1.1: Fluxo de relacionamento entre categorias de horas
+Figura&nbsp;2.1: Fluxo de relacionamento entre categorias de horas
 </figcaption>
 </figure>
 </div>
@@ -559,50 +565,50 @@ Legenda das Categorias de Horas
 </div>
 </div>
 </section>
-<section id="indicadores-chave-de-desempenho-icd" class="level3" data-number="1.1.4">
-<h3 data-number="1.1.4" class="anchored" data-anchor-id="indicadores-chave-de-desempenho-icd"><span class="header-section-number">1.1.4</span> Indicadores chave de desempenho (ICD)</h3>
+<section id="indicadores-chave-de-desempenho-icd" class="level3" data-number="2.1.4">
+<h3 data-number="2.1.4" class="anchored" data-anchor-id="indicadores-chave-de-desempenho-icd"><span class="header-section-number">2.1.4</span> Indicadores chave de desempenho (ICD)</h3>
 </section>
-<section id="diagrama-de-build-up" class="level3" data-number="1.1.5">
-<h3 data-number="1.1.5" class="anchored" data-anchor-id="diagrama-de-build-up"><span class="header-section-number">1.1.5</span> Diagrama de build-up</h3>
-</section>
-</section>
-<section id="política-de-manutenção" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="política-de-manutenção"><span class="header-section-number">1.2</span> Política de manutenção</h2>
-<section id="manutenção-corretiva" class="level3" data-number="1.2.1">
-<h3 data-number="1.2.1" class="anchored" data-anchor-id="manutenção-corretiva"><span class="header-section-number">1.2.1</span> Manutenção corretiva</h3>
-</section>
-<section id="manutenção-preventiva" class="level3" data-number="1.2.2">
-<h3 data-number="1.2.2" class="anchored" data-anchor-id="manutenção-preventiva"><span class="header-section-number">1.2.2</span> Manutenção preventiva</h3>
-</section>
-<section id="dinâmica-de-ocorrência-de-falhas" class="level3" data-number="1.2.3">
-<h3 data-number="1.2.3" class="anchored" data-anchor-id="dinâmica-de-ocorrência-de-falhas"><span class="header-section-number">1.2.3</span> Dinâmica de ocorrência de falhas</h3>
-</section>
-<section id="notações-e-terminologia" class="level3" data-number="1.2.4">
-<h3 data-number="1.2.4" class="anchored" data-anchor-id="notações-e-terminologia"><span class="header-section-number">1.2.4</span> Notações e terminologia</h3>
-</section>
-<section id="gráfico-de-processo-de-contagem" class="level3" data-number="1.2.5">
-<h3 data-number="1.2.5" class="anchored" data-anchor-id="gráfico-de-processo-de-contagem"><span class="header-section-number">1.2.5</span> Gráfico de processo de contagem</h3>
+<section id="diagrama-de-build-up" class="level3" data-number="2.1.5">
+<h3 data-number="2.1.5" class="anchored" data-anchor-id="diagrama-de-build-up"><span class="header-section-number">2.1.5</span> Diagrama de build-up</h3>
 </section>
 </section>
-<section id="confiabilidade-e-periodicidade" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="confiabilidade-e-periodicidade"><span class="header-section-number">1.3</span> Confiabilidade e periodicidade</h2>
-<section id="performance-da-manutenção" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="performance-da-manutenção"><span class="header-section-number">1.3.1</span> Performance da manutenção</h3>
+<section id="política-de-manutenção" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="política-de-manutenção"><span class="header-section-number">2.2</span> Política de manutenção</h2>
+<section id="manutenção-corretiva" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="manutenção-corretiva"><span class="header-section-number">2.2.1</span> Manutenção corretiva</h3>
 </section>
-<section id="mensuração-de-impacto-na-incidência-de-corretivas" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="mensuração-de-impacto-na-incidência-de-corretivas"><span class="header-section-number">1.3.2</span> Mensuração de impacto na incidência de corretivas</h3>
+<section id="manutenção-preventiva" class="level3" data-number="2.2.2">
+<h3 data-number="2.2.2" class="anchored" data-anchor-id="manutenção-preventiva"><span class="header-section-number">2.2.2</span> Manutenção preventiva</h3>
 </section>
-<section id="mensuração-de-impacto-na-disponibilidade" class="level3" data-number="1.3.3">
-<h3 data-number="1.3.3" class="anchored" data-anchor-id="mensuração-de-impacto-na-disponibilidade"><span class="header-section-number">1.3.3</span> Mensuração de impacto na disponibilidade</h3>
+<section id="dinâmica-de-ocorrência-de-falhas" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="dinâmica-de-ocorrência-de-falhas"><span class="header-section-number">2.2.3</span> Dinâmica de ocorrência de falhas</h3>
+</section>
+<section id="notações-e-terminologia" class="level3" data-number="2.2.4">
+<h3 data-number="2.2.4" class="anchored" data-anchor-id="notações-e-terminologia"><span class="header-section-number">2.2.4</span> Notações e terminologia</h3>
+</section>
+<section id="gráfico-de-processo-de-contagem" class="level3" data-number="2.2.5">
+<h3 data-number="2.2.5" class="anchored" data-anchor-id="gráfico-de-processo-de-contagem"><span class="header-section-number">2.2.5</span> Gráfico de processo de contagem</h3>
 </section>
 </section>
-<section id="sec-icd" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="sec-icd"><span class="header-section-number">1.4</span> Indicadores Chave de Desempenho (ICD)</h2>
+<section id="confiabilidade-e-periodicidade" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="confiabilidade-e-periodicidade"><span class="header-section-number">2.3</span> Confiabilidade e periodicidade</h2>
+<section id="performance-da-manutenção" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="performance-da-manutenção"><span class="header-section-number">2.3.1</span> Performance da manutenção</h3>
+</section>
+<section id="mensuração-de-impacto-na-incidência-de-corretivas" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="mensuração-de-impacto-na-incidência-de-corretivas"><span class="header-section-number">2.3.2</span> Mensuração de impacto na incidência de corretivas</h3>
+</section>
+<section id="mensuração-de-impacto-na-disponibilidade" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="mensuração-de-impacto-na-disponibilidade"><span class="header-section-number">2.3.3</span> Mensuração de impacto na disponibilidade</h3>
+</section>
+</section>
+<section id="sec-icd" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="sec-icd"><span class="header-section-number">2.4</span> Indicadores Chave de Desempenho (ICD)</h2>
 <p>O principal produto do ciclo de transporte é a <strong>massa transportada (MT)</strong>, este configura-se como elemento quantitativo.</p>
 <p>Os ICDs são derivados de elementos de medição, logo, como um elemento pode ser usado nas definições de vários ICDs, é improvável que eles sejam independentes entre si. De acordo com <span class="citation" data-cites="kang2016">Kang et al. (<a href="#ref-kang2016" role="doc-biblioref">2016</a>)</span>, há dois tipos básicos de relacionamento, o primeiro dado pela relação de identidade dos ICDs, baseado em suas definições e, o outro, é a relevância com elementos de suporte compartilhados que podem ser obtidos por comparação aos pares e/ou por agrupamentos em níveis.</p>
 <p>Cada ICD revela um aspecto de desempenho para uma unidade de trabalho ou sistema, derivado de dados monitorados de elementos de suporte. Os ICDs podem ser agrupados por aqueles que representam um grupo de aspectos com atributos semelhantes.</p>
-<section id="disponibilidade-física-df" class="level3" data-number="1.4.1">
-<h3 data-number="1.4.1" class="anchored" data-anchor-id="disponibilidade-física-df"><span class="header-section-number">1.4.1</span> Disponibilidade Física (DF)</h3>
+<section id="disponibilidade-física-df" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="disponibilidade-física-df"><span class="header-section-number">2.4.1</span> Disponibilidade Física (DF)</h3>
 <p>O ICD de <strong>DF</strong> indica a capacidade de um sistema estar em condições de executar uma certa função, e sua indisponibilidade é devido às horas de manutenção (HM), isto é, o indicador aponta para oportunidades de melhoria relacionados à manutenção, e associados ao status de “em manutenção”.</p>
 <p><span class="math display">\[
 DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%
@@ -614,37 +620,37 @@ DF = \frac{HD}{HC} = \frac{HC - HM}{HC} \times 100\%
 <li><strong>HM</strong>: Horas de Manutenção</li>
 </ul>
 </section>
-<section id="utilização-física-uf" class="level3" data-number="1.4.2">
-<h3 data-number="1.4.2" class="anchored" data-anchor-id="utilização-física-uf"><span class="header-section-number">1.4.2</span> Utilização Física (UF)</h3>
+<section id="utilização-física-uf" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="utilização-física-uf"><span class="header-section-number">2.4.2</span> Utilização Física (UF)</h3>
 <p>De forma diferente, a <strong>taxa de utilização física (UF)</strong> leva em consideração aspectos operacionais, sobre os quais a equipe de manutenção não tem influência, ou seja, indica o quanto da disponibilidade (HD) é utilizada efetivamente para operação (HT), logo, o tempo não utilizado para operação corresponde à ociosidade do equipamento (HO). Desta forma, temos que a ociosidade ocorre quando o equipamento está em “liberado pela manutenção” ou “parada operacional”.</p>
 <p><span class="math display">\[
 UF = \frac{HT}{HD} \times 100\%
 \]</span></p>
 </section>
-<section id="produtividade-pr" class="level3" data-number="1.4.3">
-<h3 data-number="1.4.3" class="anchored" data-anchor-id="produtividade-pr"><span class="header-section-number">1.4.3</span> Produtividade (PR)</h3>
+<section id="produtividade-pr" class="level3" data-number="2.4.3">
+<h3 data-number="2.4.3" class="anchored" data-anchor-id="produtividade-pr"><span class="header-section-number">2.4.3</span> Produtividade (PR)</h3>
 <p>As horas trabalhadas (HT), são resultantes das ações de melhoria nos demais indicadores e utilizadas para calcular tanto UF quanto o indicador de <strong>Produtividade (PR)</strong>, este último, dado pelo resultado da massa total transportada (MT) dividida por horas trabalhadas (HT). Por conseguinte, a PR aponta para o ciclo dos processos de carregamento e transporte, e está associado ao status “apto para operação”.</p>
 <p><span class="math display">\[
 PR = \frac{MT}{HT}
 \]</span></p>
 <p>Onde <strong>MT</strong> é a massa total transportada (em toneladas).</p>
 </section>
-<section id="sec-perda-producao" class="level3" data-number="1.4.4">
-<h3 data-number="1.4.4" class="anchored" data-anchor-id="sec-perda-producao"><span class="header-section-number">1.4.4</span> Perda de Produção por Indicadores</h3>
+<section id="sec-perda-producao" class="level3" data-number="2.4.4">
+<h3 data-number="2.4.4" class="anchored" data-anchor-id="sec-perda-producao"><span class="header-section-number">2.4.4</span> Perda de Produção por Indicadores</h3>
 <p>Por fim, para o caso em que um sistema produtivo não cumpre as metas de produção, é possível ainda calcular a <strong>perda de produção por indicadores de desempenho</strong>, verificando a representatividade em toneladas para cada indicador.</p>
 <p>As equações de cálculo da perda de produção para cada indicador são descritas a seguir:</p>
 <p><strong>Perda de Produção por Disponibilidade Física:</strong></p>
 <p><span id="eq-perda-df"><span class="math display">\[
 PP_{DF} = (HD_{programado} - HD_{realizado}) \times PR_{realizado}
-\tag{1.1}\]</span></span></p>
+\tag{2.1}\]</span></span></p>
 <p><strong>Perda de Produção por Utilização:</strong></p>
 <p><span id="eq-perda-uf"><span class="math display">\[
 PP_{UF} = (HO_{realizado} - HO_{programado}) \times PR_{programado}
-\tag{1.2}\]</span></span></p>
+\tag{2.2}\]</span></span></p>
 <p><strong>Perda de Produção por Produtividade:</strong></p>
 <p><span id="eq-perda-pr"><span class="math display">\[
 PP_{PR} = (PR_{programado} - PR_{realizado}) \times (HD_{programado} - HO_{realizado})
-\tag{1.3}\]</span></span></p>
+\tag{2.3}\]</span></span></p>
 <div class="cell">
 <details class="code-fold">
 <summary>Código</summary>
@@ -857,8 +863,8 @@ Interpretação das Perdas
 </div>
 </section>
 </section>
-<section id="resumo" class="level2" data-number="1.5">
-<h2 data-number="1.5" class="anchored" data-anchor-id="resumo"><span class="header-section-number">1.5</span> Resumo</h2>
+<section id="resumo" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="resumo"><span class="header-section-number">2.5</span> Resumo</h2>
 <p>🔔 <strong>Pontos-chave:</strong></p>
 <ul>
 <li>O ciclo de carregamento e transporte é composto por etapas sequenciais</li>
@@ -1500,13 +1506,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../setup.html" class="pagination-link" aria-label="Instalação e Ambiente">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Instalação e Ambiente</span>
+      <a href="../chapters/part1-01-ciclo-carregamento-transporte.html" class="pagination-link" aria-label="Ciclo dos processos de carregamento e transporte">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Ciclo dos processos de carregamento e transporte</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/part1-03-aplicacao-pdca.html" class="pagination-link" aria-label="Aplicação do ciclo PDCA">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Aplicação do ciclo PDCA</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Aplicação do ciclo PDCA</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Código fonte</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
