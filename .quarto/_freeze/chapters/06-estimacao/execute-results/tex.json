@@ -1,0 +1,19 @@
+{
+  "hash": "115c7d820e4e796368d13e755acc84bb",
+  "result": {
+    "engine": "knitr",
+    "markdown": "# Estimativa de Parâmetros e Inferência\n\n## Introdução\n\nEste capítulo aborda métodos para estimar parâmetros de distribuições de vida útil a partir de dados observados.\n\n## Método da Máxima Verossimilhança (MLE)\n\n### Conceito\n\nO método MLE busca os parâmetros que **maximizam a probabilidade** de observar os dados coletados.\n\n### Função de Verossimilhança\n\nPara dados de falha $t_1, t_2, \\ldots, t_n$:\n\n$$\nL(\\theta) = \\prod_{i=1}^n f(t_i; \\theta)\n$$\n\nLog-verossimilhança:\n\n$$\n\\ell(\\theta) = \\sum_{i=1}^n \\log f(t_i; \\theta)\n$$\n\n### Exemplo: Exponencial\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\n\n# Dados simulados\nset.seed(123)\ndados <- rexp(50, rate = 0.01)\n\n# MLE analítico para exponencial\nlambda_mle <- 1 / mean(dados)\n\ncat(\"Lambda MLE:\", lambda_mle, \"\\n\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nLambda MLE: 0.008846654 \n```\n\n\n:::\n\n```{.r .cell-code}\ncat(\"MTTF estimado:\", 1/lambda_mle, \"\\n\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nMTTF estimado: 113.0371 \n```\n\n\n:::\n:::\n\n\n\n\n\n\n\n\n### Exemplo: Weibull com `fitdistrplus`\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(fitdistrplus)\n\n# Ajuste Weibull\nfit_weibull <- fitdist(dados, \"weibull\")\n\nsummary(fit_weibull)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nFitting of the distribution ' weibull ' by maximum likelihood \nParameters : \n        estimate Std. Error\nshape   1.050058  0.1112928\nscale 115.332088 16.3678738\nLoglikelihood:  -286.2823   AIC:  576.5646   BIC:  580.3886 \nCorrelation matrix:\n          shape     scale\nshape 1.0000000 0.3158044\nscale 0.3158044 1.0000000\n```\n\n\n:::\n\n```{.r .cell-code}\n# Visualizar ajuste\nplot(fit_weibull)\n```\n\n::: {.cell-output-display}\n![](06-estimacao_files/figure-pdf/mle-weibull-1.pdf){fig-pos='H'}\n:::\n:::\n\n\n\n\n\n\n\n\n## Intervalos de Confiança\n\n### Bootstrap\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Bootstrap para IC\nboot_samples <- replicate(1000, {\n  sample_boot <- sample(dados, replace = TRUE)\n  1 / mean(sample_boot)\n})\n\n# IC 95%\nic_lower <- quantile(boot_samples, 0.025)\nic_upper <- quantile(boot_samples, 0.975)\n\ncat(\"IC 95% para lambda:\", ic_lower, \"-\", ic_upper, \"\\n\")\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\nIC 95% para lambda: 0.006737779 - 0.01235932 \n```\n\n\n:::\n:::\n\n\n\n\n\n\n\n\n## Testes de Qualidade de Ajuste\n\n### Teste Kolmogorov-Smirnov\n\n\n\n\n\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Testar ajuste exponencial\nks_result <- ks.test(dados, \"pexp\", rate = lambda_mle)\nprint(ks_result)\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n\n\tExact one-sample Kolmogorov-Smirnov test\n\ndata:  dados\nD = 0.10156, p-value = 0.6436\nalternative hypothesis: two-sided\n```\n\n\n:::\n:::\n\n\n\n\n\n\n\n\n## Exercícios\n\n📝 **Exercício 1**: Estime parâmetros de distribuição Weibull usando MLE.\n\n📝 **Exercício 2**: Compare IC paramétrico vs. bootstrap.\n\n📝 **Exercício 3**: Use AIC/BIC para comparar modelos.\n\n## Resumo\n\n🔔 **Pontos-chave:**\n\n- MLE é o método padrão para estimação\n- Intervalos de confiança quantificam incerteza\n- Testes de qualidade validam o ajuste\n\n---\n\n**Próximo capítulo:** Análise de Dados de Falha com R\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

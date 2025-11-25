@@ -1,0 +1,140 @@
+{
+  "index.qmd": {
+    "index.html": "3566e122"
+  },
+  "preface.qmd": {
+    "preface.html": "1008c8c3"
+  },
+  "requirements.qmd": {
+    "requirements.html": "86eb7771"
+  },
+  "setup.qmd": {
+    "setup.html": "b96111a8"
+  },
+  "chapters/01-fundamentos.qmd": {
+    "01-fundamentos.html": "4632964c"
+  },
+  "chapters/02-distribuicoes.qmd": {
+    "02-distribuicoes.html": "475b40c5"
+  },
+  "chapters/03-estimacao.qmd": {
+    "03-estimacao.html": "78413f7f"
+  },
+  "chapters/04-analise-falhas.qmd": {
+    "04-analise-falhas.html": "c964fce5"
+  },
+  "chapters/05-weibull.qmd": {
+    "05-weibull.html": "6e727678"
+  },
+  "chapters/06-sobrevivencia.qmd": {
+    "06-sobrevivencia.html": "be5c9a6f"
+  },
+  "chapters/07-manutencao-preventiva.qmd": {
+    "07-manutencao-preventiva.html": "36c174f5"
+  },
+  "chapters/08-manutencao-preditiva.qmd": {
+    "08-manutencao-preditiva.html": "9ea72bbf"
+  },
+  "chapters/09-sistemas.qmd": {
+    "09-sistemas.html": "87de437d"
+  },
+  "chapters/10-simulacao.qmd": {
+    "10-simulacao.html": "112222ec"
+  },
+  "chapters/11-estudos-caso.qmd": {
+    "11-estudos-caso.html": "3b80dbcf"
+  },
+  "chapters/12-governanca.qmd": {
+    "12-governanca.html": "a54e05ba"
+  },
+  "appendices/A-pacotes.qmd": {
+    "A-pacotes.html": "c42eb55e"
+  },
+  "appendices/B-templates.qmd": {
+    "B-templates.html": "875e8045"
+  },
+  "appendices/C-cheatsheet.qmd": {
+    "C-cheatsheet.html": "91c61e9c"
+  },
+  "references.qmd": {
+    "references.html": "278978b7"
+  },
+  "credits.qmd": {
+    "credits.html": "e660e06d"
+  },
+  "chapters/01-introducao.qmd": {
+    "01-introducao.html": "230ac3b6"
+  },
+  "chapters/02-performance-mineracao.qmd": {
+    "02-performance-mineracao.html": "a45e5357"
+  },
+  "chapters/03-fatores-moderadores.qmd": {
+    "03-fatores-moderadores.html": "2026b4cb"
+  },
+  "chapters/04-fundamentos.qmd": {
+    "04-fundamentos.html": "865968bf"
+  },
+  "chapters/05-distribuicoes.qmd": {
+    "05-distribuicoes.html": "75afeb7a"
+  },
+  "chapters/06-estimacao.qmd": {
+    "06-estimacao.html": "9236b8d0"
+  },
+  "chapters/07-analise-falhas.qmd": {
+    "07-analise-falhas.html": "34c11ef7"
+  },
+  "chapters/08-weibull.qmd": {
+    "08-weibull.html": "191d3e1c"
+  },
+  "chapters/09-sobrevivencia.qmd": {
+    "09-sobrevivencia.html": "14672e18"
+  },
+  "chapters/10-manutencao-preventiva.qmd": {
+    "10-manutencao-preventiva.html": "0c2ce230"
+  },
+  "chapters/11-manutencao-preditiva.qmd": {
+    "11-manutencao-preditiva.html": "635d9b4b"
+  },
+  "chapters/12-sistemas.qmd": {
+    "12-sistemas.html": "56973cfa"
+  },
+  "chapters/13-simulacao.qmd": {
+    "13-simulacao.html": "10e365b6"
+  },
+  "chapters/14-estudos-caso.qmd": {
+    "14-estudos-caso.html": "78cadc12"
+  },
+  "chapters/15-governanca.qmd": {
+    "15-governanca.html": "efcf66cb"
+  },
+  "summary.qmd": {
+    "summary.html": "72b88649"
+  },
+  "chapters/part1-01-ciclo-carregamento-transporte.qmd": {
+    "part1-01-ciclo-carregamento-transporte.html": "aebb8efe"
+  },
+  "chapters/part1-02-analise-dados-recorrentes.qmd": {
+    "part1-02-analise-dados-recorrentes.html": "ec6e609f"
+  },
+  "chapters/part1-03-aplicacao-pdca.qmd": {
+    "part1-03-aplicacao-pdca.html": "c6b33157"
+  },
+  "chapters/part1-04-resumo.qmd": {
+    "part1-04-resumo.html": "1bea5ee0"
+  },
+  "chapters/part1-05-exercicios.qmd": {
+    "part1-05-exercicios.html": "6752dc8f"
+  },
+  "chapters/part2-09-o-que-e-manutencao.qmd": {
+    "part2-09-o-que-e-manutencao.html": "3601bd94"
+  },
+  "chapters/part2-10-o-que-e-gestao-manutencao.qmd": {
+    "part2-10-o-que-e-gestao-manutencao.html": "febe97fe"
+  },
+  "chapters/part2-11-planejamento-controle-manutencao.qmd": {
+    "part2-11-planejamento-controle-manutencao.html": "4cd81e49"
+  },
+  "chapters/part2-12-placeholder.qmd": {
+    "part2-12-placeholder.html": "26511524"
+  }
+}

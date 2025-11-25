@@ -1,0 +1,1107 @@
+{
+    "sources": [
+        {
+            "URL": "https://r4ds.hadley.nz/",
+            "author": [
+                {
+                    "family": "Wickham",
+                    "given": "Hadley"
+                },
+                {
+                    "family": "Çetinkaya-Rundel",
+                    "given": "Mine"
+                },
+                {
+                    "family": "Grolemund",
+                    "given": "Garrett"
+                }
+            ],
+            "edition": "2nd",
+            "id": "wickham2023r4ds",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "publisher": "O’Reilly Media",
+            "title": "R for data science",
+            "type": "book"
+        },
+        {
+            "URL": "https://shiny.posit.co/",
+            "author": [
+                {
+                    "literal": "Posit Software, PBC"
+                }
+            ],
+            "id": "shiny2024",
+            "issued": {
+                "date-parts": [
+                    [
+                        2024
+                    ]
+                ]
+            },
+            "note": "R package version 1.8.0",
+            "title": "Shiny: Web application framework for r",
+            "title-short": "Shiny",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1287/opre.8.1.90",
+            "author": [
+                {
+                    "family": "Barlow",
+                    "given": "Richard"
+                },
+                {
+                    "family": "Hunter",
+                    "given": "Lawrence"
+                }
+            ],
+            "container-title": "Operations Research",
+            "id": "barlow1960",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        1960
+                    ]
+                ]
+            },
+            "page": "90-100",
+            "title": "Optimum preventive maintenance policies",
+            "type": "article-journal",
+            "volume": "8"
+        },
+        {
+            "author": [
+                {
+                    "family": "Barlow",
+                    "given": "Richard E."
+                },
+                {
+                    "family": "Proschan",
+                    "given": "Frank"
+                }
+            ],
+            "id": "barlowproschan1987",
+            "issued": {
+                "date-parts": [
+                    [
+                        1987
+                    ]
+                ]
+            },
+            "publisher": "Society for Industrial; Applied Mathematics",
+            "title": "Mathematical theory of reliability",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Blanchard",
+                    "given": "Benjamin S."
+                },
+                {
+                    "family": "Fabrycky",
+                    "given": "Wolter J."
+                }
+            ],
+            "edition": "3rd",
+            "id": "blanchardfabrycky1998",
+            "issued": {
+                "date-parts": [
+                    [
+                        1998
+                    ]
+                ]
+            },
+            "publisher": "Prentice Hall",
+            "title": "Systems engineering and analysis",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1016/j.ijpe.2019.107547",
+            "author": [
+                {
+                    "family": "Bokrantz",
+                    "given": "Johan"
+                },
+                {
+                    "family": "Skoogh",
+                    "given": "Anders"
+                },
+                {
+                    "family": "Berlin",
+                    "given": "Cecilia"
+                },
+                {
+                    "family": "Wuest",
+                    "given": "Thorsten"
+                },
+                {
+                    "family": "Stahre",
+                    "given": "Johan"
+                }
+            ],
+            "container-title": "International Journal of Production Economics",
+            "id": "bokrantz2020",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "page": "107547",
+            "title": "Smart maintenance: A research agenda for industrial maintenance management",
+            "title-short": "Smart maintenance",
+            "type": "article-journal",
+            "volume": "224"
+        },
+        {
+            "URL": "https://books.google.com.br/books?id=k13YRgAACAAJ",
+            "author": [
+                {
+                    "family": "Campos",
+                    "given": "Vicente Falconi"
+                }
+            ],
+            "id": "campos2004",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004
+                    ]
+                ]
+            },
+            "publisher": "INDG Tecnologia e Serviços",
+            "title": "TQC: Controle da qualidade total: No estilo japonês",
+            "title-short": "TQC",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Carvalho",
+                    "given": "Paulo S. L."
+                },
+                {
+                    "family": "Silva",
+                    "given": "M. M."
+                },
+                {
+                    "family": "Rocio",
+                    "given": "M. A. R."
+                },
+                {
+                    "family": "Moszkowicz",
+                    "given": "J."
+                }
+            ],
+            "id": "carvalho2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "title": "Minério de ferro",
+            "type": ""
+        },
+        {
+            "URL": "https://www.cat.com/pt_BR/products/new/equipment/off-highway-trucks/mining-trucks/18093014.html",
+            "author": [
+                {
+                    "family": "Caterpillar"
+                }
+            ],
+            "id": "caterpillar2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "title": "Mining trucks: 797F",
+            "title-short": "Mining trucks",
+            "type": ""
+        },
+        {
+            "URL": "https://books.google.com.br/books?id=eptZlQEACAAJ",
+            "author": [
+                {
+                    "family": "Corrêa",
+                    "given": "Henrique L."
+                },
+                {
+                    "family": "Corrêa",
+                    "given": "Carlos A."
+                }
+            ],
+            "id": "correa2012",
+            "issued": {
+                "date-parts": [
+                    [
+                        2012
+                    ]
+                ]
+            },
+            "publisher": "Atlas",
+            "title": "Administração de produção e operações: Manufatura e serviços; uma abordagem estratégica",
+            "title-short": "Administração de produção e operações",
+            "type": "book"
+        },
+        {
+            "URL": "https://github.com/rafasfer2/QuartoBook",
+            "author": [
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael da Silva"
+                }
+            ],
+            "id": "fernandes2025confiabilidade",
+            "issued": {
+                "date-parts": [
+                    [
+                        2025
+                    ]
+                ]
+            },
+            "publisher": "Universidade Federal de Itajubá",
+            "publisher-place": "Itajubá, MG",
+            "title": "Confiabilidade e manutenção: Aplicações em r",
+            "title-short": "Confiabilidade e manutenção",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1016/S0951-8320(03)00173-X",
+            "author": [
+                {
+                    "family": "Doyen",
+                    "given": "Laurent"
+                },
+                {
+                    "family": "Gaudoin",
+                    "given": "Olivier"
+                }
+            ],
+            "container-title": "Reliability Engineering & System Safety",
+            "id": "doyen2004",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2004
+                    ]
+                ]
+            },
+            "page": "45-56",
+            "title": "Classes of imperfect repair models based on reduction of failure intensity or virtual age",
+            "type": "article-journal",
+            "volume": "84"
+        },
+        {
+            "DOI": "10.1109/TR.2011.2171115",
+            "author": [
+                {
+                    "family": "Doyen",
+                    "given": "Laurent"
+                },
+                {
+                    "family": "Gaudoin",
+                    "given": "Olivier"
+                }
+            ],
+            "container-title": "IEEE Transactions on Reliability",
+            "id": "doyen2011",
+            "issue": "4",
+            "issued": {
+                "date-parts": [
+                    [
+                        2011
+                    ]
+                ]
+            },
+            "page": "759-769",
+            "title": "Modeling and assessment of aging and efficiency of corrective and planned preventive maintenance",
+            "type": "article-journal",
+            "volume": "60"
+        },
+        {
+            "DOI": "10.1590/0103-6513.20220069",
+            "author": [
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael de Souza"
+                },
+                {
+                    "family": "Rocha",
+                    "given": "T. R."
+                },
+                {
+                    "family": "Coelho",
+                    "given": "J. M."
+                },
+                {
+                    "family": "Andrade",
+                    "given": "D. F."
+                }
+            ],
+            "container-title": "Production",
+            "id": "fernandes2023",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "title": "Development of a measurement instrument to evaluate integrated management systems and differences in perception: An approach to item response theory and the quality management process",
+            "title-short": "Development of a measurement instrument to evaluate integrated management systems and differences in perception",
+            "type": "article-journal",
+            "volume": "33"
+        },
+        {
+            "DOI": "10.14488/1676-1901.v22i2.4661",
+            "author": [
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael de Souza"
+                },
+                {
+                    "family": "Sousa",
+                    "given": "J. C. de C."
+                },
+                {
+                    "family": "Luz",
+                    "given": "R. M. de N."
+                }
+            ],
+            "container-title": "Revista Produção Online",
+            "id": "fernandes2023b",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        2023
+                    ]
+                ]
+            },
+            "note": "Case study",
+            "page": "2731-2762",
+            "title": "Integrated management analysis of production performance, maintenance, and PDCA cycle: A case study of the IPCC mining process",
+            "title-short": "Integrated management analysis of production performance, maintenance, and PDCA cycle",
+            "type": "article-journal",
+            "volume": "22"
+        },
+        {
+            "DOI": "10.14488/1676-1901.v21i3.4252",
+            "author": [
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael de Souza"
+                },
+                {
+                    "dropping-particle": "de",
+                    "family": "Sousa",
+                    "given": "L. R. C."
+                },
+                {
+                    "family": "Santos",
+                    "given": "T. L."
+                }
+            ],
+            "container-title": "Revista Produção Online",
+            "id": "fernandes2021",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "page": "770-793",
+            "title": "Analysis, investigation and evaluation of quality management in the mining process: A case study on divergencies in iron ore stock deviations",
+            "title-short": "Analysis, investigation and evaluation of quality management in the mining process",
+            "type": "article-journal",
+            "volume": "21"
+        },
+        {
+            "DOI": "10.3390/en13195169",
+            "author": [
+                {
+                    "family": "Gackowiec",
+                    "given": "Patrycja"
+                },
+                {
+                    "family": "Podobińska-Staniec",
+                    "given": "Magdalena"
+                },
+                {
+                    "family": "Brzychczy",
+                    "given": "Edward"
+                },
+                {
+                    "family": "Kúhlbach",
+                    "given": "Christoph"
+                },
+                {
+                    "family": "Özver",
+                    "given": "Tolga"
+                }
+            ],
+            "container-title": "Energies",
+            "id": "gackowiec2020",
+            "issue": "19",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "page": "5169",
+            "title": "Review of key performance indicators for process monitoring in the mining industry",
+            "type": "article-journal",
+            "volume": "13"
+        },
+        {
+            "DOI": "10.1080/00224065.2007.11917672",
+            "author": [
+                {
+                    "family": "Gilardoni",
+                    "given": "Giselle L."
+                },
+                {
+                    "family": "Colosimo",
+                    "given": "Enrico A."
+                }
+            ],
+            "container-title": "Journal of Quality Technology",
+            "id": "gilardoni2007",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2007
+                    ]
+                ]
+            },
+            "page": "48-53",
+            "title": "Optimal maintenance time for repairable systems",
+            "type": "article-journal",
+            "volume": "39"
+        },
+        {
+            "DOI": "10.1016/j.ejor.2015.07.056",
+            "author": [
+                {
+                    "family": "Gilardoni",
+                    "given": "Giselle L."
+                },
+                {
+                    "dropping-particle": "de",
+                    "family": "Toledo",
+                    "given": "Márcia L. G."
+                },
+                {
+                    "family": "Freitas",
+                    "given": "M. A."
+                },
+                {
+                    "family": "Colosimo",
+                    "given": "Enrico A."
+                }
+            ],
+            "container-title": "European Journal of Operational Research",
+            "id": "gilardoni2016",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "1104-1112",
+            "title": "Dynamics of an optimal maintenance policy for imperfect repair models",
+            "type": "article-journal",
+            "volume": "248"
+        },
+        {
+            "author": [
+                {
+                    "family": "Ishikawa",
+                    "given": "Kaoru"
+                }
+            ],
+            "id": "ishikawa1985",
+            "issued": {
+                "date-parts": [
+                    [
+                        1985
+                    ]
+                ]
+            },
+            "publisher": "Prentice-Hall",
+            "title": "What is total quality control? The japanese way",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "literal": "ABNT"
+                }
+            ],
+            "id": "iso5462",
+            "issued": {
+                "date-parts": [
+                    [
+                        1994
+                    ]
+                ]
+            },
+            "note": "Rio de Janeiro: ABNT Catálogo",
+            "title": "ISO-5462:1994 reliability and maintainability – terminology",
+            "title-short": "ISO-5462",
+            "type": ""
+        },
+        {
+            "author": [
+                {
+                    "literal": "ABNT"
+                }
+            ],
+            "id": "iso55000",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "title": "ISO-55000:2014 gestão de ativos: Visão geral, princípios e terminologia",
+            "title-short": "ISO-55000",
+            "type": ""
+        },
+        {
+            "DOI": "10.1080/00207543.2015.1136082",
+            "author": [
+                {
+                    "family": "Kang",
+                    "given": "Ning"
+                },
+                {
+                    "family": "Zhao",
+                    "given": "Chuan"
+                },
+                {
+                    "family": "Li",
+                    "given": "Jing"
+                },
+                {
+                    "family": "Horst",
+                    "given": "J. A."
+                }
+            ],
+            "container-title": "International Journal of Production Research",
+            "id": "kang2016",
+            "issue": "21",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "6333-6350",
+            "title": "A hierarchical structure of key performance indicators for operation management and continuous improvement in production systems",
+            "type": "article-journal",
+            "volume": "54"
+        },
+        {
+            "author": [
+                {
+                    "family": "Kardec",
+                    "given": "Alan"
+                },
+                {
+                    "family": "Nascif",
+                    "given": "José"
+                }
+            ],
+            "id": "kardecnascif2009",
+            "issued": {
+                "date-parts": [
+                    [
+                        2009
+                    ]
+                ]
+            },
+            "publisher": "Qualitymark",
+            "title": "Manutenção – função estratégica",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "dropping-particle": "da",
+                    "family": "Luz",
+                    "given": "Adalberto B."
+                },
+                {
+                    "family": "Lins",
+                    "given": "Fernando A. F."
+                }
+            ],
+            "id": "luz2018",
+            "issued": {
+                "date-parts": [
+                    [
+                        2018
+                    ]
+                ]
+            },
+            "publisher": "CETEM/MCTIC",
+            "title": "Introdução ao tratamento de minérios",
+            "type": "book"
+        },
+        {
+            "author": [
+                {
+                    "family": "Medeiros",
+                    "given": "L. A. A."
+                },
+                {
+                    "family": "Sousa",
+                    "given": "I. P."
+                },
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael de Souza"
+                },
+                {
+                    "family": "Luz",
+                    "given": "R. M. de N."
+                },
+                {
+                    "family": "Luz",
+                    "given": "M. A. L."
+                }
+            ],
+            "container-title": "XLII ENEGEP - encontro nacional de engenharia de produção",
+            "id": "medeiros2022",
+            "issued": {
+                "date-parts": [
+                    [
+                        2022
+                    ]
+                ]
+            },
+            "publisher-place": "Foz do Iguaçu, PR",
+            "title": "Análise de confiabilidade para a redução do número de manutenções corretivas nos caminhões off-highway",
+            "type": "paper-conference"
+        },
+        {
+            "URL": "https://books.google.com.br/books?id=kroRDAEACAAJ",
+            "author": [
+                {
+                    "literal": "International Council on Mining and Metals"
+                }
+            ],
+            "id": "mining2015",
+            "issued": {
+                "date-parts": [
+                    [
+                        2015
+                    ]
+                ]
+            },
+            "title": "Critical control management: Implementation guide",
+            "title-short": "Critical control management",
+            "type": ""
+        },
+        {
+            "DOI": "10.1080/25726668.2021.1919374",
+            "author": [
+                {
+                    "family": "Mohtasham",
+                    "given": "Mohammad"
+                },
+                {
+                    "family": "Mirzaei-Nasirabad",
+                    "given": "Hamid"
+                },
+                {
+                    "family": "Askari-Nasab",
+                    "given": "Hossein"
+                },
+                {
+                    "family": "Alizadeh",
+                    "given": "Behzad"
+                }
+            ],
+            "container-title": "Mining Technology",
+            "id": "mohtasham2021",
+            "issue": "3",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "page": "159-175",
+            "title": "Truck fleet size selection in open-pit mines based on the match factor using a MINLP model",
+            "type": "article-journal",
+            "volume": "130"
+        },
+        {
+            "DOI": "10.1109/24.31107",
+            "author": [
+                {
+                    "family": "Nakagawa",
+                    "given": "Toshio"
+                }
+            ],
+            "container-title": "IEEE Transactions on Reliability",
+            "id": "nakagawa1989",
+            "issue": "2",
+            "issued": {
+                "date-parts": [
+                    [
+                        1989
+                    ]
+                ]
+            },
+            "page": "210-211",
+            "title": "A replacement policy maximizing MTTF of a system with several spare units",
+            "type": "article-journal",
+            "volume": "38"
+        },
+        {
+            "author": [
+                {
+                    "dropping-particle": "de",
+                    "family": "Oliveira",
+                    "given": "M. A."
+                }
+            ],
+            "genre": "PhD thesis",
+            "id": "oliveira2016",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "publisher": "Universidade do Minho",
+            "publisher-place": "Portugal",
+            "title": "Sistema de gestão da manutenção baseada no grau de maturidade da organização no âmbito da manutenção",
+            "type": "thesis"
+        },
+        {
+            "DOI": "10.1080/17480930.2019.1565054",
+            "author": [
+                {
+                    "family": "Osanloo",
+                    "given": "Mehmet"
+                },
+                {
+                    "family": "Paricheh",
+                    "given": "Mahsa"
+                }
+            ],
+            "container-title": "International Journal of Mining, Reclamation and Environment",
+            "id": "osanloo2020",
+            "issue": "6",
+            "issued": {
+                "date-parts": [
+                    [
+                        2020
+                    ]
+                ]
+            },
+            "page": "430-457",
+            "title": "In-pit crushing and conveying technology in open-pit mining operations: A literature review and research agenda",
+            "title-short": "In-pit crushing and conveying technology in open-pit mining operations",
+            "type": "article-journal",
+            "volume": "34"
+        },
+        {
+            "DOI": "10.1080/17480930.2014.962235",
+            "author": [
+                {
+                    "family": "Pascual",
+                    "given": "R."
+                },
+                {
+                    "family": "Madariaga",
+                    "given": "R."
+                },
+                {
+                    "family": "Santelices",
+                    "given": "G."
+                },
+                {
+                    "family": "Godoy",
+                    "given": "D."
+                },
+                {
+                    "family": "Droguett",
+                    "given": "E. L."
+                }
+            ],
+            "container-title": "International Journal of Mining, Reclamation and Environment",
+            "id": "pascual2016",
+            "issue": "1",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "25-36",
+            "title": "A structured methodology to optimise throughput of production lines",
+            "type": "article-journal",
+            "volume": "30"
+        },
+        {
+            "author": [
+                {
+                    "family": "Qiao",
+                    "given": "G."
+                },
+                {
+                    "family": "Schlenoff",
+                    "given": "C."
+                },
+                {
+                    "family": "Weiss",
+                    "given": "B. A."
+                }
+            ],
+            "container-title": "2017 IEEE international conference on robotics and automation (ICRA)",
+            "id": "qiao2017",
+            "issued": {
+                "date-parts": [
+                    [
+                        2017
+                    ]
+                ]
+            },
+            "title": "Quick positional health assessment for industrial robot prognostics and health management (PHM)",
+            "type": "paper-conference"
+        },
+        {
+            "URL": "https://www.wiley.com/en-us/Statistical+Methods+for+the+Reliability+of+Repairable+Systems-p-9780471349419",
+            "author": [
+                {
+                    "family": "Rigdon",
+                    "given": "Steven E."
+                },
+                {
+                    "family": "Basu",
+                    "given": "Asit P."
+                }
+            ],
+            "id": "rigdonbasu2000",
+            "issued": {
+                "date-parts": [
+                    [
+                        2000
+                    ]
+                ]
+            },
+            "publisher": "Wiley",
+            "title": "Statistical methods for the reliability of repairable systems",
+            "type": "book"
+        },
+        {
+            "DOI": "10.37118/ijdr.22578.08.2021",
+            "author": [
+                {
+                    "family": "Rocha",
+                    "given": "C. S."
+                },
+                {
+                    "family": "Cardoso",
+                    "given": "E. L. de S. S."
+                },
+                {
+                    "family": "Fernandes",
+                    "given": "Rafael de Souza"
+                },
+                {
+                    "family": "Branco",
+                    "given": "N. C. N. M."
+                },
+                {
+                    "family": "Luz",
+                    "given": "R. M. de N."
+                }
+            ],
+            "container-title": "International Journal of Development Research",
+            "id": "rocha2021",
+            "issue": "8",
+            "issued": {
+                "date-parts": [
+                    [
+                        2021
+                    ]
+                ]
+            },
+            "page": "49633-49639",
+            "title": "Quality assessment of divergences causes in weighing copper ore at a mining company in the amazon region",
+            "type": "article-journal",
+            "volume": "11"
+        },
+        {
+            "author": [
+                {
+                    "family": "Shiba",
+                    "given": "Shoji"
+                },
+                {
+                    "family": "Graham",
+                    "given": "Alan"
+                }
+            ],
+            "id": "shiba1997",
+            "issued": {
+                "date-parts": [
+                    [
+                        1997
+                    ]
+                ]
+            },
+            "publisher": "Bookman",
+            "title": "TQM quatro revoluções da gestão da qualidade",
+            "type": "book"
+        },
+        {
+            "URL": "https://books.google.com.br/books?id=wLo3AgAAQBAJ",
+            "author": [
+                {
+                    "family": "Slack",
+                    "given": "Nigel"
+                },
+                {
+                    "family": "Chambers",
+                    "given": "Stuart"
+                },
+                {
+                    "family": "Johnston",
+                    "given": "Robert"
+                },
+                {
+                    "family": "Betts",
+                    "given": "Alan"
+                }
+            ],
+            "edition": "2nd",
+            "id": "slack2013",
+            "issued": {
+                "date-parts": [
+                    [
+                        2013
+                    ]
+                ]
+            },
+            "publisher": "Bookman Editora",
+            "title": "Gerenciamento de operações e de processos: Princípios e práticas de impacto estratégico",
+            "title-short": "Gerenciamento de operações e de processos",
+            "type": "book"
+        },
+        {
+            "DOI": "10.1080/0740817X.2016.1147663",
+            "author": [
+                {
+                    "dropping-particle": "de",
+                    "family": "Toledo",
+                    "given": "Márcia L. G."
+                },
+                {
+                    "family": "Freitas",
+                    "given": "M. A."
+                },
+                {
+                    "family": "Colosimo",
+                    "given": "Enrico A."
+                },
+                {
+                    "family": "Gilardoni",
+                    "given": "Giselle L."
+                }
+            ],
+            "container-title": "IIE Transactions",
+            "id": "toledo2016",
+            "issue": "8",
+            "issued": {
+                "date-parts": [
+                    [
+                        2016
+                    ]
+                ]
+            },
+            "page": "747-758",
+            "title": "Optimal periodic maintenance policy under imperfect repair: A case study on the engines of off-road vehicles",
+            "title-short": "Optimal periodic maintenance policy under imperfect repair",
+            "type": "article-journal",
+            "volume": "48"
+        },
+        {
+            "author": [
+                {
+                    "family": "Xenos",
+                    "given": "Humberto G."
+                }
+            ],
+            "id": "xenos2014",
+            "issued": {
+                "date-parts": [
+                    [
+                        2014
+                    ]
+                ]
+            },
+            "publisher": "Falconi Editora",
+            "title": "Gerenciando a manutenção produtiva: Melhores práticas para eliminar falhas nos equipamentos e maximizar a produtividade",
+            "title-short": "Gerenciando a manutenção produtiva",
+            "type": "book"
+        },
+        {
+            "URL": "https://abcobre.org.br/wp-content/uploads/2021/04/gestao-de-ativos-guia-para-aplicacao-da-norma-abnt-nbr-iso-55001.pdf",
+            "author": [
+                {
+                    "family": "Zampolli",
+                    "given": "Marcelo"
+                }
+            ],
+            "edition": "2nd",
+            "id": "zampolli2019",
+            "issued": {
+                "date-parts": [
+                    [
+                        2019
+                    ]
+                ]
+            },
+            "title": "Gestão de ativos: Guia para a aplicação da norma ABNT NBR ISO 55001 considerando as diretrizes da ISO 55002:2018",
+            "title-short": "Gestão de ativos",
+            "type": "book"
+        }
+    ],
+    "project_biblios": [
+        "references.bib"
+    ]
+}
